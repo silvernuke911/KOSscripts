@@ -1,14 +1,47 @@
 [ TO DOS ]
 
 <Redesign>
-
-LM Redesign
-Saturn V Redesign
-Soyuz Redesign
+    LM Redesign
+    Saturn V Redesign
+    Soyuz Redesign
 
 < Coding >
 
 < Big Projects>
 
+<Programmatic Testing>
+	Custom Wait
+	Board boarders
+	Fuel reserves
+	Oxidizer Reserves
+<Chopper Functions>
+	Lift off status
+		Fuel reserves
+		Battery
+		Weight capacity
+	Flight status
+        Set standard landing pads
+            Add "Beyond range" if beyond range
+        Set heading
+        Set velocity
+        Set height
+        Set target location
+            Coordinates
+            Heading and Distance
+        ETA function
+	Hover function 
+	Landing function
+        Hover when 50 meters away from target 20 meters up
+		Set a cross with the longest being where the front goes on target
+		use asdw to control the landing spot
+			, and . to increment, 10, 5, 1, 0.1 meters
+		use q and e to control fore angle
+			, and . to increment
+        confirm descent
+            approach at decelerating hor speed
+            stop when 5 m above location
+            descend at 0.5 m/s
+    Manual control
+    Message box
 
 git add .; git commit -m "commit0"; git push
