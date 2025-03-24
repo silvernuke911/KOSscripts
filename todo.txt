@@ -3,8 +3,8 @@
     Watch cheers kevin
     
 <Redesign>
-    LM Redesign
-    Saturn V Redesign
+-    LM Redesign
+-    Saturn V Redesign
     Soyuz Redesign
 
 < Coding >
@@ -12,10 +12,12 @@
 < Big Projects>
 
 <Programmatic Testing>
-	Custom Wait
-	Board boarders
-	Fuel reserves
-	Oxidizer Reserves
+-	Custom Wait
+-	Board boarders
+-	Fuel reserves
+-	Oxidizer Reserves
+-   Resources function
+    User Input
 <Chopper Functions>
 	Lift off status
 		Fuel reserves
@@ -45,5 +47,6 @@
             descend at 0.5 m/s
     Manual control
     Message box
-
+< Replicate the entirety of Mechjeb >
+< Linear Descent functions >
 git add .; git commit -m "commit0"; git push

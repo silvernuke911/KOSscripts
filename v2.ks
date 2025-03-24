@@ -19,17 +19,20 @@ until runmode = 0 {
         }
     } 
     if runmode = 2 {
-        lock steering to heading (90,65,-90).
-        wait 15.
+        lock steering to heading (90,45,-90).
+        wait 25.
         set runmode to 3.
     }
     if runmode = 3 {
         lock steering to heading (90, vang(ship:velocity:surface, vCrs(ship:up:vector, ship:north:vector)), -90).
-        if availableThrust = 0 {
-            set runmode to 4.
-        }
+        set runmode to 4.
     }
     if runmode = 4 {
+        if availableThrust = 0 {
+            set runmode to 5.
+        }
+    }
+    if runmode = 5 {
         lock steering to velocity:surface.
     }
     display_flight_data().
