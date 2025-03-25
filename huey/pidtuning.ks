@@ -45,7 +45,7 @@ set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
 
-set hoverpid to pidLoop(0.03,0,0.04,0,1).
+set hoverpid to pidLoop(0.03,0,0.05,0,1).
 
 set system_done to false.
 set runmode to 1.
