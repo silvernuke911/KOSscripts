@@ -16,16 +16,18 @@ function compass_hdg {
 }
 
 function log_flight_data {
-    local parameter targ_alt_.
-    set file_name to "hu1pidtuning0.csv".
+    local parameter signal. 
+    local parameter setpoint.
+
+    set file_name to "hu1pidtuning1.csv".
     if not exists(file_name) {
         // Create the file and write the header if it doesn't exist
-        log "Time,Altitude,Setpoint" to file_name.
+        log "Time,sSignal,Setpoint" to file_name.
     }
-    set ship_alt to round(alt:radar, 2).
+    set signal to round(signal, 2).
     set time_now to round(time:seconds, 2).
-    set targ_alt_ to round(targ_alt_,2).
-    log time_now + "," + ship_alt+ ","+ targ_alt_ to file_name.
+    set setpoint to round(setpoint,2).
+    log time_now + "," + signal+ ","+ setpoint to file_name.
 }
 
 set collective to 0.
@@ -36,9 +38,9 @@ clearScreen.
 local targ_vertvel to 0.
 set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
-local targ_forvel to 0.
+local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(4,0.6,0.25,-30,30).
+set forepid to pidLoop(4,0,0,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -49,22 +51,52 @@ set hoverpid to pidLoop(0.03,0.005,0.07,0,1).
 
 set system_done to false.
 set runmode to 1.
-set time_start to time:seconds.
 set time_limit to 30.
-
+set time_start to time:seconds.
 sas on.
 rcs on.
 until system_done {
+    local velocity_vector is ship:velocity:surface:vec.
+    local up_vector is ship:up:vector.
+    local fore_vector is vxcl(up_vector,ship:facing:forevector).
+    local starboard_vector is vcrs(up_vector, fore_vector).
+
+    // Compute the components
+    local up_component is vdot(velocity_vector, up_vector).
+    local fore_component is vdot(velocity_vector, fore_vector).
+    local sb_component is vdot(velocity_vector, starboard_vector).
+
     if runmode = 1 {
         // initial ascent
+        print("INITIAL ASCENT   ") at (2,5).
         set hoverpid:setpoint to targ_alt.
         set collective to hoverpid:update(time:seconds, alt:radar).
-        log_flight_data(targ_alt).
+        if alt:radar > 45 {
+            set time_start to time:seconds.
+            sas off.
+            set runmode to 2.
+        }
     }
+    if runmode = 2 {
+        print("STARTING TEST   ") at (2,5).
+        set forepid:setpoint to targ_forvel.
+        set pitch_ang  to -forepid:update(time:seconds, fore_component).
+        lock steering to heading(targ_hdg, pitch_ang,0).
+
+        set hoverpid:setpoint to targ_alt.
+        set collective to hoverpid:update(time:seconds, alt:radar).
+
+        log_flight_data(fore_component,targ_forvel).
+    }
+
     if (time:seconds - time_start) > time_limit {
+        print("BEGIN DESCENT   ") at (2,5).
+        sas on.
         set targ_sidevel to 0.
         set targ_forvel to 0.
         set targ_vertvel to -5.
+        lock steering to heading(targ_hdg, 5).
+        unlock steering.
         set runmode to 8.
     }
     if runmode = 8 {
@@ -79,6 +111,7 @@ until system_done {
         set vertpid:setpoint to targ_vertvel.
         set collective to vertpid:update(time:seconds, ship:verticalspeed).
         if alt:radar < 0.75 {
+            print("lANDED, TEST DONE   ") at (2,5).
             set runmode to 10.
         }
     }
@@ -92,16 +125,6 @@ until system_done {
     print "S : "+targ_sidevel+ "   " at (25,12).
 
     print "ALT RDR : "+round(alt:radar,2) at (5,10).
-
-    local velocity_vector is ship:velocity:surface:vec.
-    local up_vector is ship:up:vector.
-    local fore_vector is vxcl(up_vector,ship:facing:forevector).
-    local starboard_vector is vcrs(up_vector, fore_vector).
-
-    // Compute the components
-    local up_component is vdot(velocity_vector, up_vector).
-    local fore_component is vdot(velocity_vector, fore_vector).
-    local sb_component is vdot(velocity_vector, starboard_vector).
 
     print "UP     : " + round(up_component,2)+ "   " at (5,16).
     print "FORE   : " + round(fore_component,2)+ "   " at (5,17).
