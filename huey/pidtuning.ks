@@ -22,7 +22,7 @@ function log_flight_data {
     set file_name to "hu1pidtuning1.csv".
     if not exists(file_name) {
         // Create the file and write the header if it doesn't exist
-        log "Time,sSignal,Setpoint" to file_name.
+        log "Time,Signal,Setpoint" to file_name.
     }
     set signal to round(signal, 2).
     set time_now to round(time:seconds, 2).
@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(4,0,0,-30,30).
+set forepid to pidLoop(5,0,0,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -81,10 +81,11 @@ until system_done {
         print("STARTING TEST   ") at (2,5).
         set forepid:setpoint to targ_forvel.
         set pitch_ang  to -forepid:update(time:seconds, fore_component).
-        lock steering to heading(targ_hdg, pitch_ang,0).
-
+        
         set hoverpid:setpoint to targ_alt.
         set collective to hoverpid:update(time:seconds, alt:radar).
+
+        lock steering to heading(targ_hdg, pitch_ang, 0).
 
         log_flight_data(fore_component,targ_forvel).
     }
@@ -117,6 +118,7 @@ until system_done {
     }
     if runmode = 10 {
         rcs off.
+        sas off.
         set system_done to true.
     }
     print "TIME : " + round((time:seconds - time_start),1) at (5,8).
