@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(1,1,1.5,-30,30).
+set forepid to pidLoop(1,0.5,2,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -53,7 +53,7 @@ set system_done to false.
 set runmode to 1.
 set time_limit to 30.
 set time_start to time:seconds.
-sas on.s
+sas on.
 rcs on.
 until system_done {
     local velocity_vector is ship:velocity:surface:vec.
@@ -109,7 +109,7 @@ until system_done {
         set side_ang to -sidepid:update(time:seconds, sb_component).
 
         lock steering to heading(targ_hdg, pitch_ang, side_ang).
-        if fore_component < 2 {
+        if fore_component < 1 {
 
             set runmode to 7.
         }
