@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(2.5,0,1.5,-30,30).
+set forepid to pidLoop(2.5,0.1,1.5,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -85,7 +85,10 @@ until system_done {
         set hoverpid:setpoint to targ_alt.
         set collective to hoverpid:update(time:seconds, alt:radar).
 
-        lock steering to heading(targ_hdg, pitch_ang, 0).
+        set sidepid:setpoint to targ_sidevel.
+        set side_ang to -sidepid:update(time:seconds, sb_component).
+
+        lock steering to heading(targ_hdg, pitch_ang, side_ang).
 
         log_flight_data(fore_component,targ_forvel).
     }
