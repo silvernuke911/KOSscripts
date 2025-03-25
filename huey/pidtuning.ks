@@ -45,7 +45,7 @@ set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
 
-set hoverpid to pidLoop(0.025,0.0125,0.075*0.025,0,1).
+set hoverpid to pidLoop(0.03,0,0.01,0,1).
 
 set system_done to false.
 set runmode to 1.
@@ -70,6 +70,7 @@ until system_done {
     if runmode = 8 {
         set vertpid:setpoint to targ_vertvel.
         set collective to vertpid:update(time:seconds, ship:verticalspeed).
+        set targ_hdg to 270.
         if alt:radar < 15 {
             set targ_vertvel to -1.
             set runmode to 9.
