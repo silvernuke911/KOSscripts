@@ -29,7 +29,7 @@ function log_flight_data {
 }
 
 set collective to 0.
-local targ_alt is 50.
+local targ_alt is 100.
 lock throttle to collective.
 
 clearScreen.
@@ -45,7 +45,7 @@ set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
 
-set hoverpid to pidLoop(0.03,0.005,0.06,0,1).
+set hoverpid to pidLoop(0.03,0.005,0.065,0,1).
 
 set system_done to false.
 set runmode to 1.
