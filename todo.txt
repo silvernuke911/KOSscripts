@@ -23,7 +23,7 @@
 		Fuel reserves
 		Battery
 		Weight capacity
-	Flight status
+	Flight status - autopilot
         Set standard landing pads
             Add "Beyond range" if beyond range
         Set heading
@@ -34,6 +34,16 @@
             Heading and Distance
         ETA function
 	Hover function 
+        PID loops
+    Speed control Manual
+        shift - up 1 m/s 
+        ctrl  - down 1 m/s 
+        up arrow - forward 1
+        down arrow - aft 1 
+        left arrow - left 1 
+        right arrow - right 1 
+        . - up 10,5,1,0.5,0.1 
+        , - down 10, 5, 1, 0.5, 0.1 
 	Landing function
         Hover when 50 meters away from target 20 meters up
 		Set a cross with the longest being where the front goes on target
