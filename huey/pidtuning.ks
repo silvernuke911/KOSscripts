@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(2.5,0.1,1.5,-30,30).
+set forepid to pidLoop(2,0.75,1.5,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -94,6 +94,26 @@ until system_done {
     }
 
     if (time:seconds - time_start) > time_limit {
+        print("INITIATING SLOWDOWN  ") at (2,5).
+        set targ_forvel to 0.
+        set runmode to 3. 
+    }
+    if runmode = 3 {
+        set forepid:setpoint to targ_forvel.
+        set pitch_ang  to -forepid:update(time:seconds, fore_component).
+        
+        set hoverpid:setpoint to targ_alt.
+        set collective to hoverpid:update(time:seconds, alt:radar).
+
+        set sidepid:setpoint to targ_sidevel.
+        set side_ang to -sidepid:update(time:seconds, sb_component).
+
+        lock steering to heading(targ_hdg, pitch_ang, side_ang).
+        if fore_component < 2 {
+            set runmode to 7.
+        }
+    }
+    if runmode = 7 {
         print("BEGIN DESCENT   ") at (2,5).
         sas on.
         set targ_sidevel to 0.
@@ -101,7 +121,7 @@ until system_done {
         set targ_vertvel to -5.
         lock steering to heading(targ_hdg, 5).
         unlock steering.
-        set runmode to 8.
+        set runmode to 7.
     }
     if runmode = 8 {
         set vertpid:setpoint to targ_vertvel.
