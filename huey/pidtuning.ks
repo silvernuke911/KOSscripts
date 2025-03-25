@@ -40,7 +40,8 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(2,0.2,5,-30,30).
+// set forepid to pidLoop(1,0.4,5,-30,30).
+set forepid to pidLoop(0.5,0,1,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
