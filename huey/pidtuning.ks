@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(1,0.5,2,-30,30).
+set forepid to pidLoop(2,0,2,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -91,12 +91,11 @@ until system_done {
         lock steering to heading(targ_hdg, pitch_ang, side_ang).
 
         log_flight_data(fore_component,targ_forvel).
-    }
-
-    if (time:seconds - time_start) > time_limit {
-        print("INITIATING SLOWDOWN  ") at (2,5).
-        set targ_forvel to 0.
-        set runmode to 3. 
+        if (time:seconds - time_start) > time_limit {
+            print("INITIATING SLOWDOWN  ") at (2,5).
+            set targ_forvel to 0.
+            set runmode to 3. 
+        }
     }
     if runmode = 3 {
         set forepid:setpoint to targ_forvel.
@@ -109,19 +108,19 @@ until system_done {
         set side_ang to -sidepid:update(time:seconds, sb_component).
 
         lock steering to heading(targ_hdg, pitch_ang, side_ang).
-        if fore_component < 1 {
-
+        if fore_component < 4 {
+            lock steering to  heading(targ_hdg, 5 , 0).
             set runmode to 7.
         }
     }
     if runmode = 7 {
         print("BEGIN DESCENT   ") at (2,5).
-        sas on.
         set targ_sidevel to 0.
         set targ_forvel to 0.
         set targ_vertvel to -5.
         lock steering to heading(targ_hdg, 5).
         unlock steering.
+        sas on.
         set runmode to 8.
     }
     if runmode = 8 {
