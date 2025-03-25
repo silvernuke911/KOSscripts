@@ -40,7 +40,7 @@ set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
-set forepid to pidLoop(2,0.1,2,-30,30).
+set forepid to pidLoop(1,0.5,2.5,-30,30).
 
 set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
@@ -107,7 +107,7 @@ until system_done {
         set sidepid:setpoint to targ_sidevel.
         set side_ang to -sidepid:update(time:seconds, sb_component).
 
-        lock steering to heading(targ_hdg, pitch_an g, side_ang).
+        lock steering to heading(targ_hdg, pitch_ang, side_ang).
         if fore_component < 4.5 {
             lock steering to  heading(targ_hdg, 5 , 0).
             set runmode to 7.
@@ -118,7 +118,9 @@ until system_done {
         set targ_sidevel to 0.
         set targ_forvel to 0.
         set targ_vertvel to -5.
-        lock steering to heading(targ_hdg, 5).
+        until vang(ship:up:vector,ship:facing:forevector) > 85 {
+            lock steering to heading(targ_hdg, 5).
+        }
         unlock steering.
         sas on.
         set runmode to 8.
