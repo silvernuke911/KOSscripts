@@ -22,13 +22,14 @@ function log_flight_data {
         // Create the file and write the header if it doesn't exist
         log "Time,Altitude,Setpoint" to file_name.
     }
-    set ship_alt to round(ship:altitude, 2).
+    set ship_alt to round(alt:radar, 2).
     set time_now to round(time:seconds, 2).
     set targ_alt_ to round(targ_alt_,2).
-    log time_now + "," + ship_alt + targ_alt_ to file_name.
+    log time_now + "," + ship_alt+ ","+ targ_alt_ to file_name.
 }
+
 set collective to 0.
-local targ_alt is 500.
+local targ_alt is 50.
 lock throttle to collective.
 
 clearScreen.
@@ -44,12 +45,12 @@ set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
 
-set hoverpid to pidLoop(0.01,0,0,0,1).
+set hoverpid to pidLoop(0.03,0,0,0,1).
 
 set system_done to false.
 set runmode to 1.
 set time_start to time:seconds.
-set time_limit to 60.
+set time_limit to 30.
 
 sas on.
 rcs on.
@@ -63,17 +64,26 @@ until system_done {
     if (time:seconds - time_start) > time_limit {
         set targ_sidevel to 0.
         set targ_forvel to 0.
-        set targ_vertvel to -2.
-        set runmode to 9.
+        set targ_vertvel to -5.
+        set runmode to 8.
+    }
+    if runmode = 8 {
+        set vertpid:setpoint to targ_vertvel.
+        set collective to vertpid:update(time:seconds, ship:verticalspeed).
+        if alt:radar < 15 {
+            set targ_vertvel to -1.
+            set runmode to 9.
+        }
     }
     if runmode = 9 {
         set vertpid:setpoint to targ_vertvel.
         set collective to vertpid:update(time:seconds, ship:verticalspeed).
-        if alt:radar < 1 {
+        if alt:radar < 0.75 {
             set runmode to 10.
         }
     }
     if runmode = 10 {
+        rcs off.
         set system_done to true.
     }
     print "TIME : " + round((time:seconds - time_start),1) at (5,8).
