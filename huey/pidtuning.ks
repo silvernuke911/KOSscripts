@@ -46,7 +46,6 @@ set targ_sidevel to 0.
 set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
-
 set hoverpid to pidLoop(0.03,0.005,0.07,0,1).
 
 set system_done to false.
