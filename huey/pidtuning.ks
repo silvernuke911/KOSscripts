@@ -45,7 +45,7 @@ set sidepid to pidLoop(4,0.6,0.25,-15,15).
 
 set targ_hdg to compass_hdg().
 
-set hoverpid to pidLoop(0.03,0.005,0.06,0,1).
+set hoverpid to pidLoop(0.03,0.005,0.055,0,1).
 
 set system_done to false.
 set runmode to 1.
@@ -110,3 +110,8 @@ until system_done {
     print "TGT HDG : " + round(targ_hdg)+"  " at (5,20).
     print "TRU HDG : " + round(compass_hdg())+"  " at (5,21).
 }
+
+// PID TUNING PROCESS
+// ADJUST KP SO THAT THERE ARE ACCEPTABLE OSCILLATIONS. NOT REACHING SETPOINT IS OK.
+// ADJUST KD TO DAMPEN THE OSCILLATIONS.
+// ADJUST KI TO ADJUST FOR SETPOINT DIFFERENCE.
