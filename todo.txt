@@ -20,30 +20,30 @@
     User Input
 <Chopper Functions>
 	Lift off status
-		Fuel reserves
-		Battery
+-		Fuel reserves
+-		Battery
 		Weight capacity
 	Flight status - autopilot
         Set standard landing pads
             Add "Beyond range" if beyond range
-        Set heading
+-        Set heading
         Set velocity
-        Set height
+-        Set height
         Set target location
             Coordinates
             Heading and Distance
         ETA function
-	Hover function 
-        PID loops
-    Speed control Manual
-        shift - up 1 m/s 
-        ctrl  - down 1 m/s 
-        up arrow - forward 1
-        down arrow - aft 1 
-        left arrow - left 1 
-        right arrow - right 1 
-        . - up 10,5,1,0.5,0.1 
-        , - down 10, 5, 1, 0.5, 0.1 
+-	Hover function 
+-        PID loops
+-   Speed control Manual
+-        shift - up 1 m/s 
+-        ctrl  - down 1 m/s 
+-        up arrow - forward 1
+-        down arrow - aft 1 
+-        left arrow - left 1 
+-        right arrow - right 1 
+-        . - up 10,5,1,0.5,0.1 
+-        , - down 10, 5, 1, 0.5, 0.1 
 	Landing function
         Hover when 50 meters away from target 20 meters up
 		Set a cross with the longest being where the front goes on target
@@ -59,13 +59,13 @@
     Message box
 < Replicate the entirety of Mechjeb >
 < Linear Descent functions >
-<<<<<<< HEAD
-=======
 
 Helicopter Auto Landing
 Missilte Tracking
 Bomb tracking
 Execute Node 
+Nodes 
+Missle waypoint guidance
+Communication
 
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
 git add .; git commit -m "commit0"; git push
