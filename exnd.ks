@@ -2,15 +2,139 @@
 set config:ipu to 1500.
 // Launching the fucker
 
-function executeNode {
+function circularize {
+    local parameter mode.
+    if mode = "at periapsis" {
+
+    }
+    if mode = "at apoapsis" {
+
+    }
+    if mode = "at altitude" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+}
+
+function change_apoapsis {
+    local parameter target_apoapsis.
+    local parameter mode.
+    if mode = "at next periapsis" {
+
+    }
+    if mode = "at next apoapsis" {
+
+    }
+    if mode = "after a fixed time" {
+
+    }
+    if mode = "at equatorial DN" {
+
+    }
+    if mode = "at equatorial AN" {
+
+    }
+}
+function change_periapsis {
+    local parameter target_periapsis.
+    local parameter mode.
+    if mode = "at next periapsis" {
+
+    }
+    if mode = "at next apoapsis" {
+
+    }
+    if mode = "after a fixed time" {
+
+    }
+    if mode = "at equatorial DN" {
+
+    }
+    if mode = "at equatorial AN" {
+        
+    }
+}
+
+function change_inclination {
+    local parameter target_inclination.
+    local parameter mode.
+    if mode = "at cheapeast node" {
+
+    }
+    if mode = "at nearest node" {
+
+    }
+    if mode = "at AN" {
+         
+    }
+    if mode = "at DN" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+}
+
+function change_longitude_of_ascending_node {
+
+}
+
+function change_pe_and_ap {
+
+}
+
+function return_from_a_moon {
+    local parameter target_periapsis.
+} 
+
+function change_semi_major_axis {
+
+}
+
+function change_resonant_orbit {
+    local parameter target_resonance.
+    local parameter mode.
+    if mode = "at periapsis" {
+
+    }
+    if mode = "at apoasis" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+    if mode = "at altitude" {
+
+    }
+}
+
+function rcs_orbit_corrector {
+
+}
+function execute_node {
     parameter next_node.
 }
 
+function compass_hdg {
+    local up_vector is ship:up:vector.
+    local north_vector is ship:north:vector. // Horizontal North direction
+    local east_vector is vcrs(up_vector, north_vector).       // Horizontal East direction
+    local facing_vector is ship:facing:forevector.
+    local projV is vxcl(up_vector, facing_vector). // Project forward vector onto the horizontal plane
+    local angle is vang(north_vector, projV). // Angle from North
 
+    // Use dot product with east to determine left/right deviation
+    if vdot(projV, east_vector) < 0 {
+        set angle to 360 - angle.
+    }
+    return angle.
+}
 
 // run math.ks.
 
-global slew_angle is 12.
+global slew_angle is 12.5.
 global target_altitude is 100000.
 global current_mode is "".
 global cycles is 0.
@@ -31,11 +155,9 @@ function startup {
 
 function open_loop_guidance {
     // Zero aoa ascent
-    local runmode to 1.
-    
     // Runmodes
     set current_mode to "Open Loop Guidance".
-    set runmode to "ignition".
+    local runmode to "ignition".
 
     until runmode = "ascent done" {
         if runmode = "ignition" {
@@ -93,14 +215,14 @@ function closed_loop_guidance {
     local runmode to "reaching apoapsis".
     set current_mode to "Closed Loop Guidance".
     until runmode = "done" {
-        if runmode = "raching apoapsis" {
+        if runmode = "reaching apoapsis" {
             if ship:apoapsis > target_altitude {
                 lock throttle to 0.
                 set runmode to "coast1".
             }
         }
         if runmode = "coast1" {
-            if ship:apoapsis < target_altitude {
+            if ship:apoapsis < target_altitude {        
                 lock throttle to 0.05.
                 set runmode to "coast2".
             }
@@ -169,7 +291,7 @@ function screen_data {
     print "Periapsis        : " + round(ship:periapsis,3) + "   " at (5,11).
     print "Altitude         : " + round(ship:altitude,3) + "   " at (5,12).
     print "Time to apoapsis : " + round(eta:apoapsis,3) + "   " at (5,13).
-    print "HDG              : " + round(ship:heading,3) + "   " at (5,14).
+    print "HDG              : " + round(compass_hdg(),3) + "   " at (5,14).
     print "CPU Cycles       : " + cycles at (5,30).
     print shift_alt at (5,31).
 }
