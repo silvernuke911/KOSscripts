@@ -135,7 +135,9 @@ function throttle_2g {
 function screen_data {
     parameter runmode.
 
-    print "Current mode : " + current_mode + " RM : " + runmode at (5,4).
+    print "Current mode : " + current_mode + "             " at (5,3).
+    print "RM           : " + runmode + "             " at (5,4).
+
     print "Vessel name      : " + ship:name at (5,5).
     print "Vertical speed   : " + round(ship:verticalSpeed,3) + "   " at (5,7).
     print "Horizontal speed : " + round(ship:groundspeed,3) + "   " at (5,8).

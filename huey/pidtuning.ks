@@ -1,3 +1,5 @@
+@lazyGlobal off.
+set config:ipu to 2000.
 
 function compass_hdg {
     local up_vector is ship:up:vector.
@@ -16,67 +18,54 @@ function compass_hdg {
 }
 
 function log_flight_data {
-<<<<<<< HEAD
     local parameter time__.
-=======
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
     local parameter signal. 
     local parameter setpoint.
 
-    set file_name to "hu1pidtuning1.csv".
+    local file_name to "hu1pidtuning1.csv".
     if not exists(file_name) {
         // Create the file and write the header if it doesn't exist
         log "Time,Signal,Setpoint" to file_name.
     }
     set signal to round(signal, 2).
-<<<<<<< HEAD
-    set time_now to round(time__, 2).
-=======
-    set time_now to round(time:seconds, 2).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
+    local time_now to round(time__, 2).
     set setpoint to round(setpoint,2).
     log time_now + "," + signal+ ","+ setpoint to file_name.
 }
 
-set collective to 0.
-local targ_alt is 50.
+global collective to 0.
+global targ_alt is 50.
 lock throttle to collective.
 
 clearScreen.
 local targ_vertvel to 0.
-set vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
+global vertpid to pidLoop(0.4,0.6,0.025,0,1). // this is good
 
 local targ_forvel to 10.
 // set forepid to pidLoop(5,0.6,0.25,-30,30).
 // set forepid to pidLoop(1,0.4,5,-30,30).
-<<<<<<< HEAD
 // set forepid to pidLoop(5,1.5,2.5,-30,30).
-set forepid to pidLoop(3,1.5,0,-30,30).
+global forepid to pidLoop(3,1.5,0,-30,30).
 
 // pitch and roll pid
-=======
-set forepid to pidLoop(0.5,0,1,-30,30).
+global targ_sidevel to 0.
+global sidepid to pidLoop(4,0.6,0.25,-15,15).
 
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
-set targ_sidevel to 0.
-set sidepid to pidLoop(4,0.6,0.25,-15,15).
+global targ_hdg to compass_hdg().
+global hoverpid to pidLoop(0.03,0.005,0.07,0,1).
 
-set targ_hdg to compass_hdg().
-set hoverpid to pidLoop(0.03,0.005,0.07,0,1).
+global system_done to false.
+global runmode to 1.
 
-set system_done to false.
-set runmode to 1.
-<<<<<<< HEAD
-set time_limit to 195.
-set time_start to time:seconds.
+global time_limit to 195.
+global time_start to time:seconds.
 
-set targ_ang to -10.
-sas on.
+global targ_ang to -10.
 rcs on.
 
 
-set pitch_ang to 0.
-set side_ang to 0.
+global pitch_ang to 0.
+global side_ang to 0.
 
 set steeringManager:pitchpid:kp to 3.5.
 set steeringManager:pitchpid:ki to 0.1.
@@ -88,13 +77,13 @@ function angle_data_collection{
     local parameter signal.
     local parameter setpoint.
 
-    set file_name to "pitchpid.csv".
+    local file_name to "pitchpid.csv".
     if not exists(file_name) {
         // Create the file and write the header if it doesn't exist
         log "Time,Signal,Setpoint" to file_name.
     }
     set signal to round(signal, 2).
-    set time_now to round(time__, 2).
+    local time_now to round(time__, 2).
     set setpoint to round(setpoint,2).
     log time_now + "," + signal+ ","+ setpoint to file_name.
 }
@@ -123,39 +112,32 @@ function flight_control {
     set side_ang to -sidepid:update(time:seconds, side_component).
 }
 
-=======
 set time_limit to 30.
 set time_start to time:seconds.
 sas on.
 rcs on.
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
-until system_done {
+
+until system_done = true {
     local velocity_vector is ship:velocity:surface:vec.
     local up_vector is ship:up:vector.
     local fore_vector is vxcl(up_vector,ship:facing:forevector).
     local starboard_vector is vcrs(up_vector, fore_vector).
-
     // Compute the components
     local up_component is vdot(velocity_vector, up_vector).
     local fore_component is vdot(velocity_vector, fore_vector).
-<<<<<<< HEAD
     local side_component is vdot(velocity_vector, starboard_vector).
-=======
-    local sb_component is vdot(velocity_vector, starboard_vector).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
 
     if runmode = 1 {
         // initial ascent
         print("INITIAL ASCENT   ") at (2,5).
         set hoverpid:setpoint to targ_alt.
         set collective to hoverpid:update(time:seconds, alt:radar).
-<<<<<<< HEAD
         if alt:radar > 48 {
             set time_start to time:seconds.
             sas off.
             lock steering to heading(targ_hdg, pitch_ang, side_ang).
-            set minitimer to time:seconds.
-            set minimode to -2.
+            global minitimer to time:seconds.
+            global minimode to -2.
             set targ_forvel to -5.
             set runmode to 1.75.
             //set runmode to 1.5.
@@ -286,14 +268,6 @@ until system_done {
 
         log_flight_data((time:seconds - time_start),fore_component,targ_forvel).
     }
-=======
-        if alt:radar > 45 {
-            set time_start to time:seconds.
-            sas off.
-            set runmode to 2.
-        }
-    }
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
     if runmode = 2 {
         print("STARTING TEST   ") at (2,5).
         set forepid:setpoint to targ_forvel.
@@ -303,29 +277,17 @@ until system_done {
         set collective to hoverpid:update(time:seconds, alt:radar).
 
         set sidepid:setpoint to targ_sidevel.
-<<<<<<< HEAD
         set side_ang to -sidepid:update(time:seconds, side_component).
 
         print round(pitch_ang ,1) + "       " + round(side_ang ,1) at (5,23).
 
         log_flight_data((time:seconds - time_start),fore_component,targ_forvel).
-=======
-        set side_ang to -sidepid:update(time:seconds, sb_component).
-
-        lock steering to heading(targ_hdg, pitch_ang, side_ang).
-
-        log_flight_data(fore_component,targ_forvel).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
         if (time:seconds - time_start) > time_limit {
             print("INITIATING SLOWDOWN  ") at (2,5).
             set targ_forvel to 0.
             set runmode to 3. 
         }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
     if runmode = 3 {
         set forepid:setpoint to targ_forvel.
         set pitch_ang  to -forepid:update(time:seconds, fore_component).
@@ -334,11 +296,7 @@ until system_done {
         set collective to hoverpid:update(time:seconds, alt:radar).
 
         set sidepid:setpoint to targ_sidevel.
-<<<<<<< HEAD
         set side_ang to -sidepid:update(time:seconds, side_component).
-=======
-        set side_ang to -sidepid:update(time:seconds, sb_component).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
 
         lock steering to heading(targ_hdg, pitch_ang, side_ang).
         if fore_component < 4.5 {
@@ -350,7 +308,6 @@ until system_done {
         print("BEGIN DESCENT   ") at (2,5).
         set targ_sidevel to 0.
         set targ_forvel to 0.
-<<<<<<< HEAD
         set targ_vertvel to -7.5.
         until vang(ship:up:vector,ship:facing:forevector) > 85 {
             lock steering to heading(targ_hdg, 5).
@@ -362,35 +319,13 @@ until system_done {
         flight_control(targ_vertvel,targ_forvel,targ_sidevel).
         if alt:radar < 15 {
             set targ_vertvel to -1.5.
-=======
-        set targ_vertvel to -5.
-        until vang(ship:up:vector,ship:facing:forevector) > 85 {
-            lock steering to heading(targ_hdg, 5).
-        }
-        unlock steering.
-        sas on.
-        set runmode to 8.
-    }
-    if runmode = 8 {
-        set vertpid:setpoint to targ_vertvel.
-        set collective to vertpid:update(time:seconds, ship:verticalspeed).
-        if alt:radar < 15 {
-            set targ_vertvel to -1.
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
             set runmode to 9.
         }
     }
     if runmode = 9 {
-<<<<<<< HEAD
         flight_control(targ_vertvel,targ_forvel,targ_sidevel).
         if alt:radar < 0.75 {
             print("LANDED, TEST DONE   ") at (2,5).
-=======
-        set vertpid:setpoint to targ_vertvel.
-        set collective to vertpid:update(time:seconds, ship:verticalspeed).
-        if alt:radar < 0.75 {
-            print("lANDED, TEST DONE   ") at (2,5).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
             set runmode to 10.
         }
     }
@@ -399,10 +334,7 @@ until system_done {
         sas off.
         set system_done to true.
     }
-<<<<<<< HEAD
     print "RUNMODE : " + runmode at (2,2).
-=======
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
     print "TIME : " + round((time:seconds - time_start),1) at (5,8).
     print "V : "+targ_vertvel+ "   " at (5,12).
     print "F : "+targ_forvel+ "   " at (15,12).
@@ -412,11 +344,7 @@ until system_done {
 
     print "UP     : " + round(up_component,2)+ "   " at (5,16).
     print "FORE   : " + round(fore_component,2)+ "   " at (5,17).
-<<<<<<< HEAD
     print "STRBRD : " + round(side_component,2)+ "   " at (5,18).
-=======
-    print "STRBRD : " + round(sb_component,2)+ "   " at (5,18).
->>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
 
     print "TGT HDG : " + round(targ_hdg)+"  " at (5,20).
     print "TRU HDG : " + round(compass_hdg())+"  " at (5,21).

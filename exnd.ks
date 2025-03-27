@@ -1,7 +1,9 @@
 @lazyGlobal off.
 set config:ipu to 1500.
 // Launching the fucker
-
+function create_node {
+    
+}
 function circularize {
     local parameter mode.
     if mode = "at periapsis" {
