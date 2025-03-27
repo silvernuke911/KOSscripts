@@ -1,0 +1,25 @@
+CKAN
+AirplanePLus
+Mechjeb
+Kerbal Engineer
+BoulderCo
+Distant Object
+Firespitter
+Kerbaltek
+kOS
+Kronal Vessel Veiwer
+Modular Launch Pads
+Planetshine
+Scatterer
+EVE
+Staged Animation
+Waterfall
+Trajectories
+Tweakscale
+Firefly
+
+[MAYBE?]
+4kSP
+KSPBUrst
+Restock
+BlueDog Design Bureueu
