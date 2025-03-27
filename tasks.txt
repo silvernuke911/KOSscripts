@@ -1,0 +1,252 @@
+*------------------ DONE ------------------*
+Robynn Teach 		                                /\\
+Narratives 		                                    /\\
+P181 Study 		                                    /\\
+DNC Application 	                                /\\
+P181 Paper 		                                    /\\
+Emails                                              /\\
+Email Sir Regarding Standing                        /\\
+English 13 papers motherfucker
+    Start Boiler Plate                              /\\
+    Commentary on Mojares                           /\\   
+    T - Chart on Multitasking                       /\\    
+    Commentary on Nussbaum, David, and Sommers      /\\  
+    Sommers's Novice as Expert essays               /\\
+    Thesis Statement Manny Dy                       /\\
+    Outline Stephen Hawking's Picture of the Universe   /\\
+    Outline for Position paper 
+    Position paper                                  /\\
+    Outline for Inquiry paper                       /\\
+    Inquiry Paper                                   /\\
+DNC                                                 /\\
+Midyear Enlistment MATH 40 , KAS 1		            /\\
+M40
+    Prerequisite form                               /\\
+    AQ1                                             /\\
+    AQ2                                             /\\
+    AQ3                                             /\\
+    Introduction - Sites                            /\\
+Gravity Paper   July 08                             /\\
+    Study Relativity                                /\\
+        Make a short summary paper
+    Review the Paper 
+    Write the Review
+Study for Exam M40
+Python - Matrix Multiplier                          /\\
+Python - Matrix Tracer                              /\\
+Python - Augmented Matrix Solver                    /\\
+Python - Inverses and Determinants                  /\\
+Astrosoc Meeting 0                                  /\\
+NIP subjects                                        /\\
+pathways career jumpstart                           /\\
+Math 40 HW4                                         /\\
+Dat boi and the heron                               /\\
+Math 40 Exam                                        /\\
+Math 40 HW6                                         /\\
+Paintings - BG Pics                                 /\\
+Math 40 HW7                                         /\\
+Frat Minutes                                        /\\
+Frat Freedom Wall
+*------------------ NOW -------------------*
+Math 40 HW8                                         /\\
+Enrollment                                          /\\
+Math 40 Notes
+    Math 40 Study
+Eng Lackings
+Math HW9
+Paintings
+ObsIn Handbook
+Aug 2 - Astrotalk /\
+Exam 3
+Finals
+Notes LaTeX
+116 Notes
+117 Notes 
+Connect to DILNET 2.0 /
+Guidance rocket program 
+Position and Inquiry Paper First Drafts
+Simulate ascent guidance
+CSlib WIP
+Learn C++
+Learn Mathematica
+*----------------- LATER ------------------*
+
+Image Processing for Python 
+Filipino Papers
+Gravity Paper
+Finish 116 Notes
+Prepare for 117 - Study 117
+Prepare for Math 40
+
+Finish ObsIn Handbook
+Finish 122 Notes
+PorkChop Plotter
+Data Dump from Old Computer
+Code PowerTale
+ICBM Guidance
+Learn C++
+Learn R 
+Learn Mathematica
+Clean up ObsIn files
+Clean up ObsIn formatting
+
+Draw the Brods
+Draw Nikki
+
+Finish Drag
+Finish Orbital Mechanics
+FInish Mean Anomaly
+Finish Numerical Methods
+Finish Solutions to Lambert
+
+
+                
+
+                
+
+
+
+
+        DNC
+        What the fuck is an IPNYB
+            Syntax              /\\
+            How to add shit     /\\
+            How to add graphs   /\\
+        Plan 
+            Make a single csv file containing all the needed shit by piecing together affiliation id and eid /\\
+            For the visualization of growth
+                from all the data, filter Philippines. 
+                Then, count the number of publications per year 
+                Create a new csv file containing the graph of the publication growth
+            
+            Questions:
+                Topic of interest? (What percentage of the growth belonged to each topic cumulatively over years)
+                    Filter by subject area and department 
+                        Filter subject area abbreviation
+                        For subject area, record year of publication 
+                        group by year and subject area 
+                        proportion chart
+                    create a new csv file containing the graph of the records and at which proportion
+                    Create a histogram thingy, in time and in proportion
+                Hosting departments (Which departments host the most amount of productivity)
+                    Filter by department
+                    Show which department is from which, shit like that
+                    Create a commulative pie graph and the pie graph for 2020
+        I need to be in a library to do this shit frfr. Should be fun 
+
+        How do we analyze shit from the given data. There are three major questions
+            A visualization of the growth of Philippine Publication over time 
+            A question you wanna ask that can be answered by the given data 
+            Another question you wanna ask that can be answered by the given data 
+
+
+GR Paper
+What is it trying to say?
+    Classical methods for deriving GR, specifically gravitational waves, using TT coordinates, are unyieldy and may cause misconceptions upon introduction to the curriculum. 
+    Methods, such as the Fermi cooridinate fram, a quasi-cartesian coordinate frame provide a better way of teaching by showing obsevable events in gravitomagnetic space 
+
+    A review of classical methods (they lost me)
+    The introduction of the fermi coordinate system and gravitoelectric and gravitomagnetic frame to substitute for a pure space time thing, substitute gravity with electromagnetic effects
+    Basically relates how the maxwell equations can be used as an analogue to understand gravitational waves, the gravitoelectromagnetic potential, if you will]
+    Antennas that detect waves like how LIGO does
+
+Why am I reviewing this?
+    Discuss the most essential parts of the paper
+    Include some form of derivation or formulation
+    May add some extensions
+
+Title Page -
+Evaluating Fermi Coordinates in Gravitational Waves Education: A Review of Ruggiero's Approach
+
+Title reflecting topic of review, Name, Date /
+Abstract
+Introduction/
+    Introduce the topic /
+    Summarize the topic
+        What is Fermi Coordinates /\\
+        Why is fermi Coordinates important /\\
+        How the paper contributes to teaching perspectives in gravitational waves physics. /\\
+    Why the topic is important /\\
+    Define what this article will discuss /\\
+    Outlien the Subtopics
+Critical Analysis
+    Address the subtopics.
+    Discuss the methodologies.
+    Discuss the intentions
+    Discuss the pros and drawbacks
+    Comparison with existing literature
+    Discussion of how it may integrate or challenge existing knowledge
+Conclusion
+    Develop the conclusion briefly
+    Restate the rationale of the review and the conclusions drawn
+    Discuss the implications of the findings
+    Recommendations of potential approval
+Literature cited
+
+License: CC BY 4.0
+arXiv:2312.16198v2 [gr-qc] null
+Email]
+Gravitational Waves Through Time: Scientific Significance, Detection Techniques, and Recent Breakthroughs
+Chris Jia
+[
+chris.jia2002@utexas.edu
+Physics and Astronomy Department at the University of Texas at Austin
+(June 14, 2024)
+
+\\
+
+Matteo Luca Ruggiero in his paper, "Gravitational Waves Physics Using Fermi Coordinates: A New Teaching Perspective"
+
+
+\\
+The Effect of a Paired Lab on Course Completion and Grades in Nonmajors Introductory Biology
+Dayna Jean DeFeo, Andrew Bibler, and Sarah Gerken
+Elisabeth Schussler, Monitoring Editor
+Published Online:21 Aug 2020https://doi.org/10.1187/cbe.20-03-0041
+
+Telescope Assembly Guidelines
+    The Telescope
+    Types
+        Optical Types
+            Refracting Telescope / 
+            Reflecting Telescope /
+        Mount Types
+            Equatorial
+            Altitude - Azimuth 
+    Parts
+        Overview
+        Optical Tube Assembly
+            Objective Lens
+            Body Tube
+        Equatorial Mount
+            Equatorial Mount
+            Coarse Adjustment Knobs
+            Fine Adjustment Knobs
+        Accessories
+            Diagonal
+            Finder Scope
+            Eyepiece
+            Focuser
+            Accessory Tray 
+            Counterweight
+            Tripod
+    Optics
+        Refracting
+            Objective Lens
+            Eyepiece
+        Reflecting
+            Primary Mirror
+            Secondary Mirror
+        Mathematics
+            Magnification
+            Aperture
+    Procedure
+    Telescope Assembly Guidelines
+        Telescope Practice
+        Borrowing Logbook
+        Scoring System
+        Assembly Mechanics
+        Assessment Proper
+
+
+

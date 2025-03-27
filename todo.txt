@@ -59,4 +59,13 @@
     Message box
 < Replicate the entirety of Mechjeb >
 < Linear Descent functions >
+<<<<<<< HEAD
+=======
+
+Helicopter Auto Landing
+Missilte Tracking
+Bomb tracking
+Execute Node 
+
+>>>>>>> c0ce4dcf01ccc7946210129c7fff19d027efb5ed
 git add .; git commit -m "commit0"; git push
