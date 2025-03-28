@@ -210,12 +210,12 @@ function dist {
     return sqrt((v1:x - v2:x)^2+(v1:y-v2:y)^2+(v1:z-v2:z)^2).
 }
 
-function degrees {
+function deg2rad{
     parameter rad.
     return constant:radtodeg * rad.
 }
 
-function radian {
+function rad2deg {
     parameter deg.
     return constant:degtorad * deg.
 }

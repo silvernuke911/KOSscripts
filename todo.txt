@@ -64,13 +64,16 @@ Helicopter Auto Landing
 Core Communication
 Missilte Tracking
 Bomb tracking
-Execute Node 
+// Execute Node 
 Nodes 
+    Otw
 Missle waypoint guidance
 Communication
+Vtol carrier craft
 Kile River Map
     Datascrape
     Convert mercator
     Convert ticks mercator
     Add fancy names
+Find the good rendezvous paper.
 git add .; git commit -m "commit0"; git push
