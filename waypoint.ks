@@ -97,3 +97,4 @@ function log_flight_data {
     log time_now + "," + xpos+ ","+ ypos + "," + zpos to file_name.
 }
 
+// this works, we can probably move on now.

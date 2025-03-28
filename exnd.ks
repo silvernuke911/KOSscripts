@@ -1,16 +1,61 @@
 @lazyGlobal off.
 set config:ipu to 1500.
+
 // Launching the fucker
 function create_node {
-    
+    local parameter mnv_node.
+    local eta____ is mnv_node[0]+time:seconds.
+    local radial_ is mnv_node[1].
+    local normal_ is mnv_node[2].
+    local prograd is mnv_node[3].
+    local maneuver_node to node(
+        eta____,
+        radial_,
+        normal_,
+        prograd
+    ).
+    add maneuver_node.
 }
+
+function raw_node {
+    local parameter eta____.
+    local parameter radial_.
+    local parameter normal_.
+    local parameter prograd.
+    local mnv_nd is list(
+        eta____,
+        radial_,
+        normal_,
+        prograd
+    ).
+    return mnv_nd.
+}
+// warp functions
+function orbital_velocity_circular {
+    local parameter altitude_.
+    local r__ is body:radius + altitude_.
+    return sqrt(body:mu/r__).
+}
+function vis_viva_equation {
+    local parameter altitude_.
+    local r_ is body:radius + altitude_.
+    local a is ship:orbit:semimajoraxis.
+    return sqrt (body:mu * (2/r_ - 1/a)).
+}
+
 function circularize {
     local parameter mode.
     if mode = "at periapsis" {
-
+        local periapsis_dV is 
+            orbital_velocity_circular(ship:periapsis) - 
+            vis_viva_equation(ship:periapsis).
+        return list(eta:periapsis,0,0,periapsis_dV).
     }
     if mode = "at apoapsis" {
-
+        local apoapsis_dv is
+            orbital_velocity_circular(ship:apoapsis) - 
+            vis_viva_equation(ship:apoapsis).
+        return list(eta:apoapsis,0,0,apoapsis_dV).
     }
     if mode = "at altitude" {
 
@@ -39,6 +84,7 @@ function change_apoapsis {
 
     }
 }
+
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
@@ -112,11 +158,44 @@ function change_resonant_orbit {
     }
 }
 
+
 function rcs_orbit_corrector {
 
 }
+
 function execute_node {
-    parameter next_node.
+    local parameter warp_to_node is true.
+    local mnv_node to nextNode.
+
+    unlock steering.
+    sas on.
+    set sasMode to "MANEUVER".
+    if ship:availableThrust = 0 {
+        stage.
+    }
+    wait until vang(ship:facing:vector, mnv_node:deltav:vec) < 0.5.
+    //warp here to about 10 s before node 
+    wait until mnv_node:eta <= half_burn_time(mnv_node). 
+    local init_dv to mnv_node:deltav.
+    local tset to 0.
+    lock throttle to tset.
+    local burn_done to false.
+    until burn_done {
+        local max_acc to ship:maxthrust/ship:mass.
+        set tset to min(mnv_node:deltav:mag/max_acc,1).
+        if vDot(init_dv,mnv_node:deltav) <0 {
+            lock throttle to 0.
+            break.
+        }
+        if mnv_node:deltav:mag < 0.1 {
+            wait until vDot(init_dv, mnv_node:deltav)<0.5.
+            lock throttle to 0.
+            set burn_done to true.
+        }
+    }
+    wait 1.
+    remove mnv_node.
+    return.
 }
 
 function compass_hdg {
@@ -134,9 +213,62 @@ function compass_hdg {
     return angle.
 }
 
+function ship_isp {
+    local engineList to list().
+    list engines in engineList.
+    local total_thrust to 0.
+    local weighted_isp to 0.
+    for engine in engineList {
+        if engine:availablethrust > 0 and engine:isp > 0 {
+            set total_thrust to total_thrust + engine:availablethrust.
+            set weighted_isp to weighted_isp + (engine:availablethrust * engine:isp).
+        }
+    }
+    
+    if total_thrust > 0 {
+        set weighted_isp to weighted_isp/total_thrust.
+    } else {
+        return 0.
+    }
+    return weighted_isp.
+}
+
+function total_burn_time {
+    local parameter mnv.
+    local deltav is  mnv:deltav:mag.
+    local Isp is ship_isp().
+    if isp = 0 {
+        return 0.
+    }
+    local ve is Isp *constant:g0.
+    local mdot is ship:maxThrust/ve.
+    local m0 is ship:mass.
+    local mf is m0*constant:e^(-deltav/ ve).
+    local dm is m0 - mf.
+    local t is dm / mdot.
+    return t.
+
+}
+
+function half_burn_time {
+    local parameter mnv.
+    local deltav is  mnv:deltav:mag.
+    local deltav_2 is deltav/2.
+    local Isp is ship_isp().
+    if isp = 0 {
+        return 0.
+    }
+    local ve is Isp * constant:g0.
+    local mdot is ship:maxThrust/ve.
+    local m0 is ship:mass.
+    local mf is m0*constant:e^(-deltav_2/ ve).
+    local dm is m0 - mf.
+    local t is dm / mdot.
+    return t.    
+}
 // run math.ks.
 
-global slew_angle is 12.5.
+global slew_angle is 15.
 global target_altitude is 100000.
 global current_mode is "".
 global cycles is 0.
@@ -170,7 +302,12 @@ function open_loop_guidance {
         if runmode = "clearing tower" {
             if ship:verticalSpeed > 100 or alt:radar > 1000 {
                 set shift_alt to ship:altitude.
-                lock steering to heading(90,90-0.4 * sqrt(max(ship:altitude-shift_alt,0)),-90).
+                lock steering to 
+                    heading(
+                        90,
+                        90-0.4 * sqrt(max(ship:altitude-shift_alt,0)),
+                        -90
+                    ).
                 set runmode to "pitch program".
             }
         }
@@ -186,7 +323,11 @@ function open_loop_guidance {
             }
         }
         if runmode = "setting aoa" {
-            lock steering to heading(90,90-vang(ship:up:vector,ship:srfprograde:vector),-90).
+            lock steering to heading(
+                90,
+                90-vang(ship:up:vector,ship:srfprograde:vector),
+                -90
+            ).
             set runmode to "gravity turn1".
         }
         if runmode = "gravity turn1" {
@@ -218,6 +359,12 @@ function closed_loop_guidance {
     set current_mode to "Closed Loop Guidance".
     until runmode = "done" {
         if runmode = "reaching apoapsis" {
+            if ship:apoapsis > (target_altitude - 10000) {
+                lock throttle to min(1,max(0.1,(target_altitude-ship:apoapsis)/7500)).
+                set runmode to "Closing in on apoapsis".
+            }
+        }
+        if runmode = "Closing in on apoapsis" {
             if ship:apoapsis > target_altitude {
                 lock throttle to 0.
                 set runmode to "coast1".
@@ -247,9 +394,19 @@ function closed_loop_guidance {
             set runmode to "v coast".
         }
         if runmode = "v coast" {
-            if ship:altitude > target_altitude {
-                set runmode to "done".
+            if ship:altitude > 80000 {
+                set runmode to "creating node".
             }
+        }
+        if runmode = "creating node" {
+            create_node(circularize("at apoapsis")).
+            unlock steering.
+            set runmode to "circularizing burn".
+        }
+        if runmode = "circularizing burn" {
+            print ("IT GOT HERE") at (5,25).
+            execute_node().
+            set runmode to "done".
         }
         set cycles to cycles + 1.
         screen_data(runmode).
@@ -261,6 +418,7 @@ function closed_loop_guidance {
 function orbit_tasks {
     sas on.
     ag1 on.
+    ag2 on.
     safestage().
     return.
 }
