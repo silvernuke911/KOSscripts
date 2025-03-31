@@ -399,7 +399,6 @@ function integrator {
 }
 
 // Linear Algebra 
-
 function matrixmult {
     parameter m1.
     parameter m2.
@@ -482,7 +481,6 @@ function rotation_matrix3d_z {
     
     local cosTheta to cos(theta).
     local sinTheta to sin(theta).
-
     return list(
         list(cosTheta, -sinTheta, 0),
         list(sinTheta,  cosTheta, 0),

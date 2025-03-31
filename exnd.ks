@@ -1,7 +1,8 @@
 @lazyGlobal off.
 set config:ipu to 1500.
 runpath("0:/lib/maneuver_functions.ks").
-
+runpath("0:/lib/borders.ks").
+global targ_inclination is 45.
 global slew_angle is 15.
 global target_altitude is 100000.
 global current_mode is "".
@@ -31,14 +32,20 @@ function open_loop_guidance {
         if runmode = "ignition" {
             stage.
             lock steering to heading(90,90,-90).
-            set runmode to "clearing tower".
+            set runmode to "roll program".
+        }
+        if runmode = "roll program" {
+            if alt:radar > 150 {
+                lock steering to heading(inclination_heading(targ_inclination,"northbound"),90,-90).
+                set runmode to "clearing tower".
+            }
         }
         if runmode = "clearing tower" {
             if ship:verticalSpeed > 100 or alt:radar > 1000 {
                 set shift_alt to ship:altitude.
                 lock steering to 
                     heading(
-                        90,
+                        inclination_heading(targ_inclination, "northbound"),
                         90-0.4 * sqrt(max(ship:altitude-shift_alt,0)),
                         -90
                     ).
@@ -47,7 +54,10 @@ function open_loop_guidance {
         }
         if runmode = "pitch program"{
             if vang(ship:facing:vector,ship:up:vector) > slew_angle {
-                lock steering to heading(90,90-slew_angle,-90).
+                lock steering to heading(
+                    inclination_heading(targ_inclination, "northbound"),
+                    90-slew_angle,
+                    -90).
                 set runmode to "pitch holding".
             }
         }
@@ -58,7 +68,7 @@ function open_loop_guidance {
         }
         if runmode = "setting aoa" {
             lock steering to heading(
-                90,
+                inclination_heading(targ_inclination,"northbound"),
                 90-vang(ship:up:vector,ship:srfprograde:vector),
                 -90
             ).
@@ -94,7 +104,13 @@ function closed_loop_guidance {
     until runmode = "done" {
         if runmode = "reaching apoapsis" {
             if ship:apoapsis > (target_altitude - 10000) {
-                lock throttle to min(1,max(0.1,(target_altitude-ship:apoapsis)/7500)).
+                lock throttle to min(
+                    1,
+                    max(
+                        0.1,
+                        (target_altitude-ship:apoapsis)/7500
+                    )
+                ).
                 set runmode to "Closing in on apoapsis".
             }
         }
@@ -138,7 +154,6 @@ function closed_loop_guidance {
             set runmode to "circularizing burn".
         }
         if runmode = "circularizing burn" {
-            print ("IT GOT HERE") at (5,25).
             execute_node(false,false).
             set runmode to "done".
         }
@@ -174,9 +189,10 @@ function throttle_2g {
 
 function screen_data {
     parameter runmode.
-
-    print "Current mode : " + current_mode + "  " at (5,3).
-    print "Runmode      : "+ runmode + "  " at (5, 4).
+    horizontal_line(0, terminal:width,1,"=").
+    print "Current mode : " + current_mode + "  " at (5,2).
+    print "Runmode      : "+ runmode + "  " at (5, 3).
+    horizontal_line(0, terminal:width,4,"=").
     print "Vessel name      : " + ship:name at (5,5).
     print "Vertical speed   : " + round(ship:verticalSpeed,3) + "   " at (5,7).
     print "Horizontal speed : " + round(ship:groundspeed,3) + "   " at (5,8).
@@ -186,7 +202,10 @@ function screen_data {
     print "Altitude         : " + round(ship:altitude,3) + "   " at (5,12).
     print "Time to apoapsis : " + round(eta:apoapsis,3) + "   " at (5,13).
     print "HDG              : " + round(compass_hdg(),3) + "   " at (5,14).
+    print "TWR              : " + round(twr(), 2) + "   " at (5,15).
+    horizontal_line(0, terminal:width,20,"-").
     print "CPU Cycles       : " + cycles at (5,30).
+    horizontal_line(0, terminal:width,terminal:height,"=").
     print shift_alt at (5,31).
 }
 
@@ -195,5 +214,9 @@ function main {
     open_loop_guidance().
     closed_loop_guidance().
     orbit_tasks().
+    global done to false.
+    until done {
+        screen_data("ORBIT").
+    }
 }
 main().

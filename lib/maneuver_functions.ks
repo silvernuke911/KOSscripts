@@ -1,8 +1,20 @@
-@lazyGlobal off.
-set config:ipu to 1500.
-//------ MANEUVER FUNCTION LIBRARY ---------//
-// cc. Vercil Juan KOS.
-//---------- BURN TIME FUNCTIONS -----------//
+//==================================================||
+//==================================================||
+//            MANEUVER FUNCTIONS LIBRARY            ||
+//==================================================||
+//==================================================||
+// cc. Vercil Juan KOS.                             ||
+//--------------------------------------------------||
+// Collection of functions and other implements for ||
+// orbital mechanics and navigation purposes.       ||
+//==================================================||
+//                                                  ||
+//--------------------------------------------------||
+@lazyGlobal off.          //                        ||
+set config:ipu to 1500.   //                        ||               
+//--------------------------------------------------||
+//               BURN TIME FUNCTIONS                ||
+//--------------------------------------------------||
 function ship_isp {
     local engineList to list().
     list engines in engineList.
@@ -10,8 +22,14 @@ function ship_isp {
     local weighted_isp to 0.
     for engine in engineList {
         if engine:availablethrust > 0 and engine:isp > 0 {
-            set total_thrust to total_thrust + engine:availablethrust.
-            set weighted_isp to weighted_isp + (engine:availablethrust * engine:isp).
+            set total_thrust to 
+                total_thrust + 
+                engine:availablethrust.
+            set weighted_isp to 
+                weighted_isp + (
+                    engine:availablethrust * 
+                    engine:isp
+                ).
         }
     }
     
@@ -55,8 +73,22 @@ function half_burn_time {
     local t is dm / mdot.
     return t.    
 }
+//--------------------------------------------------||
+//                   SHIP SYSTEMS                   ||
+//--------------------------------------------------||
+function twr {
+    if ship:availablethrust = 0 {
+        return 0.
+    }
+    local g0 is body:mu / (body:radius + ship:altitude).
+    local ship_weight is ship:mass * g0.
+    local twr_val is ship:availablethrust / ship_weight.
+    return twr_val.
+}
 
-// ORBITAL CALCULATIONS
+//--------------------------------------------------||
+//               ORBITAL CALCULATION                ||
+//--------------------------------------------------||
 function orbital_velocity_circular {
     local parameter altitude_.
     local r__ is body:radius + altitude_.
@@ -73,7 +105,9 @@ function calculate_semimajor_axis {
     local parameter apoapsis___.
     return body:radius + (periapsis__+apoapsis___)/2.
 }
-//------ MANEUVER NODES ----------//
+//--------------------------------------------------||
+//                  MANEUVER NODES                  ||
+//--------------------------------------------------||
 function create_node {
     local parameter mnv_node.
     local eta____ is mnv_node[0]+time:seconds.
@@ -116,13 +150,19 @@ function circularize {
     if mode = "at periapsis" {
         local periapsis_dV is 
             orbital_velocity_circular(ship:periapsis) - 
-            vis_viva_equation(ship:periapsis, ship:orbit:semimajoraxis).
+            vis_viva_equation(
+                ship:periapsis, 
+                ship:orbit:semimajoraxis
+            ).
         return list(eta:periapsis,0,0,periapsis_dV).
     }
     if mode = "at apoapsis" {
         local apoapsis_dv is
             orbital_velocity_circular(ship:apoapsis) - 
-            vis_viva_equation(ship:apoapsis, ship:orbit:semimajoraxis).
+            vis_viva_equation(
+                ship:apoapsis, 
+                ship:orbit:semimajoraxis
+            ).
         return list(eta:apoapsis,0,0,apoapsis_dV).
     }
     if mode = "at altitude" {
@@ -169,7 +209,12 @@ function change_apoapsis {
                 ship:orbit:semimajoraxis
             )
         ).
-        return list(eta:periapsis, 0,0, periapsis_dV).
+        return list(
+            eta:periapsis, 
+            0,
+            0, 
+            periapsis_dV
+        ).
     }
     if mode = "at next apoapsis" {
 
@@ -207,7 +252,12 @@ function change_periapsis {
                 ship:orbit:semimajoraxis
             )
         ).
-        return list(eta:periapsis, 0,0, apoapsis_dV).
+        return list(
+            eta:periapsis,
+            0,
+            0, 
+            apoapsis_dV
+        ).
     }
     if mode = "after a fixed time" {
 
@@ -304,13 +354,16 @@ function change_resonant_orbit {
 
     }
 }
-// CORRECTORS
+//--------------------------------------------------||
+//                 RCS CORRECTIONS                  ||
+//--------------------------------------------------||
 function rcs_orbit_corrector {
 
 }
 
-
-// EXECUTE NODE
+//--------------------------------------------------||
+//                   EXECUTE NODE                   ||
+//--------------------------------------------------||
 function execute_node {
     local parameter sas_on is true.
     local parameter warp_to_node is true.
@@ -331,86 +384,84 @@ function execute_node {
     local tset to 0.
     lock throttle to tset.
     local burn_done to false.
-    local runmode is 1.
+    local runmode is "turning to mnv".
     until runmode = "burn done" {
-        if runmode = 1 {
-            if vang(ship:facing:vector, mnv_node:deltav:vec) < 0.5. {
-                set runmode to 2.
+        if runmode = "turning to mnv" {
+            if vang(
+                ship:facing:vector, 
+                mnv_node:deltav:vec
+            ) < 0.5. {
+                set runmode to "warping".
             }
         }
-        if runmode = 2 {
+        if runmode = "warping" {
             if warp_to_node {
                 // warp here 10s before halfburntime.
-                set runmode to 3.
+                set runmode to "waiting for node".
             }
             else {
-                set runmode to 3.
+                set runmode to "waiting for node".
             }
         }
-        if runmode = 3 {
+        if runmode = "waiting for node" {
             if mnv_node:eta <= half_burn_time(mnv_node) {
 
-                set runmode to 4.
+                set runmode to "execute burn".
             }
         }
-        if runmode = 4 {
+        if runmode = "execute burn" {
             until burn_done {
                 local max_acc to ship:maxthrust/ship:mass.
-                set tset to min(mnv_node:deltav:mag/max_acc,1).
+                set tset to min(
+                    mnv_node:deltav:mag/max_acc,
+                    1
+                ).
                 if vDot(init_dv,mnv_node:deltav) <0 {
                     lock throttle to 0.
                     break.
                 }
                 if mnv_node:deltav:mag < 0.1 {
-                    wait until vDot(init_dv, mnv_node:deltav)<0.5.
+                    wait until vDot(
+                        init_dv, 
+                        mnv_node:deltav
+                    ) < 0.5.
                     lock throttle to 0.
                     set burn_done to true.
                 }
             }
-            set runmode to 5.
+            set runmode to "post burn".
         }
-        if runmode = 5 {
+        if runmode = "post burn" {
             if sas_on {
                 set sasMode to "STABILITYASSIST".
             } else {
                 unlock steering.
                 sas on.
             }
-            set runmode to 6.
+            set runmode to "remove mnv".
         }
-        if runmode = 6 {
+        if runmode = "remove mnv" {
             remove mnv_node.
             set runmode to "burn done".
         }
     }
     return.
 }
-// COMPASS
+//--------------------------------------------------||
+//                    NAVIGATION                    ||
+//--------------------------------------------------||
 function compass_hdg {
     local up_vector is ship:up:vector.
-    local north_vector is ship:north:vector. // Horizontal North direction
-    local east_vector is vcrs(up_vector, north_vector).       // Horizontal East direction
+    local north_vector is ship:north:vector.
+    local east_vector is vcrs(up_vector, north_vector).      
     local facing_vector is ship:facing:forevector.
-    local projV is vxcl(up_vector, facing_vector). // Project forward vector onto the horizontal plane
-    local angle is vang(north_vector, projV). // Angle from North
-
-    // Use dot product with east to determine left/right deviation
+    local projV is vxcl(up_vector, facing_vector). 
+    local angle is vang(north_vector, projV).
     if vdot(projV, east_vector) < 0 {
         set angle to 360 - angle.
     }
     return angle.
 }
-
-// WARP FUNCTIONS //
-
-// FLIGHT VECTORS //
-function orbital_basis_vectors {
-    local z is body:north:vector:normalized.
-    local x is solarPrimeVector:vec:normalized.
-    local y is vCrs(z,x):normalized.
-    return list(x,y,z).
-}
-
 function vectorHeading{
     local parameter V.
     set V to V:normalized.
@@ -422,10 +473,26 @@ function vectorHeading{
     }
     return hdg.
 }
-// CUSTOM WAIT //
+//--------------------------------------------------||
+//                  WARP FUNCTIONS                  ||
+//--------------------------------------------------||
 
-// INCLINATION ASCENT //
-// untested.
+//--------------------------------------------------||
+//                  FLIGHT VECTORS                  ||
+//--------------------------------------------------||
+function orbital_basis_vectors {
+    local z is body:north:vector:normalized.
+    local x is solarPrimeVector:vec:normalized.
+    local y is vCrs(z,x):normalized.
+    return list(x,y,z).
+}
+//--------------------------------------------------||
+//                   CUSTOM WAIT                    ||
+//--------------------------------------------------||
+
+//--------------------------------------------------||
+//                INCLINATION ASCENT                ||
+//--------------------------------------------------||
 function inclination_heading {
     // untested.
     local parameter target_inclination.
@@ -444,26 +511,47 @@ function inclination_heading {
     local B1 is U * cos(alpha) - V * sin(alpha).
     local B2 is U * cos(alpha) + V * sin(alpha).
     if mode = "northbound"{
-        local V1 is vCrs(P,B1).
+        local V1 is vCrs(P,B1):normalized.
         local heading1 is vectorHeading(V1).
         return heading1.
     }
     if mode = "southbound"{
-        local V2 is vCrs(P,B2).
+        local V2 is vCrs(P,B2):normalized.
         local heading2 is vectorHeading(V2).
         return heading2.
     }
 }
+//--------------------------------------------------||
+//                LANDING FUNCTIONS                 ||
+//--------------------------------------------------||
 
-// LANDING FUNCTIONS ///
+//--------------------------------------------------||
+//                  LINEAR DESCENT                  ||
+//--------------------------------------------------||
 
-// LINEAR DESCENT //
+//--------------------------------------------------||
+//                    HOVER PIDS                    ||
+//--------------------------------------------------||
 
-// HOVER PIDS //
+//--------------------------------------------------||
+//              RENDEZVOUS AND DOCKING              ||
+//--------------------------------------------------||
 
-// RENDEZVOUS AND DOCKING //
+//--------------------------------------------------||
+//               BALLISTIC TARGETING                ||
+//--------------------------------------------------||
 
-// BALLISTIC TARGETING //
+//--------------------------------------------------||
+//                WAYPOINT GUIDANCE                 ||
+//--------------------------------------------------||
 
-// WAYPOINT GUIDANCE //
-// PLANE AUTOPILOT //
+//--------------------------------------------------||
+//                 PLANE AUTOPILOT                  ||
+//--------------------------------------------------||
+
+//--------------------------------------------------||
+//                 SPECIAL POINTS                   ||
+//--------------------------------------------------||
+//SUB-SOLAR POINT
+//LAUNCH PAD
+//RUNWAYS

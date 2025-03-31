@@ -77,3 +77,26 @@ Kile River Map
     Add fancy names
 Find the good rendezvous paper.
 git add .; git commit -m "commit0"; git push
+
+
+
+Application Process
+ObsIn Lab has started 
+    Labs done:
+        Telescope Assemby 
+        Optics
+    To be done: 
+        Basic Stargazing
+        Astrophotography
+Practicees:
+    Isa palang. lmao.
+
+Internship:
+    Same mechanics as last time.
+
+FAFO
+    Fucked around with the big telescope. It was fun. 
+        Would try to secure a formal permit.
+    NISMED Maintenance and Cleanup session:
+        On the works, cc Alvi.
+    Would try to hold one sa tambs cleaning session ng obsin.
