@@ -77,17 +77,14 @@ function half_burn_time {
 //                   SHIP SYSTEMS                   ||
 //--------------------------------------------------||
 function twr {
-    if ship:availablethrust = 0 {
-        return 0.
-    }
-    local g0 is body:mu / (body:radius + ship:altitude).
+    local g0 is body:mu / (body:radius + ship:altitude)^2.
     local ship_weight is ship:mass * g0.
     local twr_val is ship:availablethrust / ship_weight.
     return twr_val.
 }
 
 //--------------------------------------------------||
-//               ORBITAL CALCULATION                ||
+//               ORBITAL CALCULATIONS               ||
 //--------------------------------------------------||
 function orbital_velocity_circular {
     local parameter altitude_.
@@ -114,9 +111,9 @@ function create_node {
     local radial_ is mnv_node[1].
     local normal_ is mnv_node[2].
     local prograd is mnv_node[3].
-    if eta____ < 0 {
-        if radial_=0 and normal_ = 0 and prograd = 0 {
-            print ( "WRONG MNV NODE").
+    if  mnv_node[0] < 0 {
+        if radial_= 0 and normal_ = 0 and prograd = 0 {
+            print ( "WRONG MNV NODE SETTING").
         }
     }
     local maneuver_node to node(
@@ -216,9 +213,6 @@ function change_apoapsis {
             periapsis_dV
         ).
     }
-    if mode = "at next apoapsis" {
-
-    }
     if mode = "after a fixed time" {
 
     }
@@ -236,10 +230,6 @@ function change_apoapsis {
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
-
-    if mode = "at next periapsis" {
-
-    }
     if mode = "at next apoapsis" {
         local apoapsis_dV is ( 
             vis_viva_equation(
@@ -326,7 +316,7 @@ function change_semi_major_axis {
     if mode = "at apoapsis" {
 
     }
-    if mode = "at an altitude" {
+    if mode = "at an altitude" { 
 
     }
     if mode = "after fixed time" {
@@ -357,8 +347,50 @@ function change_resonant_orbit {
 //--------------------------------------------------||
 //                 RCS CORRECTIONS                  ||
 //--------------------------------------------------||
-function rcs_orbit_corrector {
+function rcs_corrector {
+    local parameter mode.
+    local parameter tgt_value.
+    local parameter tolerance is 10.
+    
+    sas on.
+    rcs off.
+    set sasmode to "PROGRADE".
+    wait until vang(ship:facing:vector, ship:velocity:orbit:vec) < 0.25.
+    rcs on.
+    if mode = "apoapsis" {
+        lock error to ship:obt:apoapsis - tgt_value.
+        lock errorsign to error/abs(error).
+        lock errorMag to abs(error).
 
+        lock rcs_t to max(0.05,min(1, (errorMag)/tgt_value)).
+        until errorMag <= tolerance {
+            set ship:control:fore to -errorsign*rcs_t.
+        }
+        shut_down().
+    }
+    if mode = "periapsis" {
+        lock error to ship:obt:periapsis - tgt_value.
+        lock errorsign to error/abs(error).
+        lock errorMag to abs(error).
+
+        lock rcs_t to max(0.05,min(1, 1000*(errorMag)/tgt_value)).
+        until errorMag <= tolerance {
+            set ship:control:fore to -errorsign*rcs_t.
+        }
+        shut_down().
+    }
+    if mode = "closest approach" {
+
+    }
+    else {
+        return.
+    }
+    local function shut_down {
+        set ship:control:fore to 0.
+        set ship:control:neutralize to true.
+        rcs off.
+        return.
+    }
 }
 
 //--------------------------------------------------||
@@ -367,8 +399,11 @@ function rcs_orbit_corrector {
 function execute_node {
     local parameter sas_on is true.
     local parameter warp_to_node is true.
+    local parameter thruster is "engine".
+
     local mnv_node to nextNode.
-    if ship:availableThrust = 0 {
+
+    if ship:availableThrust = 0 and thruster = "engine" {
         stage.
     }
     if sas_on {
@@ -383,20 +418,25 @@ function execute_node {
     local init_dv to mnv_node:deltav.
     local tset to 0.
     lock throttle to tset.
+    local half_time is 0.
+    if thruster = "engine" {
+        set half_time to half_burn_time(mnv_node).
+    }
     local burn_done to false.
     local runmode is "turning to mnv".
+    
     until runmode = "burn done" {
         if runmode = "turning to mnv" {
             if vang(
                 ship:facing:vector, 
                 mnv_node:deltav:vec
-            ) < 0.5. {
+            ) <= 0.5 {
                 set runmode to "warping".
             }
         }
         if runmode = "warping" {
             if warp_to_node {
-                // warp here 10s before halfburntime.
+                warpTo(time:seconds + mnv_node:eta - half_time - 10).
                 set runmode to "waiting for node".
             }
             else {
@@ -404,8 +444,7 @@ function execute_node {
             }
         }
         if runmode = "waiting for node" {
-            if mnv_node:eta <= half_burn_time(mnv_node) {
-
+            if mnv_node:eta <= half_time {
                 set runmode to "execute burn".
             }
         }
@@ -435,8 +474,10 @@ function execute_node {
             if sas_on {
                 set sasMode to "STABILITYASSIST".
             } else {
+                lock throttle to 0.
                 unlock steering.
                 sas on.
+                set sasMode to "STABILITYASSIST".
             }
             set runmode to "remove mnv".
         }
@@ -447,6 +488,7 @@ function execute_node {
     }
     return.
 }
+
 //--------------------------------------------------||
 //                    NAVIGATION                    ||
 //--------------------------------------------------||
@@ -463,16 +505,19 @@ function compass_hdg {
     return angle.
 }
 function vectorHeading{
-    local parameter V.
-    set V to V:normalized.
+    local parameter V__.
+    set V__ to V__:normalized.
     local north_v is ship:north:vector:normalized.
-    local hdg is vang(north_v, V).
-    local sgn is vCrs(north_v, V):mag.
-    if sgn < 0 {
-        return 360 - hdg.
+    local up_v is ship:up:vector.
+    local east_v is vcrs(up_v, north_v).
+    local hdg is vang(north_v, V__).
+    local projhdg is vxcl(up_v,V__).
+    if vdot(projhdg,east_v)<0 {
+        set hdg to 360 - hdg.
     }
     return hdg.
 }
+
 //--------------------------------------------------||
 //                  WARP FUNCTIONS                  ||
 //--------------------------------------------------||
@@ -494,7 +539,6 @@ function orbital_basis_vectors {
 //                INCLINATION ASCENT                ||
 //--------------------------------------------------||
 function inclination_heading {
-    // untested.
     local parameter target_inclination.
     local parameter mode.
     local parameter current_latitude is ship:latitude.
@@ -504,21 +548,24 @@ function inclination_heading {
     local N is (latlng(90,0):position - body:position):normalized.
     local P is (ship:position - body:position):normalized.
     local U is vxcl(P,N):normalized.
-    local V is vCrs(P,N):normalized.
+    local T is vCrs(P,N):normalized.
     local i is target_inclination.
     local lat is current_latitude.
-    local alpha is arcCos(sin(i)/cos(lat)).
-    local B1 is U * cos(alpha) - V * sin(alpha).
-    local B2 is U * cos(alpha) + V * sin(alpha).
+    local alpha is arcCos(cos(i)/cos(lat)).
+    local B1 is U * cos(alpha) - T * sin(alpha).
+    local B2 is U * cos(alpha) + T * sin(alpha).
+    local ang_deviation is (ship:obt:inclination-target_inclination).
+    local cor_sgn is abs(ang_deviation)/(ang_deviation).
+    local correction_term is cor_sgn * 3 * ln(3*abs(ang_deviation) - 1).
     if mode = "northbound"{
         local V1 is vCrs(P,B1):normalized.
         local heading1 is vectorHeading(V1).
-        return heading1.
+        return heading1 + correction_term.
     }
     if mode = "southbound"{
         local V2 is vCrs(P,B2):normalized.
         local heading2 is vectorHeading(V2).
-        return heading2.
+        return heading2 - correction_term.
     }
 }
 //--------------------------------------------------||
@@ -555,3 +602,7 @@ function inclination_heading {
 //SUB-SOLAR POINT
 //LAUNCH PAD
 //RUNWAYS
+
+//--------------------------------------------------||
+//                  RCS THRUSTING                   ||
+//--------------------------------------------------||

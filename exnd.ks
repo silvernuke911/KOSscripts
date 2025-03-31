@@ -2,7 +2,7 @@
 set config:ipu to 1500.
 runpath("0:/lib/maneuver_functions.ks").
 runpath("0:/lib/borders.ks").
-global targ_inclination is 45.
+global targ_inclination is 30.
 global slew_angle is 15.
 global target_altitude is 100000.
 global current_mode is "".
@@ -19,9 +19,10 @@ function startup {
     lock throttle to 1.
     wait 1.
     clearScreen.
+    title_borders().
     return.
 }
-
+lock tgt_heading to inclination_heading(targ_inclination,"northbound").
 function open_loop_guidance {
     // Zero aoa ascent
     // Runmodes
@@ -36,7 +37,7 @@ function open_loop_guidance {
         }
         if runmode = "roll program" {
             if alt:radar > 150 {
-                lock steering to heading(inclination_heading(targ_inclination,"northbound"),90,-90).
+                lock steering to heading(tgt_heading,90,-90).
                 set runmode to "clearing tower".
             }
         }
@@ -45,7 +46,7 @@ function open_loop_guidance {
                 set shift_alt to ship:altitude.
                 lock steering to 
                     heading(
-                        inclination_heading(targ_inclination, "northbound"),
+                        tgt_heading,
                         90-0.4 * sqrt(max(ship:altitude-shift_alt,0)),
                         -90
                     ).
@@ -55,20 +56,21 @@ function open_loop_guidance {
         if runmode = "pitch program"{
             if vang(ship:facing:vector,ship:up:vector) > slew_angle {
                 lock steering to heading(
-                    inclination_heading(targ_inclination, "northbound"),
+                    tgt_heading,
                     90-slew_angle,
                     -90).
                 set runmode to "pitch holding".
             }
         }
         if runmode = "pitch holding" {
-            if vang(ship:facing:vector,ship:srfPrograde:vector) < 0.25 {
+            print vang(ship:facing:vector,ship:srfprograde:vector) at (5,29). //DEELTEE
+            if vang(ship:facing:vector,ship:srfprograde:vector) < 0.5 {
                 set runmode to "setting aoa".
             }
         }
         if runmode = "setting aoa" {
             lock steering to heading(
-                inclination_heading(targ_inclination,"northbound"),
+                tgt_heading,
                 90-vang(ship:up:vector,ship:srfprograde:vector),
                 -90
             ).
@@ -94,6 +96,7 @@ function open_loop_guidance {
         screen_data(runmode).
     }
     clearScreen.
+    title_borders().
     return.
 }
 
@@ -160,10 +163,17 @@ function closed_loop_guidance {
         set cycles to cycles + 1.
         screen_data(runmode).
     }
+    unlock steering.
     clearScreen.
+    title_borders().
     return.
 }
-
+function title_borders{
+    horizontal_line(0, terminal:width,1,"=").
+    horizontal_line(0, terminal:width,5,"=").
+    horizontal_line(0, terminal:width,20,"-").
+    horizontal_line(0, terminal:width,terminal:height,"=").
+}
 function orbit_tasks {
     sas on.
     ag1 on.
@@ -180,19 +190,19 @@ function safestage {
 }
 
 function throttle_2g {
-    if ship:availablethrust < 1 {
+    if ship:availablethrust = 0 {
         return 0.
     } else {
-    return (2 * (ship:mass * constant:g0) / ship:availableThrust).
+        return (2 * (ship:mass * constant:g0) / ship:availableThrust).
     }
 }
 
 function screen_data {
     parameter runmode.
-    horizontal_line(0, terminal:width,1,"=").
+    
     print "Current mode : " + current_mode + "  " at (5,2).
     print "Runmode      : "+ runmode + "  " at (5, 3).
-    horizontal_line(0, terminal:width,4,"=").
+    
     print "Vessel name      : " + ship:name at (5,5).
     print "Vertical speed   : " + round(ship:verticalSpeed,3) + "   " at (5,7).
     print "Horizontal speed : " + round(ship:groundspeed,3) + "   " at (5,8).
@@ -203,9 +213,9 @@ function screen_data {
     print "Time to apoapsis : " + round(eta:apoapsis,3) + "   " at (5,13).
     print "HDG              : " + round(compass_hdg(),3) + "   " at (5,14).
     print "TWR              : " + round(twr(), 2) + "   " at (5,15).
-    horizontal_line(0, terminal:width,20,"-").
+    
     print "CPU Cycles       : " + cycles at (5,30).
-    horizontal_line(0, terminal:width,terminal:height,"=").
+    
     print shift_alt at (5,31).
 }
 

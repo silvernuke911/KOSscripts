@@ -11,7 +11,7 @@ function sinc {
 }
 function cosh {
     parameter x.
-    return (constant:e^(x) + constant:e^ (-x)) / 2.
+    return (constant:e^(x) + constant:e^(-x)) / 2.
 }
 function sinh {
     parameter x.
@@ -90,7 +90,7 @@ function sum {
     return s.
 }
 
-function isclose{
+function isclose {
     parameter a.
     parameter b.
     parameter rel_tol is 1e-9.
@@ -172,11 +172,9 @@ function factorial {
 function comb {
     parameter n_.
     parameter r_.
-
     if r_ > n_ {
         return 0.
     }
-
     return factorial(n_) / (factorial(r_) * factorial(n_ - r_)).
 }
 
@@ -411,7 +409,7 @@ function matrixmult {
         print "Error: Matrix dimensions do not match for multiplication.".
         return.
     }
-    local result to list().
+    local result to list(). 
     from {local i is 0.} until i = rows1 step { set i to i + 1.} do {
         local row to list().
         from {local j is 0.} until j = cols2 step { set j to j + 1.} do {

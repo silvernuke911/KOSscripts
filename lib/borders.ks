@@ -1,4 +1,6 @@
 
+// BORDER FUNCTIONS //
+
 function draw_edge_border {
     parameter width is terminal:width.
     parameter height is terminal:height.
@@ -31,6 +33,7 @@ function vertical_line{
     }
 }
 
+// TEXT FORMATING FUNCTIONS
 function center_text{
     parameter text.
     parameter height.
@@ -40,3 +43,6 @@ function center_text{
     print text at ((w-strlen)/2,height).
 }
 
+// NUM TO STR 
+// FORMAT NUM TO THIS MANY DIGITS
+// FORMAT TXT <,>,^, 
