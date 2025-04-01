@@ -286,7 +286,7 @@ function change_inclination {
     }
 }
 
-function change_longitude_of_ascending_node {
+function change_LAN {
 
 }
 
@@ -606,3 +606,6 @@ function inclination_heading {
 //--------------------------------------------------||
 //                  RCS THRUSTING                   ||
 //--------------------------------------------------||
+// basically using rcs as main thrusters.
+// find the burn time for the fucker.
+// the deadband too. 
