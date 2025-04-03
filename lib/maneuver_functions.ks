@@ -73,6 +73,21 @@ function half_burn_time {
     local t is dm / mdot.
     return t.    
 }
+
+function rcs_isp {
+
+}
+
+function rcs_burn_time {
+    local parameter mnv.
+
+}
+
+function rcs_half_burn_time {
+    local parameter mnv.
+
+}
+
 //--------------------------------------------------||
 //                   SHIP SYSTEMS                   ||
 //--------------------------------------------------||
@@ -91,17 +106,122 @@ function orbital_velocity_circular {
     local r__ is body:radius + altitude_.
     return sqrt(body:mu/r__).
 }
+
 function vis_viva_equation {
     local parameter altitude_.
     local parameter a_.
     local r_ is body:radius + altitude_.
     return sqrt (body:mu * (2/r_ - 1/a_)).
 }
+
 function calculate_semimajor_axis {
     local parameter periapsis__.
     local parameter apoapsis___.
     return body:radius + (periapsis__+apoapsis___)/2.
 }
+
+function true_anomaly_to_radius {
+    local parameter ta.
+    local a is ship:obt:semimajoraxis.
+    local e is ship:obt:eccentricity.
+    local ta_rad to ta * constant:degtorad.
+    local r_ to a * (1 - e^2) / (1 + e * cos(ta_rad)).
+    return r_.
+}
+function radius_to_true_anomaly {
+    local parameter r_. 
+    local a is ship:obt:semimajoraxis.
+    local e is ship:obt:eccentricity.
+    local cos_ta to (a * (1 - e^2) / r_ - 1) / e.
+    local ta_rad to arccos(cos_ta).
+    return ensure_angle_positive(ta_rad * constant:radtodeg).
+}
+
+function true_anomaly_to_eccentric_anomaly {
+    local parameter ta.
+    local e is ship:obt:eccentricity.
+    local ta_rad to ta * constant:degtorad.
+    local ea_rad to arctan2(
+        sqrt(1 - e^2) * sin(ta_rad), 
+        e + cos(ta_rad)
+    ).
+    return ensure_angle_positive(ea_rad * constant:radtodeg).
+}
+
+function eccentric_anomaly_to_mean_anomaly {
+    local parameter ea.
+    local e is ship:obt:eccentricity.
+    local ea_rad to ea * constant:degtorad.
+    local ma_rad to ea_rad - e * sin(ea_rad).
+    return ensure_angle_positive(ma_rad * constant:radtodeg).
+}
+
+function mean_anomaly_to_eccentric_anomaly {
+    local parameter ma.
+    local e is ship:obt:eccentricity.
+    local ma_rad to ma * constant:degtorad.
+    local ea_rad to ma_rad.
+    local diff to 1.
+    until diff < 1e-9 {
+        local new_ea_rad to ea_rad - (
+            ea_rad - e * sin(ea_rad) - ma_rad) 
+            / (1 - e * cos(ea_rad)
+        ).
+        set diff to abs(new_ea_rad - ea_rad).
+        set ea_rad to new_ea_rad.
+    }
+    return ensure_angle_positive(ea_rad * constant:radtodeg).
+}
+
+function eccentric_anomaly_to_true_anomaly {
+    local parameter ea.
+    local e is ship:obt:eccentricity.
+    local ea_rad to ea * constant:degtorad.
+    local ta_rad to arctan2(
+        sqrt(1 - e^2) * sin(ea_rad), 
+        cos(ea_rad) - e
+    ).
+    return ensure_angle_positive(ta_rad * constant:radtodeg).
+}
+
+function time_from_true_anomaly {
+    // Input: target true anomaly (targ_ta)
+    local parameter targ_ta.
+    // Current true anomaly, semi-major axis, eccentricity, and gravitational parameter
+    local curr_ta is ship:obt:trueanomaly.
+    local a is ship:obt:semimajoraxis.
+    local e is ship:obt:eccentricity.
+    local mu is body:mu.
+    // Convert true anomaly from degrees to radians
+    local ta_rad to curr_ta * constant:degtorad.
+    local targ_ta_rad to targ_ta * constant:degtorad.
+    // Compute the eccentric anomaly for current and target true anomalies
+    local ea_rad_curr to arctan2(sqrt(1 - e^2) * sin(ta_rad), e + cos(ta_rad)).
+    local ea_rad_targ to arctan2(sqrt(1 - e^2) * sin(targ_ta_rad), e + cos(targ_ta_rad)).
+    // Compute the mean anomaly for current and target eccentric anomalies
+    local ma_rad_curr to ea_rad_curr - e * sin(ea_rad_curr).
+    local ma_rad_targ to ea_rad_targ - e * sin(ea_rad_targ).
+    // Mean motion (n) and time calculation
+    local n to sqrt(mu / (a^3)).
+    local delta_ma to ma_rad_targ - ma_rad_curr.
+    // Ensure positive time (wrap around if necessary)
+    if delta_ma < 0 {
+        set delta_ma to delta_ma + 2 * constant:pi.
+    }
+    // Time to reach the target true anomaly
+    local t to delta_ma / n.
+    return t.
+}
+
+
+function ensure_angle_positive {
+    local parameter value.
+    if value < 0 {
+        return 360 + value.
+    }
+    return value.
+}
+
 //--------------------------------------------------||
 //                  MANEUVER NODES                  ||
 //--------------------------------------------------||
@@ -144,6 +264,7 @@ function null_mnv {
 }
 function circularize {
     local parameter mode.
+    local parameter value is 0. // value param, insert alt or time here 
     if mode = "at periapsis" {
         local periapsis_dV is 
             orbital_velocity_circular(ship:periapsis) - 
@@ -175,6 +296,7 @@ function circularize {
 
 function change_eccentricity {
     local parameter mode.
+    local parameter value is 0. 
     if mode = "at periapsis"{
 
     }
@@ -421,6 +543,9 @@ function execute_node {
     local half_time is 0.
     if thruster = "engine" {
         set half_time to half_burn_time(mnv_node).
+    }
+    if thruster = "rcs" {
+        set half_time to rcs_half_burn_time(mnv_node).
     }
     local burn_done to false.
     local runmode is "turning to mnv".
