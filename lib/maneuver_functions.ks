@@ -124,8 +124,7 @@ function true_anomaly_to_radius {
     local parameter ta.
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
-    local ta_rad to ta * constant:degtorad.
-    local r_ to a * (1 - e^2) / (1 + e * cos(ta_rad)).
+    local r_ to a * (1 - e^2) / (1 + e * cos(ta)).
     return r_.
 }
 function radius_to_true_anomaly {
@@ -133,26 +132,25 @@ function radius_to_true_anomaly {
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
     local cos_ta to (a * (1 - e^2) / r_ - 1) / e.
-    local ta_rad to arccos(cos_ta).
-    return ensure_angle_positive(ta_rad * constant:radtodeg).
+    local ta to arccos(cos_ta).
+    return ensure_angle_positive(ta).
 }
 
 function true_anomaly_to_eccentric_anomaly {
     local parameter ta.
     local e is ship:obt:eccentricity.
-    local ta_rad to ta * constant:degtorad.
-    local ea_rad to arctan2(
-        sqrt(1 - e^2) * sin(ta_rad), 
-        e + cos(ta_rad)
+    local ea to arctan2(
+        sqrt(1 - e^2) * sin(ta), 
+        e + cos(ta)
     ).
-    return ensure_angle_positive(ea_rad * constant:radtodeg).
+    return ensure_angle_positive(ea).
 }
 
 function eccentric_anomaly_to_mean_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
     local ea_rad to ea * constant:degtorad.
-    local ma_rad to ea_rad - e * sin(ea_rad).
+    local ma_rad to ea_rad - e * sin(ea).
     return ensure_angle_positive(ma_rad * constant:radtodeg).
 }
 
@@ -161,27 +159,28 @@ function mean_anomaly_to_eccentric_anomaly {
     local e is ship:obt:eccentricity.
     local ma_rad to ma * constant:degtorad.
     local ea_rad to ma_rad.
+    local ea_deg to ea_rad * constant:radtodeg.
     local diff to 1.
     until diff < 1e-9 {
         local new_ea_rad to ea_rad - (
-            ea_rad - e * sin(ea_rad) - ma_rad) 
-            / (1 - e * cos(ea_rad)
+            ea_rad - e * sin(ea_deg) - ma_rad) 
+            / (1 - e * cos(ea_deg)
         ).
         set diff to abs(new_ea_rad - ea_rad).
         set ea_rad to new_ea_rad.
+        set ea_deg to ea_rad * constant:radtodeg.
     }
-    return ensure_angle_positive(ea_rad * constant:radtodeg).
+    return ensure_angle_positive(ea_deg).
 }
 
 function eccentric_anomaly_to_true_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
-    local ea_rad to ea * constant:degtorad.
-    local ta_rad to arctan2(
-        sqrt(1 - e^2) * sin(ea_rad), 
-        cos(ea_rad) - e
+    local ta to arctan2(
+        sqrt(1 - e^2) * sin(ea), 
+        cos(ea) - e
     ).
-    return ensure_angle_positive(ta_rad * constant:radtodeg).
+    return ensure_angle_positive(ta).
 }
 
 function time_from_true_anomaly {
@@ -192,15 +191,14 @@ function time_from_true_anomaly {
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
     local mu is body:mu.
-    // Convert true anomaly from degrees to radians
-    local ta_rad to curr_ta * constant:degtorad.
-    local targ_ta_rad to targ_ta * constant:degtorad.
     // Compute the eccentric anomaly for current and target true anomalies
-    local ea_rad_curr to arctan2(sqrt(1 - e^2) * sin(ta_rad), e + cos(ta_rad)).
-    local ea_rad_targ to arctan2(sqrt(1 - e^2) * sin(targ_ta_rad), e + cos(targ_ta_rad)).
+    local ea_curr to arctan2(sqrt(1 - e^2) * sin(curr_ta), e + cos(curr_ta)).
+    local ea_targ to arctan2(sqrt(1 - e^2) * sin(targ_ta), e + cos(targ_ta)).
+    local ea_rad_curr to ea_curr * constant:degtorad.
+    local ea_rad_targ to ea_targ * constant:degtorad.
     // Compute the mean anomaly for current and target eccentric anomalies
-    local ma_rad_curr to ea_rad_curr - e * sin(ea_rad_curr).
-    local ma_rad_targ to ea_rad_targ - e * sin(ea_rad_targ).
+    local ma_rad_curr to ea_rad_curr - e * sin(ea_curr).
+    local ma_rad_targ to ea_rad_targ - e * sin(ea_targ).
     // Mean motion (n) and time calculation
     local n to sqrt(mu / (a^3)).
     local delta_ma to ma_rad_targ - ma_rad_curr.
@@ -295,6 +293,7 @@ function circularize {
 }
 
 function change_eccentricity {
+    local parameter targ_eccentricity.
     local parameter mode.
     local parameter value is 0. 
     if mode = "at periapsis"{
@@ -316,15 +315,15 @@ function change_eccentricity {
 function change_apoapsis {
     local parameter target_apoapsis.
     local parameter mode.
-    if mode = "at next periapsis" {
+    if mode = "at periapsis" {
         local periapsis_dV is ( 
             vis_viva_equation(
-                target_apoapsis, 
+                ship:periapsis, 
                 calculate_semimajor_axis(
                     target_apoapsis, 
-                    ship:periapsis)) - 
-            vis_viva_equation(
-                ship:apoapsis,
+                    ship:periapsis))
+            - vis_viva_equation(
+                ship:periapsis,
                 ship:orbit:semimajoraxis
             )
         ).
@@ -335,7 +334,7 @@ function change_apoapsis {
             periapsis_dV
         ).
     }
-    if mode = "after a fixed time" {
+    if mode = "after fixed time" {
 
     }
     if mode = "at equatorial DN" {
@@ -352,20 +351,21 @@ function change_apoapsis {
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
-    if mode = "at next apoapsis" {
+    local parameter value is 0.
+    if mode = "at apoapsis" {
         local apoapsis_dV is ( 
             vis_viva_equation(
-                target_periapsis, 
+                ship:apoapsis, 
                 calculate_semimajor_axis(
                     target_periapsis, 
                     ship:apoapsis)) - 
             vis_viva_equation(
-                ship:periapsis,
+                ship:apoapsis,
                 ship:orbit:semimajoraxis
             )
         ).
         return list(
-            eta:periapsis,
+            eta:apoapsis,
             0,
             0, 
             apoapsis_dV
