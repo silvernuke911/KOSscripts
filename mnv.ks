@@ -5,13 +5,8 @@ runpath("0:/lib/borders.ks").
 clearScreen.
 
 function main {
-    global done to false.
-    create_node(change_periapsis(1000000,"at apoapsis")).
+    create_node(circularize("after fixed time",90)).
     execute_node().
-    until done {
-        obt_data().
-    }
-
 }
 
 function obt_data {

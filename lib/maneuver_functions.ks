@@ -15,6 +15,7 @@ set config:ipu to 1500.   //                        ||
 //--------------------------------------------------||
 //               BURN TIME FUNCTIONS                ||
 //--------------------------------------------------||
+//**************************************************||
 function ship_isp {
     local engineList to list().
     list engines in engineList.
@@ -51,7 +52,7 @@ function total_burn_time {
     local ve is Isp *constant:g0.
     local mdot is ship:maxThrust/ve.
     local m0 is ship:mass.
-    local mf is m0*constant:e^(-deltav/ ve).
+    local mf is m0 * constant:e^(-deltav/ ve).
     local dm is m0 - mf.
     local t is dm / mdot.
     return t.
@@ -125,13 +126,14 @@ function true_anomaly_to_radius {
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
     local r_ to a * (1 - e^2) / (1 + e * cos(ta)).
-    return r_.
+    return r_ - body:radius.
 }
 function radius_to_true_anomaly {
-    local parameter r_. 
+    local parameter r_.
+    local r__ is r_ + body:radius. 
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
-    local cos_ta to (a * (1 - e^2) / r_ - 1) / e.
+    local cos_ta to (a * (1 - e^2) / r__ - 1) / e.
     local ta to arccos(cos_ta).
     return ensure_angle_positive(ta).
 }
@@ -285,7 +287,32 @@ function circularize {
 
     }
     if mode = "after fixed time" {
+        local t_ is value.
+        local future_t is time:seconds + t_.
+        // current position vectors
+        local pos_vec is positionat(ship, future_t) - body:position.
+        local vel_vec is velocityAt(ship:obt:body, future_t):orbit.
+        local r_ is (pos_vec:mag - body:radius).
+        // circular velocity
+        local circ_vel is orbital_velocity_circular(r_).
 
+        // spherical frame
+        local radi_vec is pos_vec:normalized.
+        local side_vec is vxcl(radi_vec, vel_vec):normalized.
+        local norm_vec is vCrs(side_vec,radi_vec):normalized.
+
+        //perifocal frame
+        local radial_vec is pos_vec:normalized.
+        local prograde_vec is vel_vec:normalized.
+        local normal_vec is vCrs(prograde_vec,radial_vec):normalized.
+
+        // perifocal frame velocities
+        local prograde_v is vDot(vel_vec,prograde_vec).
+        local normal_v is vDot(vel_vec,normal_vec).
+        local radial_v is vDot(vel_vec,radial_vec).
+
+        // return circular dv in a list
+        return list(t_,0,0,10).
     }
     else {
         return null_mnv().
