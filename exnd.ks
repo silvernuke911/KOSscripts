@@ -2,6 +2,7 @@
 set config:ipu to 1500.
 runpath("0:/lib/maneuver_functions.ks").
 runpath("0:/lib/borders.ks").
+
 global targ_inclination is 30.
 global slew_angle is 15.
 global target_altitude is 100000.
