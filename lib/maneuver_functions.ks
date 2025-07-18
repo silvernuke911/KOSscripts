@@ -87,28 +87,28 @@ function ship_isp {
 }
 
 // =====================================================================
-// Function: total_burn_time
-// Purpose:  Calculates the total burn duration (in seconds) required
-//           to execute the full delta-v of a maneuver node.
-//
-// Parameters:
-//   mnv : A maneuver node object (or mock) with a :DELTAV vector.
-//
-// Returns:
-//   - Burn time in seconds required to complete the maneuver.
-//   - Returns 0 if ISP is 0 or undefined.
-//
-// Method:
-//   Uses Tsiolkovsky equation to compute propellant mass required,
-//   then divides by mass flow rate (thrust / exhaust velocity).
-//
-// Notes:
-//   ve = Isp × g0
-//   mf = m0 × exp(–Δv / ve)
-//   dm = m0 – mf
-//   ṁ = T / ve
-//   burn_time = dm / ṁ
-// =====================================================================
+//==================================================||
+//      FUNCTION: total_burn_time                   ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the full burn duration needed to      ||
+//   achieve a maneuver node's total delta-v.       ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mnv : A maneuver node with :DELTAV vector      ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Burn time in seconds, or 0 if ISP is 0/null.   ||
+//                                                  ||
+// METHOD:                                          ||
+//   Uses the Tsiolkovsky equation:                 ||
+//     ve = ISP × g0                                ||
+//     mf = m0 × exp(–Δv / ve)                      ||
+//     dm = m0 – mf                                 ||
+//     ṁ = Thrust / ve                              ||
+//     burn_time = dm / ṁ                           ||
+//==================================================||
+
 function total_burn_time {
     local parameter mnv.
 
@@ -129,22 +129,24 @@ function total_burn_time {
     return t.
 }
 
-// =====================================================================
-// Function: half_burn_time
-// Purpose:  Calculates the burn time (in seconds) needed to perform
-//           *half* the delta-v of a maneuver node (typically used
-//           for symmetric time-warp to maneuver).
-//
-// Parameters:
-//   mnv : A maneuver node object with a :DELTAV vector.
-//
-// Returns:
-//   - Burn time for half the delta-v (seconds).
-//   - Returns 0 if ISP is 0 or undefined.
-//
-// Notes:
-//   Uses same logic as total_burn_time, but with Δv halved.
-// =====================================================================
+//==================================================||
+//      FUNCTION: half_burn_time                    ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates burn time needed to complete half   ||
+//   of a maneuver node's total delta-v.            ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mnv : A maneuver node with :DELTAV vector      ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Half burn time in seconds, or 0 if ISP is 0.   ||
+//                                                  ||
+// NOTES:                                           ||
+//   Uses same method as total_burn_time, but with  ||
+//   delta-v halved in the calculation.             ||
+//==================================================||
+
 function half_burn_time {
     local parameter mnv.
 
@@ -167,25 +169,33 @@ function half_burn_time {
     return t.
 }
 
-// =====================================================================
-// Function: rcs_isp
-// Purpose : Returns the effective ISP of all active RCS thrusters.
-// Method  : Averages the ISP of all parts tagged "rcs" with ModuleRCS.
-// Parameters:
-//   (none)
-//
-// Returns:
-//   A scalar ISP value in seconds.
-// =====================================================================
+//==================================================||
+//      FUNCTION: rcs_isp                           ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Returns the effective ISP (s) of all active    ||
+//   RCS thrusters on the vessel.                   ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   (none)                                         ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A scalar ISP value in seconds.                 ||
+//==================================================||
+
 function rcs_isp {
     local rcsList is list().
     list rcs in rcsList.
     local total_thrust is 0.
     local weighted_isp is 0.
     for rcs_ in rcsList {
-        if rcs_:availableThrust > 0 and rcs_:availableThrust > 0 and rcs_:foreenabled{
-            set total_thrust to total_thrust + rcs_:availableThrust.
-            set weighted_isp to weighted_isp + (rcs_:availableThrust * rcs_:isp).
+        if rcs_:availableThrust > 0 
+        and rcs_:availableThrust > 0 
+        and rcs_:foreenabled{
+            set total_thrust to 
+                total_thrust + rcs_:availableThrust.
+            set weighted_isp to 
+                weighted_isp + (rcs_:availableThrust * rcs_:isp).
         }
     }
     if total_thrust > 0 {
@@ -200,23 +210,32 @@ function rcs_total_thrust {
     list rcs in rcsList.
     local rcs_total_thrust_ is 0.
     for rcs_ in rcsList {
-        if rcs_:availableThrust > 0 and rcs_:availableThrust > 0 and rcs_:foreenabled{
-            set rcs_total_thrust_ to rcs_total_thrust_ + rcs_:availableThrust.
+        if rcs_:availableThrust > 0 
+            and rcs_:availableThrust > 0 
+            and rcs_:foreenabled{
+            set rcs_total_thrust_ to 
+                rcs_total_thrust_ + rcs_:availableThrust.
         }
     }
     return rcs_total_thrust_.
 }
-// =====================================================================
-// Function: rcs_burn_time
-// Purpose : Computes full burn time to complete a maneuver using RCS.
-// Method  : Applies Tsiolkovsky rocket equation and thrust equation.
-// Parameters:
-//   mnv - Maneuver node to be executed.
-//
-// Returns:
-//   Total RCS burn time in seconds.
-// =====================================================================
-
+//==================================================||
+//      FUNCTION: rcs_burn_time                     ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the full burn time required to        ||
+//   complete a maneuver using RCS thrusters.       ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mnv : Maneuver node to be executed             ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Total RCS burn time in seconds.                ||
+//                                                  ||
+// METHOD:                                          ||
+//   Applies the Tsiolkovsky rocket equation and    ||
+//   standard thrust formula to compute duration.   ||
+//==================================================||
 function rcs_burn_time {
     local parameter mnv.
 
@@ -241,16 +260,24 @@ function rcs_total_deltaV {
     // T O BE ADDED
 }
 
-// =====================================================================
-// Function: rcs_half_burn_time
-// Purpose : Computes time to burn half the delta-V using RCS.
-// Method  : Applies Tsiolkovsky rocket equation for half delta-V.
-// Parameters:
-//   mnv - Maneuver node to be executed.
-//
-// Returns:
-//   Half RCS burn time in seconds.
-// =====================================================================
+//==================================================||
+//      FUNCTION: rcs_half_burn_time                ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the time required to burn half of the ||
+//   maneuver node's delta-V using RCS thrusters.   ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mnv : Maneuver node to be executed             ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Half RCS burn time in seconds.                 ||
+//                                                  ||
+// METHOD:                                          ||
+//   Applies the Tsiolkovsky rocket equation using  ||
+//   half the delta-V value from the maneuver node. ||
+//==================================================||
+
 function rcs_half_burn_time {
     local parameter mnv.
 
@@ -277,20 +304,23 @@ function rcs_half_burn_time {
 //--------------------------------------------------||
 //**************************************************||
 
-//=====================================================================
-// Function: twr
-// Purpose:
-//     Computes the vessel's Thrust-to-Weight Ratio (TWR) at its current
-//     altitude on the current celestial body.
-//
-// Returns:
-//     - twr_val : Thrust-to-weight ratio (dimensionless)
-//
-// Notes:
-//     - Uses available thrust, not maximum thrust.
-//     - TWR > 1 means the ship can accelerate upward.
-//     - Important for liftoff and landing calculations.
-// =====================================================================
+//==================================================||
+//      FUNCTION: twr                               ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the vessel's Thrust-to-Weight Ratio   ||
+//   (TWR) at its current altitude on the current   ||
+//   celestial body.                                ||
+//                                                  ||
+// RETURNS:                                         ||
+//   twr_val : Thrust-to-weight ratio, dimensionless||
+//                                                  ||
+// NOTES:                                           ||
+//   - Uses available thrust, not maximum thrust.   ||
+//   - TWR > 1 means upward acceleration possible.  ||
+//   - Crucial for launch and landing maneuvers.    ||
+//==================================================||
+
 function twr {
     // Compute local gravity at current ship altitude
     local g0 is body:mu / (body:radius + ship:altitude)^2.
@@ -307,33 +337,33 @@ function twr {
 //--------------------------------------------------||
 //**************************************************||
 
-// =====================================================================
-// Function: orbital_velocity_circular
-// Purpose:
-//   Computes the circular orbital velocity (in m/s) required to
-//   maintain a circular orbit around the current celestial body,
-//   either at a specified altitude above the surface or at an
-//   absolute radius from the center of the body.
-//
-// Parameters:
-//   altitude_ : (numeric) The input value, interpreted based on `mode`
-//     - If mode = "altitude": this is the altitude above the surface (m)
-//     - If mode = "radius"  : this is the total radius from the center (m)
-//
-//   mode : (string, optional) How to interpret `altitude_`.
-//     - "altitude" (default): `altitude_` is added to `body:radius`
-//     - "radius"           : `altitude_` is treated as the full radius
-//
-// Returns:
-//   - The circular orbital velocity at the specified radius (m/s).
-//
-// Notes:
-//   - Formula: v = sqrt(GM / r)
-//     where GM is body:mu, and r is the orbital radius (m).
-//
-// Warnings:
-//   - Prints an error if mode is invalid, but still proceeds to return.
-// =====================================================================
+//==================================================||
+//      FUNCTION: orbital_velocity_circular         ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the circular orbital velocity (m/s)   ||
+//   for a given altitude or absolute radius.       ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   altitude_ : Numeric input, interpreted via mode||
+//     - "altitude": altitude above surface (m)     ||
+//     - "radius"  : full radius from center (m)    ||
+//                                                  ||
+//   mode : (optional, string) Defaults to altitude ||
+//     - "altitude" → adds to body:radius           ||
+//     - "radius"   → used as-is                    ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Circular orbital velocity at specified radius  ||
+//                                                  ||
+// NOTES:                                           ||
+//   Formula: v = sqrt(GM / r)                      ||
+//   where GM = body:mu, and r is orbital radius.   ||
+//                                                  ||
+// WARNINGS:                                        ||
+//   Prints error if mode is invalid but continues. ||
+//==================================================||
+
 function orbital_velocity_circular {
     local parameter altitude_.           // input value (altitude or radius)
     local parameter mode is "altitude".  // mode selector
@@ -350,26 +380,28 @@ function orbital_velocity_circular {
 }
 
 
-// =====================================================================
-// Function: vis_viva_equation
-// Purpose:
-//   Computes the orbital speed (in m/s) at a given altitude for an
-//   orbit with a specified semimajor axis using the Vis-Viva equation.
-//
-// Parameters:
-//   altitude_ : (numeric) Altitude above the surface (in meters)
-//   a_        : (numeric) Semimajor axis of the orbit (in meters)
-//
-// Returns:
-//   - Orbital speed at the given altitude (in m/s)
-//
-// Formula:
-//   v = sqrt( GM * (2/r - 1/a) )
-//   where:
-//     - GM is body:mu (standard gravitational parameter)
-//     - r = body:radius + altitude_ (distance from center of mass)
-//     - a = semimajor axis of the orbit
-// =====================================================================
+//==================================================||
+//      FUNCTION: vis_viva_equation                 ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes orbital speed (m/s) at a given        ||
+//   altitude for an orbit with known semimajor     ||
+//   axis using the Vis-Viva equation.              ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   altitude_ : (numeric) Altitude above surface   ||
+//   a_        : (numeric) Semimajor axis of orbit  ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Orbital speed at the given altitude (m/s)      ||
+//                                                  ||
+// FORMULA:                                         ||
+//   v = sqrt( GM * (2/r - 1/a) )                   ||
+//     where:                                       ||
+//       GM = body:mu (gravitational parameter)     ||
+//       r  = body:radius + altitude_               ||
+//       a  = semimajor axis of orbit               ||
+//==================================================||
 function vis_viva_equation {
     local parameter altitude_.  // Altitude above body's surface (m)
     local parameter a_.         // Semimajor axis of the orbit (m)
@@ -377,12 +409,40 @@ function vis_viva_equation {
     return sqrt(body:mu * (2 / r_ - 1 / a_)).
 }
 
+//==================================================||
+//      FUNCTION: calculate_semimajor_axis          ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the semimajor axis of an orbit from   ||
+//   its periapsis and apoapsis.                    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   periapsis__ : (scalar) Periapsis altitude      ||
+//   apoapsis___ : (scalar) Apoapsis altitude       ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Semimajor axis (scalar), measured from the     ||
+//   center of the body.                            ||
+//==================================================//
 function calculate_semimajor_axis {
     local parameter periapsis__.
     local parameter apoapsis___.
     return body:radius + (periapsis__+apoapsis___)/2.
 }
 
+//==================================================||
+//      FUNCTION: true_anomaly_to_radius            ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Converts a given true anomaly to the orbital   ||
+//   radius (altitude above surface).               ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   ta : (scalar) True anomaly in degrees          ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Orbital radius (scalar) above the surface.     ||
+//==================================================//
 function true_anomaly_to_radius {
     local parameter ta.
     local a is ship:obt:semimajoraxis.
@@ -390,6 +450,20 @@ function true_anomaly_to_radius {
     local r_ to a * (1 - e^2) / (1 + e * cos(ta)).
     return r_ - body:radius.
 }
+
+//==================================================||
+//      FUNCTION: radius_to_true_anomaly            ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Converts an orbital radius (altitude) to the   ||
+//   corresponding true anomaly.                    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   r_ : (scalar) Orbital radius above surface     ||
+//                                                  ||
+// RETURNS:                                         ||
+//   True anomaly in degrees [0, 360].              ||
+//==================================================//
 function radius_to_true_anomaly {
     local parameter r_.
     local r__ is r_ + body:radius. 
@@ -400,6 +474,19 @@ function radius_to_true_anomaly {
     return ensure_angle_positive(ta).
 }
 
+//==================================================||
+// FUNCTION: true_anomaly_to_eccentric_anomaly      ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Converts a true anomaly to the corresponding   ||
+//   eccentric anomaly.                             ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   ta : (scalar) True anomaly in degrees          ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Eccentric anomaly in degrees [0, 360].         ||
+//==================================================//
 function true_anomaly_to_eccentric_anomaly {
     local parameter ta.
     local e is ship:obt:eccentricity.
@@ -410,6 +497,19 @@ function true_anomaly_to_eccentric_anomaly {
     return ensure_angle_positive(ea).
 }
 
+//==================================================||
+// FUNCTION: eccentric_anomaly_to_mean_anomaly      ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Converts an eccentric anomaly to the           ||
+//   corresponding mean anomaly.                    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   ea : (scalar) Eccentric anomaly in degrees     ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Mean anomaly in degrees [0, 360).              ||
+//==================================================//
 function eccentric_anomaly_to_mean_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
@@ -418,29 +518,32 @@ function eccentric_anomaly_to_mean_anomaly {
     return ensure_angle_positive(ma_rad * constant:radtodeg).
 }
 
-// =====================================================================
-// Function: mean_anomaly_to_eccentric_anomaly
-// Purpose:
-//   Solves Kepler's Equation numerically to find the **Eccentric Anomaly**
-//   (EA, in degrees) from a given **Mean Anomaly** (MA, in degrees).
-//
-// Parameters:
-//   ma : Mean Anomaly (degrees)
-//
-// Returns:
-//   - Eccentric Anomaly (degrees), adjusted to the range [0, 360)
-//
-// Method:
-//   Uses Newton-Raphson iteration on the transcendental equation:
-//     MA = EA - e * sin(EA)
-//   where:
-//     - MA and EA are in radians for computation
-//     - e is orbital eccentricity (retrieved from `ship:obt:eccentricity`)
-//
-// Notes:
-//   - Iteration stops when difference between successive estimates < 1e-9
-//   - Uses degrees for compatibility with common kOS usage
-// =====================================================================
+//==================================================||
+// FUNCTION: mean_anomaly_to_eccentric_anomaly      ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Solves Kepler's Equation to compute the        ||
+//   Eccentric Anomaly (EA) from a given Mean       ||
+//   Anomaly (MA), both in degrees.                 ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   ma : Mean Anomaly in degrees                   ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Eccentric Anomaly in degrees [0, 360)          ||
+//                                                  ||
+// METHOD:                                          ||
+//   Uses Newton-Raphson iteration on:              ||
+//     MA = EA - e * sin(EA)                        ||
+//   - Internally uses radians for computation      ||
+//   - Eccentricity `e` from ship:obt:eccentricity  ||
+//   - Stops when ΔEA < 1e-9                        ||
+//                                                  ||
+// NOTES:                                           ||
+//   - Returned EA is in degrees for compatibility  ||
+//     with kOS conventions                         ||
+//==================================================||
+
 function mean_anomaly_to_eccentric_anomaly {
     local parameter ma.                          // Input Mean Anomaly (deg)
     local e is ship:obt:eccentricity.            // Orbital eccentricity
@@ -463,7 +566,19 @@ function mean_anomaly_to_eccentric_anomaly {
     return ensure_angle_positive(ea_deg).
 }
 
-
+//==================================================||
+//    FUNCTION: eccentric_anomaly_to_true_anomaly   ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Converts eccentric anomaly to true anomaly     ||
+//   using the orbital eccentricity.                ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   ea : (scalar) Eccentric anomaly in degrees     ||
+//                                                  ||
+// RETURNS:                                         ||
+//   True anomaly in degrees [0, 360).              ||
+//==================================================//
 function eccentric_anomaly_to_true_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
@@ -474,10 +589,24 @@ function eccentric_anomaly_to_true_anomaly {
     return ensure_angle_positive(ta).
 }
 
+//==================================================||
+//      FUNCTION: time_from_true_anomaly            ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the time required to reach a given    ||
+//   true anomaly from the current orbital state.   ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   targ_ta : (scalar) Target true anomaly (deg)   ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Time in seconds to reach target true anomaly.  ||
+//==================================================//
 function time_from_true_anomaly {
     // Input: target true anomaly (targ_ta)
     local parameter targ_ta.
-    // Current true anomaly, semi-major axis, eccentricity, and gravitational parameter
+    // Current true anomaly, semi-major axis, 
+    // eccentricity, and gravitational parameter
     local curr_ta is ship:obt:trueanomaly.
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
@@ -502,6 +631,18 @@ function time_from_true_anomaly {
     return t.
 }
 
+//==================================================||
+//      FUNCTION: ensure_angle_positive             ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Ensures angle is within range [0, 360).        ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   value : (scalar) Angle in degrees              ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Angle in degrees within [0, 360).              ||
+//==================================================//
 function ensure_angle_positive {
     local parameter value.
     if value < 0 {
@@ -516,19 +657,27 @@ function ensure_angle_positive {
 //--------------------------------------------------||
 //**************************************************||
 
-// =====================================================================
-// Function: create_node
-// Purpose:  Creates and adds a maneuver node using a maneuver vector.
-// Input:
-//   mnv_node : list of 4 values in the form [eta, dv_r, dv_n, dv_p]
-//              • eta     : seconds from now until burn
-//              • dv_r    : radial delta-v (m/s)
-//              • dv_n    : normal delta-v (m/s)
-//              • dv_p    : prograde delta-v (m/s)
-// Behavior:
-//   - If eta < 0 and the delta-v vector is all zero, a warning is printed.
-//   - Otherwise, it schedules the maneuver node.
-// =====================================================================
+//==================================================||
+//      FUNCTION: create_node                       ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Creates and schedules a maneuver node using a  ||
+//   maneuver vector input.                         ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mnv_node : List of 4 values [eta, dv_r, dv_n,  ||
+//              dv_p] where:                        ||
+//     • eta  : Time from now until burn (s)        ||
+//     • dv_r : Radial delta-V (m/s)                ||
+//     • dv_n : Normal delta-V (m/s)                ||
+//     • dv_p : Prograde delta-V (m/s)              ||
+//                                                  ||
+// BEHAVIOR:                                        ||
+//   - If eta < 0 and all delta-V components are 0, ||
+//     a warning is printed.                        ||
+//   - Otherwise, the maneuver is scheduled.        ||
+//==================================================||
+
 function create_node {
     local parameter mnv_node.
 
@@ -554,17 +703,24 @@ function create_node {
     add maneuver_node.
 }
 
-// =====================================================================
-// Function: raw_node
-// Purpose:  Constructs a maneuver vector list (without applying it).
-// Input:
-//   eta____ : seconds from now until burn
-//   radial_ : radial delta-v (m/s)
-//   normal_ : normal delta-v (m/s)
-//   prograd : prograde delta-v (m/s)
-// Output:
-//   list [eta, dv_r, dv_n, dv_p] suitable for use with create_node()
-// =====================================================================
+//==================================================||
+//      FUNCTION: raw_node                          ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Constructs a maneuver vector list without      ||
+//   applying it immediately.                       ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   eta____ : Time from now until burn (s)         ||
+//   radial_ : Radial delta-V (m/s)                 ||
+//   normal_ : Normal delta-V (m/s)                 ||
+//   prograd : Prograde delta-V (m/s)               ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A list [eta, dv_r, dv_n, dv_p] suitable for    ||
+//   use with create_node()                         ||
+//==================================================||
+
 function raw_node {
     local parameter eta____.
     local parameter radial_.
@@ -581,37 +737,47 @@ function raw_node {
     return mnv_nd.
 }
 
-// =====================================================================
-// Function: null_mnv
-// Purpose:  Returns a dummy maneuver vector representing "do nothing."
-// Output:
-//   list [-1, 0, 0, 0] which signals no or invalid maneuver
-// =====================================================================
+//==================================================||
+//      FUNCTION: null_mnv                          ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Returns a dummy maneuver vector that signals   ||
+//   no action or an invalid maneuver.              ||
+//                                                  ||
+// RETURNS:                                         ||
+//   List [-1, 0, 0, 0] representing:               ||
+//     - eta     = -1 (invalid timing)              ||
+//     - dv_r/n/p = 0 (no delta-V)                  ||
+//==================================================||
+
 function null_mnv {
     return list(-1, 0, 0, 0).
 }
 
 
-// =====================================================================
-// Function: circularize
-// Purpose:  Calculates the delta-v vector required to circularize an orbit
-//           under various user-specified conditions.
-// Modes Supported:
-//   - "at periapsis"       : Burn at periapsis to circularize
-//   - "at apoapsis"        : Burn at apoapsis to circularize
-//   - "at altitude"        : Burn when reaching a specified altitude
-//   - "after fixed time"   : Burn after a fixed amount of time has passed
-//
-// Parameters:
-//   mode  : (string) The selected method of circularization
-//   value : (optional, numeric) Mode-dependent parameter:
-//              • If mode = "at altitude", this is the target altitude (m)
-//              • If mode = "after fixed time", this is the delay time (s)
-//
-// Returns:
-//   A maneuver node vector [eta, radial_dv, normal_dv, prograde_dv]
-//   or a null_mnv() if the operation fails or is invalid.
-// =====================================================================
+//==================================================||
+//      FUNCTION: circularize                       ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the delta-v vector required to      ||
+//   circularize an orbit under various conditions. ||
+//                                                  ||
+// MODES SUPPORTED:                                 ||
+//   - "at periapsis"       : Burn at periapsis     ||
+//   - "at apoapsis"        : Burn at apoapsis      ||
+//   - "at altitude"        : Burn at given altitude||
+//   - "after fixed time"   : Burn after time delay ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mode  : (string) Method of circularization     ||
+//   value : (optional, numeric) Mode-dependent:    ||
+//           • "at altitude" → target altitude (m)  ||
+//           • "after fixed time" → delay time (s)  ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A maneuver node vector [eta, radial, normal,   ||
+//   prograde] or null_mnv() if operation fails.    ||
+//==================================================||
 function circularize {
     parameter mode.
     parameter value is 0. // Optional mode-specific value
@@ -662,7 +828,11 @@ function circularize {
         local delta_v is circ_vel - prograde_v.
 
         // Desired dv vector in perifocal frame
-        local dv_vec is (-radial_v) * radial_vec + (-normal_v) * normal_vec + delta_v * prograde_vec.
+        local dv_vec is (
+            (-radial_v) * radial_vec + 
+            (-normal_v) * normal_vec + 
+            delta_v * prograde_vec
+        ).
 
         // Transform to ship's velocity frame
         local v_frame_prograde is vel_vec:normalized.
@@ -730,7 +900,11 @@ function change_eccentricity {
         return null_mnv().
     }
 }
-
+//==================================================||
+//      FUNCTION: change_apoapsis                   ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_apoapsis {
     local parameter target_apoapsis.
     local parameter mode.
@@ -767,6 +941,11 @@ function change_apoapsis {
     }
 }
 
+//==================================================||
+//      FUNCTION: change_periapsis                  ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
@@ -804,31 +983,36 @@ function change_periapsis {
     }
 }
 
-// =====================================================================
-// Function: change_inclination
-// Purpose : Computes the delta-V vector and timing needed to change the
-//           inclination of an orbit to a target value.
-// Method  : 
-//   1. Determines ascending and descending node times and velocities.
-//   2. Calculates required delta-V at each node using orbital mechanics.
-//   3. Converts delta-V magnitude to vector components in orbital frame.
-//   4. Returns maneuver plan (time, radial, normal, prograde components).
-// Parameters:
-//   target_inclination - Desired inclination in degrees.
-//   mode               - Strategy for where to perform the burn:
-//                          "at AN" — burn at Ascending Node
-//                          "at DN" — burn at Descending Node
-//                          "at nearest node" — soonest of AN or DN
-//                          "at cheapest node" — least delta-V cost
-//                          "after fixed time" — (not implemented)
-// Returns:
-//   A list containing:
-//     [0] - Time until burn (seconds)
-//     [1] - Radial component of delta-V (m/s)
-//     [2] - Normal component of delta-V (m/s)
-//     [3] - Prograde component of delta-V (m/s)
-//   Or null_mnv() if no valid mode matched.
-// =====================================================================
+//==================================================||
+//      FUNCTION: change_inclination                ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes delta-V vector and timing to achieve  ||
+//   a desired orbital inclination.                 ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_inclination : Desired inclination (°)   ||
+//   mode               : Where to perform the burn:||
+//     - "at AN"            : Ascending Node        ||
+//     - "at DN"            : Descending Node       ||
+//     - "at nearest node"  : Soonest node (AN/DN)  ||
+//     - "at cheapest node" : Least delta-V cost    ||
+//     - "after fixed time" : (not implemented)     ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A list containing:                             ||
+//     [0] Time until burn (s)                      ||
+//     [1] Radial delta-V (m/s)                     ||
+//     [2] Normal delta-V (m/s)                     ||
+//     [3] Prograde delta-V (m/s)                   ||
+//   Or null_mnv() if mode is invalid.              ||
+//                                                  ||
+// METHOD:                                          ||
+//   1. Finds AN/DN times and velocities            ||
+//   2. Calculates required inclination correction  ||
+//   3. Decomposes delta-V into orbital frame axes  ||
+//==================================================||
+
 function change_inclination {
     parameter target_inclination.
     parameter mode.
@@ -903,10 +1087,20 @@ function change_inclination {
     return null_mnv().
 }
 
+//==================================================||
+//      FUNCTION: change_LAN                        ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_LAN {
 
 }
 
+//==================================================||
+//      FUNCTION: change_pe_and_ap                  ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_pe_and_ap {
     local parameter mode.
     if mode = "at expected time" {
@@ -920,10 +1114,20 @@ function change_pe_and_ap {
     }
 }
 
+//==================================================||
+//      FUNCTION: return_from_a_moon                ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function return_from_a_moon {
     local parameter target_periapsis.
 } 
 
+//==================================================||
+//      FUNCTION: change_semi_major_axis            ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_semi_major_axis {
     local parameter target_smja.
     local parameter mode.
@@ -945,6 +1149,11 @@ function change_semi_major_axis {
 
 }
 
+//==================================================||
+//      FUNCTION: change_resonant_orbit             ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
 function change_resonant_orbit {
     local parameter target_resonance.
     local parameter mode.
@@ -1216,18 +1425,27 @@ function execute_node {
 //                    NAVIGATION                    ||
 //--------------------------------------------------||
 //**************************************************||
-// =====================================================================
-// Function: compass_hdg
-// Purpose : Computes the compass heading (0° = North, 90° = East, etc.)
-//           of the ship's current facing direction relative to the surface.
-// Method  : Projects the ship's forward vector onto the horizontal plane
-//           and calculates its angle relative to north.
-// Parameters:
-//   (none)
-//
-// Returns:
-//   A scalar angle in degrees representing the compass heading [0, 360).
-// =====================================================================
+//==================================================||
+//      FUNCTION: compass_hdg                       ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the compass heading of the ship's     ||
+//   current facing direction relative to the       ||
+//   planetary surface (0° = North, 90° = East).    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   (none)                                         ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A scalar angle in degrees [0, 360) representing||
+//   the compass heading.                           ||
+//                                                  ||
+// METHOD:                                          ||
+//   Projects the ship's forward vector onto the    ||
+//   horizontal plane and calculates the angle      ||
+//   relative to north.                             ||
+//==================================================||
+
 function compass_hdg {
     local up_vector is ship:up:vector.
     local north_vector is ship:north:vector.
@@ -1240,19 +1458,25 @@ function compass_hdg {
     }
     return angle.
 }
-// =====================================================================
-// Function: vectorHeading
-// Purpose : Calculates the heading (compass angle) of an arbitrary
-//           vector in the ship's surface reference frame.
-// Method  : Projects the vector onto the horizontal plane and
-//           computes its angle from true north.
-//
-// Parameters:
-//   V__ : (vector) A direction vector to analyze.
-//
-// Returns:
-//   A scalar angle in degrees [0, 360) representing the heading.
-// =====================================================================
+//==================================================||
+//      FUNCTION: vectorHeading                     ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the compass heading (angle from     ||
+//   true north) of a vector in the ship's surface  ||
+//   reference frame.                               ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   V__ : (vector) Direction vector to analyze     ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Scalar angle in degrees [0, 360) representing  ||
+//   the heading of the vector.                     ||
+//                                                  ||
+// METHOD:                                          ||
+//   Projects the vector onto the horizontal plane  ||
+//   and computes its angle from true north.        ||
+//==================================================||
 function vectorHeading{
     local parameter V__.
     set V__ to V__:normalized.
@@ -1295,23 +1519,31 @@ function orbital_basis_vectors {
 //--------------------------------------------------||
 //**************************************************||
 
-// =====================================================================
-// Function: inclination_heading
-// Purpose: Calculate the launch heading needed to achieve a target 
-//          orbital inclination.
-//          Applies a correction term based on the deviation from the 
-//          current orbit's inclination.
-// Parameters:
-//   - target_inclination : Desired orbital inclination in degrees.
-//   - mode               : "northbound" or "southbound" launch direction.
-//   - current_latitude   : (optional) Defaults to ship:latitude if not 
-//                          specified.
-// Returns:
-//   - Launch heading in degrees to achieve the target inclination.
-// =====================================================================
+//==================================================||
+//      FUNCTION: inclination_heading               ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the azimuthal launch heading needed ||
+//   to achieve a target orbital inclination.       ||
+//   Applies a correction based on deviation from   ||
+//   the current orbit's inclination. Set ship      || 
+//   heading to this function at flight time        ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_inclination : Desired inclination (°)   ||
+//   mode               : "northbound" (default)    ||
+//                        "southbound" launch       ||
+//   current_latitude   : (optional) Launch site    ||
+//                        latitude; defaults to     ||
+//                        ship:latitude             ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Launch heading in degrees                      ||
+//==================================================||
+
 function inclination_heading {
     local parameter target_inclination.
-    local parameter mode.
+    local parameter mode is "northbound".
     local parameter current_latitude is ship:latitude. // Default to current latitude
 
     // Ensure inclination is physically achievable at the current latitude
