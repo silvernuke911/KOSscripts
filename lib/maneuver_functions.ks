@@ -537,7 +537,7 @@ function create_node {
     local normal_ is mnv_node[2].
     local prograd is mnv_node[3].
 
-    // Warn if trying to create a maneuver with invalid settings
+    // Warn if maneuver node is null_mnv()
     if mnv_node[0] < 0 {
         if radial_ = 0 and normal_ = 0 and prograd = 0 {
             print("WRONG MNV NODE SETTING").
@@ -585,7 +585,7 @@ function raw_node {
 // Function: null_mnv
 // Purpose:  Returns a dummy maneuver vector representing "do nothing."
 // Output:
-//   list [-1, 0, 0, 0] which signals no maneuver
+//   list [-1, 0, 0, 0] which signals no or invalid maneuver
 // =====================================================================
 function null_mnv {
     return list(-1, 0, 0, 0).
