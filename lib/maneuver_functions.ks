@@ -9,6 +9,7 @@
 // kOS Script Collection                            ||
 // 2024 - 2025                                      ||
 //--------------------------------------------------||
+//                                                  ||
 // A library of kOS functions designed for precise  ||
 // maneuver planning and execution in orbital       ||
 // mechanics, and other navigation purposes,        ||
@@ -16,20 +17,29 @@
 // "Execute Maneuver" of MechJeb2.0. This includes  ||
 // utilities for computing required deltaV, creating||
 // various maneuver nodes, and other necessary      ||
-// implements                                       ||
+// implements, see the rest of the code for stuff   ||
+//                                                  ||
+// Example use:                                     ||
+//     If you want to create a node to circularize  ||
+//  at apoapsis and want it to be executed          ||
+//  immediately, write:                             ||
+//                                                  ||
+//  create_node(circularize("at apoapsis"))         ||
+//  execute_node()                                  ||
+//                                                  ||
+//  and that's literally it. Just read the docstring||
+//  for each function to know its purpose.          ||
 //                                                  ||
 //--------------------------------------------------||
-//                                                  ||
+//  Last update:  July 20, 2025                     ||
 //--------------------------------------------------||
 //==================================================||
-
+//**************************************************||
 //--------------------------------------------------||
 @lazyGlobal off.          //                        ||
 set config:ipu to 2000.   //                        ||  
 //==================================================||
 //**************************************************||
-
-
 
 
 //**************************************************||
@@ -257,7 +267,7 @@ function rcs_burn_time {
 }
 
 function rcs_total_deltaV {
-    // T O BE ADDED
+    // TO BE ADDED
 }
 
 //==================================================||
@@ -537,7 +547,7 @@ function eccentric_anomaly_to_mean_anomaly {
 //     MA = EA - e * sin(EA)                        ||
 //   - Internally uses radians for computation      ||
 //   - Eccentricity `e` from ship:obt:eccentricity  ||
-//   - Stops when ΔEA < 1e-9                        ||
+//   - Stops when ΔEA < 1e-12                       ||
 //                                                  ||
 // NOTES:                                           ||
 //   - Returned EA is in degrees for compatibility  ||
@@ -551,9 +561,10 @@ function mean_anomaly_to_eccentric_anomaly {
 
     local ea_rad to ma_rad.                      // Initial guess: EA = MA
     local ea_deg to ea_rad * constant:radtodeg.  // Also track EA in degrees
-    local diff to 1.                             
+    local diff to 1.    
+    local tol is 1e-12.                         
     // Newton-Raphson iteration to solve MA = EA - e*sin(EA)
-    until diff < 1e-9 {
+    until diff < tol {
         local new_ea_rad to ea_rad - (
             ea_rad - e * sin(ea_deg) - ma_rad
         ) / (1 - e * cos(ea_deg)).
@@ -804,7 +815,7 @@ function circularize {
     // Helper Function:
     // Computes the full delta-v vector (radial, normal, prograde)
     // needed to circularize at a specific future time.
-    function compute_circularization_dv {
+    local function compute_circularization_dv {
         parameter future_t.
 
         // Predict ship's position and velocity at future time
@@ -880,15 +891,48 @@ function circularize {
     return null_mnv().
 }
 
+//==================================================||
+//      FUNCTION: change_eccentricity              ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Adjusts the eccentricity of the current orbit  ||
+//   by modifying apoapsis or periapsis depending   ||
+//   on the specified mode of operation. Works      ||
+//   relative to the central body's radius.         ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   targ_eccentricity : (scalar) Target orbital    ||
+//                      eccentricity                ||
+//   mode              : (string) Mode for how the  ||
+//                      eccentricity should be      ||
+//                      changed. Options include:   ||
+//                        - "at periapsis"          ||
+//                        - "at apoapsis"           ||
+//                        - "after fixed time"      ||
+//                        - "at an altitude"        ||
+//   value             : (scalar) Reserved/optional ||
+//                      input, default is 0         ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Maneuver node to execute eccentricity change,  ||
+//   or null maneuver node if unsupported mode.     ||
+//==================================================||
+
 function change_eccentricity {
     local parameter targ_eccentricity.
     local parameter mode.
-    local parameter value is 0. 
-    if mode = "at periapsis"{
+    local parameter value is 0.
 
+    local ecc is targ_eccentricity.
+    local r_a is obt:apoapsis  + body:radius.
+    local r_p is obt:periapsis + body:radius. 
+    if mode = "at periapsis"{
+        set r_a to r_p * (1 + ecc) / (1 - ecc).
+        return change_apoapsis(r_a - body:radius, mode).
     }
     if mode = "at apoapsis" {
-
+        set r_p to r_a * (1 - ecc) / (1 + ecc).
+        return change_periapsis(r_p - body:radius, mode).
     }
     if mode = "after fixed time"{
 
@@ -1080,6 +1124,9 @@ function change_inclination {
             return list(t_dn, dv[0], dv[1], dv[2]).
         }
     }
+    if mode = "at altitude" {
+        // not yet implemented
+    }
     if mode = "after fixed time" {
         // Not implemented — requires true anomaly and velocity propagation
         print "after fixed time mode not implemented yet".
@@ -1103,6 +1150,7 @@ function change_LAN {
 //--------------------------------------------------||
 function change_pe_and_ap {
     local parameter mode.
+    local parameter value is 0.
     if mode = "at expected time" {
 
     }
@@ -1121,55 +1169,113 @@ function change_pe_and_ap {
 //--------------------------------------------------||
 function return_from_a_moon {
     local parameter target_periapsis.
+    // requires hyperbolic functionalities
 } 
 
 //==================================================||
 //      FUNCTION: change_semi_major_axis            ||
 //--------------------------------------------------||
-//
-//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Changes the semi-major axis of the current     ||
+//   orbit to a target value by modifying either    ||
+//   the periapsis or apoapsis.                     ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_smja : (scalar) Target semi-major axis  ||
+//   mode        : (string) Either "at periapsis",  ||
+//                 "at apoapsis", "at an altitude", ||
+//                 or "after fixed time"            ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A maneuver node that changes the orbit's       ||
+//   semi-major axis to the desired value.          ||
+//==================================================||
 function change_semi_major_axis {
     local parameter target_smja.
     local parameter mode.
+
+    local r_a is obt:apoapsis  + body:radius.
+    local r_p is obt:periapsis + body:radius.
+
     if mode = "at periapsis" {
-
+        set r_a to 2 * target_smja - r_p. 
+        return change_apoapsis(r_a - body:radius, mode).
     }
+
     if mode = "at apoapsis" {
-
+        set r_p to 2 * target_smja - r_a.
+        return change_periapsis(r_p - body:radius, mode).
     }
-    if mode = "at an altitude" { 
 
+    if mode = "at an altitude" {
+        // not implemented yet
     }
+
     if mode = "after fixed time" {
-
+        // not implemented yet
     }
-    else {
-        return null_mnv().
-    } 
 
+    return null_mnv().
 }
 
 //==================================================||
 //      FUNCTION: change_resonant_orbit             ||
 //--------------------------------------------------||
-//
-//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Sets a resonant orbit by changing the          ||
+//   semi-major axis such that the orbital period   ||
+//   becomes a rational multiple of a reference     ||
+//   time (e.g., the body's rotation period).       ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_resonance : (scalar) Desired resonance  ||
+//                      (e.g., 2 means 2 orbits per ||
+//                      base_time)                  ||
+//   mode             : (string) Burn mode —        ||
+//                      "at periapsis",             ||
+//                      "at apoapsis",              ||
+//                      "after fixed time",         ||
+//                      or "at altitude"            ||
+//   base_time        : (scalar) Reference time     ||
+//                      (defaults to body's         ||
+//                      rotation period)            ||
+//   value            : (optional scalar) Only used ||
+//                      in modes that require a     ||
+//                      reference altitude or time. ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A maneuver node that sets the orbit into the   ||
+//   desired resonance.                             ||
+//==================================================||
 function change_resonant_orbit {
-    local parameter target_resonance.
-    local parameter mode.
+    local parameter target_resonance. 
+    local parameter mode. 
+    local parameter base_time is body:rotationperiod. 
+    local parameter value is 0. 
+
+    local T_orbit is base_time / target_resonance.
+    local a_resonant is (body:mu * T_orbit^2 / (4 * constant:pi^2))^(1/3).
+    
     if mode = "at periapsis" {
-
+        return change_semi_major_axis(a_resonant, mode).
     }
+
     if mode = "at apoasis" {
-
+        return change_semi_major_axis(a_resonant, mode).
     }
+
     if mode = "after fixed time" {
-
+        // not implemented
     }
+
     if mode = "at altitude" {
-
+        // not implemented
     }
+
+    return null_mnv().
 }
+
+
 //**************************************************||
 //--------------------------------------------------||
 //                 RCS CORRECTIONS                  ||
@@ -1196,7 +1302,6 @@ function change_resonant_orbit {
 // - Will automatically orient to PROGRADE.         ||
 // - Will not engage if ISP is 0 or if RCS is       ||
 //   disabled.                                      ||
-// - "closest approach" mode is stubbed.            ||
 //==================================================||
 function rcs_corrector {
     local parameter mode.
@@ -1259,14 +1364,18 @@ function rcs_corrector {
 //   and throttle control to ensure precise burn.   ||
 //                                                  ||
 // PARAMETERS:                                      ||
-//   sas_on      : (optional) If true, enables SAS  ||
-//                 to lock to MANEUVER. Default: ON ||
+//   has_sas     : (optional) If true, enables SAS  ||
+//                 to lock to MANEUVER.Default:TRUE ||
+//                 Make FALSE if the craft has no   ||
+//                 SAS capabilities                 ||
+//                 (i.e. small probes)              ||
 //   warp_to_node: (optional) If true, warps to     ||
 //                 burn start. Default: ON          ||
 //   thruster    : (optional) "engine" (default) or ||
-//                 "rcs" for low-thrust maneuver.   ||
+//                 "rcs", depending on which        ||
+//                 mode of thrust is preferred      ||
 //   has_reac_wheels : manual setting if vehicle    ||
-//                  has reaction wheels             ||
+//                  has reaction wheels or not      ||
 //                                                  ||
 // RETURNS:                                         ||
 //   none                                           ||
@@ -1295,7 +1404,7 @@ function rcs_corrector {
 
 function execute_node {
     // Define optional parameters with defaults
-    local parameter sas_on is true.
+    local parameter has_sas is true.
     local parameter warp_to_node is true.
     local parameter thruster is "engine".
     local parameter has_reac_wheels is true.
@@ -1309,13 +1418,13 @@ function execute_node {
     }
 
     // Handle orientation: Use SAS or manual steering
-    if sas_on {
-        unlock steering.
+    if has_sas {
+     unlock steering.
         sas on.
         set sasMode to "MANEUVER". // Use maneuver alignment mode
     }
-    if not sas_on {
-        sas off.
+    if not has_sas {
+     sas off.
         lock steering to mnv_node:deltav:vec. // Manually aim using delta-V vector
     }
 
@@ -1400,7 +1509,7 @@ function execute_node {
         // Phase 5: Restore SAS and controls after burn
         if runmode = "post burn" {
             rcs off.
-            if sas_on {
+            if has_sas {
                 set sasMode to "STABILITYASSIST".
             } else {
                 lock throttle to 0.
@@ -1512,6 +1621,8 @@ function orbital_basis_vectors {
 //                   CUSTOM WAIT                    ||
 //--------------------------------------------------||
 //**************************************************||
+// wait function that does not pause the 
+// guidance loop
 
 //**************************************************||
 //--------------------------------------------------||
@@ -1539,6 +1650,8 @@ function orbital_basis_vectors {
 //                                                  ||
 // RETURNS:                                         ||
 //   Launch heading in degrees                      ||
+// Example use: In ascent guidance loop:            ||
+// lock heading to inclination_heading(30,"northbound).
 //==================================================||
 
 function inclination_heading {
@@ -1591,6 +1704,171 @@ function inclination_heading {
     }
 }
 
+//**************************************************||
+//--------------------------------------------------||
+//             INTERPLANETARY TRANSFERS             ||
+//--------------------------------------------------||
+//**************************************************||
+
+//==================================================||
+//      FUNCTION: lambert_solver                    ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Solves Lambert’s problem using the universal   ||
+//   variable formulation to compute the initial    ||
+//   and final velocity vectors for a transfer      ||
+//   orbit between two position vectors in a given  ||
+//   time of flight.                                ||
+//                                                  ||
+// METHOD:                                          ||
+//   Uses the universal variables method to solve   ||
+//   the time of flight equation iteratively via    ||
+//   bisection on the universal anomaly squared     ||
+//   (psi), adjusting c2 and c3 functions based on  ||
+//   the sign of psi.                               ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   r1  : (vector) Initial position vector         ||
+//   r2  : (vector) Final position vector           ||
+//   tof : (scalar) Time of flight for the          ||
+//         transfer [seconds]                       ||
+//   mu  : (scalar) Gravitational parameter         ||
+//         [m^3/s^2]                                ||
+//   t_m : (scalar) Transfer direction (+1 = short  ||
+//         way, -1 = long way)                      ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A list containing:                             ||
+//     - v1 : (vector) Velocity at r1 to start the  ||
+//            transfer                              ||
+//     - v2 : (vector) Velocity at r2 upon arrival  ||
+//                                                  ||
+//   If the solver fails to converge, returns two   ||
+//   zero vectors                                   ||
+//==================================================||
+function lambert_solver{
+    
+    // A lambert solver utilizing universal variable formulation
+    // The algorithm was adapted from this paper: 
+    // https://www.researchgate.net/publication/236012521_Lambert_Universal_Variable_Algorithm
+    // I wont even bother commenting and explaing what this shit does
+    // I don't understand it either, I just adapted the algorithm from the paper
+
+    // radius vectors are measured relative to center body, 
+    // i.e., sun (if interplanetary) or kerbin (if interlunar) is [0,0,0].
+
+    parameter r1. 
+    parameter r2.
+    parameter tof.
+    parameter mu.
+    parameter t_m.
+
+    parameter psi is 0.
+    parameter psi_u is 4 * constant():pi^2.
+    parameter psi_l is - 4 * constant():pi.
+    parameter max_iter is 1000.
+    parameter tol is 1e-10.
+    
+    local function c_2{
+        parameter z.
+
+        local function cosh {
+            parameter x.
+            return (constant:e^(x) + constant:e^ (-x)) / 2.
+        }
+        if z > 0 {
+            return (1 - cos(constant:radtodeg * sqrt(z))) / z.
+        }
+        if z < 0 {
+            return (1 - cosh(-z)) / -z.
+        }
+        else {
+            return 1/2 .
+        }
+    }
+
+    local function c_3 {
+        parameter z.
+        local function sinh{
+            parameter x.
+            return (constant:e^(x) - constant:e^ (-x)) / 2.
+        }
+        if z > 0 {
+            return (sqrt(z) - sin(constant:radtodeg * sqrt(z))) / sqrt(z)^3.
+        }
+        if z < 0 {
+            return (sinh(sqrt(-z)) - sqrt(-z)) / sqrt(-z)^3.
+        }
+        else {
+            return 1/6 .
+        }
+    }
+
+    local mag_r1 to r1:mag.
+    local mag_r2 to  r2:mag.
+
+    local gamma to vdot(r1,r2) / (mag_r1 * mag_r2).
+    local A to t_m * sqrt(mag_r1 * mag_r2 * (1  + gamma)).
+
+    local B to 0.
+    local chi3 to 0.
+    local tof_ to 0.
+
+    if A = 0 {
+        print "Orbit cannot exist".
+        return list(v(0,0,0), v(0,0,0)).
+    }
+
+    local c2 to 0.5.
+    local c3 to 1/6.
+
+    local solved to false.
+
+    from { local i is 0.} until i >= max_iter step { set i to i + 1.} do {
+        set B to mag_r1 + mag_r2 + A * (psi * c3 - 1) / sqrt(c2).
+
+        if ((A > 0) and (B < 0)) {
+            set psi_l to psi_l + constant:pi.
+        }
+
+        set chi3 to ( B / c2 )^1.5.
+        set tof_ to (chi3 * c3 + A * sqrt(B)) / sqrt(mu).
+
+        if abs(tof - tof_) < tol {
+            set solved to true.
+            break.
+        }
+
+        if tof_ < tof {
+            set psi_l to psi.
+        } else {
+            set psi_u to psi.
+        }
+
+        set psi to (psi_u + psi_l)/2.
+        set c2 to c_2(psi).
+        set c3 to c_3(psi).
+    }
+
+    if not solved {
+        print "Did not converge".
+        return list(v(0,0,0), v(0,0,0)).
+    }
+
+    local f to 1 - B / mag_r1.
+    local g to A * sqrt( B / mu).
+    local g_dot to 1 - B / mag_r2.
+    local f_dot to (f * g_dot - 1) / g.
+
+    local v1 to (r2 - f * r1) / g.
+    local v2 to f_dot * r1 + g_dot * v1.
+
+    return list(v1,v2).
+}
+// make a function for porkchop plotting, 
+// targeting planets so and so
+// translation of the porchop plot into an actual maneuver
+// then one that returns a meneuver node
 
 // PLANNED STUFF
 //**************************************************||

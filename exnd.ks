@@ -23,6 +23,7 @@ function startup {
     title_borders().
     return.
 }
+
 lock tgt_heading to inclination_heading(targ_inclination,"northbound").
 function open_loop_guidance {
     // Zero aoa ascent
