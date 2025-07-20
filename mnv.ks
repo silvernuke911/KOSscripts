@@ -5,13 +5,18 @@ runpath("0:/lib/borders.ks").
 clearScreen.
 
 function main {
-    create_node(change_inclination(0,"at cheapest node")).
-    execute_node().
-
-    wait 10.
-    if nextNode {
-        remove nextNode.
-    }
+    create_node(
+        change_apoapsis(
+            400000, "at periapsis"
+        )
+    ).
+    // print("executing node").
+    // execute_node().
+    // print(obt:semimajoraxis).
+    // wait 5.
+    // if nextNode {
+    //     remove nextNode.
+    // }
     clearVecDraws().
 
     // execute_node().

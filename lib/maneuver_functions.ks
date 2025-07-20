@@ -765,7 +765,6 @@ function null_mnv {
     return list(-1, 0, 0, 0).
 }
 
-
 //==================================================||
 //      FUNCTION: circularize                       ||
 //--------------------------------------------------||
@@ -971,6 +970,9 @@ function change_apoapsis {
             periapsis_dV
         ).
     }
+    if mode = "at apoapsis" {
+        
+    }
     if mode = "after fixed time" {
 
     }
@@ -1011,6 +1013,27 @@ function change_periapsis {
             0,
             0, 
             apoapsis_dV
+        ).
+    }
+    if mode = "at periapsis" {
+        local periapsis_dV is (
+            vis_viva_equation(
+                ship:periapsis,
+                calculate_semimajor_axis(
+                    ship:apoapsis,
+                    target_periapsis
+                )
+            ) -
+            vis_viva_equation(
+                ship:periapsis,
+                ship:orbit:semimajoraxis
+            )
+        ).
+        return list(
+            eta:periapsis,
+            0,
+            0,
+            periapsis_dV
         ).
     }
     if mode = "after a fixed time" {
@@ -1140,7 +1163,20 @@ function change_inclination {
 //
 //--------------------------------------------------||
 function change_LAN {
+    local parameter new_lan.
+    local parameter mode.
+    local parameter value is 0.
+    
+    if mode = "at periapsis" {
 
+    }
+    if mode = "at apoapsis" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+    return null_mnv().
 }
 
 //==================================================||
@@ -1149,6 +1185,8 @@ function change_LAN {
 //
 //--------------------------------------------------||
 function change_pe_and_ap {
+    local parameter new_pe.
+    local parameter new_ap.
     local parameter mode.
     local parameter value is 0.
     if mode = "at expected time" {
@@ -1173,7 +1211,7 @@ function return_from_a_moon {
 } 
 
 //==================================================||
-//      FUNCTION: change_semi_major_axis            ||
+//      FUNCTION: change_semimajoraxis              ||
 //--------------------------------------------------||
 // PURPOSE:                                         ||
 //   Changes the semi-major axis of the current     ||
@@ -1190,7 +1228,7 @@ function return_from_a_moon {
 //   A maneuver node that changes the orbit's       ||
 //   semi-major axis to the desired value.          ||
 //==================================================||
-function change_semi_major_axis {
+function change_semimajoraxis {
     local parameter target_smja.
     local parameter mode.
 
@@ -1214,7 +1252,6 @@ function change_semi_major_axis {
     if mode = "after fixed time" {
         // not implemented yet
     }
-
     return null_mnv().
 }
 
@@ -1229,16 +1266,18 @@ function change_semi_major_axis {
 //                                                  ||
 // PARAMETERS:                                      ||
 //   target_resonance : (scalar) Desired resonance  ||
-//                      (e.g., 2 means 2 orbits per ||
-//                      base_time)                  ||
+//                      (e.g 1/2 means 2 orbits per ||
+//                      base_time) or change your   ||
+//                      orbital period to 1/2 of    || 
+//                      your current one            ||
 //   mode             : (string) Burn mode —        ||
 //                      "at periapsis",             ||
 //                      "at apoapsis",              ||
 //                      "after fixed time",         ||
 //                      or "at altitude"            ||
 //   base_time        : (scalar) Reference time     ||
-//                      (defaults to body's         ||
-//                      rotation period)            ||
+//                      (defaults to orbiting object||
+//                      orbital period )            ||
 //   value            : (optional scalar) Only used ||
 //                      in modes that require a     ||
 //                      reference altitude or time. ||
@@ -1250,18 +1289,18 @@ function change_semi_major_axis {
 function change_resonant_orbit {
     local parameter target_resonance. 
     local parameter mode. 
-    local parameter base_time is body:rotationperiod. 
+    local parameter base_time is obt:period. 
     local parameter value is 0. 
 
-    local T_orbit is base_time / target_resonance.
+    local T_orbit is base_time * target_resonance.
     local a_resonant is (body:mu * T_orbit^2 / (4 * constant:pi^2))^(1/3).
     
     if mode = "at periapsis" {
-        return change_semi_major_axis(a_resonant, mode).
+        return change_semimajoraxis(a_resonant, mode).
     }
 
     if mode = "at apoasis" {
-        return change_semi_major_axis(a_resonant, mode).
+        return change_semimajoraxis(a_resonant, mode).
     }
 
     if mode = "after fixed time" {
@@ -1275,6 +1314,29 @@ function change_resonant_orbit {
     return null_mnv().
 }
 
+//==================================================||
+//   FUNCTION: change_surface_longitude_of_apsis    ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
+function change_surface_longitude_of_apsis {
+    local parameter apsis.
+    local parameter targ_longitude.
+    local parameter mode.
+    if mode = "at periapsis" {
+
+    }
+    if mode = "at apoapsis" {
+
+    }
+    if mode = "at longitudinal antipode" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+    return null_mnv().
+}
 
 //**************************************************||
 //--------------------------------------------------||
@@ -1419,12 +1481,12 @@ function execute_node {
 
     // Handle orientation: Use SAS or manual steering
     if has_sas {
-     unlock steering.
+        unlock steering.
         sas on.
         set sasMode to "MANEUVER". // Use maneuver alignment mode
     }
     if not has_sas {
-     sas off.
+        sas off.
         lock steering to mnv_node:deltav:vec. // Manually aim using delta-V vector
     }
 
@@ -1439,11 +1501,11 @@ function execute_node {
     local half_time is 0.
     if thruster = "engine" {
         set half_time to half_burn_time(mnv_node).
-        set max_acc to ship:maxthrust / ship:mass.
+        set max_acc to 2 * ship:maxthrust / ship:mass.
     }
     if thruster = "rcs" {
         set half_time to rcs_half_burn_time(mnv_node).
-        set max_acc to rcs_total_thrust() / ship:mass.
+        set max_acc to 2 * rcs_total_thrust() / ship:mass.
         print(half_time + " " + max_acc).
     }
 
@@ -1466,7 +1528,7 @@ function execute_node {
         // Phase 2: Warp to just before burn if enabled
         if runmode = "warping" {
             if warp_to_node {
-                warpTo(time:seconds + mnv_node:eta - half_time - 10).
+                c_warpto(mnv_node:eta - half_time - 10).
                 set runmode to "waiting for node".
             }
             else {
@@ -1599,11 +1661,6 @@ function vectorHeading{
     }
     return hdg.
 }
-//**************************************************||
-//--------------------------------------------------||
-//                  WARP FUNCTIONS                  ||
-//--------------------------------------------------||
-//**************************************************||
 
 //**************************************************||
 //--------------------------------------------------||
@@ -1626,6 +1683,88 @@ function orbital_basis_vectors {
 
 //**************************************************||
 //--------------------------------------------------||
+//                   CUSTOM WARP                    ||
+//--------------------------------------------------||
+//**************************************************||
+// 
+//==================================================||
+//      FUNCTION: c_warpto                          ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Provides a custom time warp function to safely ||
+//   and smoothly warp to a future universal time.  ||
+//   This arised because of the inherent problems   ||
+//   and bugs that are associated with KOS's inbuilt||
+//   warpto function, which emulates KSP's warp here||
+//   function. It's a bit buggy, it changes the     ||
+//   position of the apsides, and quite often, it   ||
+//   overshoots since it's going too damn fast, henc||
+//   i made a custom warper which slows a staggered ||
+//   way to not spoil the warping effect.           ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   eta__ : (scalar) Seconds from now to time to   ||
+//                    warp to.                      ||
+//                                                  ||
+// RETURNS:                                         ||
+//   None.                                          ||
+//                                                  ||
+// METHOD:                                          ||
+//   Determines remaining time to the target and    ||
+//   adjusts warp speed in tiers based on thresholds||
+//   to ensure a smooth slowdown approaching the    ||
+//   destination time. Starts at low warp rates for ||
+//   short durations and gradually increases for    ||
+//   longer waits. Warp changes are smoothed to     ||
+//   avoid jarring transitions.                     ||
+//                                                  ||
+//   Once the target time is reached, warp is reset ||
+//   to real-time (0).                              ||
+//==================================================||
+function c_warpto {
+    parameter eta__.
+
+    local eta_time is time:seconds + eta__.
+    local current_warp is 0.
+
+    until time:seconds >= eta_time {
+        local time_remaining is eta_time - time:seconds.
+        // Determine the target warp based on time remaining
+        if time_remaining < 7.5 {
+            set current_warp to 0.          // Real time
+        } else if time_remaining < 30 {
+            set current_warp to 1.          // 5x // 30 s
+        } else if time_remaining < 60 {
+            set current_warp to 2.          // 10x // 1 min
+        } else if time_remaining < 300 {
+            set current_warp to 3.          // 50x // 5 min
+        } else if time_remaining < 3600 { 
+            set current_warp to 4.          // 100x // an hour
+        } else if time_remaining < 21600 {
+            set current_warp to 5.          // 1000x // 1 day
+        } else if time_remaining < 216000 {
+            set current_warp to 6.          // 10,000x // 10 days
+        } else {
+            // Gradually increase warp up to max (7)
+            // Technicall max could be higher but ts is safer
+            if warp < 7 {
+                set warp to warp + 1.
+                wait 0.5.
+            }
+        }
+        // Update warp only if different from current
+        if warp <> current_warp {
+            set warp to current_warp.
+        }
+        wait 0. // Yield control for smooth behavior
+    }
+    // Stop warp once target time is reached
+    set warp to 0.
+}
+
+
+//**************************************************||
+//--------------------------------------------------||
 //                INCLINATION ASCENT                ||
 //--------------------------------------------------||
 //**************************************************||
@@ -1636,8 +1775,12 @@ function orbital_basis_vectors {
 // PURPOSE:                                         ||
 //   Calculates the azimuthal launch heading needed ||
 //   to achieve a target orbital inclination.       ||
+//   If desired inclination is lower than the       ||
+//   current latitude, defaults to the current lat  ||
+//                                                  ||
 //   Applies a correction based on deviation from   ||
-//   the current orbit's inclination. Set ship      || 
+//   the current orbit's inclination, and also      ||
+//   dynamically updates in flight. lock ship       || 
 //   heading to this function at flight time        ||
 //                                                  ||
 // PARAMETERS:                                      ||
@@ -1688,6 +1831,10 @@ function inclination_heading {
     local cor_sgn is abs(ang_deviation) / (ang_deviation). // +1 or -1
 
     // Compute a correction term to nudge heading for better inclination convergence
+    // This is to counteract the initial velocity given by 
+    // planet spin. I'm too lazy to calculate how to counteract it
+    // and it's bullshit anw, this makes the same results.
+
     local correction_term is cor_sgn * 3 * ln(3 * abs(ang_deviation) - 1).
 
     // Choose launch direction and compute heading
@@ -1767,7 +1914,7 @@ function lambert_solver{
     parameter psi_u is 4 * constant():pi^2.
     parameter psi_l is - 4 * constant():pi.
     parameter max_iter is 1000.
-    parameter tol is 1e-10.
+    parameter tol is 1e-12.
     
     local function c_2{
         parameter z.
@@ -1895,6 +2042,42 @@ function lambert_solver{
 //--------------------------------------------------||
 //**************************************************||
 
+function fine_tune_closest_approach_to_target {
+    local parameter targ_dist.
+}
+
+function intercept_target_at_chosen_time {
+    local parameter time_after_burn. // time after burn to intercept target
+    local parameter after_time. // how many seconds from NOW to execute the mode. 
+}
+
+function match_planes_with_target {
+    local parameter mode.
+    if mode = "at cheapest AN/DN" {
+
+    }
+    if mode = "at nearest AN/DN" {
+
+    }
+    if mode = "at AN" {
+
+    }
+    if mode = "at DN" {
+
+    }
+    return null_mnv().
+}
+
+function match_velocities_with_target {
+    local parameter mode.
+    if mode = "at closest approach" {
+
+    }
+    if mode = "after fixed time" {
+
+    }
+    return null_mnv().
+}
 //**************************************************||
 //--------------------------------------------------||
 //               BALLISTIC TARGETING                ||
@@ -1922,12 +2105,4 @@ function lambert_solver{
 //LAUNCH PAD
 //RUNWAYS
 
-//**************************************************||
-//--------------------------------------------------||
-//                  RCS THRUSTING                   ||
-//--------------------------------------------------||
-//**************************************************||
-// kinda completed up top.
-// basically using rcs as main thrusters.
-// find the burn time for the fucker.
-// the deadband too. 
+
