@@ -5,13 +5,17 @@ runpath("0:/lib/borders.ks").
 clearScreen.
 
 function main {
-    create_node(
-        change_apoapsis(
-            400000, "at periapsis"
-        )
-    ).
+    // print obt:period.
+    // print("creating node").
+    // create_node(
+    //     change_resonant_orbit(
+    //         1/2,"at apoapsis"
+    //     )
+    // ).
     // print("executing node").
     // execute_node().
+    // print obt:period.
+    
     // print(obt:semimajoraxis).
     // wait 5.
     // if nextNode {

@@ -147,7 +147,7 @@ function total_burn_time {
 //   of a maneuver node's total delta-v.            ||
 //                                                  ||
 // PARAMETERS:                                      ||
-//   mnv : A maneuver node with :DELTAV vector      ||
+//   mnv : A maneuver node                          ||
 //                                                  ||
 // RETURNS:                                         ||
 //   Half burn time in seconds, or 0 if ISP is 0.   ||
@@ -267,7 +267,19 @@ function rcs_burn_time {
 }
 
 function rcs_total_deltaV {
-    // TO BE ADDED
+    local rcs_res is 0.
+    for resource in ship:resources {
+        if resource:name = "MonoPropellant" {
+            set rcs_res to resource.
+        }
+    }
+    local rcs_mass is rcs_res:amount * rcs_res:density.
+    local wet_mass is ship:mass.
+    local dry_mass is wet_mass - rcs_mass.
+    local isp is rcs_isp().
+    local ve is isp * constant:g0.
+    local dv is ve * ln( wet_mass / dry_mass).
+    return dv.
 }
 
 //==================================================||
@@ -296,7 +308,7 @@ function rcs_half_burn_time {
 
     local rcs_total_thrust_ is rcs_total_thrust().
     local Isp is rcs_isp().
-    if Isp = 0 or rcs_total_thrust = 0 {
+    if Isp = 0 or rcs_total_thrust_ = 0 {
         return 0.
     }
     local ve is Isp * constant:g0.
@@ -700,7 +712,8 @@ function create_node {
     // Warn if maneuver node is null_mnv()
     if mnv_node[0] < 0 {
         if radial_ = 0 and normal_ = 0 and prograd = 0 {
-            print("WRONG MNV NODE SETTING").
+            print("[ ERROR, UNABLE TO MAKE MANEUVER NODE ]").
+            return.
         }
     }
 
@@ -753,7 +766,9 @@ function raw_node {
 //--------------------------------------------------||
 // PURPOSE:                                         ||
 //   Returns a dummy maneuver vector that signals   ||
-//   no action or an invalid maneuver.              ||
+//   no action or an invalid maneuver. Useful for   ||
+//   error handling. If given an error message,     ||
+//   it prints the error message.                   ||
 //                                                  ||
 // RETURNS:                                         ||
 //   List [-1, 0, 0, 0] representing:               ||
@@ -761,7 +776,14 @@ function raw_node {
 //     - dv_r/n/p = 0 (no delta-V)                  ||
 //==================================================||
 
+global mode_error_message is "[ ERROR ] : Invalid mode given. Mode used is: ".
+
 function null_mnv {
+    local parameter errormsg is " ".
+    local parameter print_error is true.
+    if print_error {
+        print(errormsg).
+    }
     return list(-1, 0, 0, 0).
 }
 
@@ -864,8 +886,7 @@ function circularize {
 
         // Check if altitude is reachable
         if (target_alt < ship:obt:periapsis) or (target_alt > ship:obt:apoapsis) {
-            print "ALTITUDE UNREACHABLE".
-            return null_mnv().
+            return null_mnv("Altitude unreachable").
         }
 
         // Determine true anomaly and time to reach target altitude
@@ -887,7 +908,7 @@ function circularize {
 
     // ------------------------
     // Default Fallback: Invalid mode or failure
-    return null_mnv().
+    return null_mnv(mode_error_message+ mode).
 }
 
 //==================================================||
@@ -940,7 +961,7 @@ function change_eccentricity {
 
     }
     else {
-        return null_mnv().
+        return null_mnv(mode_error_message+ mode).
     }
 }
 //==================================================||
@@ -952,13 +973,19 @@ function change_apoapsis {
     local parameter target_apoapsis.
     local parameter mode.
     if mode = "at periapsis" {
+        if target_apoapsis < ship:periapsis {
+            return null_mnv(
+                "target apoapsis should be "+
+                "bigger than current periapsis"
+            ).
+        }
         local periapsis_dV is ( 
             vis_viva_equation(
                 ship:periapsis, 
                 calculate_semimajor_axis(
                     target_apoapsis, 
-                    ship:periapsis))
-            - vis_viva_equation(
+                    ship:periapsis)
+            ) - vis_viva_equation(
                 ship:periapsis,
                 ship:orbit:semimajoraxis
             )
@@ -971,7 +998,29 @@ function change_apoapsis {
         ).
     }
     if mode = "at apoapsis" {
-        
+        if target_apoapsis < ship:apoapsis {
+            return null_mnv(
+                "target apoapsis must be "+
+                "bigger than current apoapsis"
+            ).
+        }
+        local apoapsis_dV is ( 
+            vis_viva_equation(
+                ship:apoapsis, 
+                calculate_semimajor_axis(
+                    target_apoapsis, 
+                    ship:apoapsis)
+            ) - vis_viva_equation(
+                ship:apoapsis,
+                ship:orbit:semimajoraxis
+            )
+        ).
+        return list(
+            eta:apoapsis, 
+            0,
+            0, 
+            apoapsis_dV
+        ).
     }
     if mode = "after fixed time" {
 
@@ -983,7 +1032,7 @@ function change_apoapsis {
 
     }
     else {
-        return null_mnv().
+        return null_mnv(mode_error_message+ mode).
     }
 }
 
@@ -997,13 +1046,19 @@ function change_periapsis {
     local parameter mode.
     local parameter value is 0.
     if mode = "at apoapsis" {
+        if target_periapsis > ship:apoapsis {
+            return null_mnv(
+                "target periapsis should be"+ 
+                "smaller than current apoapsis"
+            ).
+        }
         local apoapsis_dV is ( 
             vis_viva_equation(
                 ship:apoapsis, 
                 calculate_semimajor_axis(
                     target_periapsis, 
-                    ship:apoapsis)) - 
-            vis_viva_equation(
+                    ship:apoapsis)
+            ) - vis_viva_equation(
                 ship:apoapsis,
                 ship:orbit:semimajoraxis
             )
@@ -1016,11 +1071,17 @@ function change_periapsis {
         ).
     }
     if mode = "at periapsis" {
+        if target_periapsis > ship:periapsis {
+            return null_mnv(
+                "target periapsis must be smaller"+
+                " than current periapsis"
+            ).
+        }
         local periapsis_dV is (
             vis_viva_equation(
                 ship:periapsis,
                 calculate_semimajor_axis(
-                    ship:apoapsis,
+                    ship:periapsis,
                     target_periapsis
                 )
             ) -
@@ -1046,7 +1107,7 @@ function change_periapsis {
         
     }
     else {
-        return null_mnv().
+        return null_mnv(mode_error_message+ mode).
     }
 }
 
@@ -1154,7 +1215,7 @@ function change_inclination {
         // Not implemented — requires true anomaly and velocity propagation
         print "after fixed time mode not implemented yet".
     }
-    return null_mnv().
+    return null_mnv(mode_error_message+ mode).
 }
 
 //==================================================||
@@ -1176,7 +1237,7 @@ function change_LAN {
     if mode = "after fixed time" {
 
     }
-    return null_mnv().
+    return null_mnv(mode_error_message+mode).
 }
 
 //==================================================||
@@ -1196,7 +1257,7 @@ function change_pe_and_ap {
 
     }
     else {
-        return null_mnv().
+        return null_mnv(mode_error_message+mode).
     }
 }
 
@@ -1237,12 +1298,23 @@ function change_semimajoraxis {
 
     if mode = "at periapsis" {
         set r_a to 2 * target_smja - r_p. 
-        return change_apoapsis(r_a - body:radius, mode).
+        set r_a to r_a - body:radius.
+        if r_a >= ship:periapsis {
+            return change_apoapsis(r_a, mode).
+        } else if r_a < ship:periapsis {
+            return change_periapsis(r_a, mode).
+        }
     }
 
     if mode = "at apoapsis" {
         set r_p to 2 * target_smja - r_a.
-        return change_periapsis(r_p - body:radius, mode).
+        set r_p to r_p - body:radius.
+        if r_p < ship:apoapsis {
+            return change_periapsis(r_p, mode).
+        } else if r_p >= ship:apoapsis {
+            return change_apoapsis(r_p, mode).
+        }
+        
     }
 
     if mode = "at an altitude" {
@@ -1252,7 +1324,7 @@ function change_semimajoraxis {
     if mode = "after fixed time" {
         // not implemented yet
     }
-    return null_mnv().
+    return null_mnv(mode_error_message+ mode).
 }
 
 //==================================================||
@@ -1299,7 +1371,7 @@ function change_resonant_orbit {
         return change_semimajoraxis(a_resonant, mode).
     }
 
-    if mode = "at apoasis" {
+    if mode = "at apoapsis" {
         return change_semimajoraxis(a_resonant, mode).
     }
 
@@ -1311,7 +1383,7 @@ function change_resonant_orbit {
         // not implemented
     }
 
-    return null_mnv().
+    return null_mnv(mode_error_message+ mode).
 }
 
 //==================================================||
@@ -1335,7 +1407,7 @@ function change_surface_longitude_of_apsis {
     if mode = "after fixed time" {
 
     }
-    return null_mnv().
+    return null_mnv(mode_error_message+ mode).
 }
 
 //**************************************************||
@@ -1501,11 +1573,11 @@ function execute_node {
     local half_time is 0.
     if thruster = "engine" {
         set half_time to half_burn_time(mnv_node).
-        set max_acc to 2 * ship:maxthrust / ship:mass.
+        set max_acc to 1.5 * ship:maxthrust / ship:mass.
     }
     if thruster = "rcs" {
         set half_time to rcs_half_burn_time(mnv_node).
-        set max_acc to 2 * rcs_total_thrust() / ship:mass.
+        set max_acc to 1.5 * rcs_total_thrust() / ship:mass.
         print(half_time + " " + max_acc).
     }
 
@@ -1723,10 +1795,17 @@ function orbital_basis_vectors {
 //==================================================||
 function c_warpto {
     parameter eta__.
-
+    
     local eta_time is time:seconds + eta__.
     local current_warp is 0.
-
+    // pointless to timewarp to a time that close.
+    if eta__ < 20 {
+        return.
+    }
+    set warp to 1. // staggered timewarp increase.
+    wait 1.        // less buggy.
+    set warp to 2.
+    wait 1.
     until time:seconds >= eta_time {
         local time_remaining is eta_time - time:seconds.
         // Determine the target warp based on time remaining
@@ -1738,20 +1817,24 @@ function c_warpto {
             set current_warp to 2.          // 10x // 1 min
         } else if time_remaining < 300 {
             set current_warp to 3.          // 50x // 5 min
-        } else if time_remaining < 3600 { 
-            set current_warp to 4.          // 100x // an hour
-        } else if time_remaining < 21600 {
-            set current_warp to 5.          // 1000x // 1 day
-        } else if time_remaining < 216000 {
-            set current_warp to 6.          // 10,000x // 10 days
-        } else {
-            // Gradually increase warp up to max (7)
-            // Technicall max could be higher but ts is safer
-            if warp < 7 {
-                set warp to warp + 1.
-                wait 0.5.
-            }
+        } else if time_remaining < 1800 { 
+            set current_warp to 4.          // 100x // 30 min
+        } else if time_remaining < 10800 {
+            set current_warp to 5.          // 1000x // 3 hrs
+        } else if time_remaining < 108000 {
+            set current_warp to 6.          // 10,000x // 5 days
+        } else if time_remaining > 108000 {
+            set current_warp to 7.          // 100000x 
         }
+        // else {
+        //     // Gradually increase warp up to max (7)
+        //     // Technicall max could be higher but ts is safer
+        //     if warp < 7 {
+        //         set warp to warp + 1.
+        //         wait 0.5.
+        //     }
+        // }
+
         // Update warp only if different from current
         if warp <> current_warp {
             set warp to current_warp.

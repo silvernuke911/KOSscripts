@@ -14,4 +14,9 @@ function get_resource{
             return resource.
         }
     }
+    // allowable suffixes
+    // :amount 
+    // :density
+    // :capacity
+    // :parts
 }
