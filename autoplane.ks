@@ -13,8 +13,13 @@ function interface {
 
 }
 
+// plane guidance - set altitude
+// plane guidance - set vertical speed
+// plane guidance - set roll
+// plane guidance - set target speed
+// plane guidance - set target heading
 function main{
-    take_off().
-    coast().
-    landing().
+
 }
+
+main().

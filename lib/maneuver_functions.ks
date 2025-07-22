@@ -31,8 +31,9 @@
 //  for each function to know its purpose.          ||
 //                                                  ||
 //--------------------------------------------------||
-//  Last update:  July 20, 2025                     ||
+//  Last update:  July 22, 2025                     ||
 //--------------------------------------------------||
+
 //==================================================||
 //**************************************************||
 //--------------------------------------------------||
@@ -266,6 +267,25 @@ function rcs_burn_time {
     return t.
 }
 
+//==================================================||
+//      FUNCTION: rcs_total_deltaV                  ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the total delta-V available from    ||
+//   the vessel's RCS system using monopropellant.  ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   None                                           ||
+//                                                  ||
+// RETURNS:                                         ||
+//   Total RCS delta-V in meters per second (m/s).  ||
+//                                                  ||
+// METHOD:                                          ||
+//   Applies the Tsiolkovsky rocket equation using  ||
+//   the current monopropellant mass, vessel mass,  ||
+//   and RCS ISP.                                   ||
+//==================================================||
+
 function rcs_total_deltaV {
     local rcs_res is 0.
     for resource in ship:resources {
@@ -387,9 +407,9 @@ function twr {
 //==================================================||
 
 function orbital_velocity_circular {
-    local parameter altitude_.           // input value (altitude or radius)
-    local parameter mode is "altitude".  // mode selector
-    local r__ is 0.                      // orbital radius placeholder
+    local parameter altitude_.           
+    local parameter mode is "altitude".  
+    local r__ is 0.                     
     if mode = "altitude" {
         set r__ to body:radius + altitude_.
     }
@@ -445,7 +465,7 @@ function vis_viva_equation {
 // RETURNS:                                         ||
 //   Semimajor axis (scalar), measured from the     ||
 //   center of the body.                            ||
-//==================================================//
+//==================================================||
 function calculate_semimajor_axis {
     local parameter periapsis__.
     local parameter apoapsis___.
@@ -464,7 +484,7 @@ function calculate_semimajor_axis {
 //                                                  ||
 // RETURNS:                                         ||
 //   Orbital radius (scalar) above the surface.     ||
-//==================================================//
+//==================================================||
 function true_anomaly_to_radius {
     local parameter ta.
     local a is ship:obt:semimajoraxis.
@@ -477,23 +497,47 @@ function true_anomaly_to_radius {
 //      FUNCTION: radius_to_true_anomaly            ||
 //--------------------------------------------------||
 // PURPOSE:                                         ||
-//   Converts an orbital radius (altitude) to the   ||
-//   corresponding true anomaly.                    ||
+//  Converts a given orbital radius (or altitude)   ||
+//  to the corresponding true anomaly based on the  ||
+//  current orbital elements of the active vessel.  ||
 //                                                  ||
 // PARAMETERS:                                      ||
-//   r_ : (scalar) Orbital radius above surface     ||
+//      r_ : (scalar) Value to convert.             ||
+//           Interpreted as either altitude or      ||
+//           radius from the planet center.         ||
+//      mode : (string, default "altitude")         ||
+//          - "altitude" to treat r_ as above       ||
+//            surface altitude (r = r_ + R_body)    ||
+//          - "radius" to treat r_ as full radius   ||
+//      which : (integer, 0 or 1)                   ||
+//          - 0: returns true anomaly in [0°,180°]  ||
+//          - 1: returns true anomaly in [180°,360°]||
+//            to account for the 2 places where alt ||
+//            is the same                           ||
 //                                                  ||
 // RETURNS:                                         ||
-//   True anomaly in degrees [0, 360].              ||
-//==================================================//
+//      True anomaly in degrees [0°, 360°].         ||
+//==================================================||
 function radius_to_true_anomaly {
     local parameter r_.
-    local r__ is r_ + body:radius. 
+    local parameter mode is "altitude".
+    local parameter which is 0. // if 0, returns the [0,180] ta, and if 1, returns the [180,360] ta.
+    local r__ is 0. 
+    if mode = "altitude" {
+        set r__ to r_ + body:radius. 
+    } else if mode = "radius" {
+        set r__ to r_.
+    }
+
     local a is ship:obt:semimajoraxis.
     local e is ship:obt:eccentricity.
-    local cos_ta to (a * (1 - e^2) / r__ - 1) / e.
-    local ta to arccos(cos_ta).
-    return ensure_angle_positive(ta).
+    local cos_trueanomaly to (a * (1 - e^2) / r__ - 1) / e.
+    local trueanomaly to arccos(cos_trueanomaly).
+    set trueanomaly to ensure_angle_positive(trueanomaly).
+    if which = 1 {
+        set trueanomaly to ensure_angle_positive(0 - trueanomaly).
+    }
+    return trueanomaly.
 }
 
 //==================================================||
@@ -508,7 +552,7 @@ function radius_to_true_anomaly {
 //                                                  ||
 // RETURNS:                                         ||
 //   Eccentric anomaly in degrees [0, 360].         ||
-//==================================================//
+//==================================================||
 function true_anomaly_to_eccentric_anomaly {
     local parameter ta.
     local e is ship:obt:eccentricity.
@@ -531,7 +575,7 @@ function true_anomaly_to_eccentric_anomaly {
 //                                                  ||
 // RETURNS:                                         ||
 //   Mean anomaly in degrees [0, 360).              ||
-//==================================================//
+//==================================================||
 function eccentric_anomaly_to_mean_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
@@ -601,7 +645,7 @@ function mean_anomaly_to_eccentric_anomaly {
 //                                                  ||
 // RETURNS:                                         ||
 //   True anomaly in degrees [0, 360).              ||
-//==================================================//
+//==================================================||
 function eccentric_anomaly_to_true_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
@@ -624,7 +668,7 @@ function eccentric_anomaly_to_true_anomaly {
 //                                                  ||
 // RETURNS:                                         ||
 //   Time in seconds to reach target true anomaly.  ||
-//==================================================//
+//==================================================||
 function time_from_true_anomaly {
     // Input: target true anomaly (targ_ta)
     local parameter targ_ta.
@@ -665,11 +709,14 @@ function time_from_true_anomaly {
 //                                                  ||
 // RETURNS:                                         ||
 //   Angle in degrees within [0, 360).              ||
-//==================================================//
+//==================================================||
 function ensure_angle_positive {
     local parameter value.
     if value < 0 {
         return 360 + value.
+    }
+    if value > 360 {
+        return value - 360.
     }
     return value.
 }
@@ -1142,8 +1189,8 @@ function change_periapsis {
 //==================================================||
 
 function change_inclination {
-    parameter target_inclination.
-    parameter mode.
+    local parameter target_inclination.
+    local parameter mode.
 
     local current_inclination is obt:inclination.
     local delta_inc is target_inclination - current_inclination.
@@ -1543,8 +1590,16 @@ function execute_node {
     local parameter thruster is "engine".
     local parameter has_reac_wheels is true.
 
+    local mnv_node is node(0,0,0,0).
+
     // Store the next maneuver node
-    local mnv_node to nextNode.
+    if hasnode {
+        set mnv_node to nextNode.
+    } else { 
+        print("No maneuver node"). 
+        return.
+    }
+
     rcs off.
     // If ship has no thrust and thruster is engine-based, stage to activate engines
     if ship:availableThrust = 0 and thruster = "engine" {
@@ -1751,7 +1806,8 @@ function orbital_basis_vectors {
 //--------------------------------------------------||
 //**************************************************||
 // wait function that does not pause the 
-// guidance loop
+// guidance loop, and activates after a certain time 
+// is done.
 
 //**************************************************||
 //--------------------------------------------------||
@@ -1987,11 +2043,11 @@ function lambert_solver{
     // radius vectors are measured relative to center body, 
     // i.e., sun (if interplanetary) or kerbin (if interlunar) is [0,0,0].
 
-    parameter r1. 
-    parameter r2.
-    parameter tof.
-    parameter mu.
-    parameter t_m.
+    parameter r1.   // position when launching
+    parameter r2.   // position at arrival
+    parameter tof.  // time of flight
+    parameter mu.   // just body:mu
+    parameter t_m.  // transfer direction. +1 for shortway, -1 for longway
 
     parameter psi is 0.
     parameter psi_u is 4 * constant():pi^2.
@@ -2126,7 +2182,7 @@ function lambert_solver{
 //**************************************************||
 
 function fine_tune_closest_approach_to_target {
-    local parameter targ_dist.
+    local parameter target_distance.
 }
 
 function intercept_target_at_chosen_time {
@@ -2134,21 +2190,160 @@ function intercept_target_at_chosen_time {
     local parameter after_time. // how many seconds from NOW to execute the mode. 
 }
 
+function hohmann_transfer_to_target {
+    // vessel eccentricity must be < 0.01 
+    // target eccentricity must be < 0.01
+}
+
+function intercept_target {
+    local parameter mode.
+    local parameter pathlen is "short way". // can be long way.
+
+    // we're gonna lambert solver this shit.
+    if mode = "lowest dV" {
+            // lowest possible delta v. // within one orbit of target body .
+    }
+    if mode = "as soon as possible" {
+            // lowest possible delta v 30 s from now.
+
+    }
+}
+
+function dock_to_target {
+    local parameter target_part.
+    local parameter approach_speed.
+
+}
+//==================================================||
+//      FUNCTION: match_planes_with_target          ||
+//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Computes the maneuver required to match the    ||
+//   orbital plane of the active vessel with that   ||
+//   of the currently targeted vessel.              ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   mode : A string determining where the plane    ||
+//          change is executed. Supported modes:    ||
+//                                                  ||
+//          - "at AN" : Perform burn at relative    ||
+//                      ascending node.             ||
+//          - "at DN" : Perform burn at relative    ||
+//                      descending node.            ||
+//          - "at nearest node" : Chooses the       ||
+//                      closest of relative AN or DN||
+//          - "at cheapest node" : Chooses the node ||
+//                      requiring less delta-V.     ||
+//          - "at altitude"                         ||
+//          - "after fixed time"                    ||
+//                                                  ||
+// RETURNS:                                         ||
+//   A manueuver node                               ||
+//                                                  ||
+//   If no target is set or mode is unsupported,    ||
+//   returns a null maneuver                        ||
+//                                                  ||
+// METHOD:                                          ||
+//   Computes orbit normals, finds AN and DN,       ||
+//   computes required inclination change, and      ||
+//   estimates delta-V using vector geometry and    ||
+//   the cosine law for inclination changes.        ||
+//==================================================||
+
 function match_planes_with_target {
     local parameter mode.
-    if mode = "at cheapest AN/DN" {
-
+    if not hastarget {
+        return null_mnv("Please set target").
     }
-    if mode = "at nearest AN/DN" {
 
+    local p0 is body:position.
+    local r1 is ship:position - p0. // radius vector
+    local v1 is ship:velocity:orbit. // velocity vector
+    local h1 is vcrs(v1,r1). // angular momentum vector
+    local e1 is (vcrs(h1,v1)/body:mu - r1:normalized).
+
+    local r2 is target:position - p0. // target radius
+    local v2 is target:velocity:orbit. // target vel
+    local h2 is vcrs(v2,r2). // target angular momentum
+
+    local an_vec is vcrs(h1,h2). // vector that points to the relative ascending node.
+    local AN_ta is vang(e1,an_vec). // true anomaly of relative ascending node
+    if vdot(an_vec,vcrs(e1,h1)) < 0 {
+        set AN_ta to 360-AN_ta.
     }
+    local DN_ta is ensure_angle_positive(AN_ta - 180). // true anomaly of relative descending node
+    local delta_inc is vang(h1,h2). // difference inclination
+    local n_vec is (latlng(90,0):position - body:position):normalized.
+    if vdot(vcrs(h2,h1), vcrs(n_vec,h1)) < 0 {
+        set delta_inc to - delta_inc.
+    } // checking if delta_inc should be postive or negative.
+
+    // reuse change_inclination code
+    // yes, don't repeat yourself, but I'm too lazy bruh.
+    local t_an is time_from_true_anomaly(AN_ta).
+    local t_dn is time_from_true_anomaly(DN_ta).
+    // Compute velocity vectors at each node
+    local vel_vec_an is velocityat(ship, time:seconds + t_an):orbit.
+    local vel_vec_dn is velocityat(ship, time:seconds + t_dn):orbit.
+    // Compute required delta-v magnitude at each node
+    local delta_v_mag_an is 2 * vel_vec_an:mag * sin(abs(delta_inc) / 2).
+    local delta_v_mag_dn is 2 * vel_vec_dn:mag * sin(abs(delta_inc) / 2).
+    // Helper function to compute maneuver components
+    local function compute_dv {
+        local parameter mag.
+        local parameter d_inc.
+        local parameter is_an. // true for AN, false for DN
+
+        // Compute delta angle based on whether inclination is increasing or decreasing
+        local sign is 1. if d_inc < 0 {set sign to -1.}
+        local base_ang is 90 + abs(d_inc) / 2.
+        local delta_ang is sign * base_ang.
+
+        // Invert sign for DN since it's on the opposite side of orbit
+        if not is_an {
+            set delta_ang to -delta_ang.
+        }
+
+        // Return maneuver vector components
+        local dv_r is 0.
+        local dv_p is mag * cos(delta_ang).
+        local dv_n is mag * sin(delta_ang).
+        return list(dv_r, dv_n, dv_p).
+    }
+    // Decision logic by mode
     if mode = "at AN" {
-
+        local dv is compute_dv(delta_v_mag_an, delta_inc, true).
+        return list(t_an, dv[0], dv[1], dv[2]).
     }
     if mode = "at DN" {
-
+        local dv is compute_dv(delta_v_mag_dn, delta_inc, false).
+        return list(t_dn, dv[0], dv[1], dv[2]).
     }
-    return null_mnv().
+    if mode = "at nearest node" {
+        if t_an < t_dn {
+            local dv is compute_dv(delta_v_mag_an, delta_inc, true).
+            return list(t_an, dv[0], dv[1], dv[2]).
+        } else {
+            local dv is compute_dv(delta_v_mag_dn, delta_inc, false).
+            return list(t_dn, dv[0], dv[1], dv[2]).
+        }
+    }
+    if mode = "at cheapest node" {
+        if delta_v_mag_an < delta_v_mag_dn {
+            local dv is compute_dv(delta_v_mag_an, delta_inc, true).
+            return list(t_an, dv[0], dv[1], dv[2]).
+        } else {
+            local dv is compute_dv(delta_v_mag_dn, delta_inc, false).
+            return list(t_dn, dv[0], dv[1], dv[2]).
+        }
+    }
+    if mode = "at altitude" {
+        // not yet implemented
+    }
+    if mode = "after fixed time" {
+        // Not implemented 
+    }
+    return null_mnv(mode_error_message+ mode).
 }
 
 function match_velocities_with_target {
@@ -2161,31 +2356,83 @@ function match_velocities_with_target {
     }
     return null_mnv().
 }
+
 //**************************************************||
 //--------------------------------------------------||
 //               BALLISTIC TARGETING                ||
 //--------------------------------------------------||
 //**************************************************||
+// for ballistic missiles and stuff
+// after launching missile, directs the guidance
+// system to go to a certain location
+// in the planetary surface
+// and adjusts shit dynamically
 
 //**************************************************||
 //--------------------------------------------------||
 //                WAYPOINT GUIDANCE                 ||
 //--------------------------------------------------||
 //**************************************************||
+// waypoint guide stuff
 
 //**************************************************||
 //--------------------------------------------------||
 //                 PLANE AUTOPILOT                  ||
 //--------------------------------------------------||
 //**************************************************||
+// set altitude
+// set vertical speed
+// set roll
+// set target speed
 
 //**************************************************||
 //--------------------------------------------------||
 //                 SPECIAL POINTS                   ||
 //--------------------------------------------------||
 //**************************************************||
-//SUB-SOLAR POINT
+
+function subsolar_point {
+    // returns the coordinates on the surface of the current body that is directly under the sun.
+    local sun_vector is body("Sun"):position - body:position.
+    local sun_ll is body:geoPositionof(sun_vector).
+    local sun_lat is sun_ll:lat.
+    local sun_long is sun_ll:lng.
+    return list(sun_lat,sun_long).
+}
+
 //LAUNCH PAD
 //RUNWAYS
+//we can probably just reuse kslib.
+// but, hey, make your own.
 
 
+// TO-DO 
+// custom warp                                  <done>
+// rcs total deltaV                             <done>
+// lambert solver                               <done>
+// match planes with target                     <done>
+// subsolar point                               <done>  
+// plane guidance - set altitude
+// plane guidance - set vertical speed
+// plane guidance - set roll
+// plane guidance - set target speed
+// hover script
+// landing script
+// communication of vessels
+// porkchop plotting    
+// inflight emergency guidance les
+// docking
+// custom wait
+// ballistic targeting
+// target intercept functions
+// at an altitude and at certain time modes
+// make at an altitude the nearest altitude.
+// return from a moon
+
+
+// SATURN V LAUNCH
+// saturn v abort modes.
+// free return trajectory
+// transposition and docking
+// LM descent 
+// rendezvouz and docking.

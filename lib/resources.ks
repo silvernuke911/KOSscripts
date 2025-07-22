@@ -14,6 +14,15 @@ function get_resource{
             return resource.
         }
     }
+    print ( "=======================================").
+    print ( "No resource named '" + resource_name + "' found.").
+    print ( " ").
+    print ( "Available Resources : ").
+    for resource in craft_resources {
+        print("   "+resource:name).
+    }
+    print(" ").
+    print ("=======================================").
     // allowable suffixes
     // :amount 
     // :density
