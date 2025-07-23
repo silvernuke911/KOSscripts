@@ -8,7 +8,7 @@ local targ_alt is 25.
 print("setting pid structure").
 set hoverpid to pidLoop(0.02,0.05,0.02,0,1).
 
-
+set terminal:height to 15.
 
 function terminal_input {
     local value is 0.
@@ -58,10 +58,14 @@ function terminal_input {
             set value to 1.
             set dim to "END".
         }
+        if ch = "0" {
+            set value to 0.
+            set dim to "KILL".
+        }
         terminal:input:clear().
     }
-    print list(value, dim)[0]+"  " at (5,4).
-    print list(value, dim)[1]+"  " at (5,5).
+    // print list(value, dim)[0]+"  " at (5,4).
+    // print list(value, dim)[1]+"  " at (5,5).
     return list(value, dim, decrement).
 }
 
@@ -105,7 +109,7 @@ until system_done {
 
 
     global input_list to terminal_input().
-    print "DECREMENT : " + input_list[2] at (5,10).
+    print "DECREMENT : " + input_list[2] + "   " at (5,1).
     if input_list[1] = "UP" {
         set targ_vertvel to targ_vertvel + input_list[0].
     }
@@ -121,18 +125,23 @@ until system_done {
             set targ_hdg to 360 + targ_hdg.
         }
     }
+    if input_list[1] = "KILL" {
+        set targ_vertvel to 0.
+        set targ_forvel  to 0.
+        set targ_sidevel to 0.
+    }
 
     if input_list[1] = "END" {
         if input_list[0] = 1 {
             set system_done to true.
         }
     }
-    print "V : "+targ_vertvel+ "   " at (5,12).
-    print "F : "+targ_forvel+ "   " at (15,12).
-    print "S : "+targ_sidevel+ "   " at (25,12).
+    print "V : "+targ_vertvel+ "   " at (5,7).
+    print "F : "+targ_forvel+ "   " at (15,7).
+    print "S : "+targ_sidevel+ "   " at (25,7).
 
-    print round(ship:verticalspeed,2)+ "   " at (5,13).
-    print round(alt:radar,2) at (5,11).
+    print "VERT SPD           : " + round(ship:verticalspeed,2)+ "   " at (5,3).
+    print "ALT                : " + round(alt:radar,2)+ "   " at (5,4).
 
     local velocity_vector is ship:velocity:surface:vec.
     local up_vector is ship:up:vector.
@@ -144,12 +153,12 @@ until system_done {
     local fore_component is vdot(velocity_vector, fore_vector).
     local sb_component is vdot(velocity_vector, starboard_vector).
 
-    print "Up Component: " + round(up_component,2)+ "   " at (5,16).
-    print "Forward Component: " + round(fore_component,2)+ "   " at (5,17).
-    print "Starboard Component: " + round(sb_component,2)+ "   " at (5,18).
+    print "Up Component        : " + round(up_component,2)+ "   " at (5,9).
+    print "Forward Component   : " + round(fore_component,2)+ "   " at (5,10).
+    print "Starboard Component : " + round(sb_component,2)+ "   " at (5,11).
 
-    print "TGT HDG : " + round(targ_hdg)+"  " at (5,20).
-    print "TRU HDG : " + round(compass_hdg())+"  " at (5,21).
+    print "TGT HDG : " + round(targ_hdg)+"  " at (5,13).
+    print "TRU HDG : " + round(compass_hdg())+"  " at (5,14).
     
     set vertpid:setpoint to targ_vertvel.
     set collective to vertpid:update(time:seconds, ship:verticalspeed).
@@ -162,8 +171,8 @@ until system_done {
 
     lock steering to heading(targ_hdg, pitch_ang, side_ang).
 
-    print round(pitch_ang, 1) + "  " at (5,23).
-    print round(side_ang, 1) + "  " at (15,23).
+    print round(pitch_ang, 1) + "  " at (25,15).
+    print round(side_ang, 1) + "  " at (35,15).
     wait 0. 
 }
 
