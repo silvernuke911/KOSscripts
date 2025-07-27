@@ -6,8 +6,8 @@ runpath("0:/lib/resources.ks").
 clearScreen.
 
 function main {
-    print(get_resource("liquidfuel"):parts).
-    wait 10.
+    create_node(change_eccentricity(0.5,"at altitude",200000)).
+    wait 15.
     until not hasNode { remove nextNode.}
     set target to "".
     clearVecDraws().
