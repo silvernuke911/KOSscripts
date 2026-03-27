@@ -32,6 +32,10 @@
 //                                                  ||
 //--------------------------------------------------||
 //  Last update:  July 22, 2025                     ||
+//  Update Notes:
+//  March 28, 2026 - Changed a few of the
+//                   functions as per the corrections
+//                   in the sub.
 //--------------------------------------------------||
 
 //==================================================||
@@ -587,9 +591,8 @@ function true_anomaly_to_eccentric_anomaly {
 function eccentric_anomaly_to_mean_anomaly {
     local parameter ea.
     local e is ship:obt:eccentricity.
-    local ea_rad to ea * constant:degtorad.
-    local ma_rad to ea_rad - e * sin(ea).
-    return ensure_angle_positive(ma_rad * constant:radtodeg).
+    local ma to ea- e * sin(ea) * constant:radtodeg.
+    return ensure_angle_positive(ma).
 }
 
 //==================================================||
@@ -759,7 +762,7 @@ function ensure_angle_positive {
 function create_node {
     local parameter mnv_node.
 
-    local eta____ is mnv_node[0] + time:seconds.
+    local uts____ is mnv_node[0] + time:seconds.
     local radial_ is mnv_node[1].
     local normal_ is mnv_node[2].
     local prograd is mnv_node[3].
@@ -774,7 +777,7 @@ function create_node {
 
     // Construct and add the maneuver node
     local maneuver_node to node(
-        eta____,
+        uts____,
         radial_,
         normal_,
         prograd
@@ -1724,6 +1727,8 @@ function change_surface_longitude_of_apsis {
 //                 or "closest approach" (TODO)     ||
 //   tgt_value   : Target value (in meters) to      ||
 //                 correct the orbital element to.  ||
+//   has_sas     : Manual check if the craft has sas 
+//                 capabilities or not
 //   tolerance   : (optional) Acceptable error in   ||
 //                 meters. Default is 10.           ||
 //                                                  ||
@@ -1735,12 +1740,18 @@ function change_surface_longitude_of_apsis {
 function rcs_corrector {
     local parameter mode.
     local parameter tgt_value.
+    local parameter has_sas is true.
     local parameter tolerance is 10.
     
-    sas on.
+    if has_sas {
+        sas on.
+        set sasmode to "PROGRADE".
+    } else {
+        sas off.
+        lock steering to ship:prograde.
+    }
     rcs off.
-    set sasmode to "PROGRADE".
-    wait until vang(ship:facing:vector, ship:velocity:orbit:vec) < 0.25.
+    wait until vang(ship:facing:vector, ship:velocity:orbit) < 0.25.
     rcs on.
     if mode = "apoapsis" {
         lock error to ship:obt:apoapsis - tgt_value.
@@ -1750,6 +1761,7 @@ function rcs_corrector {
         lock rcs_t to max(0.05,min(1, (errorMag)/tgt_value)).
         until errorMag <= tolerance {
             set ship:control:fore to -errorsign*rcs_t.
+            wait 0.
         }
         shut_down().
     }
@@ -1761,6 +1773,7 @@ function rcs_corrector {
         lock rcs_t to max(0.05,min(1, 1000*(errorMag)/tgt_value)).
         until errorMag <= tolerance {
             set ship:control:fore to -errorsign*rcs_t.
+            wait 0.
         }
         shut_down().
     }
@@ -1962,6 +1975,8 @@ function execute_node {
             remove mnv_node.
             set runmode to "burn done".
         }
+
+        wait 0.
     }
     return. 
 }
@@ -2043,7 +2058,7 @@ function vectorHeading{
 //--------------------------------------------------||
 //**************************************************||
 function orbital_basis_vectors {
-    local z is body:north:vector:normalized.
+    local z is (latlng(90,0):position - body:position):normalized.
     local x is solarPrimeVector:vec:normalized.
     local y is vCrs(z,x):normalized.
     return list(x,y,z).
@@ -2056,6 +2071,24 @@ function orbital_basis_vectors {
 // wait function that does not pause the 
 // guidance loop, and activates after a certain time 
 // is done.
+//
+// I guess... this can just be done with timers 
+// inside the loop?
+// Like: 
+// timer is 0
+// until false {
+//     if runmode = 1{
+        
+//         set runmode to 2.
+//     }
+//     if runode = 2 {
+//         timer = timer + 0.02. // or whatever the time tick is
+//         if timer = 5 {
+//             // do thing
+//         }
+//     }
+// }
+// but idk.
 
 //**************************************************||
 //--------------------------------------------------||
@@ -2069,10 +2102,10 @@ function orbital_basis_vectors {
 // PURPOSE:                                         ||
 //   Provides a custom time warp function to safely ||
 //   and smoothly warp to a future universal time.  ||
-//   This arised because of the inherent problems   ||
+//   This arose because of the inherent problems    ||
 //   and bugs that are associated with KOS's inbuilt||
-//   warpto function, which emulates KSP's warp here||
-//   function. It's a bit buggy, it changes the     ||
+//   warpto function when it calls KSP's warping in ||
+//   the API. It's a bit buggy, it changes the      ||
 //   position of the apsides, and quite often, it   ||
 //   overshoots since it's going too damn fast, henc||
 //   i made a custom warper which slows a staggered ||
