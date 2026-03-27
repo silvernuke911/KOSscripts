@@ -57,26 +57,29 @@
 // Function: ship_isp                               ||
 //--------------------------------------------------||
 // Purpose:  Computes the effective specific impulse||
-//           (ISP) of the vessel, weighted by each  ||                  
-//           engine's current thrust contribution.  ||
+//           (ISP) of the vessel, taking into       ||
+//           account all active engines and their   ||
+//           current thrust and ISP values.         ||
 //                                                  ||
 // Assumptions:                                     ||
 //   - Only considers engines that are currently    ||
-//     providing thrust                             ||
-//     (availablethrust > 0) and have a valid       ||
-//     ISP (isp > 0).                               ||
-//   - The weighted ISP is calculated as a          ||
-//     thrust-weighted average:                     ||
-//     ISP_eff = Σ(Thrust_i × ISP_i) / Σ(Thrust_i)  ||
+//     providing thrust (availablethrust > 0)       ||
+//     and have a valid ISP (isp > 0).              ||
+//   - The effective ISP is calculated as a         ||
+//     thrust-weighted harmonic mean:               ||
+//     ISP_eff = Σ(Thrust_i) / Σ(Thrust_i / ISP_i)  ||
+//     This accounts correctly for engines with     ||
+//     different ISPs and thrusts, reflecting       ||
+//     total propellant consumption.                ||
 //                                                  ||
 // Parameters: None                                 ||
 //                                                  ||
 // Returns:                                         ||
-//   - weighted_isp : The effective ISP (in seconds)||
-//     of all currently firing engines, weighted by ||
-//     their individual thrust.                     ||
-//   - Returns 0 if no valid engines are producing  ||
-//     thrust.                                      ||
+//   - effective isp : The effective ISP (in s)     ||
+//     of all currently firing engines, reflecting  ||
+//     their contribution to total thrust and fuel  ||
+//     usage.                                       ||
+//   - Returns 0 if no engines are active.          ||
 // =================================================||
 
 function ship_isp {
@@ -199,22 +202,24 @@ function half_burn_time {
 //==================================================||
 
 function rcs_isp {
-    local rcsList is list().
-    list rcs in rcsList.
-    local total_thrust is 0.
-    local weighted_isp is 0.
+    local rcsList to list().        // Temporary list to collect RCS thrusters
+    list rcs in rcsList.            // Populate rcsList with all RCS thrusters
+
+    local total_thrust to 0.        // Sum of RCS thrusts
+    local totalmdot to 0.           // Overall mass flow for RCS
     for rcs_ in rcsList {
+        // Only include RCS thrusters that are firing, have valid ISP,
+        // and are enabled in the fore direction
         if rcs_:availableThrust > 0 
-        and rcs_:availableThrust > 0 
-        and rcs_:foreenabled{
-            set total_thrust to 
-                total_thrust + rcs_:availableThrust.
-            set weighted_isp to 
-                weighted_isp + (rcs_:availableThrust * rcs_:isp).
+        and rcs_:isp > 0 
+        and rcs_:foreenabled {
+            set total_thrust to total_thrust + rcs_:availableThrust.
+            set totalmdot to totalmdot + (rcs_:availableThrust / rcs_:isp).  // mass flow contribution
         }
     }
-    if total_thrust > 0 {
-        return weighted_isp / total_thrust.
+
+    if total_thrust > 0 and totalmdot > 0 {
+        return total_thrust / totalmdot.   // harmonic-mean ISP for RCS
     } else {
         return 0.
     }
@@ -370,7 +375,7 @@ function rcs_half_burn_time {
 function twr {
     // Compute local gravity at current ship altitude
     local g0 is body:mu / (body:radius + ship:altitude)^2.
-    // Compute current ship weight (mass × gravity)
+    // Compute current ship weight (mass * gravity)
     local ship_weight is ship:mass * g0.
     // Compute thrust-to-weight ratio
     local twr_val is ship:availablethrust / ship_weight.
@@ -1138,8 +1143,33 @@ function change_eccentricity {
 //==================================================||
 //      FUNCTION: change_apoapsis                   ||
 //--------------------------------------------------||
-//
-//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the required delta V                ||
+//   to adjust the apoapsis of the current orbit.   ||
+//   Can compute the maneuver at periapsis, apoapsis||
+//   after a fixed time, or when reaching a target  ||
+//   altitude. Handles orbit propagation to predict ||
+//   the ship's position and velocity as needed.    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_apoapsis : (scalar) Target apoapsis in  ||
+//                     meters above the central body||
+//   mode            : (string) Mode for computing  ||
+//                     the maneuver. Options include||
+//                       - "at periapsis"           ||
+//                       - "at apoapsis"            ||
+//                       - "after fixed time"       ||
+//                       - "at an altitude"         ||
+//                       - "at equatorial DN"       ||
+//                       - "at equatorial AN"       ||
+//   value           : (scalar) Optional parameter, ||
+//                     used for time or altitude.   ||
+//                                                  ||
+// RETURNS:                                         ||
+//   List containing the maneuver components.       ||
+//   Returns a null maneuver node if the requested  ||
+//   mode is unsupported or the target is invalid.  ||
+//==================================================||
 function change_apoapsis {
     local parameter target_apoapsis.
     local parameter mode.
@@ -1273,8 +1303,33 @@ function change_apoapsis {
 //==================================================||
 //      FUNCTION: change_periapsis                  ||
 //--------------------------------------------------||
-//
-//--------------------------------------------------||
+// PURPOSE:                                         ||
+//   Calculates the required delta V                ||
+//   to adjust the periapsis of the current orbit.  ||
+//   Can compute the maneuver at periapsis, apoapsis||
+//   after a fixed time, or when reaching a target  ||
+//   altitude. Handles orbit propagation to predict ||
+//   the ship's position and velocity as needed.    ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//   target_apoapsis : (scalar) Target periapsis in ||
+//                     meters above the central body||
+//   mode            : (string) Mode for computing  ||
+//                     the maneuver. Options include||
+//                       - "at periapsis"           ||
+//                       - "at apoapsis"            ||
+//                       - "after fixed time"       ||
+//                       - "at an altitude"         ||
+//                       - "at equatorial DN"       ||
+//                       - "at equatorial AN"       ||
+//   value           : (scalar) Optional parameter, ||
+//                     used for time or altitude.   ||
+//                                                  ||
+// RETURNS:                                         ||
+//   List containing the maneuver components.       ||
+//   Returns a null maneuver node if the requested  ||
+//   mode is unsupported or the target is invalid.  ||
+//==================================================||
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
