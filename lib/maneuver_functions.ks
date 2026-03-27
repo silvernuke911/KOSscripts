@@ -2007,6 +2007,7 @@ function execute_node {
                     lock throttle to 0.
                     set burn_done to true.
                 }
+                wait 0.
             }
             set runmode to "post burn". // Proceed to cleanup
         }
