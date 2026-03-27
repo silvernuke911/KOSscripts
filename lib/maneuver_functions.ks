@@ -38,7 +38,7 @@
 //**************************************************||
 //--------------------------------------------------||
 @lazyGlobal off.          //                        ||
-set config:ipu to 2000.   //                        ||  
+// set config:ipu to 2000.   //                        ||  
 //==================================================||
 //**************************************************||
 
@@ -74,27 +74,27 @@ set config:ipu to 2000.   //                        ||
 //   - Returns 0 if no valid engines are producing  ||
 //     thrust.                                      ||
 // =================================================||
+
 function ship_isp {
     local engineList to list().    // Temporary list to collect engines
     list engines in engineList.    // Populates engineList with all vessel engines
 
-    local total_thrust to 0.       // Sum of available thrusts of valid engines
-    local weighted_isp to 0.       // Weighted ISP accumulator
+    local total_thrust to 0.       // Sum of engine thrusts
+    local totalmdot to 0.          // Overall mass flow 
 
     for engine in engineList {
         // Only include engines that are firing and have valid ISP
         if engine:availablethrust > 0 and engine:isp > 0 {
             set total_thrust to total_thrust + engine:availablethrust.
-            set weighted_isp to weighted_isp + (engine:availablethrust * engine:isp).
+            set totalmdot to totalmdot + (engine:availablethrust / engine:isp). 
         }
     }
-    // If there is total thrust, compute the weighted ISP
-    if total_thrust > 0 {
-        set weighted_isp to weighted_isp / total_thrust.
+
+    if total_thrust > 0 and totalmdot > 0 {
+        return total_thrust / totalmdot.   // harmonic-mean Isp
     } else {
-        return 0.  // No engines firing, return 0 ISP
+        return 0.
     }
-    return weighted_isp.
 }
 
 // =====================================================================
