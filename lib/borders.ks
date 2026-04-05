@@ -7,10 +7,10 @@ function draw_edge_border {
     parameter verchar is "|".
     parameter horchar is "-".
 
-    vertical_line(0,height, 0, verchar).
-    vertical_line(0,height,width, verchar).
+    vertical_line(0,height-1, 0, verchar).
+    vertical_line(0,height-1,width, verchar).
     horizontal_line(0, width, 1, horchar).
-    horizontal_line(0, width, height+2, horchar).
+    horizontal_line(0, width, height, horchar).
 }
 
 function horizontal_line{
@@ -19,7 +19,7 @@ function horizontal_line{
     local parameter height.
     local parameter character is "-".
     for x in range(start, end){
-        print character at (x, height).
+        print character at (x, height). 
     }
 }
 
