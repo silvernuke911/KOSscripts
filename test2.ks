@@ -12,11 +12,17 @@ function main {
         // change_pe_and_ap(100000,200000,"at altitude",150000)
         // change_periapsis(120000,"at equatorial AN")
         // change_LAN(10,"at south peak latitude")
-        circularize("at apoapsis")
+        // circularize("at periapsis")
+        // change_pe_and_ap(obt:periapsis,obt:apoapsis,"nearest")
+        // change_periapsis(500000,"after fixed time",300)
+        // change_semimajoraxis(1500000,"at altitude",200000)
+        change_argument_of_periapsis(350,"second half")
     ).
     wait 15.
     clearVecDraws().
-    execute_node().
-    // remove nextNode.
+    // execute_node().
+    if hasNode {
+        remove nextNode.
+    }
 }
 main().

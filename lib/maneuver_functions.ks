@@ -46,6 +46,12 @@
 //                   Implemented change LAN
 //                   fixed match planes with target.
 //                   initialized change_pe_and_ap.
+//  April 07, 2026 - Fixed change semi major axis
+//                   Fixed change ap and pe
+//                   Added orbit cartesian position and orbit cartesian velocity as helper funcs
+//                   Added "change argument of periapsis"
+//                   Noted the need to improve "change periapsis" and change eccentricity/smja
+//                        They need to accomodate hyperbolic orbits
 //--------------------------------------------------||
 
 //==================================================||
@@ -714,7 +720,7 @@ function time_from_true_anomaly {
     // Time to reach the target true anomaly
     local t to delta_ma / n.
     return t - 0.02. // For some fucking reason time from true anomaly
-                      //returns values which are 0.02 s ahead, so this is a temporary fix.
+                      //returns values which are 0.02 s (1 physics tick) ahead, so this is a temporary fix.
 }
 
 
@@ -910,15 +916,15 @@ function rotate_vector {
 function cartesian_to_TRN {
     local parameter vector.
     local parameter uts.
-    local parameter with_time is true.
+    local parameter with_time is true.      // return results with ut
 
-    local u_pv is velocityAt(ship,uts):orbit:normalized.                        // prograde unit vector
-    local u_nv is vCrs(u_pv,positionAt(ship,uts):normalized):normalized.        // normal unit vector
-    local u_rv is vCrs(u_nv,u_pv):normalized.                                   // radial unit vector
+    local u_pv is velocityAt(ship,uts):orbit:normalized.                    // prograde unit vector
+    local u_nv is vCrs(u_pv,positionAt(ship,uts):normalized):normalized.    // normal unit vector
+    local u_rv is vCrs(u_nv,u_pv):normalized.                               // radial unit vector
 
-    local dv_p is vdot(vector, u_pv).                     // vector components in upv frame
-    local dv_r is vdot(vector, u_rv).                     // vector components in urv frame
-    local dv_n is vdot(vector, u_nv).                     // vector components in unv frame
+    local dv_p is vdot(vector, u_pv).               // vector components in upv frame
+    local dv_r is vdot(vector, u_rv).               // vector components in urv frame
+    local dv_n is vdot(vector, u_nv).               // vector components in unv frame
 
     if with_time {
         return list(uts, dv_r, dv_n, dv_p).
@@ -928,6 +934,57 @@ function cartesian_to_TRN {
 
 }
 
+// True anomaly from ut 
+function true_anomaly_at_ut {
+    local parameter ut.
+    local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
+    local H_vec is vCrs(velocityAt(ship, eta:periapsis + time:seconds):orbit,P_vec):normalized.
+    local Q_vec is vCrs(P_vec, H_vec):normalized.
+    local R_vec is positionat(ship,ut) - body:position.
+    local nu is vang(R_vec,P_vec).
+    if vdot(R_vec,Q_vec) < 0 {
+        set nu to 360 - nu.
+    }
+    return nu.
+}
+// Orbit cartesian position 
+function orbit_cartesian_position {
+    local parameter true_anomaly.
+    local parameter semi_major_axis       is obt:semimajoraxis.
+    local parameter eccentricity          is obt:eccentricity.
+    local parameter argument_of_periapsis is obt:argumentofperiapsis.
+
+    local rotation is argument_of_periapsis - obt:argumentofperiapsis.
+    // Perifocal frame
+    local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
+    local H_vec is vCrs(velocityAt(ship, eta:periapsis + time:seconds):orbit,P_vec):normalized.
+    local Q_vec is vCrs(P_vec, H_vec):normalized.
+
+    local rad_Pos is semi_major_axis * (1 - eccentricity^2) / ( 1 + eccentricity * cos(true_anomaly)).
+    return rad_Pos * (
+        cos(true_anomaly + rotation) * P_vec + 
+        sin(true_anomaly + rotation) * Q_vec
+    ).
+}
+
+// Orbit cartesian velocity
+function orbit_cartesian_velocity {
+    local parameter true_anomaly.
+    local parameter semi_major_axis       is obt:semimajoraxis.
+    local parameter eccentricity          is obt:eccentricity.
+    local parameter argument_of_periapsis is obt:argumentofperiapsis.
+
+    local rotation is argument_of_periapsis - obt:argumentofperiapsis.
+    local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
+    local H_vec is vCrs(velocityAt(ship, eta:periapsis + time:seconds):orbit,P_vec):normalized.
+    local Q_vec is vCrs(P_vec, H_vec):normalized.
+    local semilatus_rectum is  semi_major_axis * (1 - eccentricity^2).
+
+    return sqrt(body:mu / semilatus_rectum) * (
+        (-sin(true_anomaly + rotation) - eccentricity * sin(rotation)) * P_vec +
+        ( cos(true_anomaly + rotation) + eccentricity * cos(rotation)) * Q_vec
+    ).
+}
 //==================================================||
 //      FUNCTION: circularize                       ||
 //--------------------------------------------------||
@@ -1051,7 +1108,7 @@ function circularize {
 //   Maneuver node to execute eccentricity change,  ||
 //   or null maneuver node if unsupported mode.     ||
 //==================================================||
-
+// make work for hyperbolic functions
 function change_eccentricity {
     local parameter targ_eccentricity.
     local parameter mode.
@@ -1094,7 +1151,6 @@ function change_eccentricity {
         print(theta_targ).
         
         // Calculate target orbit parameters
-
         local p_targ is 0.
         local a_targ is 0.
         
@@ -1357,6 +1413,7 @@ function change_apoapsis {
 //   Returns a null maneuver node if the requested  ||
 //   mode is unsupported or the target is invalid.  ||
 //==================================================||
+// Make handle hyperbolic orbits
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
@@ -1364,8 +1421,7 @@ function change_periapsis {
     if mode = "at apoapsis" {
         if target_periapsis > ship:apoapsis {
             return null_mnv(
-                "[ ALTITUDE ERROR ] :"+
-                "Target periapsis should be"+ 
+                "[ ALTITUDE ERROR ] : Target periapsis should be"+
                 "smaller than current apoapsis"
             ).
         }
@@ -1475,22 +1531,18 @@ function change_inclination {
 
     local current_inclination is obt:inclination.
     local delta_inc is target_inclination - current_inclination.
-    // Compute true anomalies of the nodes
+
     local an_ta is 360 - obt:argumentofperiapsis.
     local dn_ta is 180 - obt:argumentofperiapsis.
-    // Compute times to each node
     local t_an is time_from_true_anomaly(an_ta) + time:seconds.
     local t_dn is time_from_true_anomaly(dn_ta) + time:seconds.
-    // Compute velocity vectors at each node
     local vel_vec_an is velocityat(ship,t_an):orbit.
     local vel_vec_dn is velocityat(ship,t_dn):orbit.
-    // Compute required delta-v magnitude at each node
     local delta_v_mag_an is 2 * vel_vec_an:mag * sin(abs(delta_inc) / 2).
     local delta_v_mag_dn is 2 * vel_vec_dn:mag * sin(abs(delta_inc) / 2).
-    // Helper function to compute maneuver components
+
     local function compute_dv {
         local parameter isAN.
-
         local ut is t_an.
         local rad_vector is positionAt(ship,t_an) - body:position.
         local vel_vector is vel_vec_an.
@@ -1504,7 +1556,7 @@ function change_inclination {
         local deltaV is rotVector - vel_vector.
         return cartesian_to_TRN(deltaV, ut).
     }
-    // Decision logic by mode
+
     if mode = "at AN" {
         return compute_dv(true).
     }
@@ -1527,8 +1579,8 @@ function change_inclination {
     }
     if mode = "at altitude" {
         // not yet implemented
-        // besides, who the fuck changes incleination in an arbitrary point anyway
-        // it accmpplishes nothing, it's inneficient and wasteful
+        // besides, who the fuck changes inclination in an arbitrary point anyway
+        // it acompplishes nothing, it's inneficient and wasteful
         // the only time you do it is when matching inclination with a target
         // but you already have the target to follow at that point.
         // retarded mode. 
@@ -1595,7 +1647,6 @@ function change_LAN {
         // Position and velocity at burn location
         local ANvelV is velocityAt(ship, t_AN):orbit.       // velocity at AN
         local hVec is vCrs(ANvelV, ANvec):normalized.       // angular momentum vector
-
 
         // Determine the turn axis based on burn location
         local turnAxis is v(0,0,0).
@@ -1716,7 +1767,6 @@ function change_pe_and_ap {
     local parameter new_pe.
     local parameter new_ap.
     local parameter mode.
-    local parameter value is 0.
 
     local targ_ap is new_ap + body:radius.
     local targ_pe is new_pe + body:radius.
@@ -1734,28 +1784,25 @@ function change_pe_and_ap {
         local p2 is a2 * (1 - e2^2).
         local nu is 0.
         if p1 * e2 = p2 * e1 {
-            return "[ TARGET ERROR ] : Same orbit".
+            return null_mnv("[ ORBIT ERROR ] : Same orbit, no change").
         }
-        local cos_nu is ( (p2 - p1) / (p1 * e2 - p2 * e1)).
-        if (cos_nu > 1) or (cos_nu < 0) {
-            return "[ TARGET ERROR ] : Orbit not possible with current parameters".
+        local cos_nu is ( (p2 - p1) / (p1 * e2 - p2 * e1) ).
+        if abs(cos_nu > 1) {
+            return null_mnv("[ ORBIT ERROR ] : Orbit not possible with current parameters").
         }
-        if cos_nu = 1 {
+        if abs(cos_nu) = 1 {
             // single point intersection
-            set nu to 0.
+            return null_mnv("[ ORBIT ERROR ] : Single point intersection, use change_apoapsis or change_periapsis instead").
         }
-        if cos_nu < 1 {
+        if abs(cos_nu) < 1 {
             // nu choosing logic here
-            set nu to arcCos(nu).
+            set nu to arcCos(cos_nu).
             if gtr {
                 set nu to 360 - nu.
             } 
         }
-        local p_hat is (positionAt(ship,eta:periapsis + time:seconds) - body:position):normalized.
-        local h_hat is vcrs(velocityAt(ship, eta:periapsis):orbit,p_hat):normalized.
-        local q_hat is vcrs(p_hat,h_hat):normalized.
-        local v1 is sqrt(body:mu / p1) * (- sin(nu) * p_hat + (e1 + cos(nu) * q_hat)).
-        local v2 is sqrt(body:mu / p2) * (- sin(nu) * p_hat + (e2 + cos(nu) * q_hat)).
+        local v1 is orbit_cartesian_velocity(nu,a1,e1).
+        local v2 is orbit_cartesian_velocity(nu,a2,e2).
         local dV is v2 - v1.
         return cartesian_to_TRN(dV,time_from_true_anomaly(nu)+ time:seconds).
 
@@ -1772,10 +1819,10 @@ function change_pe_and_ap {
         }
       
     }
-    if mode = "[000,180]" {
+    if mode = "first half" { // curent orbit true anomally 0 - 180
         return compute_dv(false).
     }
-    if mode = "[180,360]" {
+    if mode = "second half" { // current orbit true anomaly 180 - 360 
         return compute_dv(true).
     }
     else {
@@ -1814,6 +1861,7 @@ function return_from_a_moon {
 function change_semimajoraxis {
     local parameter target_smja.
     local parameter mode.
+    local parameter value is 0.
 
     local r_a is obt:apoapsis  + body:radius.
     local r_p is obt:periapsis + body:radius.
@@ -1838,12 +1886,33 @@ function change_semimajoraxis {
         }
         
     }
+    local function compute_dv {
+        local parameter ut.
+
+        local pos is positionAt(ship,ut) - body:position.
+        local nu is true_anomaly_at_ut(ut).
+        local rmag is pos:mag.
+        local discriminant is (rmag * cos(nu))^2 - 4 * target_smja * (rmag - target_smja).
+        if discriminant < 0 {
+            return null_mnv("[ ORBIT ERROR] : No orbit possible with the given conditions").
+        } else {
+            local e2 is (- rmag * cos(nu) + sqrt(discriminant))/(2*target_smja).
+            local v1 is orbit_cartesian_velocity(nu,obt:semimajoraxis,obt:eccentricity).
+            local v2 is orbit_cartesian_velocity(nu,target_smja,e2).
+            local dV is v2 - v1.
+            return cartesian_to_TRN(dV,ut).
+        }
+    }
     if mode = "at altitude" {
-        // not implemented yet
+        local target_alt is value.
+        local target_true_anomaly is radius_to_true_anomaly(target_alt).
+        local t_ is time_from_true_anomaly(target_true_anomaly).
+        return compute_dv(time:seconds + t_).
     }
 
     if mode = "after fixed time" {
-        // not implemented yet
+        local t_ is value.
+        return compute_dv(time:seconds + t_).
     }
     return null_mnv(mode_error_message+ mode).
 }
@@ -1897,14 +1966,64 @@ function change_resonant_orbit {
     }
 
     if mode = "after fixed time" {
-        // not implemented yet
+        return change_semimajoraxis(a_resonant, mode, value).
     }
 
     if mode = "at altitude" {
-        // not implemented yet
+        return change_semimajoraxis(a_resonant, mode, value).
     }
 
     return null_mnv(mode_error_message+ mode).
+}
+//==================================================||
+//   FUNCTION: change_argument_of_periapsis         ||
+//--------------------------------------------------||
+//
+//--------------------------------------------------||
+function change_argument_of_periapsis {
+    local parameter target_w.
+    local parameter mode.
+
+    local current_w is obt:argumentofperiapsis.
+    local delta_w is target_w - current_w.
+
+    local nu1 is delta_w/2.
+    if nu1 < 0 {
+        set nu1 to nu1 + 180.
+    }
+    local nu2 is nu1 + 180.
+
+    local v11 is orbit_cartesian_velocity(nu1,obt:semimajoraxis,obt:eccentricity).
+    local v21 is orbit_cartesian_velocity((nu1 - delta_w),obt:semimajoraxis,obt:eccentricity,target_w).
+    local dv1 is v21 - v11.
+    local v12 is orbit_cartesian_velocity(nu2,obt:semimajoraxis,obt:eccentricity).
+    local v22 is orbit_cartesian_velocity((nu2 - delta_w),obt:semimajoraxis,obt:eccentricity,target_w).
+    local dv2 is v22 - v12.
+    local t_nu1 is time_from_true_anomaly(nu1) + time:seconds.
+    local t_nu2 is time_from_true_anomaly(nu2) + time:seconds.
+  
+    // print(t_nu1+ " " + t_nu2).
+    if mode = "first half" {
+        return cartesian_to_TRN(dv1,t_nu1).
+    }
+    if mode = "second half" {
+        return cartesian_to_TRN(dv2,t_nu2).
+    }
+    if mode = "nearest" {
+        if t_nu1 < t_nu2 {
+            return cartesian_to_TRN(dv1,t_nu1).
+        } else {
+            return cartesian_to_TRN(dv2,t_nu2).
+        }
+    }
+    if mode = "cheapest" {
+        if dv1:mag < dv1:mag {
+            return cartesian_to_TRN(dv1,t_nu1).
+        } else {
+            return cartesian_to_TRN(dv2,t_nu2).
+        }
+    }
+
 }
 
 //==================================================||
@@ -2944,6 +3063,28 @@ function vector_display {
     return x + " " + y + " " + z.
 }
 
+function vector_debug { 
+    // common debugging vectors
+    // universe basis vectors
+    local zv is (latlng(90,0):position - body:position):normalized.
+    local xv is solarPrimeVector:vec:normalized.
+    local yv is vCrs(xv,zv):normalized.
+    vecDraw(body:position, zv*1e6, rgb(1,0,0),"Z",1,true,0.2,true,false). // Z basis
+    vecDraw(body:position, xv*1e6, rgb(1,0,0),"X",1,true,0.2,true,false). // X basis
+    vecDraw(body:position, yv*1e6, rgb(1,0,0),"Y",1,true,0.2,true,false). // Y basis
+
+    // orbit perifocal vectors
+    local pv is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
+    local hv is vCrs(velocityAt(ship, eta:periapsis + time:seconds):orbit,pv):normalized.
+    local qv is vCrs(pv, hv):normalized.
+    vecDraw(body:position, pv*1e6, rgb(0,0,1),"Z",1,true,0.2,true,false). // p basis
+    vecDraw(body:position, hv*1e6, rgb(0,0,1),"X",1,true,0.2,true,false). // h basis
+    vecDraw(body:position, qv*1e6, rgb(0,0,1),"Y",1,true,0.2,true,false). // q basis
+
+    // orbit inclination vector 
+    local iv is vCrs(hv,zv):normalized.
+    vecDraw(body:position, iv*1e6, rgb(0,1,0),"Y",1,true,0.2,true,false). // q basis
+}
 // function number_format {
 //     // FIX THIS SHIT FIX THIS SHIT
 //     local parameter float.
