@@ -1082,8 +1082,7 @@ function circularize {
 
     local function compute_circularization_dv {
         local parameter uts.
-
-        set uts to uts. 
+ 
         // Predict ship's position and velocity at future time
         local pos_vec is positionat(ship, uts) - body:position.
         local vel_vec is velocityat(ship, uts):orbit.
