@@ -40,7 +40,6 @@
 //                   calculation times are now localized
 //                 - Thinking of using Rodrigues' formula
 //                   for the inclination problem. 
-//
 //  April 05, 2026 - Fixed the change eccentricity, it is now working
 //                   Fixed change apoapsis and change periapsis
 //                   Fixed change inclination using Rodrigues formula
@@ -60,7 +59,7 @@
 //                   Fixed change_semimajoraxis so it throws errors when given hyperbolic orbit
 //                      will try to see later if it can accept negative values for hyperb. orbits.
 //                   Fixed change_apoapsis using better mathematical formulation.
-//                   Changed the max_acc calculation for execute_node.
+//                   Changed the max_acc calculation for execute_node to recalculate every loop.
 //--------------------------------------------------||
 
 //==================================================||
@@ -943,7 +942,18 @@ function cartesian_to_TRN {
 
 }
 
-// True anomaly from ut 
+//==================================================||
+//      FUNCTION: true_anomaly_at_ut                ||
+//--------------------------------------------------||
+// PURPOSE:                                         || 
+//      Returns the ship true anomaly after given   ||
+//      universal time                              ||
+//                                                  ||
+// PARAMETERS:                                      ||
+//      ut : universal kuniverse time.              ||
+// RETURNS:                                         ||
+//      nu : the true anomaly [0,360]               ||
+//==================================================||
 function true_anomaly_at_ut {
     local parameter ut.
     local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
@@ -956,7 +966,23 @@ function true_anomaly_at_ut {
     }
     return nu.
 }
-// Orbit cartesian position 
+
+//==================================================||
+//      FUNCTION: orbit_cartesian_position          ||
+//--------------------------------------------------||
+// PURPOSE:                                         || 
+//      Calculates the position of the ship         ||
+//      at a certain true anomaly                   ||
+//      relative to the way KOS handles positions   ||
+// PARAMETERS:                                      ||
+//      true_anomaly                                ||
+//      semimajoraxis (optional)                    ||
+//      eccentricity  (optional)                    ||
+//      argument of periapsis (optional)            ||                   
+// RETURNS:                                         ||
+//      the cartesian position of the ship at       ||
+//      the true anomaly                            ||
+//==================================================||
 function orbit_cartesian_position {
     local parameter true_anomaly.
     local parameter semi_major_axis       is obt:semimajoraxis.
@@ -976,7 +1002,24 @@ function orbit_cartesian_position {
     ).
 }
 
-// Orbit cartesian velocity
+//==================================================||
+//      FUNCTION: orbit_cartesian_velocity          ||
+//--------------------------------------------------||
+// PURPOSE:                                         || 
+//      Calculates the velocity of the ship         ||
+//      at a certain true anomaly                   ||
+//      relative to KOS's reference system.         ||
+//      Can be used to get velocities of different  ||
+//      orbits to calculate node dV                 ||
+// PARAMETERS:                                      ||
+//      true_anomaly                                ||
+//      semimajoraxis (optional)                    ||
+//      eccentricity  (optional)                    ||
+//      argument of periapsis (optional)            ||                   
+// RETURNS:                                         ||
+//      the cartesian velocity of the ship at       ||
+//      the true anomaly                            ||
+//==================================================||
 function orbit_cartesian_velocity {
     local parameter true_anomaly.
     local parameter semi_major_axis       is obt:semimajoraxis.
@@ -1793,7 +1836,7 @@ function return_from_a_moon {
 // PARAMETERS:                                      ||
 //   target_smja : (scalar) Target semi-major axis  ||
 //   mode        : (string) Either "at periapsis",  ||
-//                 "at apoapsis", "at altitude", ||
+//                 "at apoapsis", "at altitude",    ||
 //                 or "after fixed time"            ||
 //                                                  ||
 // RETURNS:                                         ||
@@ -2024,6 +2067,7 @@ function change_surface_longitude_of_apsis {
 //   disabled.                                      ||
 //==================================================||
 // DEBUG THIS PIECE OF SHIT.
+// WILL FIX THIS
 function rcs_corrector {
     local parameter mode.
     local parameter tgt_value.
@@ -2768,7 +2812,7 @@ function lambert_solver{
 //              RENDEZVOUS AND DOCKING              ||
 //--------------------------------------------------||
 //**************************************************||
-
+//  TO BE DONE
 function fine_tune_closest_approach_to_target {
     local parameter target_distance.
 }
@@ -2791,9 +2835,11 @@ function intercept_target {
     if mode = "lowest dV" {
             // lowest possible delta v. // within one orbit of target body .
     }
+    if mode = "at certain time" {
+        // initiate orbit after specified time.
+    }
     if mode = "as soon as possible" {
             // lowest possible delta v 30 s from now.
-
     }
 }
 
@@ -3056,6 +3102,8 @@ function vector_debug {
     vecDraw(body:position, iv*1e6, rgb(0,1,0),"Y",1,true,0.2,true,false). // q basis
 }
 // function number_format {
+//      for number formating in printing.
+//      like python's f-strings.
 //     // FIX THIS SHIT FIX THIS SHIT
 //     local parameter float.
 //     local parameter nround.
