@@ -52,6 +52,12 @@
 //                   Added "change argument of periapsis"
 //                   Noted the need to improve "change periapsis" and change eccentricity/smja
 //                        They need to accomodate hyperbolic orbits
+//  April 09, 2026 - Fixed change_periapsis so it can handle hyperbolic orbits
+//                   Fixed change_eccentricity so it can handle hyperbolic orbits
+//                   Fixed change_semimajoraxis so it throws errors when given hyperbolic orbit
+//                      will try to see later if it can accept negative values for hyperb. orbits.
+//                   Fixed change_apoapsis using better mathematical formulation.
+//                   Changed the max_acc calculation for execute_node.
 //--------------------------------------------------||
 
 //==================================================||
@@ -1108,84 +1114,40 @@ function circularize {
 //   Maneuver node to execute eccentricity change,  ||
 //   or null maneuver node if unsupported mode.     ||
 //==================================================||
-// make work for hyperbolic functions
 function change_eccentricity {
     local parameter targ_eccentricity.
     local parameter mode.
     local parameter value is 0.
 
-    local ecc is targ_eccentricity.
     local r_a is obt:apoapsis + body:radius.
     local r_p is obt:periapsis + body:radius.
     
     if mode = "at periapsis" {
-        set r_a to r_p * (1 + ecc) / (1 - ecc).
+        set r_a to r_p * (1 + targ_eccentricity) / (1 - targ_eccentricity).
         return change_apoapsis(r_a - body:radius, mode).
     }
     if mode = "at apoapsis" {
-        set r_p to r_a * (1 - ecc) / (1 + ecc).
+        set r_p to r_a * (1 - targ_eccentricity) / (1 + targ_eccentricity).
         return change_periapsis(r_p - body:radius, mode).
     }
     
     local function compute_dv {
-        local parameter future_t.
+        local parameter ut.
 
-        set future_t to future_t.
         // Predict ship's position and velocity at future time
-        local pos_vec is (positionat(ship, future_t) - body:position).
-        local vel_vec is velocityat(ship, future_t):orbit.
-        local r_mag is pos_vec:mag.
-
-        // Perifocal frame
-        local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
-        local N_vec is vCrs(vel_vec, pos_vec):normalized.
-        local Q_vec is vCrs(P_vec,N_vec):normalized.
-
-        // Calculate target true anomaly at time.
-        local angle is vang(pos_vec, P_vec).
-        local sign is vdot(pos_vec, Q_vec).
-        local theta_targ to angle.
-        if sign < 0 {
-            set theta_targ to 360 - angle.
-        }
-        print(theta_targ).
+        local p1 is (positionat(ship, ut) - body:position).
+        local v1 is velocityat(ship, ut):orbit.
+        local rmag is p1:mag.
+        local nu is true_anomaly_at_ut(ut).
         
-        // Calculate target orbit parameters
-        local p_targ is 0.
-        local a_targ is 0.
-        
-        if ecc < 0 {
-            return null_mnv("[ ERROR ] : Negative eccentricity not possible").
-        } else if ecc = 1 {
-            // Parabola: p = r(1 + cosθ)
-            set p_targ to r_mag * (1 + cos(theta_targ)).
-            set a_targ to 9.99e99. // Approximation for infinity
-        } else if ecc > 1 {
-            // Hyperbola: a = r(1 + e·cosθ)/(1-e²) [a is negative]
-            local denominator is 1 - ecc^2.
-            set a_targ to r_mag * (1 + ecc * cos(theta_targ)) / denominator.
-            set p_targ to a_targ * denominator.
-            
-            // Check if position is on correct branch
-            if cos(theta_targ) < -1/ecc {
-                return null_mnv("[ ERROR ] : Position not on valid hyperbola branch").
-            }
-        } else {
-            // Ellipse (0 <= e < 1)
-            local denominator is 1 - ecc^2.
-            set a_targ to r_mag * (1 + ecc * cos(theta_targ)) / denominator.
-            set p_targ to a_targ * denominator.
-        }
-        
-        // Target velocity in perifocal coordinates
-        local v_targ is sqrt(body:mu / p_targ) * (
-            (-sin(theta_targ)) * P_vec + 
-            (ecc + cos(theta_targ)) * Q_vec
-        ).
-        
-        // Delta-V is simply target minus current
-        local delta_v is v_targ - vel_vec.
-        return cartesian_to_TRN(delta_v, future_t).
+        local e2 is targ_eccentricity.
+        if e2 < 0 {
+            return null_mnv("[ ORBIT ERROR ] : Negative eccentricity not allowed").
+        } 
+        local a2 is rmag * (1 + e2 * cos(nu))/ ( 1 - e2^2).
+        local v2 is orbit_cartesian_velocity(nu,a2,e2).
+        local dv is v2 - v1.
+        return cartesian_to_TRN(dv, ut).
     }
     if mode = "at altitude" {
         local target_alt is value.
@@ -1210,68 +1172,6 @@ function change_eccentricity {
         return compute_dv(future_t).
     }
     return null_mnv( mode_error_message + mode).
-}
-
-function compute_dv_apsides {
-    local parameter target_apsis.
-    local parameter apsis_type.
-    local parameter future_t.
-    
-    // Predict ship's position and velocity at future time
-    local pos_vec is (positionat(ship, future_t) - body:position).
-    local vel_vec is velocityat(ship, future_t):orbit.
-    local rad_mag is pos_vec:mag.
-
-    // Perifocal frame (same for both)
-    local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
-    local N_vec is vCrs(vel_vec, pos_vec):normalized.
-    local Q_vec is vCrs(P_vec, N_vec):normalized.
-    
-    // Calculate true anomaly from the propagated position
-    local angle is vang(pos_vec, P_vec).
-    local sign is vdot(pos_vec, Q_vec).
-    local theta_targ is angle.
-    if sign < 0 {
-        set theta_targ to 360 - angle.
-    }
-
-    // Calculate target eccentricity
-    local e_targ is 0.
-    local p_targ is 0.
-    local a_targ is 0.
-    
-    if apsis_type = "apoapsis" {
-        // For apoapsis change: r_a = a(1+e)
-        // Formula: e = (r_a - r) / (r + r_a*cosθ)
-        set e_targ to (target_apsis - rad_mag) / (rad_mag * cos(theta_targ) + target_apsis).
-        
-        if (e_targ < 0) or (e_targ >= 1) {
-            return null_mnv("[ ERROR ] : Target apoapsis too low for this position").
-        }
-        
-        set a_targ to target_apsis / (1 + e_targ).
-        set p_targ to a_targ * (1 - e_targ^2).
-        
-    } else { 
-        set e_targ to (rad_mag - target_apsis) / (target_apsis - rad_mag * cos(theta_targ)).
-        
-        if e_targ < 0 {
-            return null_mnv("[ ERROR ] : Target periapsis too high for this position").
-        } else if e_targ = 1 {
-            // Parabolic case
-            set p_targ to 2 * target_apsis.
-        } else {
-            set a_targ to target_apsis / (1 - e_targ).
-            set p_targ to a_targ * (1 - e_targ^2).
-        }
-    } 
-    // Target velocity (same formula for both)
-    local v_targ is sqrt(body:mu / p_targ) * (
-        (-sin(theta_targ)) * P_vec + 
-        (e_targ + cos(theta_targ)) * Q_vec
-    ).
-    local delta_v is v_targ - vel_vec.
-    return cartesian_to_TRN(delta_v, future_t).
 }
 
 //==================================================||
@@ -1358,25 +1258,43 @@ function change_apoapsis {
             apoapsis_dV
         ).
     }
+    local function compute_dv {
+        local parameter ut.
+
+        local nu is true_anomaly_at_ut(ut).
+        local r1 is positionAt(ship,ut) - body:position.
+        local v1 is velocityAt(ship,ut):orbit.
+        local rmag is r1:mag.
+
+        local e2 is (target_apoapsis - rmag) / (rmag * cos(nu) + target_apoapsis).
+        if (e2 < 0) or (e2 >= 1) {
+            return null_mnv("[ ORBIT ERROR ] : Orbit unachievable under current parameters. Resulting e ="+ e2).
+        }
+        local a2 is target_apoapsis / (1 + e2).
+        local v2 is orbit_cartesian_velocity(nu,a2,e2).
+        local dV is v2 - v1.
+        return cartesian_to_TRN(dV,ut).
+    }
     if mode = "at altitude" {
         local target_alt is value.
         local trueanomaly is radius_to_true_anomaly(target_alt).
         local future_t is time_from_true_anomaly(trueanomaly) + time:seconds.
-        return compute_dv_apsides(target_apoapsis + body:radius, "apoapsis", future_t).
+        return compute_dv(future_t).
     }
     if mode = "after fixed time" {
         local t_ is value.
-        return compute_dv_apsides(target_apoapsis + body:radius, "apoapsis", time:seconds + t_).
+        local future_t is t_ + time:seconds.
+        return compute_dv(future_t).
     }
     if mode = "at equatorial AN" {
         local trueanomaly is 360 - obt:argumentofperiapsis.
         local future_t is time_from_true_anomaly(trueanomaly) + time:seconds.
-        return compute_dv_apsides(target_apoapsis + body:radius, "apoapsis", future_t).
+        return compute_dv(future_t).
     }
     if mode = "at equatorial DN" {
         local trueanomaly is 180 - obt:argumentofperiapsis.
         local future_t is time_from_true_anomaly(trueanomaly) + time:seconds.
-        return compute_dv_apsides(target_apoapsis + body:radius, "apoapsis", future_t).
+        return compute_dv(future_t).
     }
     else {
         return null_mnv(mode_error_message+ mode).
@@ -1413,7 +1331,6 @@ function change_apoapsis {
 //   Returns a null maneuver node if the requested  ||
 //   mode is unsupported or the target is invalid.  ||
 //==================================================||
-// Make handle hyperbolic orbits
 function change_periapsis {
     local parameter target_periapsis.
     local parameter mode.
@@ -1471,25 +1388,47 @@ function change_periapsis {
             periapsis_dV
         ).
     }
+    local function compute_dv {
+        local parameter ut.
+
+        local nu is true_anomaly_at_ut(ut).
+        local p1 is positionAt(ship,ut) - body:position.
+        local rmag is p1:mag.
+        local v1 is velocityAt(ship,ut):orbit.
+        local e1 is obt:eccentricity.
+        local ta is obt:trueanomaly.
+        if (e1 > 1) and (ta > 0){
+            return null_mnv("[ TIMING ERROR ] : Ship is past the point of pe adjustment for hyperbolic orbit").
+        }
+        local e2 is (target_periapsis - rmag) / (rmag * cos(nu) - target_periapsis).
+        if e2 < 0 {
+            return null_mnv("[ ORBIT ERROR ] : Desired orbit not possible. Resulting e = " + e2).
+        }
+        local a2 is target_periapsis / (1 - e2).
+        local v2 is orbit_cartesian_velocity(nu,a2,e2).
+        local dV is v2 - v1.
+        return cartesian_to_TRN(dV,ut).
+    }
     if mode = "at altitude" {
         local target_alt is value.
         local target_true_anomaly is radius_to_true_anomaly(target_alt).
-        local t_ is time_from_true_anomaly(target_true_anomaly).
-        return compute_dv_apsides(target_periapsis + body:radius, "periapsis", time:seconds + t_).
+        local future_t is time_from_true_anomaly(target_true_anomaly) + time:seconds.
+        return compute_dv(future_t).
     }
     if mode = "after fixed time" {
         local t_ is value.
-        return compute_dv_apsides(target_periapsis + body:radius, "periapsis", time:seconds + t_).
+        local future_t is t_ + time:seconds.
+        return compute_dv(future_t).
     }
     if mode = "at equatorial AN" {
         local trueanomaly is 360 - obt:argumentofperiapsis.
         local future_t is time_from_true_anomaly(trueanomaly) + time:seconds.
-        return compute_dv_apsides(target_periapsis + body:radius, "periapsis", future_t).
+        return compute_dv(future_t).
     }
     if mode = "at equatorial DN" {
         local trueanomaly is 180 - obt:argumentofperiapsis.
         local future_t is time_from_true_anomaly(trueanomaly) + time:seconds.
-        return compute_dv_apsides(target_periapsis + body:radius, "periapsis", future_t).
+        return compute_dv(future_t).
     }
     else {
         return null_mnv(mode_error_message+ mode).
@@ -1792,7 +1731,7 @@ function change_pe_and_ap {
         }
         if abs(cos_nu) = 1 {
             // single point intersection
-            return null_mnv("[ ORBIT ERROR ] : Single point intersection, use change_apoapsis or change_periapsis instead").
+            return null_mnv("[ ORBIT ERROR ] : Single point intersection, use change_apoapsis() or change_periapsis() instead").
         }
         if abs(cos_nu) < 1 {
             // nu choosing logic here
@@ -1890,18 +1829,20 @@ function change_semimajoraxis {
         local parameter ut.
 
         local pos is positionAt(ship,ut) - body:position.
+        local v1  is velocityAt(ship,ut):orbit.
         local nu is true_anomaly_at_ut(ut).
         local rmag is pos:mag.
         local discriminant is (rmag * cos(nu))^2 - 4 * target_smja * (rmag - target_smja).
         if discriminant < 0 {
-            return null_mnv("[ ORBIT ERROR] : No orbit possible with the given conditions").
-        } else {
-            local e2 is (- rmag * cos(nu) + sqrt(discriminant))/(2*target_smja).
-            local v1 is orbit_cartesian_velocity(nu,obt:semimajoraxis,obt:eccentricity).
-            local v2 is orbit_cartesian_velocity(nu,target_smja,e2).
-            local dV is v2 - v1.
-            return cartesian_to_TRN(dV,ut).
+            return null_mnv("[ ORBIT ERROR] : No orbit possible with the given parameters").
         }
+        local e2 is (- rmag * cos(nu) + sqrt(discriminant))/(2*target_smja).
+        if (e2 < 0) or (e2 > 1) {
+            return null_mnv("[ ORBIT ERROR] : No orbit possible with the given parameters").
+        }
+        local v2 is orbit_cartesian_velocity(nu,target_smja,e2).
+        local dV is v2 - v1.
+        return cartesian_to_TRN(dV,ut).
     }
     if mode = "at altitude" {
         local target_alt is value.
@@ -2079,7 +2020,7 @@ function change_surface_longitude_of_apsis {
 // - Will not engage if ISP is 0 or if RCS is       ||
 //   disabled.                                      ||
 //==================================================||
-// DEBUG.
+// DEBUG THIS PIECE OF SHIT.
 function rcs_corrector {
     local parameter mode.
     local parameter tgt_value.
@@ -2279,6 +2220,12 @@ function execute_node {
         // Phase 4: Execute the maneuver burn
         if runmode = "execute burn" {
             until burn_done {
+                // calculate max_acc
+                if thruster = "engine" {
+                    set max_acc to ship:maxthrust / ship:mass.
+                } else if thruster = "rcs" {
+                    set max_acc to rcs_total_thrust() / ship:mass.
+                }
                 // Estimate appropriate throttle based on remaining delta-V
                 set tset to min(mnv_node:deltav:mag / max_acc, 1).
 
@@ -3000,6 +2947,21 @@ function match_velocities_with_target {
 // set roll
 // set target speed
 
+
+//**************************************************||
+//--------------------------------------------------||
+//                 EXPERIMENTAL                     ||
+//--------------------------------------------------||
+//**************************************************||
+function free_return_trajectory {
+    // for entering a free return trajectory on mun/minmus ONLY.
+    // specify that orbit ecc must not be greater than 0.05 
+    // and difference in inclination not greater than 0.5 degrees.
+    // will work for various starting circular parking orbit radii
+    // idk how this one will work in general, maybe something similar to porkchop plots, maybe
+
+}
+
 //**************************************************||
 //--------------------------------------------------||
 //                 SPECIAL POINTS                   ||
@@ -3028,6 +2990,10 @@ function subsolar_point {
 // subsolar point                               <done>  
 // chage eccentricity                           <done>
 // change apoapsis / periapsis                  <done>
+// change semimajor axis                        <done>
+// change LAN                                   <done>
+// change Arg peri                              <done>
+//
 
 // plane guidance - set altitude
 // plane guidance - set vertical speed
@@ -3065,6 +3031,7 @@ function vector_display {
 
 function vector_debug { 
     // common debugging vectors
+    // the concept here is just draw them once for comparison, then do a clearvecdraws after some time.
     // universe basis vectors
     local zv is (latlng(90,0):position - body:position):normalized.
     local xv is solarPrimeVector:vec:normalized.
@@ -3093,7 +3060,3 @@ function vector_debug {
 //     local sign is float / abs(float).
 
 // }
-    // vecdraws!
-    // vecDraw(body:position, Zv*1e6, rgb(1,0,0),"Z",1,true,0.2,true,false). // Z basis
-    // vecDraw(body:position, Xv*1e6, rgb(0,0,1),"X",1,true,0.2,true,false). // X basis
-    // vecDraw(body:position, Yv*1e6, rgb(1,0,0),"Y",1,true,0.2,true,false). // Y basis
