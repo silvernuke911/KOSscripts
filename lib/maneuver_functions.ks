@@ -40,9 +40,12 @@
 //                   calculation times are now localized
 //                 - Thinking of using Rodrigues' formula
 //                   for the inclination problem. 
+//
 //  April 05, 2026 - Fixed the change eccentricity, it is now working
 //                   Fixed change apoapsis and change periapsis
 //                   Fixed change inclination using Rodrigues formula
+//                   For some fucking reason "time_from_true_anomaly" returns values that are 
+//                      0.02 seconds ahead of the actual value (1 physics tick). Added a stopgap solution.
 //                   Implemented change LAN
 //                   fixed match planes with target.
 //                   initialized change_pe_and_ap.
