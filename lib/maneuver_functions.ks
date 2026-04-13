@@ -60,6 +60,8 @@
 //                      will try to see later if it can accept negative values for hyperb. orbits.
 //                   Fixed change_apoapsis using better mathematical formulation.
 //                   Changed the max_acc calculation for execute_node to recalculate every burn loop.
+// April 13, 2026 - Added hohmann_maneuver to change circular oribtal radii effectively
+//                - Implemented hohmann transfer to target (impressive results).
 //--------------------------------------------------||
 
 //==================================================||
@@ -2861,30 +2863,21 @@ function hohmann_transfer_to_target {
     local delta_omega is 0.
     local target_phase is 0.
     local current_phase is 0.
-    local phase_error is 0.
-
     if trgt_a > ship_a {
         set delta_omega to (ship_omega - trgt_omega).
         set target_phase to 180 - trgt_omega * transfer_t.
         set current_phase to vector_to_true_anomaly(target:position - body:position) - obt:trueanomaly.
-        if current_phase < 0 {
-            set current_phase to current_phase + 360.
-        }
-        set phase_error to current_phase - target_phase.
-        if phase_error < 0 {
-            set phase_error to phase_error + 360.
-        }
     } else {
         set delta_omega to (trgt_omega - ship_omega).
         set target_phase to 180 + trgt_omega * transfer_t.
         set current_phase to obt:trueanomaly - vector_to_true_anomaly(target:position - body:position).
-        if current_phase < 0 {
-            set current_phase to current_phase + 360.
-        }
-        set phase_error to current_phase - target_phase.
-        if phase_error < 0 {
-            set phase_error to phase_error + 360.
-        }
+    }
+    if current_phase < 0 {
+        set current_phase to current_phase + 360.
+    }
+    local phase_error to current_phase - target_phase.
+    if phase_error < 0 {
+        set phase_error to phase_error + 360.
     }
     local wait_time is phase_error / delta_omega.
     local burn_t is wait_time + time:seconds.
@@ -2895,11 +2888,6 @@ function hohmann_transfer_to_target {
     local ship_burn_v is velocityAt(ship,burn_t):orbit.
     local ship_pos_v is positionAt(ship,burn_t) - body:position.
     local burn_vector is vxcl(ship_pos_v,ship_burn_v):normalized * transfer_v.
-    vecDraw(body:position, (target:position - body:position), rgb(1,0,0),"Y",1,true,0.2,true,false). // i basis
-    vecDraw(body:position, (ship:position - body:position), rgb(1,0,0),"Y",1,true,0.2,true,false). // i basis
-    vecDraw(body:position, (positionAt(target,burn_t) - body:position), rgb(0,1,0),"Y",1,true,0.2,true,false). // i basis
-    vecDraw(body:position, (positionAt(ship,burn_t) - body:position), rgb(0,1,0),"Y",1,true,0.2,true,false). // i basis
-    vecDraw(body:position, (positionAt(target,burn_t+transfer_t) - body:position), rgb(0,0,1),"Y",1,true,0.2,true,false). // i basis
     return inertial_to_PRN(burn_vector - ship_burn_v,burn_t).
 }
 
