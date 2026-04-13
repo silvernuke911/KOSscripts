@@ -1002,6 +1002,22 @@ function orbit_inertial_position {
     ).
 }
 
+// transform a given vector to a true anomaly.
+function vector_to_true_anomaly {
+    local parameter vector. // relative to body.
+
+    local P_vec is (positionat(ship, eta:periapsis + time:seconds) - body:position):normalized.
+    local H_vec is vCrs(velocityAt(ship, eta:periapsis + time:seconds):orbit,P_vec):normalized.
+    local Q_vec is vCrs(P_vec, H_vec):normalized.
+    set vector to vxcl(H_vec, vector).
+
+    local angle is vang(vector,P_vec).
+    if vdot(vector,Q_vec) < 0 {
+        return 360 - angle.
+    }
+    return angle.
+}
+
 //==================================================||
 //      FUNCTION: orbit_inertial_velocity           ||
 //--------------------------------------------------||
@@ -1991,7 +2007,6 @@ function change_argument_of_periapsis {
     local t_nu1 is time_from_true_anomaly(nu1) + time:seconds.
     local t_nu2 is time_from_true_anomaly(nu2) + time:seconds.
   
-    // print(t_nu1+ " " + t_nu2).
     if mode = "first half" {
         return inertial_to_PRN(dv1,t_nu1).
     }
@@ -2073,8 +2088,8 @@ function change_surface_longitude_of_apsis {
 function rcs_corrector {
     local parameter mode.
     local parameter tgt_value.
-    local parameter has_sas is true.
     local parameter tolerance is 10.
+    local parameter has_sas is true.
     
     if has_sas {
         sas on.
@@ -2088,12 +2103,13 @@ function rcs_corrector {
     rcs on.
     if mode = "apoapsis" {
         lock error to ship:obt:apoapsis - tgt_value.
+        print(error).
         lock errorsign to error/abs(error).
         lock errorMag to abs(error).
-
-        lock rcs_t to max(0.05,min(1, (errorMag)/tgt_value)).
+        lock rcs_t to max(0.1,min(1, (errorMag)/tgt_value)).
         until errorMag <= tolerance {
             set ship:control:fore to -errorsign*rcs_t.
+            print(-errorsign*rcs_t).
             wait 0.
         }
         shut_down().
@@ -2103,7 +2119,7 @@ function rcs_corrector {
         lock errorsign to error/abs(error).
         lock errorMag to abs(error).
 
-        lock rcs_t to max(0.05,min(1, 1000*(errorMag)/tgt_value)).
+        lock rcs_t to max(0.1,min(1,(errorMag)/tgt_value)).
         until errorMag <= tolerance {
             set ship:control:fore to -errorsign*rcs_t.
             wait 0.
@@ -2584,6 +2600,7 @@ function inclination_heading {
 
     // Ensure inclination is physically achievable at the current latitude
     if current_latitude > target_inclination {
+        print("[ INCL ERROR ] : Current latitude higher than target inclination. Adjusting").
         set target_inclination to current_latitude.
     }
 
@@ -2684,8 +2701,8 @@ function lambert_solver{
     // radius vectors are measured relative to center body, 
     // i.e., sun (if interplanetary) or kerbin (if interlunar) is [0,0,0].
 
-    local parameter r1.   // position when launching
-    local parameter r2.   // position at arrival
+    local parameter r1.   // ship position when launching
+    local parameter r2.   // target position at arrival
     local parameter tof.  // time of flight
     local parameter mu.   // just body:mu
     local parameter t_m.  // transfer direction. +1 for shortway, -1 for longway
@@ -2693,8 +2710,8 @@ function lambert_solver{
     local parameter psi is 0.
     local parameter psi_u is 4 * constant():pi^2.
     local parameter psi_l is - 4 * constant():pi.
-    local parameter max_iter is 1000.
-    local parameter tol is 1e-12.
+    local parameter max_iter is 500.
+    local parameter tol is 1e-6.
     
     local function c_2{
         local parameter z.
@@ -2808,6 +2825,7 @@ function fine_tune_closest_approach_to_target {
     // local parameter target_distance.
     // at certain time 300 s
     // then just do a lambert solver  
+    // use rcs
 }
 
 function intercept_target_at_chosen_time {
@@ -2822,16 +2840,67 @@ function hohmann_transfer_to_target {
     if not hasTarget {
         return null_mnv("[ TRGT ERROR ] : No target selected").
     }
+    local ship_h is vcrs(ship:velocity:orbit,ship:position-body:position).
+    local trgt_h is vcrs(target:velocity:orbit,target:position - body:position).
+    if vang(ship_h,trgt_h) > 0.1 {
+        return null_mnv("[ TRGT ERROR] : Ship not on the same plane as target. delta inc > 0.1").
+    }
     if obt:eccentricity > 0.005 {
         return null_mnv("[ ORBT ERROR ] : Current orbit e > 0.01").
     }
-    if target:eccentricity > 0.005 {
+    if target:obt:eccentricity > 0.005 {
         return null_mnv("[ TRGT ERROR ] : Target orbit e > 0.01").
     }
-    // timing logic
-    // run change_apoapsis() on target radius
-    // fine tune closest approach to target to within 100 m
-    // then advi
+
+    local ship_a is obt:semimajoraxis.
+    local trgt_a is target:obt:semimajoraxis.
+    local transfer_a is (ship_a  + trgt_a) / 2. // conservative estimate with minimal error.
+    local transfer_t is constant:pi * sqrt(transfer_a^3 / body:mu).
+    local ship_omega is sqrt(body:mu / ship_a^3)*constant:radtodeg.
+    local trgt_omega is sqrt(body:mu / trgt_a^3)*constant:radtodeg.
+    local delta_omega is 0.
+    local target_phase is 0.
+    local current_phase is 0.
+    local phase_error is 0.
+
+    if trgt_a > ship_a {
+        set delta_omega to (ship_omega - trgt_omega).
+        set target_phase to 180 - trgt_omega * transfer_t.
+        set current_phase to vector_to_true_anomaly(target:position - body:position) - obt:trueanomaly.
+        if current_phase < 0 {
+            set current_phase to current_phase + 360.
+        }
+        set phase_error to current_phase - target_phase.
+        if phase_error < 0 {
+            set phase_error to phase_error + 360.
+        }
+    } else {
+        set delta_omega to (trgt_omega - ship_omega).
+        set target_phase to 180 + trgt_omega * transfer_t.
+        set current_phase to obt:trueanomaly - vector_to_true_anomaly(target:position - body:position).
+        if current_phase < 0 {
+            set current_phase to current_phase + 360.
+        }
+        set phase_error to current_phase - target_phase.
+        if phase_error < 0 {
+            set phase_error to phase_error + 360.
+        }
+    }
+    local wait_time is phase_error / delta_omega.
+    local burn_t is wait_time + time:seconds.
+    local transfer_apoapsis is (positionAt(target,burn_t) - body:position):mag - body:radius.
+    local transfer_periapsis is (positionAt(ship,burn_t) - body:position):mag - body:radius.
+    set transfer_a to (transfer_apoapsis + transfer_periapsis)/2 + body:radius.
+    local transfer_v is vis_viva_equation(transfer_periapsis,transfer_a).
+    local ship_burn_v is velocityAt(ship,burn_t):orbit.
+    local ship_pos_v is positionAt(ship,burn_t) - body:position.
+    local burn_vector is vxcl(ship_pos_v,ship_burn_v):normalized * transfer_v.
+    vecDraw(body:position, (target:position - body:position), rgb(1,0,0),"Y",1,true,0.2,true,false). // i basis
+    vecDraw(body:position, (ship:position - body:position), rgb(1,0,0),"Y",1,true,0.2,true,false). // i basis
+    vecDraw(body:position, (positionAt(target,burn_t) - body:position), rgb(0,1,0),"Y",1,true,0.2,true,false). // i basis
+    vecDraw(body:position, (positionAt(ship,burn_t) - body:position), rgb(0,1,0),"Y",1,true,0.2,true,false). // i basis
+    vecDraw(body:position, (positionAt(target,burn_t+transfer_t) - body:position), rgb(0,0,1),"Y",1,true,0.2,true,false). // i basis
+    return inertial_to_PRN(burn_vector - ship_burn_v,burn_t).
 }
 
 function intercept_target {
@@ -3037,13 +3106,20 @@ function free_return_trajectory {
 }
 
 function hohmann_maneuver {
-    // minimum e < 0.01
-    // target_altitude
-    // mode - at periapsis / at apoapsis / after fixed time
-    // change_apoapsis(target_altitude,mode)
-    // rcs_corrector("apoapsis) // I think just implement this directly.
-    // circularize("at apoapsis")
-    // return.
+    local parameter tgt_altitude.
+    local parameter mode.
+    local parameter value is 0.
+    
+    if obt:eccentricity > 0.01 {
+        print("[ ORBT ERROR ] : Eccentricity greater than 0.01").
+        return.
+    }
+    create_node(change_apoapsis(tgt_altitude,mode,value)).
+    execute_node().
+    rcs_corrector("apoapsis",tgt_altitude).
+    create_node(circularize("at apoapsis")).
+    execute_node().
+    return.
 }
 //**************************************************||
 //--------------------------------------------------||
@@ -3102,7 +3178,7 @@ function subsolar_point {
 // transposition and docking
 // LM descent 
 // rendezvouz and docking.
-
+// 
 //**************************************************||
 //--------------------------------------------------||
 //                DEBUG FUNCTIONS                   ||
