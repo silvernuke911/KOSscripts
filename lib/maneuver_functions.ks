@@ -2689,6 +2689,7 @@ function inclination_heading {
 //            transfer                              ||
 //     - v2 : (vector) Velocity at r2 upon arrival  ||
 //                                                  ||
+//   All vectors are in SOI-RAW                     ||
 //   If the solver fails to converge, returns two   ||
 //   zero vectors                                   ||
 //==================================================||
@@ -2709,12 +2710,12 @@ function lambert_solver{
     local parameter mu.   // just body:mu
     local parameter t_m.  // transfer direction. +1 for shortway, -1 for longway
 
-    local parameter psi is 0.
-    local parameter psi_u is 4 * constant():pi^2.
-    local parameter psi_l is - 4 * constant():pi.
-    local parameter max_iter is 500.
-    local parameter tol is 1e-6.
+    local parameter N is 0.          // for multiple orbit passes
+    local parameter max_iter is 500. // maximum iterations for bisection search convergence
+    local parameter tol is 1e-6.     // time tolerance
     
+    local null_vector is v(0,0,0)
+    // stumpff function c2
     local function c_2{
         local parameter z.
 
@@ -2723,16 +2724,17 @@ function lambert_solver{
             return (constant:e^(x) + constant:e^ (-x)) / 2.
         }
         if z > 0 {
-            return (1 - cos(constant:radtodeg * sqrt(z))) / z.
+            return (1.0 - cos(constant:radtodeg * sqrt(z))) / z.
         }
         if z < 0 {
-            return (1 - cosh(-z)) / -z.
+            return (1.0 - cosh(sqrt(-z))) / z.
         }
         else {
             return 1/2 .
         }
     }
 
+    // stumpff function c3
     local function c_3 {
         local parameter z.
         local function sinh{
@@ -2754,61 +2756,85 @@ function lambert_solver{
     local mag_r2 to  r2:mag.
 
     local gamma to vdot(r1,r2) / (mag_r1 * mag_r2).
+    // cross product for transfer angle determination
+    local cross_r1r2 is vcrs(r1,r2).
+    // Determine A based on transfer type.
     local A to t_m * sqrt(mag_r1 * mag_r2 * (1  + gamma)).
+    if t_m = 0 {
+        set A to sqrt(mag_r1 * mag_r2 * (1  + gamma)).
+        if vdot(cross_r1r2, (latlng(90,0):position - body:position)) < 0 {
+            set A to - A.
+        } 
+    }
+
+    if A = 0 {
+        print "Orbit cannot exist".
+        return list(null_vector, null_vector).
+    }
+
+    local psi   is 0. // initial guess for psi
+    local psi_u is 0. // psi upper
+    local psi_l is 0. // psi lower
+    if N = 0 { // 1 revolution
+        set psi   to   0.    
+        set psi_u to   4 * constant():pi^2. 
+        set psi_l to - 4 * constant():pi^2.
+    } else { // N revolution case
+        set psi_u to (2 * (N + 1) * constant():pi)^2. 
+        set psi_l to (2 * N * constant():pi)^2. 
+        set psi   to (psi_l + psi_u) / 2. 
+    }
 
     local B to 0.
     local chi3 to 0.
     local tof_ to 0.
-
-    if A = 0 {
-        print "Orbit cannot exist".
-        return list(v(0,0,0), v(0,0,0)).
-    }
-
     local c2 to 0.5.
     local c3 to 1/6.
 
     local solved to false.
 
     from { local i is 0.} until i >= max_iter step { set i to i + 1.} do {
-        set B to mag_r1 + mag_r2 + A * (psi * c3 - 1) / sqrt(c2).
+        set c2 to c_2(psi).
+        set c3 to c_3(psi).
+        set B to mag_r1 + mag_r2 + A * (psi * c3 - 1) / sqrt(c2). // Compute B.
 
-        if ((A > 0) and (B < 0)) {
-            set psi_l to psi_l + constant:pi.
+        if B < 0 {                      // Ensure B is valid
+            set psi_l to psi.
+            set psi to (psi_u + psi_l)/2.
         }
-
+        // compute time of flight for this psi.
         set chi3 to ( B / c2 )^1.5.
         set tof_ to (chi3 * c3 + A * sqrt(B)) / sqrt(mu).
-
+        //check convergence
         if abs(tof - tof_) < tol {
             set solved to true.
             break.
         }
-
+        // update bounds using bisection
         if tof_ < tof {
             set psi_l to psi.
         } else {
             set psi_u to psi.
         }
-
         set psi to (psi_u + psi_l)/2.
-        set c2 to c_2(psi).
-        set c3 to c_3(psi).
     }
 
     if not solved {
-        print "Did not converge".
-        return list(v(0,0,0), v(0,0,0)).
+        print "[ ERROR ] Did not converge".
+        return list(null_vector, null_vector).
     }
-
+    // compute fuinal velocities
     local f to 1 - B / mag_r1.
     local g to A * sqrt( B / mu).
     local g_dot to 1 - B / mag_r2.
+    // avoid division by zero.
+    if abs(g) < 1e-12 {
+        print "[ ERROR ] Near zero [g] division".
+        return list(v(3.8e38,3.8e38,3.8e38),v(3.8e38,3.8e38,3.8e38)).
+    }
     local f_dot to (f * g_dot - 1) / g.
-
     local v1 to (r2 - f * r1) / g.
     local v2 to f_dot * r1 + g_dot * v1.
-
     return list(v1,v2).
 }
 // make a function for porkchop plotting, 
@@ -2848,10 +2874,10 @@ function hohmann_transfer_to_target {
         return null_mnv("[ TRGT ERROR] : Ship not on the same plane as target. delta inc > 0.1").
     }
     if obt:eccentricity > 0.005 {
-        return null_mnv("[ ORBT ERROR ] : Current orbit e > 0.01").
+        return null_mnv("[ ORBT ERROR ] : Current orbit e > 0.005").
     }
     if target:obt:eccentricity > 0.005 {
-        return null_mnv("[ TRGT ERROR ] : Target orbit e > 0.01").
+        return null_mnv("[ TRGT ERROR ] : Target orbit e > 0.005").
     }
 
     local ship_a is obt:semimajoraxis.
@@ -2912,6 +2938,196 @@ function dock_to_target {
     // local parameter approach_speed.
 
 }
+
+function time_of_closest_approach {
+    local parameter t0 is time:seconds.
+    local parameter tf is time:seconds + obt:period.
+    local parameter n is 21.
+    local parameter max_iter is 100.
+    local parameter tol is 1e-6.
+
+    if not hastarget {
+        return null_mnv("[ TRGT ERROR ] : No target detected. Please set target").
+    }
+
+    local function distance {
+        local parameter ut.
+        local ship_posv is positionat(ship, ut).
+        local trgt_posv is positionat(target,ut).
+        local diff_v is trgt_posv - ship_posv.
+        return dif_v:mag.
+    }
+
+    local t_list is list().
+    for i in range(n) {
+        local t_value is t0 + (i / (n - 1)) * (tf - t0).
+        t_list:add(t_value).
+    }
+
+    local minima_idx is list(0,n-1).
+    for i in range(1,n - 1) {
+        if (distance(t_list[i]) < distance(t_list[i - 1])) and (distance(t_list[i]) < distance(t_list[i + 1])) {
+            minima_idx:add(i).
+        }
+    }
+
+    local function brent_min {
+        local parameter a.
+        local parameter b.
+
+        local cgold is 0.3819660112501051.
+        local zeps is 1e-18.
+
+        local initval is a + 0.5 * (b - a).
+        local x is initval.
+        local w is initval.
+        local v is initval.
+
+        local funceval is distance(x).
+        local fx is funceval.
+        local fw is funceval.
+        local fv is funceval.
+
+        local d is 0.0.
+        local e is 0.0.
+
+        from {local i is 0.} until (i = max_iter) step {set i to i+1.} do {
+            local xm is 0.5 * (a + b).
+            local tol1 is tol * abs(x) + zeps.
+            local tol2 is 2.0 * tol1.
+
+            if (abs(x - xm) <= (tol2 - 0.5 * (b - a))) {
+                return x.
+            }
+
+            local p is 0.0.
+            local q is 0.0.
+            local r is 0.0.
+
+            if (abs(e) > tol1) {
+                set r to (x - w) * (fx - fv).
+                set q to (x - v) * (fx - fw).
+                set p to (x 0 v) * q - (x - w) * r.
+                set q to 2.0 * (q - r).
+
+                if (q > 0) {
+                    set p to - p.
+                }
+                set q to abs(q).
+                local etemp is e.
+                set e to d.
+
+                if (abs(p) < abs(0.5 * q * etemp)) and (p > q * (a - x)) and (p < q * (b - x)) {
+                    set d to p / q.
+                    local u is x + d.
+
+                    if (u - a < tol2) or (b - u < tol2) {
+                        if x < xm {
+                            set d to tol1.
+                        } else {
+                            set d to -tol1.
+                        }
+                    }
+                } else {
+                    if (x < xm) {
+                        set e to b - x.
+                    } else {
+                        set e to a - x.
+                    }
+                    set d to cgold * e.
+                }
+            } else {
+                if (x < xm) {
+                    set e to b - x.
+                } else {
+                    set e to a - x.
+                }
+                set d to cgold * e.
+            }
+            local u is 0.
+            if (abs(d) >= tol1) {
+                set u to x + d.
+            } else {
+                if (d > 0.0) {
+                    set u to x + tol1.
+                } else {
+                    set u to x - tol1.
+                }
+            }
+
+            local fu is distance(u).
+
+            if (fu <= fx) {
+                if (u >= x) {
+                    set a to x.
+                } else {
+                    set b to x.
+                }
+                set v to w.
+                set w to x.
+                set x to u.
+                set fv to fw.
+                set fw to fx.
+                set fx to fu.
+            } else {
+                if (u < x) {
+                    set a to u.
+                } else {
+                    set b to u,
+                }
+                if ((fu <= fw) or (w = x)) {
+                    set v to w.
+                    set w to u.
+                    set fv to fw.
+                    set fw to fu.
+                } else if ((fu <= fv) or ( v = x) or ( v = w)){
+                    set v to u.
+                    set fv to fu.
+                }
+            }
+        }
+        return x.
+    }    
+    local best_t is -1.
+    local best_f is 3.4e38.
+    local t_candidate is -1.
+    local f_candidate is 3.4e38.
+    for midx in minima_idx {
+        if (midx = 0) {
+            set t_candidate to t_list[0].
+            set f_candidate to distance(t_candidate).
+        } else if (midx = n - 1) {
+            set t_candidate to t_list[n - 1].
+            set f_candidate to distance(t_candidate).
+        } else {
+            local a is t_list[midx - 1].
+            local b is t_list[midx + 1].
+            t_candidate = brent_min(a,b).
+            f_candidate = distance(t_candidate).
+        }
+        if f_candidate < best_f {
+            set best_f to f_candidate.
+            set best_t to t_candidate. 
+        }
+    }
+    if best_t = -1 {
+        set best_t to t_list[0].
+        set best_f to distance(best_t).
+
+        for t in t_list {
+            local ft is distance(t).
+            if (ft < best_f) {
+                set best_f to ft.
+                set best_t to t.
+            }
+        }
+    }
+    if ((abs(best_t - t0) < 2 * tol) or (abs(best_t - tf) < 2 * tol)) {
+        print("[ CAUTION ] : Minimum might lie outside ["+t0+","+tf+"]").
+    }
+    return best_t.
+}   
+
 //==================================================||
 //      FUNCTION: match_planes_with_target          ||
 //--------------------------------------------------||
@@ -2932,8 +3148,6 @@ function dock_to_target {
 //                      closest of relative AN or DN||
 //          - "at cheapest node" : Chooses the node ||
 //                      requiring less delta-V.     ||
-//          - "at altitude"                         ||
-//          - "after fixed time"                    ||
 //                                                  ||
 // RETURNS:                                         ||
 //   A manueuver node                               ||
