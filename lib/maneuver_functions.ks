@@ -941,7 +941,6 @@ function inertial_to_PRN {
     } else {
         return list(dv_r, dv_n, dv_p).
     }
-
 }
 
 //==================================================||
@@ -2158,9 +2157,10 @@ function rcs_corrector {
 //                                                  ||
 // PARAMETERS:                                      ||
 //   has_sas     : (optional) If true, enables SAS  ||
-//                 to lock to MANEUVER.Default:TRUE ||
+//                 to lock to MANEUVER              ||
 //                 Make FALSE if the craft has no   ||
-//                 SAS capabilities                 ||
+//                 SAS capabilities or targeting    ||
+//                 capabilities                     ||
 //                 (i.e. small probes)              ||
 //   warp_to_node: (optional) If true, warps to     ||
 //                 burn start. Default: ON          ||
@@ -2256,43 +2256,137 @@ function execute_node {
     }
     // Burn state and control flow variables
     local burn_done to false.
-    local runmode is "turning to mnv". // Initial state: turn toward maneuver
+    local current_state is "turning to mnv". // Initial state: turn toward maneuver
+    // local handlers is lexicon().
+    // // BURN CONTROL LOOP
+    // handlers:add( // Phase 1: Rotate to maneuver node direction
+    //     "turning to mnv",
+    //     {
+    //         if not has_reac_wheels {
+    //             rcs on.
+    //         }
+    //         if vang(ship:facing:vector, mnv_node:deltav:vec) <= 0.5 {
+    //             return "coasting to node". // Ready to warp once aligned
+    //         }
+    //         return "turning to mnv".
+    //     }
+    // ).
+    // handlers:add( // Phase 2: Warp to just before burn if enabled
+    //     "coasting to node",
+    //     {
+    //         if warp_to_node {
+    //             c_warpto(mnv_node:eta - half_time - 10).
+    //             return "waiting for node".
+    //         }
+    //         else {
+    //             return "waiting for node".
+    //         }
+    //     }
+    // ).
+    // handlers:add ( // Phase 3: Wait until burn start point
+    //     "waiting for node",
+    //     {
+    //         if mnv_node:eta <= half_time {
+    //             if thruster = "rcs" {
+    //                 rcs on.
+    //             }
+    //             set current_state to "execute burn".
+    //         }
+    //         return "waiting for node".
+    //     }
+    // ).
+    // handlers:add (  // Phase 4: Execute the maneuver burn
+    //     "execute burn",
+    //     {
+    //         until burn_done {
+    //             // calculate max_acc
+    //             if thruster = "engine" {
+    //                 set max_acc to ship:maxthrust / ship:mass.
+    //             } else if thruster = "rcs" {
+    //                 set max_acc to rcs_total_thrust() / ship:mass.
+    //             }
+    //             // Estimate appropriate throttle based on remaining delta-V
+    //             set tset to min(mnv_node:deltav:mag / max_acc, 1).
 
-    // Main control loop for handling node execution phases
-    until runmode = "burn done" {
+    //             // Abort burn if the dot product goes negative (overshot)
+    //             if vDot(init_dv, mnv_node:deltav) < 0 {
+    //                 lock throttle to 0.
+    //                 break.
+    //             }
+
+    //             // Stop burn when remaining delta-V is small
+    //             if mnv_node:deltav:mag < 0.1 {
+    //                 wait until vDot(init_dv, mnv_node:deltav) < 0.5.
+    //                 lock throttle to 0.
+    //                 set burn_done to true.
+    //             }
+    //             wait 0.
+    //         }
+    //         return "post burn".
+    //     }
+    // ).
+    // handlers:add ( // Phase 5: Restore SAS and controls after burn
+    //     "post burn",
+    //     {
+    //         rcs off.
+    //         if has_sas {
+    //             set sasMode to "STABILITYASSIST".
+    //         } else {
+    //             lock throttle to 0.
+    //             unlock steering.
+    //             sas on.
+    //             set sasMode to "STABILITYASSIST".
+    //         }
+    //         return "remove mnv". // Final phase
+    //     }
+    // ).
+    // handlers:add ( // Phase 6: Remove the maneuver node
+    //     "remove mnv",
+    //     {
+    //         remove mnv_node.
+    //         set current_state to "burn done".
+    //     }
+    // ).
+    // // Main control loop for handling node execution phases
+    // until current_state = "burn done" {
+    //     local handler is handlers[current_state].
+    //     set current_state to handler().
+    //     wait 0.
+    // }
+    until current_state = "burn done" {
         // Phase 1: Rotate to maneuver node direction
-        if runmode = "turning to mnv" {
+        if current_state = "turning to mnv" {
             if not has_reac_wheels {
                 rcs on.
             }
             if vang(ship:facing:vector, mnv_node:deltav:vec) <= 0.5 {
-                set runmode to "warping". // Ready to warp once aligned
+                set current_state to "coasting". // Ready to warp once aligned
             }
         }
 
         // Phase 2: Warp to just before burn if enabled
-        if runmode = "warping" {
+        if current_state = "coasting" {
             if warp_to_node {
                 c_warpto(mnv_node:eta - half_time - 10).
-                set runmode to "waiting for node".
+                set current_state to "waiting for node".
             }
             else {
-                set runmode to "waiting for node".
+                set current_state to "waiting for node".
             }
         }
 
         // Phase 3: Wait until burn start point
-        if runmode = "waiting for node" {
+        if current_state = "waiting for node" {
             if mnv_node:eta <= half_time {
                 if thruster = "rcs" {
                     rcs on.
                 }
-                set runmode to "execute burn".
+                set current_state to "execute burn".
             }
         }
 
         // Phase 4: Execute the maneuver burn
-        if runmode = "execute burn" {
+        if current_state = "execute burn" {
             until burn_done {
                 // calculate max_acc
                 if thruster = "engine" {
@@ -2317,11 +2411,11 @@ function execute_node {
                 }
                 wait 0.
             }
-            set runmode to "post burn". // Proceed to cleanup
+            set current_state to "post burn". // Proceed to cleanup
         }
 
         // Phase 5: Restore SAS and controls after burn
-        if runmode = "post burn" {
+        if current_state = "post burn" {
             rcs off.
             if has_sas {
                 set sasMode to "STABILITYASSIST".
@@ -2331,13 +2425,13 @@ function execute_node {
                 sas on.
                 set sasMode to "STABILITYASSIST".
             }
-            set runmode to "remove mnv". // Final phase
+            set current_state to "remove mnv". // Final phase
         }
 
         // Phase 6: Remove the maneuver node
-        if runmode = "remove mnv" {
+        if current_state = "remove mnv" {
             remove mnv_node.
-            set runmode to "burn done".
+            set current_state to "burn done".
         }
 
         wait 0.
@@ -2693,7 +2787,7 @@ function inclination_heading {
 //   If the solver fails to converge, returns two   ||
 //   zero vectors                                   ||
 //==================================================||
-function lambert_solver{
+function lambert_solver {
     
     // A lambert solver utilizing universal variable formulation
     // The algorithm was adapted from this paper: 
@@ -2742,10 +2836,12 @@ function lambert_solver{
             return (constant:e^(x) - constant:e^ (-x)) / 2.
         }
         if z > 0 {
-            return (sqrt(z) - sin(constant:radtodeg * sqrt(z))) / sqrt(z)^3.
+            local sqrtz is sqrt(z).
+            return (sqrtz - sin(constant:radtodeg * sqrtz)) / (z)^1.5.
         }
         if z < 0 {
-            return (sinh(sqrt(-z)) - sqrt(-z)) / sqrt(-z)^3.
+            local sqrtmz is sqrtmz.
+            return (sinh(sqrtmz) - sqrtmz) / (-z)^1.5.
         }
         else {
             return 1/6 .
@@ -2755,7 +2851,8 @@ function lambert_solver{
     local mag_r1 to r1:mag.
     local mag_r2 to r2:mag.
 
-    local gamma to vdot(r1,r2) / (mag_r1 * mag_r2).
+    // local gamma to vdot(r1,r2) / (mag_r1 * mag_r2).
+    local gamma to cos(vang(r1, r2)).
     // cross product for transfer angle determination
     local cross_r1r2 is vcrs(r1,r2).
     // Determine A based on transfer type.
@@ -2777,11 +2874,11 @@ function lambert_solver{
     local psi_l is 0. // psi lower
     if N = 0 { // 1 revolution
         set psi   to   0.    
-        set psi_u to   4 * constant():pi^2. 
-        set psi_l to - 4 * constant():pi^2.
+        set psi_u to   4 * constant:pi^2. 
+        set psi_l to - 4 * constant:pi^2.
     } else { // N revolution case
-        set psi_u to (2 * (N + 1) * constant():pi)^2. 
-        set psi_l to (2 * N * constant():pi)^2. 
+        set psi_u to (2 * (N + 1) * constant:pi)^2. 
+        set psi_l to (2 * N * constant:pi)^2. 
         set psi   to (psi_l + psi_u) / 2. 
     }
 
@@ -2798,25 +2895,29 @@ function lambert_solver{
         set c3 to c_3(psi).
         set B to mag_r1 + mag_r2 + A * (psi * c3 - 1) / sqrt(c2). // Compute B.
 
-        if B < 0 {                      // Ensure B is valid
+       if B < 0 {
+            // B negative - adjust bounds only
             set psi_l to psi.
             set psi to (psi_u + psi_l)/2.
-        }
-        // compute time of flight for this psi.
-        set chi3 to ( B / c2 )^1.5.
-        set tof_ to (chi3 * c3 + A * sqrt(B)) / sqrt(mu).
-        //check convergence
-        if abs(tof - tof_) < tol {
-            set solved to true.
-            break.
-        }
-        // update bounds using bisection
-        if tof_ < tof {
-            set psi_l to psi.
         } else {
-            set psi_u to psi.
+            // B is positive, safe to compute chi3 and tof
+            set chi3 to (B / c2)^(1.5).
+            set tof_ to (chi3 * c3 + A * sqrt(B)) / sqrt(mu).
+            
+            // Check convergence
+            if abs(tof - tof_) < tol {
+                set solved to true.
+                break.
+            }
+            
+            // Update bounds using bisection
+            if tof_ < tof {
+                set psi_l to psi.
+            } else {
+                set psi_u to psi.
+            }
+            set psi to (psi_u + psi_l)/2.
         }
-        set psi to (psi_u + psi_l)/2.
     }
 
     if not solved {
@@ -2850,16 +2951,73 @@ function lambert_solver{
 //**************************************************||
 //  TO BE DONE
 function fine_tune_closest_approach_to_target {
-    // local parameter target_distance.
-    // at certain time 300 s
-    // then just do a lambert solver  
-    // use rcs
+    local parameter target_distance is 100.
+    local parameter at_certain_time is 90.
+    local parameter tof_resol is 60.
+    if not hasTarget {
+        return null_mnv("[ TRGT ERROR ] : No target selected").
+    }
+    local t0 is time:seconds + at_certain_time.
+    local ut_nearest is time_of_closest_approach().
+    local dst_nearest is target_distance_at_ut(ut_nearest).
+    local tof_min is 0.8 * (ut_nearest - t0).
+    local tof_max is 1.2 * (ut_nearest - t0).
+    if dst_nearest < target_distance {
+        return null_mnv("[ MNVR ERROR ] : Closest approach already within parameters.").
+    }
+    local tof_list is linspace(tof_min,tof_max,tof_resol).
+    local r1 is positionAt(ship, time:seconds + at_certain_time) - body:position.
+    local vshp is velocityAt(ship,t0):orbit.
+    local best_v1 is v(0,0,0).
+    local best_dV is 3e38.
+    from { local j is 0. } until j >= tof_resol step { set j to j + 1. } do {
+        local r2 is positionAt(target,t0 + tof_list[j]) - body:position.
+        local transfer_vectors is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
+        local v1 is transfer_vectors[0].
+        local v2 is transfer_vectors[1].
+        local vtgt is velocityAt(target,t0 + tof_list[j]):orbit.
+        if vdot(v1,vshp) < 0 {
+            set transfer_vectors to lambert_solver(r1, r2,tof_list[j],body:mu,-1).
+            set v1 to transfer_vectors[0].
+            set v2 to transfer_vectors[1].
+        }
+        local total_dV is ((v1-vshp):mag + (v2 - vtgt):mag).
+        if total_dV < best_dV {
+            set best_v1 to v1.
+        }
+    }
+    return inertial_to_PRN(best_v1 - velocityAt(ship, t0):orbit, t0).
 }
 
 function intercept_target_at_chosen_time {
-    // local parameter time_after_burn. // time after burn to intercept target
-    // local parameter after_time. // how many seconds from NOW to execute the mode. 
-    // lambert solver this shit
+    local parameter after_time.         // how many seconds from NOW to execute the mode. 
+    local parameter time_after_burn.    // time after burn to intercept target
+    if not hasTarget {
+        return null_mnv("[ TRGT ERROR ] : No target selected").
+    }
+    local after_time_ut is after_time + time:seconds.
+    local r1 is positionAt(ship, after_time_ut) - body:position.
+    local r2 is positionAt(target, after_time_ut + time_after_burn) - body:position.
+    
+    // Try both transfer types
+    local sol1 is lambert_solver(r1, r2, time_after_burn, body:mu, +1).
+    local sol2 is lambert_solver(r1, r2, time_after_burn, body:mu, -1).
+    
+    local v1_1 is sol1[0].
+    local v1_2 is sol2[0]. 
+    
+    local vshp is velocityAt(ship, after_time_ut):orbit.
+
+    local dV1 is (v1_1 - vshp):mag.
+    local dV2 is (v1_2 - vshp):mag.
+    
+    // Choose the better transfer type
+    local v1 is v1_1.
+    if dV2 < dV1 { 
+        set v1 to v1_2. 
+    }
+    local dV_vec is v1 - vshp.
+    return inertial_to_PRN(dV_vec, after_time_ut).
 }
 
 function hohmann_transfer_to_target {
@@ -2918,19 +3076,27 @@ function hohmann_transfer_to_target {
 }
 
 function intercept_target {
-    // local parameter mode.
-    // local parameter include_target_matching is True.
+    local parameter mode is "lowest dv".
+    local parameter value is 0.
+    local parameter include_2nd_burn is True.
+    local safe_time is 60.
 
     // we're gonna lambert solver this shit.
-    // if mode = "lowest dV" {
-    //         // lowest possible delta v, including matching velocity. // within one orbit of target body .
-    // }
-    // if mode = "at certain time" {
-    //     // initiate orbit after specified time.
-    // }
-    // if mode = "as soon as possible" {
-    //         // lowest possible delta v 30 s from now.
-    // }
+    if mode = "lowest dv" {
+        local ref1_time is min(obt:period,target:obt:period).
+        local ref2_time is max(obt:period,target:obt:period).
+        local t0 is time:seconds + safe_time.
+        local tf is time:seconds + ref1_time.
+        local tof0 is ref2_time * 0.2.
+        local toff is ref2_time * 0.8.
+        return porkchop_evaluation2(t0, tf, tof0, toff, mode, include_2nd_burn).
+    }
+    if mode = "at certain time" {
+        // initiate orbit after specified time.
+    }
+    if mode = "as soon as possible" {
+            // lowest possible delta v 30 s from now.
+    }
 }
 
 function dock_to_target {
@@ -3007,6 +3173,7 @@ function time_of_closest_approach {
         }
         return (a + b) / 2.
     }
+
     local best_t is -1.
     local best_f is 3.4e38.
     local t_candidate is -1.
@@ -3344,62 +3511,6 @@ function vector_debug {
 
 // }
 
-// local function find_minidx {
-//     local parameter tmin_list.
-//     local minidx is -1.
-//     local mindist is 3.8e38.
-//     for k in range(5) {
-//         if target_distance_at_ut(tmin_list[k]) < mindist {
-//             set minidx to k.
-//             set mindist to target_distance_at_ut(tmin_list[minidx]).
-//         }
-//     }
-//     return minidx.
-// }
-// local function five_point_seach {
-//     local parameter a.
-//     local parameter b.
-//     local min_list is list().
-//     for i in range(5) {
-//         local t_value is a + (i / (4)) * (b - a).
-//         min_list:add(t_value).
-//     }
-//     local min_t is 3.4e38.
-//     local p0 is -1.
-//     local p1 is -1.
-//     local p2 is -1.
-//     local p3 is -1.
-//     local p4 is -1.
-//     for j in range(max_iter) {
-//         local minidx is find_minidx(min_list).
-//         if minidx = 0 {
-//             set p0 to min_list[0].
-//             set p2 to min_list[1].
-//             set p4 to min_list[2].
-//         } else if minidx = 4 {
-//             set p0 to min_list[2].
-//             set p2 to min_list[3].
-//             set p4 to min_list[4].
-//         } else {
-//             set p0 to min_list[minidx-1].
-//             set p2 to min_list[minidx].
-//             set p4 to min_list[minidx+1].
-//         }   
-//         if j = max_iter - 1{
-//             set min_t to p2.
-//         }
-//         set p1 to (p0 + p2)/2.
-//         set p3 to (p2 + p4)/2.  
-//         if (abs(p2-p4)<tol) and (abs(p0-p2)<tol) {
-//             set min_t to p2. 
-//             break.
-//         } else {
-//             set min_list to list(p0,p1,p2,p3,p4).
-//         }
-//     }
-//     return min_t.
-// }
-
 function linspace {
     local parameter x0.
     local parameter xf.
@@ -3409,7 +3520,7 @@ function linspace {
     }
     local output is list().
     for i in range(n) {
-        output:append(x0 + (i/(n - 1)) * (xf - x0)).
+        output:add(x0 + (i/(n - 1)) * (xf - x0)).
     }
     return output.
 }
@@ -3421,7 +3532,7 @@ function arange {
     local n is floor((xf - x0) / dx).
     local output is list().
     for i in range(n) {
-        output:append( x0 + i * dx).
+        output:add( x0 + i * dx).
     }
     return output.
 }
@@ -3432,7 +3543,7 @@ function porkchop_evaluation1 {
     local parameter utf.  // universal time end evaluation. Preferably ut0 + orbital period of lower body.
     local parameter tof0. // time of flight initial value. Preferably 0.2 of the orbit of the higher body.
     local parameter toff. // time of flight final value. Preferably 1 orbit period of lower body/
-    local parameter mode is "Lowest dV". // mode is get the lowest dV
+    local parameter mode is "lowest dv". // mode is get the lowest dv
     local parameter include_2nd_burn is true. // include the approach dv in the evaluation.
     local parameter safe_time is ut0 + 60. // safe time for when mode= "ASAP"
     local parameter t_resol is 100. // resolution of exit time evaluation.
@@ -3442,18 +3553,18 @@ function porkchop_evaluation1 {
         return null_mnv("[ TRGT ERROR ] : No target detected. Please set target").
     }
     local maxval is 3.8e38.
-    local null_vector is v(0,0,0).
+    local null_vector is v(1e38,1e38,1e38).
     local deltaV_array is list().
     local vector_array is list().
-    for i in range(t_resol) {
+    from { local i is 0. } until i >= t_resol step { set i to i + 1. } do {  
         local tof_list is list().
         local vec_list is list().
-        for j in range(tof_resol) { 
-            tof_list:append(maxval).
-            vec_list:append(null_vector).
+        from { local j is 0. } until j >= tof_resol step { set j to j + 1. } do {
+            tof_list:add(maxval).
+            vec_list:add(null_vector).
         }
-        deltaV_array:append(tof_list).
-        vector_array:append(vec_list).
+        deltaV_array:add(tof_list).
+        vector_array:add(vec_list).
     }
     local t_list is linspace(ut0,utf,t_resol).
     local tof_list is linspace(tof0,toff,tof_resol).
@@ -3479,7 +3590,7 @@ function porkchop_evaluation1 {
             set vector_array[i][j] to v1.            
         }
     }
-    if mode = "Lowest dV" {
+    if mode = "lowest dv" {
         // determine lowest valued index 
         local minidx_i is 0.
         local minidx_j is 0.
@@ -3500,7 +3611,7 @@ function porkchop_evaluation1 {
         local dV is v1 - vshp.
         return inertial_to_PRN(dV,ut).
     }
-    if mode = "ASAP" {
+    if (mode = "ASAP") or (mode = "as soon as possible") {
         // Find the index closest to safe_time
         local safe_idx is 0.
         local min_time_diff is abs(t_list[0] - safe_time).
@@ -3537,11 +3648,12 @@ function porkchop_evaluation2 {
     local parameter utf.  // universal time end evaluation. Preferably ut0 + orbital period of lower body.
     local parameter tof0. // time of flight initial value. Preferably 0.2 of the orbit of the higher body.
     local parameter toff. // time of flight final value. Preferably 1 orbit period of lower body/
-    local parameter mode is "Lowest dV". // mode is get the lowest dV
+    local parameter mode is "lowest dv". // mode is get the lowest dv
     local parameter include_2nd_burn is true. // include the approach dv in the evaluation.
-    local parameter safe_time is ut0 + 60. // safe time for when mode= "ASAP"
-    local parameter t_resol is 100. // resolution of exit time evaluation.
-    local parameter tof_resol is 100. // resolution of tof evaluation/
+    local parameter value is 0. // parameter value for specific time.
+    local parameter safe_time is ut0 + 120. // safe time for when mode= "ASAP"
+    local parameter t_resol is 25. // resolution of exit time evaluation.
+    local parameter tof_resol is 25. // resolution of tof evaluation/
   
     if not hastarget {
         return null_mnv("[ TRGT ERROR ] : No target detected. Please set target").
@@ -3549,106 +3661,158 @@ function porkchop_evaluation2 {
     local t_list is linspace(ut0, utf, t_resol).
     local tof_list is linspace(tof0, toff, tof_resol).
     
-    if mode = "Lowest dV" {
+    if mode = "lowest dv" {
         local best_dV is 1e38.
         local best_ut is 0.
-        local best_tof is 0.
         local best_v1 is v(0,0,0).
-        
-        for i in range(t_resol) {
-            for j in range(tof_resol) {
-                local r1 is positionAt(ship, t_list[i]) - body:position.
+        print("Checking search space...").
+        local counter to 0.
+        from { local i is 0. } until i >= t_resol step { set i to i + 1. } do { 
+            local r1 is positionAt(ship, t_list[i]) - body:position.
+            local vshp is velocityAt(ship, t_list[i]):orbit.
+            from { local j is 0. } until j >= tof_resol step { set j to j + 1. } do {
                 local r2 is positionAt(target, t_list[i] + tof_list[j]) - body:position.
-                
-                // Try both transfer types
-                local sol1 is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
-                local sol2 is lambert_solver(r1, r2, tof_list[j], body:mu, -1).
-                
-                local v1_1 is sol1[0].
-                local v2_1 is sol1[1].
-                local v1_2 is sol2[0]. 
-                local v2_2 is sol2[1].
-                
-                local vshp is velocityAt(ship, t_list[i]):orbit.
+                local transfer_vectors is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
+                local v1 is transfer_vectors[0].
+                local v2 is transfer_vectors[1].
                 local vtgt is velocityAt(target, t_list[i] + tof_list[j]):orbit.
-                
-                local dV1 is (v1_1 - vshp):mag.
-                local dV2 is (v1_2 - vshp):mag.
-                
-                // Choose the better transfer type
-                local v1 is v1_1.
-                local v2 is v2_1.
-                if dV2 < dV1 { 
-                    set v1 to v1_2. 
-                    set v2 to v2_2. 
-                    set dV1 to dV2.
+                if vdot(v1,vshp) < 0 {
+                    set transfer_vectors to lambert_solver(r1, r2,tof_list[j],body:mu,-1).
+                    set v1 to transfer_vectors[0].
+                    set v2 to transfer_vectors[1].
                 }
-                
-                local total_dV is dV1.
-                if include_2nd_burn { 
-                    set total_dV to total_dV + (v2 - vtgt):mag. 
-                }
-                
+                local dv1mag is (v1-vshp):mag.
+                local dv2mag is (v2 - vtgt):mag.
+                local total_dV is choose (dv1mag + dv2mag) if include_2nd_burn else (dv1mag).
                 if total_dV < best_dV {
                     set best_dV to total_dV.
                     set best_ut to t_list[i].
-                    set best_tof to tof_list[j].
                     set best_v1 to v1.
                 }
+                set counter to counter + 1.
+                print counter.
             }
         }
-        local dV_vec is best_v1 - velocityAt(ship, best_ut):orbit.
-        return inertial_to_PRN(dV_vec, best_ut).
+        // local dV_vec is best_v1 - velocityAt(ship, best_ut):orbit.
+        return inertial_to_PRN(best_v1 - velocityAt(ship, best_ut):orbit, best_ut).
     }
     
-    if mode = "ASAP" {
+    if (mode = "ASAP") or (mode = "as soon as possible") {
         // Fix t0 at safe_time, only evaluate tof space
-        local best_tof_idx is 0.
         local best_dV is 1e38.
         local best_v1 is v(0,0,0).
-        
-        for j in range(tof_resol) {
-            local r1 is positionAt(ship, safe_time) - body:position.
+        local r1 is positionAt(ship, safe_time) - body:position.
+        local vshp is velocityAt(ship, safe_time):orbit.
+        from { local j is 0. } until j >= tof_resol step { set j to j + 1. } do {
             local r2 is positionAt(target, safe_time + tof_list[j]) - body:position.
+            local transfer_vectors is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
+            local v1 is transfer_vectors[0].
+            local v2 is transfer_vectors[1].
             
-            // Try both transfer types
-            local sol1 is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
-            local sol2 is lambert_solver(r1, r2, tof_list[j], body:mu, -1).
-            
-            local v1_1 is sol1[0].
-            local v2_1 is sol1[1].
-            local v1_2 is sol2[0].
-            local v2_2 is sol2[1].
-            
-            local vshp is velocityAt(ship, safe_time):orbit.
             local vtgt is velocityAt(target, safe_time + tof_list[j]):orbit.
-            
-            local dV1 is (v1_1 - vshp):mag.
-            local dV2 is (v1_2 - vshp):mag.
-            
-            // Choose the better transfer type
-            local v1 is v1_1.
-            local v2 is v2_1.
-            if dV2 < dV1 {
-                set v1 to v1_2.
-                set v2 to v2_2.
-                set dV1 to dV2.
+            if vdot(v1,vshp) < 0 {
+                set transfer_vectors to lambert_solver(r1, r2,tof_list[j],body:mu,-1).
+                set v1 to transfer_vectors[0].
+                set v2 to transfer_vectors[1].
             }
             
-            local total_dV is dV1.
-            if include_2nd_burn {
-                set total_dV to total_dV + (v2 - vtgt):mag.
+            local total_dV is v1:mag.
+            if include_2nd_burn { 
+                set total_dV to total_dV + (v2 - vtgt):mag. 
             }
-            
             if total_dV < best_dV {
                 set best_dV to total_dV.
-                set best_tof_idx to j.
                 set best_v1 to v1.
             }
         }
-        
-        local tof is tof_list[best_tof_idx].
-        local dV_vec is best_v1 - velocityAt(ship, safe_time):orbit.
-        return inertial_to_PRN(dV_vec, safe_time).
+        return inertial_to_PRN(best_v1 - velocityAt(ship, safe_time):orbit, safe_time).
+    }
+    if "at certain time" {
+        // Fix t0 at safe_time, only evaluate tof space
+        local t0_value is value.
+        local best_dV is 1e38.
+        local best_v1 is v(0,0,0).
+        local r1 is positionAt(ship, t0_value) - body:position.
+        local vshp is velocityAt(ship, t0_value):orbit.
+        from { local j is 0. } until j >= tof_resol step { set j to j + 1. } do {
+            local r2 is positionAt(target, t0_value + tof_list[j]) - body:position.
+            local transfer_vectors is lambert_solver(r1, r2, tof_list[j], body:mu, +1).
+            local v1 is transfer_vectors[0].
+            local v2 is transfer_vectors[1].
+            local vtgt is velocityAt(target, t0_value + tof_list[j]):orbit.
+
+            if vdot(v1,vshp) < 0 {
+                set transfer_vectors to lambert_solver(r1, r2,tof_list[j],body:mu,-1).
+                set v1 to transfer_vectors[0].
+                set v2 to transfer_vectors[1].
+            }
+            
+            local total_dV is v1:mag.
+            if include_2nd_burn { 
+                set total_dV to total_dV + (v2 - vtgt):mag. 
+            }
+            if total_dV < best_dV {
+                set best_dV to total_dV.
+                set best_v1 to v1.
+            }
+        }
+
+        return inertial_to_PRN(best_v1 - velocityAt(ship, t0_value):orbit, t0_value).
     }
 }
+
+    // local function find_minidx {
+    //     local parameter tmin_list.
+    //     local minidx is -1.
+    //     local mindist is 3.8e38.
+    //     for k in range(5) {
+    //         if target_distance_at_ut(tmin_list[k]) < mindist {
+    //             set minidx to k.
+    //             set mindist to target_distance_at_ut(tmin_list[minidx]).
+    //         }
+    //     }
+    //     return minidx.
+    // }
+    // local function five_point_seach {
+    //     local parameter a.
+    //     local parameter b.
+    //     local min_list is list().
+    //     for i in range(5) {
+    //         local t_value is a + (i / (4)) * (b - a).
+    //         min_list:add(t_value).
+    //     }
+    //     local min_t is 3.4e38.
+    //     local p0 is -1.
+    //     local p1 is -1.
+    //     local p2 is -1.
+    //     local p3 is -1.
+    //     local p4 is -1.
+    //     for j in range(max_iter) {
+    //         local minidx is find_minidx(min_list).
+    //         if minidx = 0 {
+    //             set p0 to min_list[0].
+    //             set p2 to min_list[1].
+    //             set p4 to min_list[2].
+    //         } else if minidx = 4 {
+    //             set p0 to min_list[2].
+    //             set p2 to min_list[3].
+    //             set p4 to min_list[4].
+    //         } else {
+    //             set p0 to min_list[minidx-1].
+    //             set p2 to min_list[minidx].
+    //             set p4 to min_list[minidx+1].
+    //         }   
+    //         if j = max_iter - 1{
+    //             set min_t to p2.
+    //         }
+    //         set p1 to (p0 + p2)/2.
+    //         set p3 to (p2 + p4)/2.  
+    //         if (abs(p2-p4)<tol) and (abs(p0-p2)<tol) {
+    //             set min_t to p2. 
+    //             break.
+    //         } else {
+    //             set min_list to list(p0,p1,p2,p3,p4).
+    //         }
+    //     }
+    //     return min_t.
+    // }

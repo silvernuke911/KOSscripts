@@ -1,4 +1,4 @@
 core:part:getmodule("kOSProcessor"):doevent("Open Terminal").
 set config:ipu to 2000.
 set terminal:charheight to 10.
-switch to 0.
+run "0:/titanII.ks".
