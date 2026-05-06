@@ -1,5 +1,5 @@
+@lazyGlobal off.
 core:part:getmodule("kOSProcessor"):doevent("Open Terminal").
 set config:ipu to 2000.
 set terminal:charheight to 10.
-clearScreen.
-run "0:/plane_autopilot/autoplane.ks".
+run "0://mercury_atlas.ks".

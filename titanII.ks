@@ -30,7 +30,7 @@ local function ascent_guidance {
             if not ignition {
                 lock throttle to 1.
                 stage.
-                lock steering to heading(90,90,-90).
+                lock steering to heading(90,90,180).
                 set ignition to true.
             }
             if time:seconds > timer {
@@ -52,7 +52,7 @@ local function ascent_guidance {
         {
             if ship:verticalSpeed > 100 {
                 set pitch_start_time to time:seconds.
-                lock steering to heading(90,90-min(pitchover_angle , pitch_rate * (time:seconds - pitch_start_time)),-90).
+                lock steering to heading(90,90-min(pitchover_angle , pitch_rate * (time:seconds - pitch_start_time)),180).
                 return "pitching".
             }
             return "vertical ascent".
@@ -62,7 +62,7 @@ local function ascent_guidance {
         "pitching",
         {
             if abs(vang(ship:facing:vector, ship:up:vector) - pitchover_angle) < 0.25 {
-                lock steering to heading(90,90-pitchover_angle,-90).
+                lock steering to heading(90,90-pitchover_angle,180).
                 return "holding pitch".
             }
         return "pitching".
@@ -71,11 +71,11 @@ local function ascent_guidance {
     handlers:add (
         "holding pitch",
         {
-            if vang(ship:facing:vector, ship:srfPrograde:vector) < 0.25 {
+            if abs(vang(ship:up:vector, ship:srfPrograde:vector) - pitchover_angle) < 0.25 {
                 lock steering to heading (
                     90,
                     90 - vang(ship:up:vector,ship:srfPrograde:vector),
-                    -90
+                    180
                 ).
                 return "gravity turn".
             }

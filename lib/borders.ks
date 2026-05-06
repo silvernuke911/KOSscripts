@@ -5,7 +5,7 @@ function draw_edge_border {
     parameter width is terminal:width.
     parameter height is terminal:height.
     parameter verchar is "|".
-    parameter horchar is "-".
+    parameter horchar is "=".
 
     vertical_line(0,height-1, 0, verchar).
     vertical_line(0,height-1,width, verchar).

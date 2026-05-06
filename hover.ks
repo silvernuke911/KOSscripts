@@ -60,7 +60,7 @@ lock steering to heading(90,90,-90).
 // }
 
 // ================================
-// VERTICAL SPEED VERTICAL SPEED
+// VERTICAL SPEED
 // ================================
 local kp to 0.4.
 local ki to 1.9.    
