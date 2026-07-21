@@ -326,8 +326,8 @@ PART
 		{
 			MechJebModuleMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAirplaneAutopilot
 			{
@@ -342,8 +342,8 @@ PART
 				SpeedTarget = 0
 				VertSpeedTarget = 0
 				BankAngle = 30
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				AccKp
 				{
 					ValConfig = 0.5
@@ -428,66 +428,66 @@ PART
 			MechJebModuleAirplaneGuidance
 			{
 				showpid = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentClassicAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentClassicPathMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentPVGAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentPVGSettingsMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentSettings
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentSettingsMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAttitudeAdjustment
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleCustomWindowEditor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleDebugArrows
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleDockingAutopilot
 			{
 				forceRol = False
 				overrideSafeDistance = False
 				overrideTargetSize = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				rol
 				{
 					ValConfig = 0
@@ -496,21 +496,21 @@ PART
 			}
 			MechJebModuleDockingGuidance
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleInfoItems
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleLandingAutopilot
 			{
 				DeployGears = True
 				DeployChutes = True
 				RCSAdjustment = True
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				TouchdownSpeed
 				{
 					ValConfig = 0.5
@@ -530,58 +530,58 @@ PART
 			MechJebModuleLandingGuidance
 			{
 				_landingSiteIdx = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleLandingPredictions
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleManeuverPlanner
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleStageStats
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleNodeEditor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleNodeExecutor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleGuidanceController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRCSBalancerWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRendezvousAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRendezvousAutopilotWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRendezvousGuidance
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRoverController
 			{
@@ -592,8 +592,8 @@ PART
 				WarpToDaylight = False
 				StabilityControl = False
 				LimitAcceleration = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				heading
 				{
 					ValConfig = 0
@@ -607,13 +607,13 @@ PART
 			}
 			MechJebModuleRoverWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSettings
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSmartASS
 			{
@@ -624,8 +624,8 @@ PART
 				forceRol = False
 				forcePitch = True
 				forceYaw = True
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				srfHdg
 				{
 					ValConfig = 90
@@ -664,14 +664,14 @@ PART
 			}
 			MechJebModuleSmartRcs
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSpaceplaneAutopilot
 			{
 				bBreakAsSoonAsLanded = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				glideslope
 				{
 					ValConfig = 2.5
@@ -696,34 +696,34 @@ PART
 			MechJebModuleSpaceplaneGuidance
 			{
 				runwayIndex = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSpinupController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSuicideTimer
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleTargetController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleThrustWindow
 			{
 				autostageSavedState = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleTranslatron
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				trans_spd
 				{
 					ValConfig = 0
@@ -732,8 +732,8 @@ PART
 			}
 			MechJebModuleWarpHelper
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				phaseAngle
 				{
 					ValConfig = 0
@@ -742,23 +742,23 @@ PART
 			}
 			MechJebModuleWaypointWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleWaypointHelpWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			ModExtensionDemo
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModulePVGGlueBall
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleCustomInfoWindow
 			{
@@ -789,28 +789,28 @@ PART
 			}
 			MechJebModuleWarpController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleDeployableAntennaController
 			{
 				prev_shouldDeploy = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSolarPanelController
 			{
 				prev_shouldDeploy = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleThrustController
 			{
 				LimitThrottle = False
 				LimiterMinThrottle = True
 				ElectricThrottle = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				MaxThrottle
 				{
 					ValConfig = 1
@@ -834,8 +834,8 @@ PART
 			}
 			MechJebModuleRCSController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				Tf
 				{
 					ValConfig = 1
@@ -859,13 +859,13 @@ PART
 			}
 			MechJebModuleRCSBalancer
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAttitudeController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				MJAttitudeController
 				{
 				}
@@ -878,11 +878,14 @@ PART
 				BetterController
 				{
 				}
+				LQRController
+				{
+				}
 			}
 			MechJebModuleStagingController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleFlightRecorder
 			{
@@ -897,13 +900,13 @@ PART
 				MarkAltitude = 0
 				MarkBodyIndex = 1
 				MaxDragGees = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleFlightRecorderGraph
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 		}
 		UPGRADESAPPLIED
@@ -1201,6 +1204,21 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -1262,8 +1280,8 @@ PART
 	istg = 0
 	resPri = 0
 	dstg = 1
-	sidx = 0
-	sqor = 1
+	sidx = 1
+	sqor = 0
 	sepI = -1
 	attm = 0
 	sameVesselCollision = False
@@ -1896,8 +1914,8 @@ PART
 	sepI = -1
 	attm = 0
 	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
+	modCost = -9.53674316E-06
+	modMass = -5.58793545E-09
 	modSize = 0,0,0
 	link = LiquidEngineLV-T91_4291977832
 	attN = top,fairingSize1_4292016334_0|0.981724977|0_0|1|0_0|0.981724977|0_0|1|0
@@ -1965,9 +1983,9 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 683.60
+		OriginalCost = 683.599990463257
 		OriginalResourcesCost = 183.60
-		OriginalModulesCost = 0
+		OriginalModulesCost = -0.000009536743
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2052,6 +2070,70 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIva_fuelSwitch
+		currentSubtype = LFOX
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIvaSwitch
+		currentSubtype = Blocked
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartInfo
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
@@ -2120,7 +2202,7 @@ PART
 	resPri = 0
 	dstg = 2
 	sidx = 0
-	sqor = 2
+	sqor = 1
 	sepI = -1
 	attm = 0
 	sameVesselCollision = False
@@ -2548,7 +2630,7 @@ PART
 	resPri = 0
 	dstg = 3
 	sidx = 0
-	sqor = 3
+	sqor = 2
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -2759,6 +2841,21 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -2821,7 +2918,7 @@ PART
 	resPri = 0
 	dstg = 5
 	sidx = 1
-	sqor = 3
+	sqor = 2
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -4534,8 +4631,8 @@ PART
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
+	modCost = -9.53674316E-06
+	modMass = -5.58793545E-09
 	modSize = 0,0,0
 	link = fuelTank_4291869622
 	attN = top,fairingSize1_4291961016_0|0.981724977|0_0|1|0_0|0.981724977|0_0|1|0
@@ -4603,9 +4700,9 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 683.60
+		OriginalCost = 683.599990463257
 		OriginalResourcesCost = 183.60
-		OriginalModulesCost = 0
+		OriginalModulesCost = -0.000009536743
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4677,6 +4774,70 @@ PART
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIva_fuelSwitch
+		currentSubtype = LFOX
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIvaSwitch
+		currentSubtype = Blocked
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartInfo
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4762,8 +4923,8 @@ PART
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
+	modCost = -9.53674316E-06
+	modMass = -5.58793545E-09
 	modSize = 0,0,0
 	link = fuelTank_4291868994
 	attN = top,fuelTank_4291871628_0|0.981724977|0_0|1|0_0|0.981724977|0_0|1|0
@@ -4831,9 +4992,9 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 683.60
+		OriginalCost = 683.599990463257
 		OriginalResourcesCost = 183.60
-		OriginalModulesCost = 0
+		OriginalModulesCost = -0.000009536743
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4905,6 +5066,70 @@ PART
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIva_fuelSwitch
+		currentSubtype = LFOX
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIvaSwitch
+		currentSubtype = Blocked
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartInfo
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4990,8 +5215,8 @@ PART
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
+	modCost = -9.53674316E-06
+	modMass = -5.58793545E-09
 	modSize = 0,0,0
 	link = fuelTank_4291868942
 	attN = top,fuelTank_4291869622_0|0.981724977|0_0|1|0_0|0.981724977|0_0|1|0
@@ -5059,9 +5284,9 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 683.60
+		OriginalCost = 683.599990463257
 		OriginalResourcesCost = 183.60
-		OriginalModulesCost = 0
+		OriginalModulesCost = -0.000009536743
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5133,6 +5358,70 @@ PART
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIva_fuelSwitch
+		currentSubtype = LFOX
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIvaSwitch
+		currentSubtype = Blocked
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartInfo
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5218,8 +5507,8 @@ PART
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
+	modCost = -9.53674316E-06
+	modMass = -5.58793545E-09
 	modSize = 0,0,0
 	link = batteryBank_4291930556
 	attN = top,fuelTank_4291868994_0|0.981724977|0_0|1|0_0|0.981724977|0_0|1|0
@@ -5287,9 +5576,9 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 683.60
+		OriginalCost = 683.599990463257
 		OriginalResourcesCost = 183.60
-		OriginalModulesCost = 0
+		OriginalModulesCost = -0.000009536743
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5361,6 +5650,70 @@ PART
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIva_fuelSwitch
+		currentSubtype = LFOX
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = FreeIvaSwitch
+		currentSubtype = Blocked
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartInfo
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5556,6 +5909,21 @@ PART
 		defaultTransformScale = (0, 0, 0)
 		DryCost = 880
 		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5769,6 +6137,21 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -5956,6 +6339,21 @@ PART
 		defaultTransformScale = (0, 0, 0)
 		DryCost = 880
 		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6455,7 +6853,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -6858,7 +7256,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -7268,7 +7666,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -7678,7 +8076,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -8088,7 +8486,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -8498,7 +8896,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -8908,7 +9306,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -9318,7 +9716,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -9728,7 +10126,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -10138,7 +10536,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 5
+	sqor = 4
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -11050,7 +11448,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 6
+	sqor = 5
 	sepI = 4
 	attm = 1
 	sameVesselCollision = False
@@ -11296,7 +11694,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 6
+	sqor = 5
 	sepI = 4
 	attm = 1
 	sameVesselCollision = False
@@ -11538,7 +11936,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 6
+	sqor = 5
 	sepI = 4
 	attm = 1
 	sameVesselCollision = False
@@ -11780,7 +12178,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 6
+	sqor = 5
 	sepI = 4
 	attm = 1
 	sameVesselCollision = False
@@ -13022,7 +13420,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 7
+	sqor = 6
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -13255,7 +13653,7 @@ PART
 	part = AM.MLP.GeneralUmbilicalDroopC_4291791736
 	partName = Part
 	persistentId = 3591356366
-	pos = -0.301847279,13.9050636,-2.10918403
+	pos = -0.301847279,13.9050636,-2.10918355
 	attPos = 0,0,0
 	attPos0 = -0.414000034,10,0
 	rot = 0,0.707106829,0,0.707106829
@@ -13269,7 +13667,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 7
+	sqor = 6
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -13573,7 +13971,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.301847279, 13.9050636, -2.10918403)
+		originalPos = (-0.301847279, 13.9050636, -2.10918355)
 		originalRotation = (0, 0.707106829, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -13598,7 +13996,7 @@ PART
 	part = AM.MLP.GeneralUmbilicalDroopA_4291793962
 	partName = Part
 	persistentId = 3090294617
-	pos = -0.301847339,17.9050636,-2.10918355
+	pos = -0.301847339,17.9050636,-2.10918307
 	attPos = 0,0,0
 	attPos0 = -0.414000154,14,-5.96046519E-08
 	rot = 0,0.707106829,0,0.707106829
@@ -13612,7 +14010,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 8
+	sqor = 7
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -13916,7 +14314,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.301847339, 17.9050636, -2.10918355)
+		originalPos = (-0.301847339, 17.9050636, -2.10918307)
 		originalRotation = (0, 0.707106829, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -13941,7 +14339,7 @@ PART
 	part = AM.MLP.GeneralUmbilicalDroopA_4291722472
 	partName = Part
 	persistentId = 3915325427
-	pos = -0.301847339,15.9050636,-2.10918379
+	pos = -0.301847339,15.9050636,-2.10918331
 	attPos = 0,0,0
 	attPos0 = -0.414000154,12,-5.96046519E-08
 	rot = 0,0.707106829,0,0.707106829
@@ -13955,7 +14353,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 8
+	sqor = 7
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -14251,7 +14649,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.301847339, 15.9050636, -2.10918379)
+		originalPos = (-0.301847339, 15.9050636, -2.10918331)
 		originalRotation = (0, 0.707106829, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -14276,7 +14674,7 @@ PART
 	part = AM.MLP.GeneralUmbilicalDroopA_4291715156
 	partName = Part
 	persistentId = 3834965824
-	pos = -0.301847339,11.9050636,-2.10918379
+	pos = -0.301847339,11.9050636,-2.10918331
 	attPos = 0,0,0
 	attPos0 = -0.414000154,8,-5.96046519E-08
 	rot = 0,0.707106829,0,0.707106829
@@ -14290,7 +14688,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 2
-	sqor = 8
+	sqor = 7
 	sepI = 4
 	attm = 0
 	sameVesselCollision = False
@@ -14586,7 +14984,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.301847339, 11.9050636, -2.10918379)
+		originalPos = (-0.301847339, 11.9050636, -2.10918331)
 		originalRotation = (0, 0.707106829, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -15153,7 +15551,7 @@ PART
 		MaxPartId = 100
 		ECPerInstruction = 3.99999999E-06
 		ECPerBytePerSecond = 0
-		RequiredPower = 0.0399999991
+		RequiredPower = 0.400000006
 		stagingEnabled = True
 		activated = True
 		EVENTS
@@ -15385,7 +15783,7 @@ PART
 	MODULE
 	{
 		name = KOSNameTag
-		isEnabled = False
+		isEnabled = True
 		nameTag = 
 		stagingEnabled = True
 		EVENTS
@@ -15488,7 +15886,6 @@ PART
 	link = RCSblock.01.small_4291933334
 	link = Decoupler.0_4292040680
 	link = mumech.MJ2.AR202_4292461132
-	link = KAL9000_4292698532
 	attN = top,Decoupler.0_4292040680_0|0.128734395|0_0|1|0_0|0.128734395|0_0|1|0
 	attN = bottom,KR-2042_4292051984_0|-0.128734395|0_0|-1|0_0|-0.128734395|0_0|-1|0
 	EVENTS
@@ -16985,6 +17382,21 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -17554,6 +17966,8 @@ PART
 	link = solarPanels5_4292680746
 	link = solarPanels5_4292680704
 	link = externalTankRound_4294392052
+	link = hc.navcam_4293392810
+	link = DC.smallCam_4293396776
 	attN = bottom,probeCoreHex.v2_4292696646_0|-0.1875|0_0|-1|0_0|-0.1875|0_0|-1|0
 	attN = top,Null_0_0|0.1875|0_0|1|0_0|0.1875|0_0|1|0
 	EVENTS
@@ -21897,7 +22311,7 @@ PART
 	istg = 0
 	resPri = 0
 	dstg = 2
-	sidx = 1
+	sidx = 0
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -22291,7 +22705,7 @@ PART
 	istg = 0
 	resPri = 0
 	dstg = 2
-	sidx = 1
+	sidx = 0
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -23032,31 +23446,31 @@ PART
 }
 PART
 {
-	part = KAL9000_4292698532
+	part = hc.navcam_4293392810
 	partName = Part
-	persistentId = 3505530891
-	pos = -0.154611766,18.274004,0.0788160264
+	persistentId = 916365742
+	pos = 0.0506010652,19.212616,0.141877234
 	attPos = 0,0,0
-	attPos0 = -0.200057566,0.00512123108,0.200057536
-	rot = 1.61289027E-08,0.382683516,3.89386088E-08,0.923879564
+	attPos0 = 0.00515526533,0.1875,0.263118744
+	rot = 0,-1.89221083E-08,1.89221083E-08,1
 	attRot = 0,0,0,1
-	attRot0 = 1.61289027E-08,0.382683516,3.89386088E-08,0.923879564
+	attRot0 = 0,-1.89221083E-08,1.89221083E-08,1
 	mir = 1,1,1
 	symMethod = Radial
 	autostrutMode = Off
 	rigidAttachment = False
-	istg = -1
+	istg = 0
 	resPri = 0
-	dstg = 0
+	dstg = 2
 	sidx = -1
 	sqor = -1
-	sepI = -1
+	sepI = 0
 	attm = 1
 	sameVesselCollision = False
 	modCost = 0
 	modMass = 0
 	modSize = 0,0,0
-	srfN = srfAttach,strutOcto_4292026314,collider,0.00999999978|0|0,1|0|0,0.00999999978|0|0
+	srfN = srfAttach,probeCoreHex.v2_4292696114,collider_base.collider,0|0|0,0|-1.25|0,0|0|0
 	EVENTS
 	{
 	}
@@ -23083,57 +23497,40 @@ PART
 	}
 	MODULE
 	{
-		name = kOSProcessor
+		name = MuMechModuleHullCameraZoom
 		isEnabled = True
-		bootFile = /boot/boot.ks
-		diskSpace = 255000
-		baseDiskSpace = 255000
-		baseModuleMass = 0
-		additionalCost = 0
-		diskSpaceCostFactor = 0.0244140625
-		diskSpaceMassFactor = 4.88289986E-09
-		MaxPartId = 100
-		ECPerInstruction = 3.99999999E-06
-		ECPerBytePerSecond = 0
-		RequiredPower = 0.0399999991
 		stagingEnabled = True
-		activated = True
 		EVENTS
 		{
 		}
 		ACTIONS
 		{
-			Activate
+			ZoomInAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
-			Deactivate
+			ZoomOutAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
-			Toggle
+			ActivateCameraAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
-			TogglePower
-			{
-				actionGroup = Custom10
-				wasActiveBeforePartWasAdjusted = False
-			}
-			StartSuppressAutopilot
+			DeactivateCameraAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
-			StopSuppressAutopilot
+			NextCameraAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
-			ToggleSuppressAutopilot
+			PreviousCameraAction
 			{
 				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
@@ -23145,124 +23542,11 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleLight
+		name = ModuleCargoPart
 		isEnabled = True
-		isOn = False
-		uiWriteLock = False
-		disableColorPicker = True
-		lightR = 0.5
-		lightG = 0
-		lightB = 0
-		castLight = True
-		movementTransformName = movementTransformName
-		isBlinking = False
-		rotationAngle = 0
-		pitchAngle = 0
-		blinkRate = 1
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-			ToggleLightAction
-			{
-				actionGroup = Light
-				wasActiveBeforePartWasAdjusted = False
-			}
-			LightOnAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			LightOffAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-		}
-		AXISGROUPS
-		{
-			lightR
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-			lightG
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-			lightB
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-			rotationAngle
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-			pitchAngle
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-			blinkRate
-			{
-				axisGroup = None
-				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				axisSpeedMultiplier = 0
-				axisInverted = None
-				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
-			}
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = kOSLightModule
-		isEnabled = True
-		resourceAmount = 0.0199999996
-		red = 0.5
-		green = 0
-		blue = 0
-		powerStarved = False
+		beingAttached = False
+		beingSettled = False
+		reinitResourcesOnStoreInVessel = False
 		stagingEnabled = True
 		EVENTS
 		{
@@ -23278,7 +23562,7 @@ PART
 	{
 		name = FundsKeeper
 		isEnabled = True
-		OriginalCost = 1200
+		OriginalCost = 30
 		OriginalResourcesCost = 0
 		OriginalModulesCost = 0
 		stagingEnabled = True
@@ -23327,7 +23611,7 @@ PART
 	MODULE
 	{
 		name = KOSNameTag
-		isEnabled = True
+		isEnabled = False
 		nameTag = 
 		stagingEnabled = True
 		EVENTS
@@ -23335,6 +23619,157 @@ PART
 		}
 		ACTIONS
 		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = JSIExternalCameraSelector
+		isEnabled = True
+		current = 2
+		showCones = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = AttachedOnEditor
+		isEnabled = True
+		active = True
+		originalPos = (0.0506010652, 19.212616, 0.141877234)
+		originalRotation = (0, -1.89221083E-08, 1.89221083E-08, 1)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+}
+PART
+{
+	part = DC.smallCam_4293396776
+	partName = Part
+	persistentId = 3983562005
+	pos = 0.151961386,19.1421185,0.25725618
+	attPos = 0,0,0
+	attPos0 = 0.106515586,0.117002487,0.37849769
+	rot = 0.707106769,-6.38005841E-15,6.38005714E-15,0.707106888
+	attRot = 0,0,0,1
+	attRot0 = 0.707106769,-6.38005841E-15,6.38005714E-15,0.707106888
+	mir = 1,1,1
+	symMethod = Radial
+	autostrutMode = Off
+	rigidAttachment = False
+	istg = 0
+	resPri = 0
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	sepI = 0
+	attm = 1
+	sameVesselCollision = False
+	modCost = 0
+	modMass = 0
+	modSize = 0,0,0
+	srfN = srfAttach,probeCoreHex.v2_4292696114,collider_base.collider,0|-0.0374999978|0,0|-1.25|0,0|-0.0374999978|0
+	attN = bottom,Null_0_0|-0.0374999978|0_0|-1.25|0_0|-0.0374999978|0_0|-1.25|0
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+		ToggleSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		SetSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		RemoveSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+	}
+	PARTDATA
+	{
+	}
+	MODULE
+	{
+		name = ModulePartVariants
+		isEnabled = True
+		useVariantMass = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = MuMechModuleHullCameraZoom
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ZoomInAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ZoomOutAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ActivateCameraAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			DeactivateCameraAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			NextCameraAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			PreviousCameraAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
 		}
 		UPGRADESAPPLIED
 		{
@@ -23360,14 +23795,101 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = Refunding
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = KOSNameTag
+		isEnabled = False
+		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = JSIExternalCameraSelector
+		isEnabled = True
+		current = 1
+		showCones = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.154611766, 18.274004, 0.0788160264)
-		originalRotation = (1.61289027E-08, 0.382683516, 3.89386088E-08, 0.923879564)
+		originalPos = (0.151961386, 19.1421185, 0.25725618)
+		originalRotation = (0.707106769, -6.38005841E-15, 6.38005714E-15, 0.707106888)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
+		originalAttachNodePos = (0.0, 0.0, 0.0)
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, -1.3, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
 		}

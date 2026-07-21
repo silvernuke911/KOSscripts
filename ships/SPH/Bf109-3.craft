@@ -2,9 +2,9 @@ ship = Bf109-3
 version = 1.12.5
 description = 
 type = SPH
-size = 11.6168938,3.2029953,10.478446
+size = 11.6168938,4.09835434,10.4784613
 steamPublishedFileId = 0
-persistentId = 3668260420
+persistentId = 2946058009
 rot = 0,0,0,0
 missionFlag = Squad/Flags/Draken Company(3)
 vesselType = Debris
@@ -16,7 +16,7 @@ PART
 {
 	part = zerocockpit_4294036828
 	partName = Part
-	persistentId = 3399920996
+	persistentId = 1082087809
 	pos = 0,10,0
 	attPos = 0,0,0
 	attPos0 = 0,10,0
@@ -280,6 +280,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = MechJebCore
 		isEnabled = True
 		running = True
@@ -384,8 +406,8 @@ PART
 		{
 			MechJebModuleMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAirplaneAutopilot
 			{
@@ -400,8 +422,8 @@ PART
 				SpeedTarget = 0
 				VertSpeedTarget = 0
 				BankAngle = 30
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				AccKp
 				{
 					ValConfig = 0.5
@@ -486,66 +508,66 @@ PART
 			MechJebModuleAirplaneGuidance
 			{
 				showpid = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentClassicAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentClassicPathMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentPVGAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentPVGSettingsMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentSettings
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAscentSettingsMenu
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAttitudeAdjustment
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleCustomWindowEditor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = flightControl
 			}
 			MechJebModuleDebugArrows
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleDockingAutopilot
 			{
 				forceRol = False
 				overrideSafeDistance = False
 				overrideTargetSize = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				rol
 				{
 					ValConfig = 0
@@ -554,21 +576,21 @@ PART
 			}
 			MechJebModuleDockingGuidance
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advUnmanned
 			}
 			MechJebModuleInfoItems
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleLandingAutopilot
 			{
 				DeployGears = True
 				DeployChutes = True
 				RCSAdjustment = True
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				TouchdownSpeed
 				{
 					ValConfig = 0.5
@@ -588,58 +610,58 @@ PART
 			MechJebModuleLandingGuidance
 			{
 				_landingSiteIdx = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = unmannedTech
 			}
 			MechJebModuleLandingPredictions
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleManeuverPlanner
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleStageStats
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleNodeEditor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleNodeExecutor
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleGuidanceController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRCSBalancerWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleRendezvousAutopilot
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleRendezvousAutopilotWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advUnmanned
 			}
 			MechJebModuleRendezvousGuidance
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advUnmanned
 			}
 			MechJebModuleRoverController
 			{
@@ -650,8 +672,8 @@ PART
 				WarpToDaylight = False
 				StabilityControl = False
 				LimitAcceleration = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				heading
 				{
 					ValConfig = 0
@@ -665,13 +687,13 @@ PART
 			}
 			MechJebModuleRoverWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = fieldScience
 			}
 			MechJebModuleSettings
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSmartASS
 			{
@@ -682,8 +704,8 @@ PART
 				forceRol = False
 				forcePitch = True
 				forceYaw = True
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = flightControl
 				srfHdg
 				{
 					ValConfig = 90
@@ -722,14 +744,14 @@ PART
 			}
 			MechJebModuleSmartRcs
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSpaceplaneAutopilot
 			{
 				bBreakAsSoonAsLanded = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				glideslope
 				{
 					ValConfig = 2.5
@@ -754,34 +776,34 @@ PART
 			MechJebModuleSpaceplaneGuidance
 			{
 				runwayIndex = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = unmannedTech
 			}
 			MechJebModuleSpinupController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSuicideTimer
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleTargetController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleThrustWindow
 			{
 				autostageSavedState = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleTranslatron
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 				trans_spd
 				{
 					ValConfig = 0
@@ -790,8 +812,8 @@ PART
 			}
 			MechJebModuleWarpHelper
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = advFlightControl
 				phaseAngle
 				{
 					ValConfig = 0
@@ -800,23 +822,23 @@ PART
 			}
 			MechJebModuleWaypointWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleWaypointHelpWindow
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			ModExtensionDemo
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModulePVGGlueBall
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleCustomInfoWindow
 			{
@@ -847,28 +869,28 @@ PART
 			}
 			MechJebModuleWarpController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleDeployableAntennaController
 			{
 				prev_shouldDeploy = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleSolarPanelController
 			{
 				prev_shouldDeploy = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleThrustController
 			{
 				LimitThrottle = False
 				LimiterMinThrottle = True
 				ElectricThrottle = False
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				MaxThrottle
 				{
 					ValConfig = 1
@@ -892,8 +914,8 @@ PART
 			}
 			MechJebModuleRCSController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				Tf
 				{
 					ValConfig = 1
@@ -917,13 +939,13 @@ PART
 			}
 			MechJebModuleRCSBalancer
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleAttitudeController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 				MJAttitudeController
 				{
 				}
@@ -936,11 +958,14 @@ PART
 				BetterController
 				{
 				}
+				LQRController
+				{
+				}
 			}
 			MechJebModuleStagingController
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleFlightRecorder
 			{
@@ -955,14 +980,29 @@ PART
 				MarkAltitude = 0
 				MarkBodyIndex = 1
 				MaxDragGees = 0
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
 			MechJebModuleFlightRecorderGraph
 			{
-				UnlockParts = 
-				UnlockTechs = 
+				unlockParts = 
+				unlockTechs = 
 			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleFreeIva
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
 		}
 		UPGRADESAPPLIED
 		{
@@ -974,6 +1014,39 @@ PART
 		isEnabled = True
 		nameTag = 
 		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleIVASwitch
+		isEnabled = True
+		internalName = zeroInternal
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = IVASwitch
+		currentSubtype = AirplanePlus
 		EVENTS
 		{
 		}
@@ -1039,6 +1112,21 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleB9PartInfo
+		isEnabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
@@ -1059,6 +1147,26 @@ PART
 		{
 		}
 		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = RasterPropMonitorComputer
+		isEnabled = True
+		vesselDescription = 
+		RPMCid = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		PERSISTENT_VARS
 		{
 		}
 		UPGRADESAPPLIED
@@ -1100,8 +1208,8 @@ PART
 {
 	part = airplaneTailB_4294018584
 	partName = Part
-	persistentId = 4142925394
-	pos = 0,10,-1.33154428
+	persistentId = 636332121
+	pos = 0,10,-1.3315469
 	attPos = 0,0,0
 	attPos0 = 0,-1.33153319,1.1920929E-07
 	rot = 0.707106829,0,0,0.707106829
@@ -1132,6 +1240,7 @@ PART
 	link = warhawkfin_4294073806
 	link = strutConnector_4294073616
 	link = strutConnector_4294073524
+	link = ReleaseValve_4293919858
 	attN = top,zerocockpit_4294036828_0|0|0_0|1|0_0|0|0_0|1|0
 	EVENTS
 	{
@@ -1242,6 +1351,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = stack_square
@@ -1284,7 +1415,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0, 10, -1.33154404)
+		originalPos = (0, 10, -1.3315469)
 		originalRotation = (0.707106829, 0, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -1308,8 +1439,8 @@ PART
 {
 	part = elevon3_4294074242
 	partName = Part
-	persistentId = 2939834877
-	pos = 0.902358532,10.9258671,-5.08355951
+	persistentId = 1446788164
+	pos = 0.902358532,10.9258671,-5.08357
 	attPos = 0.902358592,-0.0710058212,-0.312461734
 	attPos0 = -5.36256231E-08,-3.68095732,-0.613404632
 	rot = 1.96704431E-08,0.707106352,-0.707107306,-1.96703684E-08
@@ -1546,6 +1677,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -1588,7 +1741,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.902358532, 10.9258671, -5.08355856)
+		originalPos = (0.902358532, 10.9258671, -5.08357)
 		originalRotation = (1.96704431E-08, 0.707106352, -0.707107306, -1.96703684E-08)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -1608,8 +1761,8 @@ PART
 {
 	part = elevon3_4294074208
 	partName = Part
-	persistentId = 2420283042
-	pos = -0.902358532,10.9258671,-5.08355856
+	persistentId = 1560549807
+	pos = -0.902358532,10.9258671,-5.08356905
 	attPos = -0.902358592,-0.0710043907,-0.312461734
 	attPos0 = 5.36256302E-08,-3.68095732,-0.613404632
 	rot = -0.707107246,1.12382335E-08,-1.12382015E-08,0.707106411
@@ -1846,6 +1999,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -1888,7 +2063,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.902358532, 10.9258671, -5.08355761)
+		originalPos = (-0.902358532, 10.9258671, -5.08356905)
 		originalRotation = (-0.707107246, 1.12382335E-08, -1.12382015E-08, 0.707106411)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -1908,8 +2083,8 @@ PART
 {
 	part = elevon2_4294074174
 	partName = Part
-	persistentId = 3717345181
-	pos = 0.894755244,10.9248142,-4.9616189
+	persistentId = 1598534835
+	pos = 0.894755244,10.9248142,-4.96162939
 	attPos = 0.894755304,-0.370390654,-0.300001025
 	attPos0 = -5.46228165E-08,-3.25963593,-0.62481153
 	rot = -1.0396402E-07,0.707107008,0.70710665,-1.03964091E-07
@@ -2146,6 +2321,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -2188,7 +2385,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.894755244, 10.9248142, -4.96161795)
+		originalPos = (0.894755244, 10.9248142, -4.96162939)
 		originalRotation = (-1.0396402E-07, 0.707107008, 0.70710665, -1.03964091E-07)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -2208,8 +2405,8 @@ PART
 {
 	part = elevon2_4294074140
 	partName = Part
-	persistentId = 4163901913
-	pos = -0.894755244,10.9248142,-4.96161795
+	persistentId = 2708554548
+	pos = -0.894755244,10.9248142,-4.96162844
 	attPos = -0.894755304,-0.370389223,-0.300001025
 	attPos0 = 5.46228023E-08,-3.2596364,-0.62481153
 	rot = -0.70710659,7.30554675E-08,7.30554106E-08,-0.707107067
@@ -2446,6 +2643,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -2488,7 +2707,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.894755244, 10.9248142, -4.96161699)
+		originalPos = (-0.894755244, 10.9248142, -4.96162844)
 		originalRotation = (-0.70710659, 7.30554675E-08, 7.30554106E-08, -0.707107067)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -2508,8 +2727,8 @@ PART
 {
 	part = SmallGearBay_4294074106
 	partName = Part
-	persistentId = 1928125277
-	pos = -6.52419951E-10,10.4125433,-3.7416811
+	persistentId = 1981153779
+	pos = -6.52419951E-10,10.4125433,-3.74169159
 	attPos = -6.52419951E-10,0.00102329254,-0.48562181
 	attPos0 = 0,-2.41113186,0.073079437
 	rot = -0.237357825,-9.32213418E-10,-3.81522591E-09,-0.971422315
@@ -2693,10 +2912,10 @@ PART
 		name = ModuleWheelDeployment
 		isEnabled = True
 		shieldedCanDeploy = False
-		stateDisplayString = Retracted
-		stateString = Retracted
+		stateDisplayString = Deployed
+		stateString = Deployed
 		stagingEnabled = True
-		position = 0
+		position = 1
 		EVENTS
 		{
 		}
@@ -2704,7 +2923,7 @@ PART
 		{
 			ActionToggle
 			{
-				actionGroup = Gear, Custom03
+				actionGroup = None
 				wasActiveBeforePartWasAdjusted = False
 			}
 		}
@@ -2984,6 +3203,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free
@@ -3041,7 +3282,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-6.52419951E-10, 10.4125433, -3.74168015)
+		originalPos = (-6.52419951E-10, 10.4125433, -3.74169159)
 		originalRotation = (-0.237357825, -9.32213418E-10, -3.81522591E-09, -0.971422315)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -3076,8 +3317,8 @@ PART
 {
 	part = wingStrake_4294073878
 	partName = Part
-	persistentId = 2586709077
-	pos = -0.344291955,10.302721,-1.63667774
+	persistentId = 1723114140
+	pos = -0.344291955,10.302721,-1.63668299
 	attPos = -0.344292015,0.397135556,0.319896698
 	attPos0 = 5.44309842E-08,-0.702258527,-0.622617483
 	rot = -0.306164861,0.61785537,-0.58863467,0.421932876
@@ -3209,6 +3450,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -3251,7 +3514,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.344291955, 10.302721, -1.63667727)
+		originalPos = (-0.344291955, 10.302721, -1.63668299)
 		originalRotation = (-0.306164861, 0.61785537, -0.58863467, 0.421932876)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -3271,8 +3534,8 @@ PART
 {
 	part = wingStrake_4294073842
 	partName = Part
-	persistentId = 1317537475
-	pos = 0.344291955,10.302721,-1.63667822
+	persistentId = 992771426
+	pos = 0.344291955,10.302721,-1.63668346
 	attPos = 0.344292015,0.397135079,0.319896698
 	attPos0 = -5.44309842E-08,-0.702258527,-0.622617483
 	rot = 0.588634789,-0.421932876,0.306164861,-0.617855251
@@ -3404,6 +3667,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -3446,7 +3731,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.344291955, 10.302721, -1.63667774)
+		originalPos = (0.344291955, 10.302721, -1.63668346)
 		originalRotation = (0.588634789, -0.421932876, 0.306164861, -0.617855251)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -3467,7 +3752,7 @@ PART
 	part = warhawkfin_4294073806
 	partName = Part
 	persistentId = 3936516551
-	pos = 2.89865227E-07,11.1474819,-5.18285894
+	pos = 2.89865227E-07,11.1474819,-5.18286943
 	attPos = 7.14976807E-08,0.523933649,-0.138497353
 	attPos0 = 2.18367546E-07,-4.37520313,-1.00898373
 	rot = -0.499999762,0.500000417,0.49999994,-0.500000179
@@ -3685,6 +3970,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -3727,7 +4034,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (2.89865227E-07, 11.1474819, -5.18285799)
+		originalPos = (2.89865227E-07, 11.1474819, -5.18286943)
 		originalRotation = (-0.499999762, 0.500000417, 0.49999994, -0.500000179)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -3747,11 +4054,11 @@ PART
 {
 	part = miniFuselage_4293920512
 	partName = Part
-	persistentId = 1448403465
-	pos = 0.298519492,10,1.16787505
-	attPos = -0.635271251,1.06320131,-1.04308128E-07
+	persistentId = 1497281176
+	pos = 0.298519492,10,1.34399438
+	attPos = -0.635271251,1.2393285,-1.04308128E-07
 	attPos0 = 0.933790743,0.104665779,-1.49011612E-08
-	rot = -4.21468478E-08,0.707106769,0.707106888,1.26440554E-07
+	rot = -4.21468691E-08,0.707106531,0.707107127,1.26440483E-07
 	attRot = 0,0,0,1
 	attRot0 = -1.1920929E-07,1,1.19209275E-07,5.96046519E-08
 	mir = 1,1,1
@@ -3769,12 +4076,10 @@ PART
 	modCost = 0
 	modMass = 0
 	modSize = 0,0,0
-	link = standardNoseCone_4294073722
-	link = miniFuselage_4294073402
 	sym = miniFuselage_4293915904
 	srfN = srfAttach,zerocockpit_4294036828,,0.312999994|0|0,1|0|0,0.312999994|0|0
-	attN = top,standardNoseCone_4294073722_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
-	attN = bottom,miniFuselage_4294073402_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
+	attN = top,Null_0_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
+	attN = bottom,Null_0_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
 	EVENTS
 	{
 	}
@@ -3869,6 +4174,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Dynamic
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = stack
@@ -3911,8 +4238,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.298519492, 10, 1.16787481)
-		originalRotation = (-4.21468478E-08, 0.707106769, 0.707106888, 1.26440554E-07)
+		originalPos = (0.298519492, 10, 1.34399438)
+		originalRotation = (-4.21468691E-08, 0.707106531, 0.707107127, 1.26440483E-07)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -3948,210 +4275,11 @@ PART
 }
 PART
 {
-	part = standardNoseCone_4294073722
-	partName = Part
-	persistentId = 1210713724
-	pos = 0.298519373,10,1.88663912
-	attPos = 0,0,0
-	attPos0 = -5.21540997E-08,0.718750119,2.75671425E-07
-	rot = 0.707106829,-1.00485924E-14,1.00485924E-14,0.707106829
-	attRot = 0,0,0,1
-	attRot0 = 1.1920929E-07,-1,-1.19209275E-07,5.96046519E-08
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 0
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	sym = standardNoseCone_4294073654
-	attN = bottom01,miniFuselage_4293920512_0|-0.25|0_0|-1|0_0|-0.25|0_0|-1|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleAnimateHeat
-		isEnabled = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 180
-		OriginalResourcesCost = 0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack_square
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 180
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (0.298519373, 10, 1.88663864)
-		originalRotation = (0.707106829, -1.00485924E-14, 1.00485924E-14, 0.707106829)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, -0.3, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-}
-PART
-{
 	part = miniFuselage_4293915904
 	partName = Part
-	persistentId = 1055898702
-	pos = -0.298519492,10,1.16787529
-	attPos = 0.635271251,1.06320143,-1.04308128E-07
+	persistentId = 3545100136
+	pos = -0.298519492,10,1.34399426
+	attPos = 0.635271251,1.23932827,-1.04308128E-07
 	attPos0 = -0.933790743,0.104665875,-1.49011612E-08
 	rot = -0.707107067,-1.57349106E-07,1.12382423E-08,-0.70710659
 	attRot = 0,0,0,1
@@ -4171,12 +4299,10 @@ PART
 	modCost = 0
 	modMass = 0
 	modSize = 0,0,0
-	link = standardNoseCone_4294073654
-	link = miniFuselage_4294073432
 	sym = miniFuselage_4293920512
 	srfN = srfAttach,zerocockpit_4294036828,,0.312999994|0|0,1|0|0,0.312999994|0|0
-	attN = top,standardNoseCone_4294073654_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
-	attN = bottom,miniFuselage_4294073432_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
+	attN = top,Null_0_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
+	attN = bottom,Null_0_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
 	EVENTS
 	{
 	}
@@ -4271,6 +4397,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Dynamic
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = stack
@@ -4313,7 +4461,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.298519492, 10, 1.16787505)
+		originalPos = (-0.298519492, 10, 1.34399426)
 		originalRotation = (-0.707107067, -1.57349106E-07, 1.12382423E-08, -0.70710659)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -4350,209 +4498,10 @@ PART
 }
 PART
 {
-	part = standardNoseCone_4294073654
-	partName = Part
-	persistentId = 3174432965
-	pos = -0.298519373,10,1.8866396
-	attPos = 0,0,0
-	attPos0 = -5.21540997E-08,0.718750119,2.75671425E-07
-	rot = 0.707106888,4.90709056E-14,-8.87653598E-15,0.707106769
-	attRot = 0,0,0,1
-	attRot0 = 1.1920929E-07,-1,-1.19209275E-07,5.96046519E-08
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 0
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	sym = standardNoseCone_4294073722
-	attN = bottom01,miniFuselage_4293915904_0|-0.25|0_0|-1|0_0|-0.25|0_0|-1|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleAnimateHeat
-		isEnabled = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 180
-		OriginalResourcesCost = 0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack_square
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 180
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (-0.298519373, 10, 1.88663912)
-		originalRotation = (0.707106888, 4.90709056E-14, -8.87653598E-15, 0.707106769)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, -0.3, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-}
-PART
-{
 	part = strutConnector_4294073616
 	partName = CompoundPart
-	persistentId = 626678222
-	pos = -0.0984021798,10.244359,-4.89725924
+	persistentId = 3629051960
+	pos = -0.0984021798,10.244359,-4.89726973
 	attPos = 0.106171601,-0.295488834,0.109973133
 	attPos0 = -0.20457378,-3.27019525,-0.354331464
 	rot = -0.586304009,0.395282,0.310112864,-0.635476053
@@ -4604,10 +4553,10 @@ PART
 	PARTDATA
 	{
 		tgt = 4294074208
-		tpersID = 2420283042
-		pos = -0.945667267,0.0254193842,0.266334683
-		rot = 3.18063478E-08,-0.257784277,-0.0169211496,0.96605444
-		dir = -0.962231815,0.0258646365,0.270999879
+		tpersID = 1560549807
+		pos = -0.945667505,0.0254174992,0.266334683
+		rot = 3.1683669E-08,-0.257784307,-0.0169211533,0.966054618
+		dir = -0.962231874,0.0258627143,0.270999819
 	}
 	MODULE
 	{
@@ -4725,6 +4674,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -4744,7 +4715,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.0984021798, 10.244359, -4.89725828)
+		originalPos = (-0.0984021798, 10.244359, -4.89726973)
 		originalRotation = (-0.586304009, 0.395282, 0.310112864, -0.635476053)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -4764,8 +4735,8 @@ PART
 {
 	part = strutConnector_4294073524
 	partName = CompoundPart
-	persistentId = 1043800519
-	pos = 0.0984021798,10.244359,-4.89725828
+	persistentId = 881237634
+	pos = 0.0984021798,10.244359,-4.89726877
 	attPos = -0.961106777,3.29053235,0.141263351
 	attPos0 = 0.20457378,-3.27019525,-0.354331464
 	rot = -0.310112983,0.635476232,0.58630383,-0.39528212
@@ -4817,10 +4788,10 @@ PART
 	PARTDATA
 	{
 		tgt = 4294074242
-		tpersID = 2939834877
-		pos = -0.945667565,0.0254190452,-0.26633507
-		rot = -2.09743867E-08,0.257784277,-0.01692128,0.966054678
-		dir = -0.962231755,0.0258642826,-0.271000177
+		tpersID = 1446788164
+		pos = -0.945667982,0.0254171677,-0.266335189
+		rot = -2.097803E-08,0.257784367,-0.0169212855,0.966054976
+		dir = -0.962231755,0.0258623604,-0.271000177
 	}
 	MODULE
 	{
@@ -4938,6 +4909,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -4957,7 +4950,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.0984021798, 10.244359, -4.89725733)
+		originalPos = (0.0984021798, 10.244359, -4.89726877)
 		originalRotation = (-0.310112983, 0.635476232, 0.58630383, -0.39528212)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -4975,410 +4968,10 @@ PART
 }
 PART
 {
-	part = miniFuselage_4294073432
-	partName = Part
-	persistentId = 3668249057
-	pos = -0.298519611,10,0.230362445
-	attPos = 0,0,0
-	attPos0 = 1.04308057E-07,-0.93749994,7.48783179E-07
-	rot = 0.707106888,3.85224401E-15,6.1963484E-15,0.707106769
-	attRot = 0,0,0,1
-	attRot0 = 3.27825518E-07,1.03315976E-07,-1.19209254E-07,-1
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 5
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 0
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	sym = miniFuselage_4294073402
-	attN = top,miniFuselage_4293915904_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
-	attN = bottom,Null_0_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 240.0
-		OriginalResourcesCost = 40.0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 160
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (-0.298519611, 10, 0.230362386)
-		originalRotation = (0.707106888, 3.85224401E-15, 6.1963484E-15, 0.707106769)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, 0.5, 0.0)
-		originalAttachNodePos = (0.0, -0.5, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 50
-		maxAmount = 50
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		isVisible = True
-		flowMode = Both
-	}
-}
-PART
-{
-	part = miniFuselage_4294073402
-	partName = Part
-	persistentId = 3689659701
-	pos = 0.298519611,10,0.230362326
-	attPos = 0,0,0
-	attPos0 = 1.04308114E-07,-0.93749994,-3.57627783E-07
-	rot = 0.707106888,-5.02429621E-15,5.02429621E-15,0.707106769
-	attRot = 0,0,0,1
-	attRot0 = 1.1920929E-07,-1,-2.98023082E-08,5.96046412E-08
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 5
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 0
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	sym = miniFuselage_4294073432
-	attN = top,miniFuselage_4293920512_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
-	attN = bottom,Null_0_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 240.0
-		OriginalResourcesCost = 40.0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 160
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (0.298519611, 10, 0.230362266)
-		originalRotation = (0.707106888, -5.02429621E-15, 5.02429621E-15, 0.707106769)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, 0.5, 0.0)
-		originalAttachNodePos = (0.0, -0.5, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 50
-		maxAmount = 50
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		isVisible = True
-		flowMode = Both
-	}
-}
-PART
-{
 	part = hlfSrf_4294073372
 	partName = Part
-	persistentId = 2017392386
-	pos = -7.87800758E-08,10.8083944,-3.87175608
+	persistentId = 843035286
+	pos = -7.87799976E-08,10.8083944,-3.87176657
 	attPos = -4.1295209E-08,0.147802547,0.0877868831
 	attPos0 = -3.37232251E-08,0.143457666,-0.385749847
 	rot = 0.127717882,0.695477009,0.127717584,0.69547689
@@ -5596,6 +5189,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -5638,7 +5253,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-7.87800829E-08, 10.8083944, -3.87175512)
+		originalPos = (-7.87799976E-08, 10.8083944, -3.87176657)
 		originalRotation = (0.127717882, 0.695477009, 0.127717584, 0.69547689)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -5658,7 +5273,7 @@ PART
 {
 	part = SurfAntenna_4294349544
 	partName = Part
-	persistentId = 3880511803
+	persistentId = 4061497008
 	pos = -8.78263293E-08,11.0046158,-0.242617726
 	attPos = 0,0,0
 	attPos0 = -8.78263293E-08,-0.242617846,-1.0046159
@@ -5796,6 +5411,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -5858,8 +5495,8 @@ PART
 {
 	part = fatwing0_4294330240
 	partName = Part
-	persistentId = 3245824735
-	pos = -0.184890866,9.50657558,1.44214153
+	persistentId = 1557883166
+	pos = -0.184890866,9.50657558,1.44214416
 	attPos = 0.213470817,0.251579285,0.0186758041
 	attPos0 = -0.398361683,1.19055295,0.474748552
 	rot = 0.706433833,-0.0308431964,-0.0308431815,0.706433833
@@ -5977,6 +5614,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -6019,7 +5678,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.184890866, 9.50657558, 1.44214129)
+		originalPos = (-0.184890866, 9.50657558, 1.44214416)
 		originalRotation = (0.706433833, -0.0308431964, -0.0308431815, 0.706433833)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -6050,8 +5709,8 @@ PART
 {
 	part = fatwing3_4294073266
 	partName = Part
-	persistentId = 3532299623
-	pos = -1.93807983,9.66434002,1.00786567
+	persistentId = 1513593058
+	pos = -1.93807983,9.66434002,1.00786829
 	attPos = 0.0499020815,0.0657261014,-0.00436581485
 	attPos0 = -1.81016767,-0.50000006,4.39002122E-07
 	rot = 0.477714509,-0.521333396,0.477714986,0.521333694
@@ -6167,6 +5826,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -6209,8 +5890,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-1.93807983, 9.66434002, 1.00786543)
-		originalRotation = (0.477714568, -0.521333456, 0.477715045, 0.521333754)
+		originalPos = (-1.93807983, 9.66434002, 1.00786829)
+		originalRotation = (0.477714509, -0.521333396, 0.477714986, 0.521333694)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -6240,11 +5921,11 @@ PART
 {
 	part = elevon5_4294073228
 	partName = Part
-	persistentId = 3592868725
-	pos = -2.5980587,9.72207928,0.696905971
+	persistentId = 3614551151
+	pos = -2.59805632,9.72207928,0.696907878
 	attPos = 0.020385623,0.0714410543,4.12099979E-07
 	attPos0 = -0.331341475,0.591060996,4.05650127E-07
-	rot = 0.70389396,0.0673283786,-0.128419533,0.695347846
+	rot = 0.703894019,0.0673283637,-0.128419504,0.695347905
 	attRot = 0,0,0.707106709,-0.707106709
 	attRot0 = 2.91665607E-08,7.77309523E-08,-0.79825449,0.602320373
 	mir = 1,1,1
@@ -6478,6 +6159,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -6520,8 +6223,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.59805918, 9.72207928, 0.696905732)
-		originalRotation = (0.703894019, 0.0673283562, -0.128419518, 0.695347905)
+		originalPos = (-2.59805632, 9.72207928, 0.696907878)
+		originalRotation = (0.703894019, 0.0673283637, -0.128419504, 0.695347905)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -6540,11 +6243,11 @@ PART
 {
 	part = elevon5_4294073194
 	partName = Part
-	persistentId = 583972867
-	pos = -0.695456266,9.55562592,0.151884496
+	persistentId = 3220398950
+	pos = -0.695456147,9.55562592,0.151884407
 	attPos = -0.0955087543,-0.334651351,-1.46672463E-07
 	attPos0 = -0.760462403,-0.912715912,1.03330414E-07
-	rot = 0.70389396,0.0673283786,-0.128419533,0.695347846
+	rot = 0.703894019,0.0673283637,-0.128419504,0.695347905
 	attRot = 0,0,0.707106709,-0.707106709
 	attRot0 = 2.91665607E-08,7.77309523E-08,-0.79825449,0.602320373
 	mir = 1,1,1
@@ -6778,6 +6481,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -6820,8 +6545,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.695456028, 9.55562592, 0.151884407)
-		originalRotation = (0.703894019, 0.0673283562, -0.128419518, 0.695347905)
+		originalPos = (-0.695456147, 9.55562592, 0.151884407)
+		originalRotation = (0.703894019, 0.0673283637, -0.128419504, 0.695347905)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -6840,8 +6565,8 @@ PART
 {
 	part = smallwingConnector4_4294073160
 	partName = Part
-	persistentId = 2797206748
-	pos = -3.67376995,9.81180859,1.46473491
+	persistentId = 3293765007
+	pos = -3.67376995,9.81180859,1.46473753
 	attPos = 2.38418579E-07,-0.0334696472,-1.53668225E-08
 	attPos0 = -3.50220394,0.056062825,6.14090766E-07
 	rot = -0.706433833,0.0308432449,0.0308432486,-0.706433833
@@ -6958,6 +6683,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -7000,7 +6747,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-3.67376995, 9.81180859, 1.46473467)
+		originalPos = (-3.67376995, 9.81180859, 1.46473753)
 		originalRotation = (-0.706433833, 0.0308432449, 0.0308432486, -0.706433833)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -7020,8 +6767,8 @@ PART
 {
 	part = elevon5_4294073014
 	partName = Part
-	persistentId = 2223970141
-	pos = -4.46923113,9.88140106,1.23853278
+	persistentId = 3139599832
+	pos = -4.46923113,9.88140106,1.2385354
 	attPos = -0.0307549238,0.0511255264,1.24864528E-08
 	attPos0 = -0.76774466,-0.277326494,6.15386909E-07
 	rot = -0.703699946,-0.0693283528,0.130394578,-0.694980025
@@ -7258,6 +7005,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -7300,7 +7069,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-4.46923113, 9.88140106, 1.23853254)
+		originalPos = (-4.46923113, 9.88140106, 1.2385354)
 		originalRotation = (-0.703699946, -0.0693283528, 0.130394578, -0.694980025)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -7320,8 +7089,8 @@ PART
 {
 	part = airlinerCtrlSrf_4294072980
 	partName = Part
-	persistentId = 1391399771
-	pos = -2.03269839,9.72658634,1.9842937
+	persistentId = 3374439237
+	pos = -2.03269839,9.72658634,1.98429894
 	attPos = 0.00159490108,0.148744553,0.0486126989
 	attPos0 = -1.86154497,0.393395275,-0.106741495
 	rot = 0.706844389,-0.0192557555,-0.0192557145,0.706844747
@@ -7558,6 +7327,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -7600,8 +7391,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.03269839, 9.72658634, 1.98429322)
-		originalRotation = (0.706844449, -0.0192557573, -0.0192557164, 0.706844807)
+		originalPos = (-2.03269839, 9.72658634, 1.98429894)
+		originalRotation = (0.706844389, -0.0192557555, -0.0192557145, 0.706844747)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -7620,8 +7411,8 @@ PART
 {
 	part = fightergear_4294072944
 	partName = Part
-	persistentId = 1934141407
-	pos = -1.13468313,9.58403778,1.6666075
+	persistentId = 985211697
+	pos = -1.13468313,9.58403778,1.66661274
 	attPos = -0.166909039,0.00185917318,-0.101129688
 	attPos0 = -0.786020219,0.22259897,0.106741033
 	rot = 0.0436182134,0.999032855,0.000242084265,-0.00555004552
@@ -7740,10 +7531,10 @@ PART
 		name = ModuleWheelDeployment
 		isEnabled = True
 		shieldedCanDeploy = False
-		stateDisplayString = Retracted
-		stateString = Retracted
+		stateDisplayString = Deployed
+		stateString = Deployed
 		stagingEnabled = True
-		position = 0
+		position = 1
 		EVENTS
 		{
 		}
@@ -7872,6 +7663,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -7914,8 +7727,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-1.13468313, 9.58403778, 1.66660702)
-		originalRotation = (0.0436182171, 0.999032974, 0.000242084265, -0.00555004552)
+		originalPos = (-1.13468313, 9.58403778, 1.66661274)
+		originalRotation = (0.0436182134, 0.999032855, 0.000242084265, -0.00555004552)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -7934,8 +7747,8 @@ PART
 {
 	part = fatwing0_4294284598
 	partName = Part
-	persistentId = 1703460698
-	pos = 0.184890866,9.50657558,1.44214153
+	persistentId = 1897640979
+	pos = 0.184890866,9.50657558,1.44214416
 	attPos = -0.213470817,0.251579285,0.0186758041
 	attPos0 = 0.398361683,1.19055295,0.474748552
 	rot = -0.0308432076,0.706433833,0.706433833,-0.0308432225
@@ -8053,6 +7866,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -8095,7 +7930,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.184890866, 9.50657558, 1.44214129)
+		originalPos = (0.184890866, 9.50657558, 1.44214416)
 		originalRotation = (-0.0308432076, 0.706433833, 0.706433833, -0.0308432225)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -8126,11 +7961,11 @@ PART
 {
 	part = fatwing3_4294072778
 	partName = Part
-	persistentId = 2308681805
-	pos = 1.93807602,9.66434002,1.00786567
+	persistentId = 4274459745
+	pos = 1.93807209,9.66434002,1.00786829
 	attPos = 0.0499020815,0.0657261014,-0.00436581485
 	attPos0 = -1.81016767,-0.50000006,4.39002122E-07
-	rot = 0.477714986,0.521333516,0.477714837,-0.521333396
+	rot = 0.477714986,0.521333456,0.477714747,-0.521333396
 	attRot = -0.73727721,-6.48270131E-08,-3.42939153E-08,0.675590456
 	attRot0 = -9.89447813E-08,1.7881392E-07,0.70710665,0.707106948
 	mir = 1,1,1
@@ -8243,6 +8078,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -8285,8 +8142,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (1.93807638, 9.66434002, 1.00786543)
-		originalRotation = (0.477714986, 0.521333516, 0.477714807, -0.521333396)
+		originalPos = (1.93807209, 9.66434002, 1.00786829)
+		originalRotation = (0.477714986, 0.521333456, 0.477714747, -0.521333396)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -8316,11 +8173,11 @@ PART
 {
 	part = elevon5_4294072740
 	partName = Part
-	persistentId = 3267031001
-	pos = 2.59807348,9.72207928,0.696903944
+	persistentId = 4176186329
+	pos = 2.59807348,9.72207928,0.696905732
 	attPos = 0.0203852654,0.0714443922,-1.42874103E-06
 	attPos0 = -0.331341475,0.591060996,4.05650127E-07
-	rot = -0.12841931,0.695347965,0.703894079,0.067328006
+	rot = -0.12841931,0.695347905,0.703894019,0.067328006
 	attRot = 0,0,0.707106709,-0.707106709
 	attRot0 = 2.91665607E-08,7.77309523E-08,-0.79825449,0.602320373
 	mir = 1,1,1
@@ -8554,6 +8411,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -8596,7 +8475,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (2.59807348, 9.72207928, 0.696903825)
+		originalPos = (2.59807348, 9.72207928, 0.696905732)
 		originalRotation = (-0.12841931, 0.695347905, 0.703894019, 0.067328006)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -8616,11 +8495,11 @@ PART
 {
 	part = elevon5_4294072706
 	partName = Part
-	persistentId = 3347223821
-	pos = 0.69545275,9.55562592,0.151880682
+	persistentId = 168342966
+	pos = 0.695450366,9.55562592,0.151879609
 	attPos = -0.0955085158,-0.334647775,-1.0427442E-06
 	attPos0 = -0.760462403,-0.912715912,1.03330414E-07
-	rot = -0.12841931,0.695347965,0.703894079,0.067328006
+	rot = -0.12841931,0.695347905,0.703894019,0.067328006
 	attRot = 0,0,0.707106709,-0.707106709
 	attRot0 = 2.91665607E-08,7.77309523E-08,-0.79825449,0.602320373
 	mir = 1,1,1
@@ -8854,6 +8733,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -8896,7 +8797,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.695452988, 9.55562592, 0.15188095)
+		originalPos = (0.695450366, 9.55562592, 0.151879609)
 		originalRotation = (-0.12841931, 0.695347905, 0.703894019, 0.067328006)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -8916,8 +8817,8 @@ PART
 {
 	part = smallwingConnector4_4294072672
 	partName = Part
-	persistentId = 4261708211
-	pos = 3.67377615,9.81180859,1.46473372
+	persistentId = 3010436353
+	pos = 3.67377281,9.81180859,1.46473587
 	attPos = 2.38418579E-07,-0.0334696472,-1.53668225E-08
 	attPos0 = -3.50220394,0.056062825,6.14090766E-07
 	rot = -0.0308432709,0.706433833,0.706433833,-0.0308432598
@@ -9033,6 +8934,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -9075,7 +8998,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (3.67377663, 9.81180859, 1.4647336)
+		originalPos = (3.67377281, 9.81180859, 1.46473587)
 		originalRotation = (-0.0308432709, 0.706433833, 0.706433833, -0.0308432598)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -9095,8 +9018,8 @@ PART
 {
 	part = elevon5_4292227468
 	partName = Part
-	persistentId = 1778875797
-	pos = 4.46925688,9.88140106,1.23853278
+	persistentId = 260157341
+	pos = 4.46925688,9.88140106,1.2385354
 	attPos = -0.0307538509,0.0511255115,-1.26449709E-06
 	attPos0 = -0.76774466,-0.277326494,6.15386909E-07
 	rot = -0.130394608,0.694980025,0.703699946,0.0693282783
@@ -9333,6 +9256,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 500
+		ArmorThickness = 10
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -9375,7 +9320,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (4.46925688, 9.88140106, 1.23853254)
+		originalPos = (4.46925688, 9.88140106, 1.2385354)
 		originalRotation = (-0.130394608, 0.694980025, 0.703699946, 0.0693282783)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -9395,8 +9340,8 @@ PART
 {
 	part = airlinerCtrlSrf_4294072492
 	partName = Part
-	persistentId = 2667475952
-	pos = 2.03269434,9.72658634,1.98429394
+	persistentId = 3039090437
+	pos = 2.03268909,9.72658634,1.98429918
 	attPos = 0.00159490108,0.148744553,0.0486126989
 	attPos0 = -1.86154497,0.393395275,-0.106741495
 	rot = -0.0192557313,0.706844747,0.706844389,-0.0192557685
@@ -9633,6 +9578,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free_square
@@ -9675,8 +9642,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (2.03269482, 9.72658634, 1.98429346)
-		originalRotation = (-0.0192557331, 0.706844807, 0.706844449, -0.0192557704)
+		originalPos = (2.03268909, 9.72658634, 1.98429918)
+		originalRotation = (-0.0192557313, 0.706844747, 0.706844389, -0.0192557685)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -9695,11 +9662,11 @@ PART
 {
 	part = fightergear_4294072456
 	partName = Part
-	persistentId = 3434703523
-	pos = 1.13468432,9.58403778,1.66660702
+	persistentId = 1358383056
+	pos = 1.13468432,9.58403778,1.66661227
 	attPos = -0.166908324,0.00185845792,-0.112352438
 	attPos0 = -0.786020219,0.22259897,0.106741033
-	rot = -0.000242084265,0.00555001013,-0.0436181873,-0.999032855
+	rot = -0.000242084265,0.00555003248,-0.0436181724,-0.999032855
 	attRot = -0.707106709,-0.707106709,0,0
 	attRot0 = -0.00392820314,-0.707095742,0.70709604,0.00392818637
 	mir = 1,1,1
@@ -9815,10 +9782,10 @@ PART
 		name = ModuleWheelDeployment
 		isEnabled = True
 		shieldedCanDeploy = False
-		stateDisplayString = Retracted
-		stateString = Retracted
+		stateDisplayString = Deployed
+		stateString = Deployed
 		stagingEnabled = True
-		position = 0
+		position = 1
 		EVENTS
 		{
 		}
@@ -9947,6 +9914,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -9989,8 +9978,8 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (1.13468432, 9.58403778, 1.66660655)
-		originalRotation = (-0.000242084265, 0.00555000827, -0.043618191, -0.999032974)
+		originalPos = (1.13468432, 9.58403778, 1.66661227)
+		originalRotation = (-0.000242084265, 0.00555003248, -0.0436181724, -0.999032855)
 		moduleVersion = 6
 		stagingEnabled = True
 		userReallyDeactivatedIt = False
@@ -10010,7 +9999,7 @@ PART
 	part = longAntenna_4294072328
 	partName = Part
 	persistentId = 3512531954
-	pos = -5.1003046,9.87561512,1.93349934
+	pos = -5.1003046,9.87561512,1.93350458
 	attPos = 0.00607681274,5.06639481E-07,0.0694577396
 	attPos0 = -1.42666209,0.468750715,0.0607648082
 	rot = 0.707106769,4.38699255E-09,-4.38699255E-09,0.707106769
@@ -10182,6 +10171,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = stack_square
@@ -10224,7 +10235,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-5.1003046, 9.87561512, 1.93349886)
+		originalPos = (-5.1003046, 9.87561512, 1.93350458)
 		originalRotation = (0.707106769, 4.38699255E-09, -4.38699255E-09, 0.707106769)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -10248,8 +10259,8 @@ PART
 {
 	part = mk1cargodoorjr_4294494238
 	partName = Part
-	persistentId = 1468933163
-	pos = 0,10,1.80030072
+	persistentId = 2639870393
+	pos = 0,10,1.80030596
 	attPos = 0,0,0
 	attPos0 = 0,1.80028331,-2.38418579E-07
 	rot = 0.707106829,0,0,0.707106829
@@ -10270,10 +10281,8 @@ PART
 	modCost = 0
 	modMass = 0
 	modSize = 0,0,0
-	link = halfmini_4294071988
-	link = mumech.MJ2.AR202_4294071952
 	link = 109Prop_4294071892
-	link = IntakeRadialLong_4294071748
+	link = kOSMachineRad_4293525480
 	attN = top,109Prop_4294071892_0|0.46875|0_0|1|0_0|0.46875|0_0|1|0
 	attN = bottom,zerocockpit_4294036828_0|-0.46875|0_0|-1|0_0|-0.46875|0_0|-1|0
 	EVENTS
@@ -10407,6 +10416,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -10449,7 +10480,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0, 10, 1.80030024)
+		originalPos = (0, 10, 1.80030596)
 		originalRotation = (0.707106829, 0, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -10475,564 +10506,10 @@ PART
 }
 PART
 {
-	part = halfmini_4294071988
-	partName = Part
-	persistentId = 1173751632
-	pos = 0,9.97056007,2.01283884
-	attPos = 0,0.179166719,-0.594731092
-	attPos0 = 0,0.0333703607,0.624171019
-	rot = 0.50000006,0.49999994,0.50000006,0.49999994
-	attRot = 0,0,0,1
-	attRot0 = 1.19209275E-07,0.707106829,1.19209275E-07,0.707106829
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 1
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	link = sasModule_4294071778
-	srfN = srfAttach,mk1cargodoorjr_4294494238,,0|0|0,1|0|0,0|0|0
-	attN = top,Null_0_0|0.234375|0_0|1|0_0|0.234375|0_0|1|0
-	attN = bottom,sasModule_4294071778_0|-0.234375|0_0|-1|0_0|-0.234375|0_0|-1|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 120.0
-		OriginalResourcesCost = 20.0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 80
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (0, 9.97056007, 2.01283836)
-		originalRotation = (0.500000119, 0.5, 0.500000119, 0.5)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodePos = (0.0, -0.2, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 25
-		maxAmount = 25
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		isVisible = True
-		flowMode = Both
-	}
-}
-PART
-{
-	part = mumech.MJ2.AR202_4294071952
-	partName = Part
-	persistentId = 3963372850
-	pos = 0.0130947214,10.4419413,1.91409397
-	attPos = 0,2.52961016,0.228385597
-	attPos0 = 0.0130947214,0.113793209,-0.441941082
-	rot = -0.500000417,-0.499999553,0.500000417,0.499999613
-	attRot = -1.00000012,6.32202728E-07,0,2.10734221E-08
-	attRot0 = -0.707106829,6.2584877E-07,0.707106829,-5.96046448E-07
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 1
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	srfN = srfAttach,mk1cargodoorjr_4294494238,,0|0|0,0.75|0|0,0|0|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleCommand
-		isEnabled = True
-		hibernation = False
-		hibernateOnWarp = False
-		activeControlPointName = _default
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-			MakeReferenceToggle
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			HibernateToggle
-			{
-				actionGroup = None
-				active = False
-				wasActiveBeforePartWasAdjusted = False
-			}
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = MechJebCore
-		isEnabled = True
-		running = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-			OnOrbitProgradeAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnOrbitRetrogradeAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnOrbitNormalAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnOrbitAntinormalAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnOrbitRadialInAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnOrbitRadialOutAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnKillRotationAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnDeactivateSmartASSAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnLandsomewhereAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnLandTargetAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnPanicAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronOffAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronKeepVertAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronZeroSpeedAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronPlusOneSpeedAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronMinusOneSpeedAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnTranslatronToggleHSAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			OnAscentAPToggleAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = MechJebAR202
-		isEnabled = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 750
-		OriginalResourcesCost = 0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TrajectoriesVesselSettings
-		isEnabled = True
-		Initialized = False
-		EntryAngle = 3.1415926535897931
-		EntryHorizon = False
-		HighAngle = 3.1415926535897931
-		HighHorizon = False
-		LowAngle = 3.1415926535897931
-		LowHorizon = False
-		GroundAngle = 3.1415926535897931
-		GroundHorizon = False
-		RetrogradeEntry = True
-		TargetBody = 
-		TargetPosition_x = 0
-		TargetPosition_y = 0
-		TargetPosition_z = 0
-		ManualTargetTxt = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = free
-		active = True
-		available = True
-		currentScale = 100
-		defaultScale = 100
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 750
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (0.0130947214, 10.4419413, 1.91409349)
-		originalRotation = (-0.500000477, -0.499999613, 0.500000477, 0.499999672)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleTripLogger
-		isEnabled = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		Log
-		{
-			flight = 0
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	RESOURCE
-	{
-		name = ElectricCharge
-		amount = 5
-		maxAmount = 5
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		isVisible = True
-		flowMode = Both
-	}
-}
-PART
-{
 	part = 109Prop_4294071892
 	partName = Part
-	persistentId = 1098008166
-	pos = 0,10,2.26905227
+	persistentId = 189068977
+	pos = 0,10,2.26905751
 	attPos = 0,0,0
 	attPos0 = 0,0.468750387,0
 	rot = 0.707106829,0,0,0.707106829
@@ -11053,6 +10530,7 @@ PART
 	modCost = 0
 	modMass = 0
 	modSize = 0,0,0
+	link = strutCube_4293650574
 	attN = top,mk1cargodoorjr_4294494238_0|0|0_0|-1|0_0|0|0_0|-1|0
 	EVENTS
 	{
@@ -11279,7 +10757,7 @@ PART
 	{
 		name = FSmeshSwitch
 		isEnabled = True
-		selectedObject = 1
+		selectedObject = 0
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11343,6 +10821,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -11385,7 +10885,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0, 10, 2.26905179)
+		originalPos = (0, 10, 2.26905751)
 		originalRotation = (0.707106829, 0, 0, 0.707106829)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -11418,448 +10918,10 @@ PART
 }
 PART
 {
-	part = sasModule_4294071778
-	partName = Part
-	persistentId = 3915505404
-	pos = 2.13162888E-14,9.97056007,1.68735194
-	attPos = 0,0,0
-	attPos0 = -5.48727463E-08,-0.325485468,0
-	rot = 0.707106769,0,0,0.707106769
-	attRot = 0,0,0,1
-	attRot0 = -5.96046448E-08,-0.707106829,-5.96046448E-08,0.707106829
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 0
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	attN = bottom,Null_0_0|-0.0911109|0_0|-0.5|0_0|-0.0911109|0_0|-0.5|0
-	attN = top,halfmini_4294071988_0|0.0911109|0_0|0.5|0_0|0.0911109|0_0|0.5|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleReactionWheel
-		isEnabled = True
-		actuatorModeCycle = 0
-		authorityLimiter = 100
-		stateString = Active
-		stagingEnabled = True
-		WheelState = Active
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-			CycleAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			Activate
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			Deactivate
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-			Toggle
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 600
-		OriginalResourcesCost = 0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = stack
-		active = True
-		available = True
-		currentScale = 0.625
-		defaultScale = 0.625
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 600
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (2.8421723E-14, 9.97056007, 1.68735147)
-		originalRotation = (0.707106888, 0, 0, 0.707106888)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		originalAttachNodePos = (0.0, -0.1, 0.0)
-		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -0.5, 0.0)
-		originalAttachNodeOrientation = (0.0, 0.5, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-}
-PART
-{
-	part = IntakeRadialLong_4294071748
-	partName = Part
-	persistentId = 1783375818
-	pos = -4.19242019E-09,9.63996887,2.09146595
-	attPos = -4.19242019E-09,0.308501601,-0.262336761
-	attPos0 = 0,-0.017337434,0.62236774
-	rot = 2.38418579E-07,-5.68434189E-14,3.0264394E-07,1.00000012
-	attRot = 2.13162821E-14,1.8414625E-14,3.08754437E-07,1.00000024
-	attRot0 = -0.70710665,2.14001531E-07,2.14001616E-07,0.707107008
-	mir = 1,1,1
-	symMethod = Mirror
-	autostrutMode = Off
-	rigidAttachment = False
-	istg = -1
-	resPri = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	sepI = -1
-	attm = 1
-	sameVesselCollision = False
-	modCost = 0
-	modMass = 0
-	modSize = 0,0,0
-	srfN = srfAttach,mk1cargodoorjr_4294494238,,0|0|0,0|1|0,0|0|0
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-		ToggleSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		SetSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-		RemoveSameVesselInteraction
-		{
-			actionGroup = None
-			wasActiveBeforePartWasAdjusted = False
-		}
-	}
-	PARTDATA
-	{
-	}
-	MODULE
-	{
-		name = ModuleResourceIntake
-		isEnabled = True
-		intakeEnabled = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-			ToggleAction
-			{
-				actionGroup = None
-				wasActiveBeforePartWasAdjusted = False
-			}
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleCargoPart
-		isEnabled = True
-		beingAttached = False
-		beingSettled = False
-		reinitResourcesOnStoreInVessel = False
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = FundsKeeper
-		isEnabled = True
-		OriginalCost = 900.0
-		OriginalResourcesCost = 0.0
-		OriginalModulesCost = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = Refunding
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = StealBackMyFunds
-		isEnabled = True
-		active = True
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = TweakScale
-		isEnabled = True
-		type = free_square
-		active = True
-		available = True
-		currentScale = 100
-		defaultScale = 100
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 900
-		OriginalCrewCapacity = 0
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = KOSNameTag
-		isEnabled = True
-		nameTag = 
-		stagingEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = AttachedOnEditor
-		isEnabled = True
-		active = True
-		originalPos = (-4.19242019E-09, 9.63996887, 2.09146547)
-		originalRotation = (2.38418579E-07, -5.68434189E-14, 3.0264394E-07, 1.00000012)
-		moduleVersion = 6
-		stagingEnabled = True
-		userReallyDeactivatedIt = False
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	RESOURCE
-	{
-		name = IntakeAir
-		amount = 0.5
-		maxAmount = 0.5
-		flowState = True
-		isTweakable = False
-		hideFlow = False
-		isVisible = False
-		flowMode = Both
-	}
-}
-PART
-{
 	part = navLight1_4293155528
 	partName = Part
-	persistentId = 632858343
-	pos = 5.41434622,9.86997986,1.71628046
+	persistentId = 1185496807
+	pos = 5.41434097,9.86997986,1.71628571
 	attPos = 0,0,0
 	attPos0 = -1.73901653,0.251542419,-0.0937491655
 	rot = -0.0308431741,0.706433833,0.706433833,-0.0308431517
@@ -12102,6 +11164,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free
@@ -12159,7 +11243,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (5.41434669, 9.86997986, 1.71627998)
+		originalPos = (5.41434097, 9.86997986, 1.71628571)
 		originalRotation = (-0.0308431741, 0.706433833, 0.706433833, -0.0308431517)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -12194,8 +11278,8 @@ PART
 {
 	part = navLight1_4293155356
 	partName = Part
-	persistentId = 329895936
-	pos = -5.41434669,9.86997986,1.71628046
+	persistentId = 1448465632
+	pos = -5.41434145,9.86997986,1.71628571
 	attPos = 0,0,0
 	attPos0 = -1.73902988,0.25154233,0.093750231
 	rot = 0.0308431685,0.706433833,0.706433833,0.0308431461
@@ -12414,6 +11498,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = free
@@ -12471,7 +11577,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-5.41434717, 9.86997986, 1.71627998)
+		originalPos = (-5.41434145, 9.86997986, 1.71628571)
 		originalRotation = (0.0308431685, 0.706433833, 0.706433833, 0.0308431461)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -12506,7 +11612,7 @@ PART
 {
 	part = rotoServo.00_4294009262
 	partName = Part
-	persistentId = 558891865
+	persistentId = 1041544432
 	pos = 8.7736268E-08,10.8036222,-0.246914148
 	attPos = 0,-0.239656448,0.19996357
 	attPos0 = 8.7736268E-08,-0.00725781918,-1.00358593
@@ -12788,6 +11894,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = KOSNameTag
 		isEnabled = True
 		nameTag = 
@@ -12851,8 +11979,8 @@ PART
 {
 	part = longAntenna_4294009172
 	partName = Part
-	persistentId = 599699354
-	pos = -1.32267805E-05,11.0151701,-0.322505832
+	persistentId = 2924255836
+	pos = -1.32268606E-05,11.0151701,-0.322507143
 	attPos = 8.00746136E-10,-0.0116560906,0.179099306
 	attPos0 = -9.04895536E-09,0.223203719,-0.103508249
 	rot = -0.682996809,0.18295306,0.183072269,-0.683028877
@@ -13024,6 +12152,28 @@ PART
 	}
 	MODULE
 	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = TweakScale
 		isEnabled = True
 		type = stack_square
@@ -13066,7 +12216,7 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-1.32267733E-05, 11.0151701, -0.322505713)
+		originalPos = (-1.32268606E-05, 11.0151701, -0.322507143)
 		originalRotation = (-0.682996809, 0.18295306, 0.183072269, -0.683028877)
 		moduleVersion = 6
 		stagingEnabled = True
@@ -13074,6 +12224,1012 @@ PART
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+}
+PART
+{
+	part = kOSMachineRad_4293525480
+	partName = Part
+	persistentId = 3814042352
+	pos = -0.00942306872,10.4419413,1.86816227
+	attPos = 0,0,0
+	attPos0 = -0.00942306872,0.0678557158,-0.441941381
+	rot = 0.50000006,0.50000006,0.499999821,0.500000298
+	attRot = 0,0,0,1
+	attRot0 = -1.7881392E-07,0.707106769,-1.7881392E-07,0.707106829
+	mir = 1,1,1
+	symMethod = Mirror
+	autostrutMode = Off
+	rigidAttachment = False
+	istg = -1
+	resPri = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	sepI = -1
+	attm = 1
+	sameVesselCollision = False
+	modCost = 0
+	modMass = 0
+	modSize = 0,0,0
+	srfN = srfAttach,mk1cargodoorjr_4294494238,collidera,0|0|0,1|0|0,0|0|0
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+		ToggleSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		SetSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		RemoveSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+	}
+	PARTDATA
+	{
+	}
+	MODULE
+	{
+		name = kOSProcessor
+		isEnabled = True
+		bootFile = /boot/plen.ks
+		diskSpace = 60000
+		baseDiskSpace = 60000
+		baseModuleMass = 0
+		additionalCost = 0
+		diskSpaceCostFactor = 0.0244140625
+		diskSpaceMassFactor = 4.88289986E-09
+		MaxPartId = 100
+		ECPerInstruction = 3.99999999E-06
+		ECPerBytePerSecond = 0
+		RequiredPower = 0.400000006
+		stagingEnabled = True
+		activated = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			Activate
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			Deactivate
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			Toggle
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			TogglePower
+			{
+				actionGroup = Custom04
+				wasActiveBeforePartWasAdjusted = False
+			}
+			StartSuppressAutopilot
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			StopSuppressAutopilot
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ToggleSuppressAutopilot
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleDeployableSolarPanel
+		isEnabled = True
+		efficiencyMult = 1
+		launchUT = -1
+		currentRotation = (0, 0, 0, 1)
+		storedAnimationTime = 0
+		storedAnimationSpeed = 0
+		deployState = EXTENDED
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ExtendPanelsAction
+			{
+				actionGroup = None
+				active = False
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ExtendAction
+			{
+				actionGroup = None
+				active = False
+				wasActiveBeforePartWasAdjusted = False
+			}
+			RetractAction
+			{
+				actionGroup = None
+				active = False
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2200
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = Refunding
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = KOSNameTag
+		isEnabled = True
+		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleCargoPart
+		isEnabled = True
+		beingAttached = False
+		beingSettled = False
+		reinitResourcesOnStoreInVessel = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = AttachedOnEditor
+		isEnabled = True
+		active = True
+		originalPos = (-0.00942306872, 10.4419413, 1.86816227)
+		originalRotation = (0.50000006, 0.50000006, 0.499999821, 0.500000298)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 10
+		maxAmount = 10
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		isVisible = True
+		flowMode = Both
+	}
+}
+PART
+{
+	part = ReleaseValve_4293919858
+	partName = Part
+	persistentId = 462077278
+	pos = 0,9.46219349,-1.6989435
+	attPos = 0,0,0
+	attPos0 = 0,-0.367394924,0.537806749
+	rot = 3.80689524E-09,0.626186848,0.7796731,4.74001105E-09
+	attRot = 0,0,0,1
+	attRot0 = -6.59812593E-10,0.99409306,0.108531132,6.04357497E-09
+	mir = 1,1,1
+	symMethod = Mirror
+	autostrutMode = Off
+	rigidAttachment = False
+	istg = -1
+	resPri = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	sepI = -1
+	attm = 1
+	sameVesselCollision = False
+	modCost = 0
+	modMass = 0
+	modSize = 0,0,0
+	srfN = srfAttach,airplaneTailB_4294018584,TailCOL 1,0|0|0,0|0|-1,0|0|0
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+		ToggleSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		SetSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		RemoveSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+	}
+	PARTDATA
+	{
+	}
+	MODULE
+	{
+		name = ModuleResourceDrain
+		isEnabled = True
+		resourceName = 
+		drainRate = 10
+		isDraining = False
+		flowMode = False
+		stagingEnabled = True
+		resourcesToRelease = 
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			StartResourceDrainAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			StopResourceDrainAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ToggleResourceDrainAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			ToggleResourceDrainFlowAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			drainRate
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleCargoPart
+		isEnabled = True
+		beingAttached = False
+		beingSettled = False
+		reinitResourcesOnStoreInVessel = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 50
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = Refunding
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScale
+		isEnabled = True
+		type = free
+		active = True
+		available = True
+		currentScale = 100
+		defaultScale = 100
+		defaultTransformScale = (0, 0, 0)
+		DryCost = 50
+		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = KOSNameTag
+		isEnabled = False
+		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = AttachedOnEditor
+		isEnabled = True
+		active = True
+		originalPos = (0, 9.46219349, -1.6989435)
+		originalRotation = (3.80689524E-09, 0.626186848, 0.7796731, 4.74001105E-09)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+}
+PART
+{
+	part = strutCube_4293650574
+	partName = Part
+	persistentId = 1265674001
+	pos = 0.0251355413,9.99326515,2.1403091
+	attPos = 0,0,0
+	attPos0 = 0.0251355413,-0.128748894,0.00673484802
+	rot = 0.707106829,0,0,-0.707106829
+	attRot = 0,0,0,1
+	attRot0 = 1,0,0,0
+	mir = 1,1,1
+	symMethod = Mirror
+	autostrutMode = Off
+	rigidAttachment = False
+	istg = 0
+	resPri = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	sepI = -1
+	attm = 1
+	sameVesselCollision = False
+	modCost = 0
+	modMass = 0
+	modSize = 0,0,0
+	link = sasModule_4294071778
+	srfN = srfAttach,109Prop_4294071892,collider,0|-0.128734395|0,0|-1|0,0|-0.128734395|0
+	attN = top,sasModule_4294071778_0|0.128734395|0_0|1|0_0|0.128734395|0_0|1|0
+	attN = bottom,Null_0_0|-0.128734395|0_0|-1|0_0|-0.128734395|0_0|-1|0
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+		ToggleSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		SetSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		RemoveSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+	}
+	PARTDATA
+	{
+	}
+	MODULE
+	{
+		name = ModuleCargoPart
+		isEnabled = True
+		beingAttached = False
+		beingSettled = False
+		reinitResourcesOnStoreInVessel = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = Refunding
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScale
+		isEnabled = True
+		type = stack
+		active = True
+		available = True
+		currentScale = 0.3125
+		defaultScale = 0.3125
+		defaultTransformScale = (0, 0, 0)
+		DryCost = 16
+		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = KOSNameTag
+		isEnabled = False
+		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = AttachedOnEditor
+		isEnabled = True
+		active = True
+		originalPos = (0.0251355413, 9.99326515, 2.1403091)
+		originalRotation = (0.707106829, 0, 0, -0.707106829)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		originalAttachNodePos = (0.0, 0.1, 0.0)
+		originalAttachNodePos = (0.0, -0.1, 0.0)
+		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+}
+PART
+{
+	part = sasModule_4294071778
+	partName = Part
+	persistentId = 3117611428
+	pos = 0.0251355413,9.99326515,1.92046487
+	attPos = 0,0,0
+	attPos0 = 0,0.219844699,0
+	rot = -0.50000006,-0.50000006,0.50000006,0.50000006
+	attRot = -0.707106709,0,0.707106709,0
+	attRot0 = 0,0.707106829,0,-0.707106829
+	mir = 1,1,1
+	symMethod = Mirror
+	autostrutMode = Off
+	rigidAttachment = False
+	istg = 0
+	resPri = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	sepI = -1
+	attm = 0
+	sameVesselCollision = False
+	modCost = 0
+	modMass = 0
+	modSize = 0,0,0
+	attN = bottom,strutCube_4293650574_0|-0.0911109|0_0|-0.5|0_0|-0.0911109|0_0|-0.5|0
+	attN = top,Null_0_0|0.0911109|0_0|0.5|0_0|0.0911109|0_0|0.5|0
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+		ToggleSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		SetSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+		RemoveSameVesselInteraction
+		{
+			actionGroup = None
+			wasActiveBeforePartWasAdjusted = False
+		}
+	}
+	PARTDATA
+	{
+	}
+	MODULE
+	{
+		name = ModuleReactionWheel
+		isEnabled = True
+		actuatorModeCycle = 0
+		authorityLimiter = 100
+		stateString = Active
+		stagingEnabled = True
+		WheelState = Active
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			CycleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			Activate
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			Deactivate
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+			Toggle
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleCargoPart
+		isEnabled = True
+		beingAttached = False
+		beingSettled = False
+		reinitResourcesOnStoreInVessel = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 600
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = Refunding
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = HitpointTracker
+		isEnabled = True
+		Armor = 10
+		maxHitPoints = 0
+		ArmorThickness = 0
+		ArmorSet = True
+		ExplodeMode = Never
+		FireFX = True
+		FireFXLifeTimeInSeconds = 5
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScale
+		isEnabled = True
+		type = stack
+		active = True
+		available = True
+		currentScale = 0.625
+		defaultScale = 0.625
+		defaultTransformScale = (0, 0, 0)
+		DryCost = 600
+		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = KOSNameTag
+		isEnabled = True
+		nameTag = 
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = AttachedOnEditor
+		isEnabled = True
+		active = True
+		originalPos = (0.0251355413, 9.99326515, 1.92046487)
+		originalRotation = (-0.50000006, -0.50000006, 0.50000006, 0.50000006)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		originalAttachNodePos = (0.0, -0.1, 0.0)
+		originalAttachNodePos = (0.0, 0.1, 0.0)
+		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, -0.5, 0.0)
+		originalAttachNodeOrientation = (0.0, 0.5, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{

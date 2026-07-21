@@ -1,8 +1,8 @@
 ship = Pioneer
-version = 1.12.3
+version = 1.12.5
 description = 
 type = VAB
-size = 8.70229626,31.5170059,5.02499866
+size = 8.88604641,33.3500061,5.02499866
 steamPublishedFileId = 0
 persistentId = 38888467
 rot = 0,0,0,0
@@ -225,10 +225,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 650
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 650
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -779,6 +812,33 @@ PART
 				unlockParts = 
 				unlockTechs = 
 			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
 			MechJebModuleWarpController
 			{
 				unlockParts = 
@@ -906,6 +966,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -977,15 +1038,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 25.4629555, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, -0.2, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.2, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -1185,10 +1247,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 150
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 150
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -1204,6 +1299,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -1245,15 +1341,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 25.2429543, 1.94609165E-05)
 		originalRotation = (-1, 0, 0, 0)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
+		originalAttachNodePos = (0.0, 0.0, 0.0)
+		originalAttachNodeSize = 0
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -1339,10 +1436,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -1358,6 +1488,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -1399,8 +1530,9 @@ PART
 		active = True
 		originalPos = (-0.128036171, 25.4858932, -0.0739006251)
 		originalRotation = (4.9479465E-09, 0.258819103, -1.84659825E-08, -0.965925872)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -1496,10 +1628,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -1515,6 +1680,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -1556,8 +1722,9 @@ PART
 		active = True
 		originalPos = (-2.86187242E-06, 25.4858932, 0.147859603)
 		originalRotation = (-1.35180374E-08, -0.707106829, -1.35180382E-08, -0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -1653,10 +1820,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -1672,6 +1872,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -1713,8 +1914,9 @@ PART
 		active = True
 		originalPos = (0.128030479, 25.4858932, -0.0739006102)
 		originalRotation = (-1.84659825E-08, -0.965925872, 4.94794516E-09, 0.258819073)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -1874,10 +2076,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 20
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -10
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 20
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -1893,6 +2128,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -1949,7 +2185,23 @@ PART
 		active = True
 		originalPos = (-0.295704395, 25.6948204, -0.170703948)
 		originalRotation = (4.9479465E-09, 0.258819103, -1.84659825E-08, -0.965925872)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2099,10 +2351,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 20
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -10
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 20
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2118,6 +2403,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -2174,7 +2460,23 @@ PART
 		active = True
 		originalPos = (-2.86508839E-06, 25.6948204, 0.341466218)
 		originalRotation = (-1.35180374E-08, -0.707106829, -1.35180382E-08, -0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2324,10 +2626,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 20
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -10
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 20
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2343,6 +2678,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -2399,7 +2735,23 @@ PART
 		active = True
 		originalPos = (0.295698732, 25.6948204, -0.170703903)
 		originalRotation = (-1.84659825E-08, -0.965925872, 4.94794516E-09, 0.258819073)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2484,10 +2836,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 80
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 80
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2503,6 +2888,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -2544,8 +2930,9 @@ PART
 		active = True
 		originalPos = (-0.296730369, 25.4376335, -0.171296299)
 		originalRotation = (9.55869428E-09, -0.866025448, 1.65561467E-08, 0.49999997)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -2640,10 +3027,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 80
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 80
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2659,6 +3079,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -2700,8 +3121,9 @@ PART
 		active = True
 		originalPos = (0.296724677, 25.4376335, 0.171335191)
 		originalRotation = (1.65561467E-08, 0.5, -9.55869517E-09, 0.866025448)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -2782,7 +3204,7 @@ PART
 		isEnabled = True
 		currentRotation = (-0.707106829, 0, 0, 0.707106829)
 		storedAnimationTime = 0
-		storedAnimationSpeed = -10
+		storedAnimationSpeed = 1
 		deployState = RETRACTED
 		stagingEnabled = True
 		EVENTS
@@ -2851,10 +3273,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 300
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 300
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -2870,6 +3325,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack_square
 		active = True
 		available = True
 		currentScale = 0.625
@@ -2911,8 +3367,9 @@ PART
 		active = True
 		originalPos = (-0.295318335, 25.5686131, 0.170519933)
 		originalRotation = (0.612372398, -0.353553444, 0.353553385, 0.612372518)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
@@ -3057,10 +3514,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3095,8 +3585,9 @@ PART
 		active = True
 		originalPos = (-0.345443547, 25.3731117, 0.0836938918)
 		originalRotation = (-8.42936956E-08, -0.5, -4.21468478E-08, 0.866025448)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
@@ -3240,10 +3731,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3278,8 +3802,9 @@ PART
 		active = True
 		originalPos = (-0.25458312, 25.3698006, 0.241068631)
 		originalRotation = (-8.42936956E-08, -0.5, -4.21468478E-08, 0.866025448)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
@@ -3415,10 +3940,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 900
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 900
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3453,8 +4011,9 @@ PART
 		active = True
 		originalPos = (-0.336786985, 25.4197998, 0.277101994)
 		originalRotation = (0.683012664, 0.183012754, -0.183012888, 0.683012724)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -3474,7 +4033,7 @@ PART
 	pos = -0.312618583,25.3731117,0.254055262
 	attPos = 0.180622518,-2.03981632E-09,2.23517418E-08
 	attPos0 = -0.0166727584,-1.04897389E-08,0.0567534044
-	rot = 0.183012724,0.683012843,0.683012545,-0.183012515
+	rot = 0.183012694,0.683012903,0.683012545,-0.183012575
 	attRot = 1.30084331E-07,-6.16791169E-08,0.258819014,0.965925813
 	attRot0 = 0.499999911,0.500000179,0.499999911,-0.49999994
 	mir = 1,1,1
@@ -3586,10 +4145,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 8800
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 8800
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3623,9 +4215,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-0.312618583, 25.3731117, 0.254055262)
-		originalRotation = (0.183012724, 0.683012843, 0.683012545, -0.183012515)
-		moduleVersion = 5
+		originalRotation = (0.183012694, 0.683012962, 0.683012605, -0.183012545)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -3645,7 +4238,7 @@ PART
 	pos = -0.408708751,25.3731117,0.0840890035
 	attPos = 0,0,0
 	attPos0 = -0.0312904269,-9.99228256E-09,0.0549868345
-	rot = 0.183012724,0.683012843,0.683012545,-0.183012515
+	rot = 0.183012694,0.683012903,0.683012545,-0.183012575
 	attRot = 1.30084331E-07,-6.16791169E-08,0.258819014,0.965925813
 	attRot0 = 0.499999911,0.500000179,0.499999911,-0.49999994
 	mir = 1,1,1
@@ -3757,10 +4350,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 6000
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 6000
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3794,9 +4420,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-0.408708751, 25.3731117, 0.0840890035)
-		originalRotation = (0.183012724, 0.683012843, 0.683012545, -0.183012515)
-		moduleVersion = 5
+		originalRotation = (0.183012694, 0.683012962, 0.683012605, -0.183012545)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -3866,7 +4493,7 @@ PART
 		isEnabled = True
 		currentRotation = (0, 0, 0, 0)
 		storedAnimationTime = 0
-		storedAnimationSpeed = -10
+		storedAnimationSpeed = 1
 		deployState = RETRACTED
 		stagingEnabled = True
 		EVENTS
@@ -3942,10 +4569,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2200
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2200
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -3980,8 +4640,9 @@ PART
 		active = True
 		originalPos = (-0.295630008, 25.3940926, 0.17069988)
 		originalRotation = (0.612372398, -0.353553444, 0.353553385, 0.612372518)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 1
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
@@ -4242,10 +4903,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 100
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 50
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 100
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4280,15 +4974,16 @@ PART
 		active = True
 		originalPos = (0.216252863, 25.4425945, 0.124874741)
 		originalRotation = (0.612372518, 0.353553385, -0.353553355, 0.612372518)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, -0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.0, 0.1)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, 0.3, 0.9)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -4306,10 +5001,10 @@ PART
 	part = strutCube_4289595948
 	partName = Part
 	persistentId = 1119954275
-	pos = 0.285034239,25.2243843,0.164585799
+	pos = 0.285034359,25.2243843,0.164585829
 	attPos = 0,0,0
 	attPos0 = -7.45057971E-09,0.23221381,-7.45057882E-09
-	rot = 0.0868240744,-0.852868676,0.150383711,0.492403865
+	rot = 0.0868241563,-0.852868676,0.150383741,0.492403895
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -2.98023188E-08,1.49011594E-08,1,2.98023188E-08
 	mir = 1,1,1
@@ -4375,10 +5070,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4394,6 +5122,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -4433,17 +5162,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.285034239, 25.2243843, 0.164585799)
-		originalRotation = (0.0868240744, -0.852868676, 0.150383711, 0.492403865)
-		moduleVersion = 5
+		originalPos = (0.285034299, 25.2243843, 0.164585814)
+		originalRotation = (0.0868240893, -0.852868676, 0.150383711, 0.492403924)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -4461,10 +5191,10 @@ PART
 	part = strutCube_4289595116
 	partName = Part
 	persistentId = 3069730140
-	pos = 0.361296058,24.9824429,0.20861569
+	pos = 0.361296237,24.9824429,0.20861578
 	attPos = 0,0,0
 	attPos0 = 6.72778171E-08,-0.257468879,-1.89603355E-08
-	rot = 0.0868240669,-0.852868676,0.150383592,0.492403835
+	rot = 0.0868240818,-0.852868676,0.150383711,0.492403805
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -2.98023224E-08,1.49011647E-08,-2.98023224E-08,1
 	mir = 1,1,1
@@ -4530,10 +5260,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4549,6 +5312,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -4588,17 +5352,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.361296058, 24.9824429, 0.20861569)
-		originalRotation = (0.0868240669, -0.852868676, 0.150383592, 0.492403835)
-		moduleVersion = 5
+		originalPos = (0.361296177, 24.9824429, 0.20861575)
+		originalRotation = (0.0868240818, -0.852868736, 0.150383651, 0.492403835)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -4616,10 +5381,10 @@ PART
 	part = strutCube_4289585572
 	partName = Part
 	persistentId = 261759144
-	pos = 0.437557817,24.7405014,0.252645761
+	pos = 0.437558234,24.7405014,0.252645999
 	attPos = 0,0,0
 	attPos0 = 1.12426498E-07,-0.257469058,-1.19549384E-08
-	rot = 0.0868239999,-0.852868676,0.150383472,0.492403924
+	rot = 0.0868240595,-0.852868617,0.150383413,0.492403924
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -9.68575478E-08,-4.4408921E-15,-1.49011683E-08,1
 	mir = 1,1,1
@@ -4685,10 +5450,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4704,6 +5502,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -4743,17 +5542,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.437557817, 24.7405014, 0.252645761)
-		originalRotation = (0.0868239999, -0.852868676, 0.150383472, 0.492403924)
-		moduleVersion = 5
+		originalPos = (0.437558055, 24.7405014, 0.25264588)
+		originalRotation = (0.0868240222, -0.852868676, 0.150383472, 0.492403924)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -4771,10 +5571,10 @@ PART
 	part = rtg_4289590514
 	partName = Part
 	persistentId = 3789358043
-	pos = 0.572487116,24.3124352,0.33054772
+	pos = 0.572487593,24.3124352,0.330548018
 	attPos = 0,0,0
 	attPos0 = 2.33118271E-07,-0.455537528,-1.35760729E-07
-	rot = -0.0449433625,-0.254887044,0.167731076,0.951251268
+	rot = -0.0449433923,-0.254887044,0.167731047,0.951251268
 	attRot = 0,0,0.707106709,0.707106709
 	attRot0 = -4.10878513E-08,0.707106829,-3.12999617E-08,0.707106769
 	mir = 1,1,1
@@ -4892,10 +5692,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 23300
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 23300
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -4911,6 +5744,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -4950,17 +5784,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.572487116, 24.3124352, 0.33054772)
-		originalRotation = (-0.0449433625, -0.254887044, 0.167731076, 0.951251268)
-		moduleVersion = 5
+		originalPos = (0.572487473, 24.3124352, 0.330547959)
+		originalRotation = (-0.0449433774, -0.254887104, 0.167731106, 0.951251388)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.3, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.3, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -5003,7 +5838,7 @@ PART
 	sym = hinge.01.s_4289600756
 	srfN = srfAttach,probeCoreHex.v2_4289631328,collider_base.collider,0|-0.103479996|0,0|-1|0,0|-0.103479996|0
 	attN = bottom,Null_0_0|-0.103479996|0_0|-1|0_0|-0.103479996|0_0|-1|0
-	attN = top,strutCube_4289575034_0|0.103479996|0_0|1|0_8.149037E-14|0.0353922248|0.0972385406_-1.77635684E-15|0.342020154|0.939692855
+	attN = top,strutCube_4289575034_0|0.103479996|0_0|1|0_4.59632332E-14|0.0353922248|0.0972385406_-1.77635684E-15|0.342020154|0.939692855
 	EVENTS
 	{
 	}
@@ -5202,10 +6037,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 100
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 50
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 100
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5240,15 +6108,16 @@ PART
 		active = True
 		originalPos = (-2.90674893E-06, 25.4425945, -0.249691144)
 		originalRotation = (3.81666538E-08, 0.707106829, -0.707106769, 1.2357086E-08)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, -0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.0, 0.1)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, 0.3, 0.9)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -5269,7 +6138,7 @@ PART
 	pos = -2.94629172E-06,25.2243843,-0.329113066
 	attPos = 0,0,0
 	attPos0 = -7.45057971E-09,0.23221381,-7.45057882E-09
-	rot = 0.173648149,-4.09395824E-08,2.90561708E-09,0.984807789
+	rot = 0.173648149,-4.09395824E-08,2.90562063E-09,0.984807789
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -2.98023188E-08,1.49011594E-08,1,2.98023188E-08
 	mir = 1,1,1
@@ -5335,10 +6204,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5354,6 +6256,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -5394,16 +6297,17 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-2.94629172E-06, 25.2243843, -0.329113066)
-		originalRotation = (0.173648149, -4.09395824E-08, 2.90561708E-09, 0.984807789)
-		moduleVersion = 5
+		originalRotation = (0.173648149, -4.09395824E-08, 2.90562063E-09, 0.984807849)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -5421,10 +6325,10 @@ PART
 	part = strutCube_4289574992
 	partName = Part
 	persistentId = 2961550718
-	pos = -2.87387957E-06,24.9824429,-0.4171727
+	pos = -2.87387957E-06,24.9824429,-0.417172879
 	attPos = 0,0,0
 	attPos0 = 6.72778171E-08,-0.257468879,-1.89603355E-08
-	rot = 0.173648149,-2.10896829E-08,-2.38563835E-08,0.984807789
+	rot = 0.173648149,-2.10896793E-08,-2.38563835E-08,0.984807789
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -2.98023224E-08,1.49011647E-08,-2.98023224E-08,1
 	mir = 1,1,1
@@ -5490,10 +6394,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5509,6 +6446,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -5548,17 +6486,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.87387957E-06, 24.9824429, -0.4171727)
-		originalRotation = (0.173648149, -2.10896829E-08, -2.38563835E-08, 0.984807789)
-		moduleVersion = 5
+		originalPos = (-2.87387957E-06, 24.9824429, -0.417172819)
+		originalRotation = (0.173648149, -2.10896829E-08, -2.38563835E-08, 0.984807849)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -5576,10 +6515,10 @@ PART
 	part = strutCube_4289574944
 	partName = Part
 	persistentId = 1215538885
-	pos = -2.77166532E-06,24.7405014,-0.505232334
+	pos = -2.77166532E-06,24.7405014,-0.505232453
 	attPos = 0,0,0
 	attPos0 = 1.12426498E-07,-0.257469058,-1.19549384E-08
-	rot = 0.17364794,-1.85021154E-08,-3.85311907E-08,0.984807849
+	rot = 0.17364794,-1.85021207E-08,-3.85311907E-08,0.984807849
 	attRot = 0.49999994,-0.49999994,0.49999994,0.49999994
 	attRot0 = -9.68575478E-08,-4.4408921E-15,-1.49011683E-08,1
 	mir = 1,1,1
@@ -5645,10 +6584,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5664,6 +6636,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -5703,17 +6676,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.77166532E-06, 24.7405014, -0.505232334)
-		originalRotation = (0.17364794, -1.85021154E-08, -3.85311907E-08, 0.984807849)
-		moduleVersion = 5
+		originalPos = (-2.77166532E-06, 24.7405014, -0.505232453)
+		originalRotation = (0.17364797, -1.85021243E-08, -3.85311907E-08, 0.984807849)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -5731,10 +6705,10 @@ PART
 	part = rtg_4289574890
 	partName = Part
 	persistentId = 2225087800
-	pos = -2.33177252E-06,24.3124352,-0.661035419
+	pos = -2.33177229E-06,24.3124352,-0.661035538
 	attPos = 0,0,0
 	attPos0 = 2.33118271E-07,-0.455537528,-1.35760729E-07
-	rot = 0.122787692,0.696364284,0.12278755,0.696364403
+	rot = 0.122787811,0.696364164,0.122787461,0.696364403
 	attRot = 0,0,0.707106709,0.707106709
 	attRot0 = -4.10878513E-08,0.707106829,-3.12999617E-08,0.707106769
 	mir = 1,1,1
@@ -5852,10 +6826,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 23300
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 23300
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -5871,6 +6878,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -5910,17 +6918,18 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.33177252E-06, 24.3124352, -0.661035419)
-		originalRotation = (0.122787692, 0.696364284, 0.12278755, 0.696364403)
-		moduleVersion = 5
+		originalPos = (-2.33177229E-06, 24.3124352, -0.661035538)
+		originalRotation = (0.122787721, 0.696364224, 0.12278749, 0.696364403)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.3, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.3, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6025,10 +7034,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2400
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2400
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6044,6 +7086,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack_square
 		active = True
 		available = True
 		currentScale = 1.25
@@ -6085,8 +7128,9 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 25.6504555, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 0
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
@@ -6194,10 +7238,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6213,6 +7290,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -6254,15 +7332,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 25.0817204, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6348,10 +7427,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6367,6 +7479,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -6408,15 +7521,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 24.8242512, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6502,10 +7616,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6521,6 +7668,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -6562,15 +7710,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 24.566782, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6656,10 +7805,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6675,6 +7857,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -6716,15 +7899,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 24.3093128, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6810,10 +7994,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 16
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 16
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6829,6 +8046,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.3125
@@ -6870,15 +8088,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 24.0518436, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 0
+		originalAttachNodeSize = 0
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -6895,7 +8114,7 @@ PART
 {
 	part = adapterSmallMiniShort_4293960190
 	partName = Part
-	persistentId = 163163584
+	persistentId = 675685716
 	pos = -2.86102295E-06,23.7231102,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-0.328734398,0
@@ -6980,10 +8199,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 100
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 100
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -6999,6 +8251,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.25
@@ -7040,15 +8293,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 23.7231102, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.0, 0.0)
+		originalAttachNodeSize = 0
 		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -7065,7 +8319,7 @@ PART
 {
 	part = probeStackSmall_4293960142
 	partName = Part
-	persistentId = 4209469914
+	persistentId = 4186290397
 	pos = -2.86102295E-06,23.6231079,1.94609165E-05
 	attPos = 0,-0.120002747,0
 	attPos0 = -0.548339665,23.264761,0.0943667516
@@ -7294,10 +8548,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2250
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2250
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -7419,6 +8706,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.25
@@ -7490,15 +8778,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 23.6231079, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, -0.1, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.1, 0.0)
 		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -7545,7 +8834,7 @@ PART
 {
 	part = fairingSize1p5_4293960078
 	partName = Part
-	persistentId = 2103283106
+	persistentId = 3422141276
 	pos = -2.86102295E-06,23.423111,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,2.07500076,0
@@ -7995,10 +9284,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 621.6071
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 171.6071
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 621.6070556640625
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -8033,63 +9355,64 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 23.423111, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.9, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 1.0, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 1.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 1.8, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 2.4, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 2.5, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 3.2, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 3.3, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 3.9, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 4.0, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 4.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 4.8, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.2, 0.0)
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 2
 		originalAttachNodeSize = 2
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -8106,7 +9429,7 @@ PART
 {
 	part = mumech.MJ2.AR202_4293959846
 	partName = Part
-	persistentId = 3600782160
+	persistentId = 3765485324
 	pos = -2.86102295E-06,23.6506119,-0.61153686
 	attPos = 0,0,0
 	attPos0 = 5.96046448E-08,0.227500916,-0.611556292
@@ -8305,10 +9628,11 @@ PART
 	}
 	MODULE
 	{
-		name = Refunding
+		name = FundsKeeper
 		isEnabled = True
-		active = True
 		OriginalCost = 750
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
 		stagingEnabled = True
 		EVENTS
 		{
@@ -8322,15 +9646,25 @@ PART
 	}
 	MODULE
 	{
-		name = TweakScale
+		name = Refunding
 		isEnabled = True
 		active = True
-		available = True
-		currentScale = 100
-		defaultScale = 100
-		defaultTransformScale = (0, 0, 0)
-		DryCost = 750
-		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -8390,13 +9724,37 @@ PART
 	}
 	MODULE
 	{
+		name = TweakScale
+		isEnabled = True
+		type = free
+		active = True
+		available = True
+		currentScale = 100
+		defaultScale = 100
+		defaultTransformScale = (0, 0, 0)
+		DryCost = 750
+		OriginalCrewCapacity = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
 		originalPos = (-2.86102295E-06, 23.6506119, -0.61153686)
 		originalRotation = (-0.50000006, 0.49999997, 0.50000006, -0.49999997)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -8442,7 +9800,7 @@ PART
 {
 	part = Size1p5.Tank.04_4293959780
 	partName = Part
-	persistentId = 2279815443
+	persistentId = 587821659
 	pos = -2.86102295E-06,21.3481102,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,15,0
@@ -8523,10 +9881,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2626.20
+		OriginalResourcesCost = 826.20
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2626.2000167369843
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -8542,6 +9933,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -8583,15 +9975,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 21.3481102, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 1.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.9, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -8630,7 +10023,7 @@ PART
 {
 	part = LiquidEngineRE-I2_4293959704
 	partName = Part
-	persistentId = 1662086063
+	persistentId = 1321830936
 	pos = -2.86102295E-06,18.3857269,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,1.47500038,0
@@ -8921,10 +10314,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2300
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2300
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -8940,6 +10366,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 2.5
@@ -8996,16 +10423,32 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 18.3857269, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 1.1, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.4, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
+		stagingEnabled = True
 		EVENTS
 		{
 		}
@@ -9021,7 +10464,7 @@ PART
 {
 	part = Decoupler.1p5_4293959474
 	partName = Part
-	persistentId = 3651971808
+	persistentId = 2366399533
 	pos = -2.86102295E-06,16.897728,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-1.48800087,0
@@ -9174,10 +10617,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 250
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 250
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -9193,6 +10669,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -9234,15 +10711,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 16.897728, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -9259,7 +10737,7 @@ PART
 {
 	part = Size1p5.Tank.04_4293959386
 	partName = Part
-	persistentId = 3941365656
+	persistentId = 139344503
 	pos = -2.86102295E-06,14.9477262,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = -0.54834199,14.6023788,0.0943707377
@@ -9327,10 +10805,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 2626.20
+		OriginalResourcesCost = 826.20
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 2626.2000167369843
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -9346,6 +10857,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -9387,15 +10899,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 14.9477262, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 1.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.9, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -9434,7 +10947,7 @@ PART
 {
 	part = Size1p5.Tank.03_4293959310
 	partName = Part
-	persistentId = 3677786181
+	persistentId = 126911400
 	pos = -2.86102295E-06,12.1352262,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-2.8125,0
@@ -9501,10 +11014,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1313.10
+		OriginalResourcesCost = 413.10
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1313.1000083684921
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -9520,6 +11066,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -9561,15 +11108,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 12.1352262, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.9, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -9608,7 +11156,7 @@ PART
 {
 	part = Size1p5.Tank.01_4293959234
 	partName = Part
-	persistentId = 4153935852
+	persistentId = 924549932
 	pos = -2.86102295E-06,10.9633512,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-1.171875,0
@@ -9693,10 +11241,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 320.98
+		OriginalResourcesCost = 100.98
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 320.98000204563141
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -9712,6 +11293,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -9753,15 +11335,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 10.9633512, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.2, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -9800,7 +11383,7 @@ PART
 {
 	part = Size1p5.Tank.01_4293959166
 	partName = Part
-	persistentId = 995794860
+	persistentId = 1509598172
 	pos = -2.86102295E-06,10.4946012,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-0.46875,0
@@ -9885,10 +11468,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 320.98
+		OriginalResourcesCost = 100.98
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 320.98000204563141
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -9904,6 +11520,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -9945,15 +11562,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 10.4946012, 1.94609165E-05)
 		originalRotation = (0, 0.382683456, 0, 0.923879504)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.2, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -9992,7 +11610,7 @@ PART
 {
 	part = Size1p5.Tank.01_4293959098
 	partName = Part
-	persistentId = 375594268
+	persistentId = 158877407
 	pos = -2.86102295E-06,10.0258512,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-0.46875,0
@@ -10077,10 +11695,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 320.98
+		OriginalResourcesCost = 100.98
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 320.98000204563141
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -10096,6 +11747,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -10137,15 +11789,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 10.0258512, 1.94609165E-05)
 		originalRotation = (0, -1.78813934E-07, 0, -1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.2, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.2, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -10184,7 +11837,7 @@ PART
 {
 	part = Size1p5.Tank.02_4293959030
 	partName = Part
-	persistentId = 925380357
+	persistentId = 886272344
 	pos = -2.86102295E-06,9.3227272,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-0.703125,0
@@ -10270,10 +11923,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 641.96
+		OriginalResourcesCost = 201.96
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 641.96000409126282
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -10289,6 +11975,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -10330,15 +12017,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 9.3227272, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.5, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.5, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -10377,7 +12065,7 @@ PART
 {
 	part = Size1p5.Tank.03_4293958952
 	partName = Part
-	persistentId = 4209031243
+	persistentId = 3606919383
 	pos = -2.86102295E-06,7.91647339,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-1.40625,0
@@ -10446,10 +12134,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1313.10
+		OriginalResourcesCost = 413.10
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1313.1000083684921
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -10465,6 +12186,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -10506,15 +12228,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 7.91647339, 1.94609165E-05)
 		originalRotation = (0, -0.707106709, 0, 0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.9, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -10553,7 +12276,7 @@ PART
 {
 	part = Size1p5.Size0.Adapter.01_4293958876
 	partName = Part
-	persistentId = 1979381366
+	persistentId = 2562485658
 	pos = -2.86102295E-06,6.60397339,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0,-1.3125,0
@@ -10626,10 +12349,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 233.44
+		OriginalResourcesCost = 73.44
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 233.44000148773193
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -10645,6 +12401,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -10686,15 +12443,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 6.60397339, 1.94609165E-05)
 		originalRotation = (-0.707106829, 0, -0.707106709, 0)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.4, 0.0)
-		originalAttachNodeSize = 0
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.4, 0.0)
+		originalAttachNodeSize = 0
 		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -10733,7 +12491,7 @@ PART
 {
 	part = liquidEngine2.v2_4293958830
 	partName = Part
-	persistentId = 3094402262
+	persistentId = 1863075262
 	pos = -2.86102295E-06,6.97446823,1.94609165E-05
 	attPos = 0,-0.745494008,0
 	attPos0 = 0,0.375000536,0
@@ -10748,7 +12506,7 @@ PART
 	resPri = 0
 	dstg = 6
 	sidx = 2
-	sqor = 7
+	sqor = 6
 	sepI = 2
 	attm = 0
 	sameVesselCollision = False
@@ -11040,10 +12798,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1200
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1200
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11059,6 +12850,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.25
@@ -11115,16 +12907,32 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 6.97446823, 1.94609165E-05)
 		originalRotation = (0, -0.707106709, 0, 0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.6, 0.0)
 		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
+		stagingEnabled = True
 		EVENTS
 		{
 		}
@@ -11140,7 +12948,7 @@ PART
 {
 	part = Decoupler.1p5_4293958614
 	partName = Part
-	persistentId = 1367762027
+	persistentId = 1690811342
 	pos = -2.86102295E-06,6.83726883,1.94609165E-05
 	attPos = 0,1.59280097,0
 	attPos0 = 0,-1.73000038,0
@@ -11155,7 +12963,7 @@ PART
 	resPri = 0
 	dstg = 7
 	sidx = 2
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 0
 	sameVesselCollision = False
@@ -11293,10 +13101,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 250
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 250
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11312,6 +13153,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.875
@@ -11353,15 +13195,16 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 6.83726883, 1.94609165E-05)
 		originalRotation = (0, 0, 1, 0)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.1, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.1, 0.0)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -11378,7 +13221,7 @@ PART
 {
 	part = Tube1p5_4293958526
 	partName = Part
-	persistentId = 3653363262
+	persistentId = 3731851747
 	pos = -2.86102295E-06,6.76413345,1.94609165E-05
 	attPos = 0,-0.026863873,0
 	attPos0 = 0,0.100000076,0
@@ -11475,10 +13318,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 286
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -14
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 286
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11494,6 +13370,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack_square
 		active = True
 		available = True
 		currentScale = 1.875
@@ -11535,23 +13412,24 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 6.76413345, 1.94609165E-05)
 		originalRotation = (0, 0.707106829, 0, 0.707106709)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodePos = (0.0, -0.6, 0.0)
+		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -0.6, 0.0)
 		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, -0.6, 0.0)
+		originalAttachNodeSize = 2
 		originalAttachNodeSize = 2
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -11568,7 +13446,7 @@ PART
 {
 	part = airplaneTailB_4293958150
 	partName = Part
-	persistentId = 1271414159
+	persistentId = 3810176929
 	pos = -3.33786011E-06,6.12431717,-1.24790704
 	attPos = -0.303771138,0.932290435,-7.59958823E-07
 	attPos0 = 1.55169606,-1.57210541,2.83122091E-07
@@ -11653,10 +13531,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 675
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 675
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11672,6 +13583,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack_square
 		active = True
 		available = True
 		currentScale = 1.25
@@ -11712,9 +13624,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-3.33786011E-06, 6.12431717, -1.24790704)
-		originalRotation = (-0.99999994, -4.61852778E-14, 8.94069672E-08, -1.2954078E-07)
-		moduleVersion = 5
+		originalRotation = (-0.99999994, -3.90798505E-14, 8.94069672E-08, -1.29540766E-07)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 1
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
@@ -11734,7 +13647,7 @@ PART
 {
 	part = liquidEngine.v2_4293958104
 	partName = Part
-	persistentId = 617912338
+	persistentId = 2712140488
 	pos = -2.92062759E-06,6.93907166,-1.24791455
 	attPos = 5.9604497E-07,-0.814754009,6.70305189E-06
 	attPos0 = 1.19209346E-07,-1.54424393E-13,5.96046448E-07
@@ -11749,7 +13662,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 7
+	sqor = 6
 	sepI = 3
 	attm = 0
 	sameVesselCollision = False
@@ -11951,10 +13864,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1100
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1100
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -11970,6 +13916,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.25
@@ -12025,17 +13972,33 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-2.92062759E-06, 6.93907166, -1.24791455)
-		originalRotation = (1.75850376E-14, 0.793353498, 3.26579211E-14, -0.60876143)
-		moduleVersion = 5
+		originalRotation = (1.50728903E-14, 0.793353498, 3.51700717E-14, -0.60876143)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.6, 0.0)
 		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
+		stagingEnabled = True
 		EVENTS
 		{
 		}
@@ -12051,7 +14014,7 @@ PART
 {
 	part = airplaneTailB_4293957930
 	partName = Part
-	persistentId = 2860075855
+	persistentId = 3477906111
 	pos = -2.38418579E-06,6.12431717,1.2479459
 	attPos = 0.303771496,0.932291389,6.25848315E-07
 	attPos0 = -1.55169606,-1.57210541,-1.49011612E-07
@@ -12136,10 +14099,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 675
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 675
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -12155,6 +14151,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack_square
 		active = True
 		available = True
 		currentScale = 1.25
@@ -12195,9 +14192,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-2.38418579E-06, 6.12431717, 1.2479459)
-		originalRotation = (-8.94069672E-08, 1.2954078E-07, -0.99999994, -4.61852778E-14)
-		moduleVersion = 5
+		originalRotation = (-8.94069672E-08, 1.29540766E-07, -0.99999994, -3.90798505E-14)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
 		originalAttachNodeSize = 1
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
@@ -12217,11 +14215,11 @@ PART
 {
 	part = liquidEngine.v2_4293957884
 	partName = Part
-	persistentId = 821421932
+	persistentId = 2758489914
 	pos = -2.92062759E-06,6.93907166,1.24795222
 	attPos = 4.76836533E-07,-0.814754009,6.22621519E-06
 	attPos0 = 1.19209062E-07,-1.85309328E-13,7.1525568E-07
-	rot = -5.50160395E-13,0.60876143,-6.55670667E-13,0.793353498
+	rot = -5.57696901E-13,0.60876143,-6.68231421E-13,0.793353498
 	attRot = 0,0,0,1
 	attRot0 = -2.98023224E-08,-1.29540609E-07,1,-3.55271368E-14
 	mir = 1,1,1
@@ -12232,7 +14230,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 7
+	sqor = 6
 	sepI = 3
 	attm = 0
 	sameVesselCollision = False
@@ -12442,10 +14440,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1100
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1100
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -12461,6 +14492,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 1.25
@@ -12516,17 +14548,33 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-2.92062759E-06, 6.93907166, 1.24795222)
-		originalRotation = (-5.50160395E-13, 0.60876143, -6.55670667E-13, 0.793353498)
-		moduleVersion = 5
+		originalRotation = (-5.526726E-13, 0.60876143, -6.63207065E-13, 0.793353498)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, -1.6, 0.0)
 		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
+		stagingEnabled = True
 		EVENTS
 		{
 		}
@@ -12542,7 +14590,7 @@ PART
 {
 	part = sepMotor1_4293957710
 	partName = Part
-	persistentId = 642187161
+	persistentId = 2807101952
 	pos = -0.684260726,6.4994812,1.90734863E-05
 	attPos = 3.13310295E-07,-0.051590085,0.248948991
 	attPos0 = 8.19563866E-08,-0.213062286,-0.933205724
@@ -12557,7 +14605,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -12697,10 +14745,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -12716,6 +14797,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -12757,8 +14839,9 @@ PART
 		active = True
 		originalPos = (-0.684260726, 6.4994812, 1.90734863E-05)
 		originalRotation = (-0.694599509, -0.132408202, 0.694598973, -0.132408217)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -12785,7 +14868,7 @@ PART
 {
 	part = sepMotor1_4293957662
 	partName = Part
-	persistentId = 698071774
+	persistentId = 3101144754
 	pos = -2.38418579E-06,6.4994812,-0.684238434
 	attPos = 1.61746287,-0.0515910387,5.51342623E-07
 	attPos0 = -0.933205605,-0.213062286,-1.34110451E-07
@@ -12800,7 +14883,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -12940,10 +15023,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -12959,6 +15075,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -13000,8 +15117,9 @@ PART
 		active = True
 		originalPos = (-2.38418579E-06, 6.4994812, -0.684238434)
 		originalRotation = (0.982311606, 7.4505806E-09, -8.94069672E-08, 0.187253445)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -13028,8 +15146,8 @@ PART
 {
 	part = sepMotor1_4293957614
 	partName = Part
-	persistentId = 3915306430
-	pos = 0.684255421,6.4994812,1.9595027E-05
+	persistentId = 348490877
+	pos = 0.684255481,6.4994812,1.96099281E-05
 	attPos = -2.76057534E-07,-0.0515910387,-0.248948574
 	attPos0 = 0,-0.213062286,0.933205605
 	rot = 0.694599509,-0.132407963,0.694599271,0.132408023
@@ -13043,7 +15161,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -13183,10 +15301,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -13202,6 +15353,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -13241,10 +15393,11 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.684255421, 6.4994812, 1.9595027E-05)
+		originalPos = (0.684255481, 6.4994812, 1.96099281E-05)
 		originalRotation = (0.694599509, -0.132407963, 0.694599271, 0.132408023)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -13271,7 +15424,7 @@ PART
 {
 	part = sepMotor1_4293957566
 	partName = Part
-	persistentId = 2855915590
+	persistentId = 3373169223
 	pos = -3.33786011E-06,6.4994812,0.684277296
 	attPos = -1.61746275,-0.0515910387,-6.25848259E-07
 	attPos0 = 0.933205605,-0.213062286,2.98023259E-08
@@ -13286,7 +15439,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -13426,10 +15579,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -13445,6 +15631,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -13486,8 +15673,9 @@ PART
 		active = True
 		originalPos = (-3.33786011E-06, 6.4994812, 0.684277296)
 		originalRotation = (8.94069672E-08, -0.187253445, 0.982311606, 7.4505806E-09)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -13514,7 +15702,7 @@ PART
 {
 	part = AM.MLP.AtlasLaunchStand_4293957518
 	partName = Part
-	persistentId = 2127478281
+	persistentId = 3981031572
 	pos = -2.86102295E-06,3.14741898,1.94609165E-05
 	attPos = 0,-1.99171162,0
 	attPos0 = 0,-1.625,0
@@ -13528,8 +15716,8 @@ PART
 	istg = 5
 	resPri = 0
 	dstg = 8
-	sidx = 2
-	sqor = 6
+	sidx = 0
+	sqor = 5
 	sepI = 5
 	attm = 0
 	sameVesselCollision = False
@@ -13546,6 +15734,8 @@ PART
 	attN = top31,Null_0_-7.5|0.400000006|0_0|-1|0_-7.5|0.400000006|0_0|-1|0
 	attN = top32,Null_0_0|0.400000006|7.5_0|-1|0_0|0.400000006|7.5_0|-1|0
 	attN = top33,Null_0_0|0.400000006|-7.5_0|-1|0_0|0.400000006|-7.5_0|-1|0
+	attN = atlas2A,Null_0_7.30000019|-0.404000014|2.06200004_0|-1|0_7.30000019|-0.404000014|2.06200004_0|-1|0
+	attN = atlas2B,Null_0_-7.30000019|-0.404000014|-2.06200004_0|-1|0_-7.30000019|-0.404000014|-2.06200004_0|-1|0
 	attN = NodeE1,Null_0_-3.35875726|-0.200000003|-3.35875726_0|-1.00000024|-2.08616257E-07_-3.4000001|-0.200000003|-3.4000001_0|-1|0
 	attN = NodeE2,Null_0_3.35875726|-0.200000003|-3.35875726_0|-1.00000024|-2.08616257E-07_3.4000001|-0.200000003|-3.4000001_0|-1|0
 	attN = NodeE3,Null_0_-3.35875726|-0.200000003|3.35875797_0|-1.00000024|-2.08616257E-07_-3.4000001|-0.200000003|3.4000001_0|-1|0
@@ -13782,10 +15972,299 @@ PART
 	}
 	MODULE
 	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9AssignUiGroups
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = 
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -13835,59 +16314,68 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 3.14741898, 1.94609165E-05)
 		originalRotation = (0, 0, 0, 1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 1.0, 0.0)
+		originalAttachNodePos = (4.5, 0.4, 0.0)
+		originalAttachNodePos = (-4.5, 0.4, 0.0)
+		originalAttachNodePos = (0.0, 0.4, 4.5)
+		originalAttachNodePos = (0.0, 0.4, -4.5)
+		originalAttachNodePos = (7.5, 0.4, 0.0)
+		originalAttachNodePos = (-7.5, 0.4, 0.0)
+		originalAttachNodePos = (0.0, 0.4, 7.5)
+		originalAttachNodePos = (0.0, 0.4, -7.5)
+		originalAttachNodePos = (7.3, -0.4, 2.1)
+		originalAttachNodePos = (-7.3, -0.4, -2.1)
+		originalAttachNodePos = (-3.4, -0.2, -3.4)
+		originalAttachNodePos = (3.4, -0.2, -3.4)
+		originalAttachNodePos = (-3.4, -0.2, 3.4)
+		originalAttachNodePos = (3.4, -0.2, 3.4)
+		originalAttachNodeSize = 3
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 3
+		originalAttachNodeSize = 3
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
 		originalAttachNodeSize = 2
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (4.5, 0.4, 0.0)
-		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-4.5, 0.4, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.4, 4.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.4, -4.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (7.5, 0.4, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-7.5, 0.4, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.4, 7.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 0.4, -7.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-3.4, -0.2, -3.4)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (3.4, -0.2, -3.4)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-3.4, -0.2, 3.4)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (3.4, -0.2, 3.4)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -13904,8 +16392,8 @@ PART
 {
 	part = AM.MLP.GeneralLaunchBaseSmall_4293956786
 	partName = Part
-	persistentId = 2255514020
-	pos = 0.0999970585,0.108055115,-0.0476514958
+	persistentId = 1221911457
+	pos = 0.0999970585,0.108055115,-0.0476514995
 	attPos = -4.40000105,0.0606355667,-0.047670953
 	attPos0 = 4.50000095,-3.10000038,0
 	rot = 0,-0.707106769,0,0.707106769
@@ -13918,8 +16406,8 @@ PART
 	istg = 5
 	resPri = 0
 	dstg = 8
-	sidx = 0
-	sqor = 6
+	sidx = 1
+	sqor = 5
 	sepI = 5
 	attm = 0
 	sameVesselCollision = False
@@ -14358,10 +16846,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -14409,45 +16930,46 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.0999970585, 0.108055115, -0.0476514958)
+		originalPos = (0.0999970585, 0.108055115, -0.0476514995)
 		originalRotation = (0, -0.707106769, 0, 0.707106769)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 3.5, 0.0)
+		originalAttachNodePos = (3.5, 3.0, 0.0)
+		originalAttachNodePos = (-3.5, 3.0, 0.0)
+		originalAttachNodePos = (0.0, 3.0, 3.5)
+		originalAttachNodePos = (0.0, 3.0, -3.5)
+		originalAttachNodePos = (8.0, 3.0, 0.0)
+		originalAttachNodePos = (-8.0, 3.0, 0.0)
+		originalAttachNodePos = (0.0, 3.0, 8.0)
+		originalAttachNodePos = (0.0, 3.0, -8.0)
+		originalAttachNodeSize = 3
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
 		originalAttachNodeSize = 2
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (3.5, 3.0, 0.0)
-		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-3.5, 3.0, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 3.0, 3.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 3.0, -3.5)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (8.0, 3.0, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-8.0, 3.0, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 3.0, 8.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (0.0, 3.0, -8.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -14464,7 +16986,7 @@ PART
 {
 	part = MountPlatform.MLP_4293954072
 	partName = Part
-	persistentId = 2536129596
+	persistentId = 3925996705
 	pos = 8.29999733,2.2080574,-0.0621393621
 	attPos = -0.0144885834,0.0200004578,-0.199998856
 	attPos0 = 0,2.07999992,-8
@@ -14478,8 +17000,8 @@ PART
 	istg = 5
 	resPri = 0
 	dstg = 8
-	sidx = 1
-	sqor = 6
+	sidx = 2
+	sqor = 5
 	sepI = 5
 	attm = 0
 	sameVesselCollision = False
@@ -14582,62 +17104,12 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleB9PartSwitch
+		name = FundsKeeper
 		isEnabled = True
+		OriginalCost = 1
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
 		stagingEnabled = True
-		moduleID = ladderSwitch
-		currentSubtype = All On
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleB9PartSwitch
-		isEnabled = True
-		stagingEnabled = True
-		moduleID = ladderHeightSwitch
-		currentSubtype = Tall
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleB9PartSwitch
-		isEnabled = True
-		stagingEnabled = True
-		moduleID = railSwitch
-		currentSubtype = On
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		UPGRADESAPPLIED
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleB9PartSwitch
-		isEnabled = True
-		stagingEnabled = True
-		moduleID = railSwitch
-		currentSubtype = Red
 		EVENTS
 		{
 		}
@@ -14653,7 +17125,22 @@ PART
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -14703,59 +17190,60 @@ PART
 		active = True
 		originalPos = (8.29999733, 2.2080574, -0.0621393621)
 		originalRotation = (0, 0, 0, -1)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (1.7, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.7, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.9, 1.7)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.9, -1.7)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (5.0, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-5.0, 0.9, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.9, 5.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.9, -5.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (2.6, 0.7, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-2.6, 0.7, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.7, 2.6)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 0.0, 1.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 0.7, -2.6)
 		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (0.0, 0.0, 1.0)
 		originalAttachNodeOrientation = (0.0, 0.0, -1.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -14772,7 +17260,7 @@ PART
 {
 	part = AM.MLP.GeneralROFI_4293953558
 	partName = Part
-	persistentId = 4012719541
+	persistentId = 2606192119
 	pos = -0.100002766,3.2080574,-2.34765005
 	attPos = 0.0354573727,-0.00500106812,-2.13545775
 	attPos0 = -2.33545685,3.10500145,2.33545756
@@ -14787,7 +17275,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 0
-	sqor = 5
+	sqor = 4
 	sepI = 5
 	attm = 1
 	sameVesselCollision = False
@@ -14925,10 +17413,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1.098
+		OriginalResourcesCost = 0.098
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1.0980000019073486
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -14977,9 +17498,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-0.100002766, 3.2080574, -2.34765005)
-		originalRotation = (-8.4401236E-10, -0.707106769, 8.4401236E-10, -0.707106769)
-		moduleVersion = 5
+		originalRotation = (-8.44012249E-10, -0.707106769, 8.44012304E-10, -0.707106769)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -15017,7 +17539,7 @@ PART
 {
 	part = AM.MLP.GeneralROFI_4293953142
 	partName = Part
-	persistentId = 47463125
+	persistentId = 3556174766
 	pos = -2.62260437E-06,3.20805359,2.35234928
 	attPos = 0.0427644253,-0.00500106812,-2.25723577
 	attPos0 = 2.35723543,3.10500145,2.35723495
@@ -15032,7 +17554,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 5
+	sqor = 4
 	sepI = 5
 	attm = 1
 	sameVesselCollision = False
@@ -15162,10 +17684,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1.098
+		OriginalResourcesCost = 0.098
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1.0980000019073486
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -15215,8 +17770,9 @@ PART
 		active = True
 		originalPos = (-2.62260437E-06, 3.20805359, 2.35234928)
 		originalRotation = (-8.4401236E-10, -0.707106709, -8.4401236E-10, 0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -15338,7 +17894,7 @@ PART
 		isEnabled = True
 		stagingEnabled = True
 		moduleID = styleSwitch
-		currentSubtype = AtlasCentaur
+		currentSubtype = Style1
 		EVENTS
 		{
 		}
@@ -15402,10 +17958,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -15455,63 +18044,64 @@ PART
 		active = True
 		originalPos = (6.15146828, 3.10805511, -0.0476517379)
 		originalRotation = (0, -0.707106769, 0, 0.707106769)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, 0.0, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (0.0, 12.7, 0.0)
-		originalAttachNodeSize = 2
-		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 0.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 1.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 2.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 3.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 4.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 5.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 6.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 7.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 8.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 9.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
-		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodePos = (-1.1, 10.7, 0.0)
+		originalAttachNodePos = (-1.1, 11.7, 0.0)
+		originalAttachNodeSize = 2
+		originalAttachNodeSize = 2
 		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeSize = 1
+		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
+		originalAttachNodeOrientation = (0.0, -1.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
 		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
-		originalAttachNodePos = (-1.1, 11.7, 0.0)
-		originalAttachNodeSize = 1
-		originalAttachNodeOrientation = (-1.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
+		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		originalAttachNodeOffset = (0.0, 0.0, 0.0)
 		EVENTS
 		{
@@ -15528,7 +18118,7 @@ PART
 {
 	part = AM.MLP.AtlasUmbilicalArmCentaur_4293951340
 	partName = Part
-	persistentId = 4002650372
+	persistentId = 365051674
 	pos = 6.15146828,18.2080574,-0.0476517379
 	attPos = 0,1.8014183,0
 	attPos0 = 0,13.2985802,0
@@ -15543,7 +18133,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 3
-	sqor = 6
+	sqor = 5
 	sepI = 5
 	attm = 0
 	sameVesselCollision = False
@@ -15613,10 +18203,90 @@ PART
 	{
 		name = ModuleAnimateGenericExtra
 		isEnabled = True
+		aniState = CLAMPED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 0
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
 		aniState = LOCKED
 		animSwitch = True
 		animTime = 0
-		animSpeed = -23.3333321
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = CLAMPED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 0
 		deployPercent = 100
 		animationIsDisabled = False
 		stagingEnabled = True
@@ -15669,10 +18339,10 @@ PART
 	{
 		name = ModuleAnimateGenericExtra
 		isEnabled = True
-		aniState = CLAMPED
+		aniState = LOCKED
 		animSwitch = True
 		animTime = 0
-		animSpeed = 0
+		animSpeed = 1
 		deployPercent = 100
 		animationIsDisabled = False
 		stagingEnabled = True
@@ -15709,10 +18379,67 @@ PART
 	{
 		name = ModuleAnimateGenericExtra
 		isEnabled = True
-		aniState = CLAMPED
+		aniState = LOCKED
 		animSwitch = True
 		animTime = 0
-		animSpeed = 0
+		animSpeed = 1
+		deployPercent = 100
+		animationIsDisabled = False
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+				wasActiveBeforePartWasAdjusted = False
+			}
+		}
+		AXISGROUPS
+		{
+			deployPercent
+			{
+				axisGroup = None
+				axisIncremental = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				axisSpeedMultiplier = 0
+				axisInverted = None
+				overrideIncremental0 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental1 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental2 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+				overrideIncremental3 = Pitch, Yaw, Roll, TranslateX, TranslateY, TranslateZ, WheelSteer, WheelThrottle, Custom01, Custom02, Custom03, Custom04
+			}
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleB9PartSwitch
+		isEnabled = True
+		stagingEnabled = True
+		moduleID = pipeSwitch
+		currentSubtype = Off
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleAnimateGenericExtra
+		isEnabled = True
+		aniState = LOCKED
+		animSwitch = True
+		animTime = 0
+		animSpeed = 1
 		deployPercent = 100
 		animationIsDisabled = False
 		stagingEnabled = True
@@ -15763,10 +18490,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 1
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 1
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -15816,8 +18576,9 @@ PART
 		active = True
 		originalPos = (6.15146828, 18.2080574, -0.0476517379)
 		originalRotation = (0, 5.96046448E-08, 0, -0.99999994)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		originalAttachNodePos = (0.0, -0.6, 0.0)
 		originalAttachNodeSize = 2
 		originalAttachNodeOrientation = (0.0, 1.0, 0.0)
@@ -15837,8 +18598,8 @@ PART
 {
 	part = sepMotor1_4293950812
 	partName = Part
-	persistentId = 3830030721
-	pos = -0.470465869,6.56676483,-0.470443457
+	persistentId = 1500393544
+	pos = -0.470465899,6.56676483,-0.470443517
 	attPos = -0.170292109,-0.027879715,0.170291841
 	attPos0 = 0.640754879,-0.169487,-0.640754759
 	rot = 0.907537758,0.0716587827,-0.375914365,0.172999561
@@ -15852,7 +18613,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -15984,10 +18745,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16003,6 +18797,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -16042,10 +18837,11 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.470465869, 6.56676483, -0.470443457)
-		originalRotation = (0.907537758, 0.0716587827, -0.375914365, 0.172999561)
-		moduleVersion = 5
+		originalPos = (-0.470465899, 6.56676483, -0.470443517)
+		originalRotation = (0.907537758, 0.0716587827, -0.375914335, 0.172999561)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -16072,7 +18868,7 @@ PART
 {
 	part = sepMotor1_4293950764
 	partName = Part
-	persistentId = 510572051
+	persistentId = 432469904
 	pos = -0.47046569,6.56676483,0.470482588
 	attPos = 0.170291901,-0.027879715,0.17029202
 	attPos0 = -0.640754759,-0.169487,-0.640754759
@@ -16087,7 +18883,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -16219,10 +19015,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16238,6 +19067,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -16278,9 +19108,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-0.47046569, 6.56676483, 0.470482588)
-		originalRotation = (0.375914723, 0.172999635, -0.90753752, 0.0716587678)
-		moduleVersion = 5
+		originalRotation = (0.375914723, 0.17299962, -0.90753752, 0.0716587603)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -16307,7 +19138,7 @@ PART
 {
 	part = sepMotor1_4293950716
 	partName = Part
-	persistentId = 3666559809
+	persistentId = 1704718037
 	pos = 0.470460176,6.56676483,0.470482439
 	attPos = 0.17029205,-0.027879715,-0.170291901
 	attPos0 = -0.640754819,-0.169487,0.640754819
@@ -16322,7 +19153,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -16454,10 +19285,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16473,6 +19337,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -16513,9 +19378,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (0.470460176, 6.56676483, 0.470482439)
-		originalRotation = (-0.375914365, 0.172999561, -0.907537758, -0.0716587827)
-		moduleVersion = 5
+		originalRotation = (-0.375914335, 0.172999561, -0.907537758, -0.0716587827)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -16542,7 +19408,7 @@ PART
 {
 	part = sepMotor1_4293950668
 	partName = Part
-	persistentId = 341375859
+	persistentId = 4290302499
 	pos = 0.470459878,6.56676483,-0.470443755
 	attPos = -0.170291811,-0.027879715,-0.17029199
 	attPos0 = 0.640754759,-0.169487,0.640754759
@@ -16557,7 +19423,7 @@ PART
 	resPri = 0
 	dstg = 8
 	sidx = 1
-	sqor = 4
+	sqor = 3
 	sepI = 3
 	attm = 1
 	sameVesselCollision = False
@@ -16689,10 +19555,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 76.440000057220458
+		OriginalResourcesCost = 1.440000057220458
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 76.44000011444092
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16708,6 +19607,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -16748,9 +19648,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (0.470459878, 6.56676483, -0.470443755)
-		originalRotation = (-0.90753752, 0.0716587678, -0.375914723, -0.172999635)
-		moduleVersion = 5
+		originalRotation = (-0.90753752, 0.0716587603, -0.375914723, -0.17299962)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -16777,8 +19678,8 @@ PART
 {
 	part = linearRcs_4293950620
 	partName = Part
-	persistentId = 1164404860
-	pos = -0.384550571,6.35237885,1.90958381E-05
+	persistentId = 3987915403
+	pos = -0.384550512,6.35237885,1.91107392E-05
 	attPos = 0,0,0
 	attPos0 = -3.46705731E-09,0.251595199,-0.384547144
 	rot = -0.645072758,0.289622545,0.645072699,0.289622515
@@ -16894,10 +19795,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 25
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 25
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16913,6 +19847,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -16967,9 +19902,25 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-0.384550571, 6.35237885, 1.90958381E-05)
+		originalPos = (-0.384550512, 6.35237885, 1.91107392E-05)
 		originalRotation = (-0.645072758, 0.289622545, 0.645072699, 0.289622515)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -16986,7 +19937,7 @@ PART
 {
 	part = linearRcs_4293950546
 	partName = Part
-	persistentId = 589264677
+	persistentId = 869773149
 	pos = -2.87592411E-06,6.35237885,-0.384527892
 	attPos = 0,0,0
 	attPos0 = -0.384547442,0.251595199,-2.9802278E-08
@@ -17103,10 +20054,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 25
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 25
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17122,6 +20106,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -17177,8 +20162,24 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-2.87592411E-06, 6.35237885, -0.384527892)
-		originalRotation = (-0.912270606, 0, -8.94069672E-08, 0.40958795)
-		moduleVersion = 5
+		originalRotation = (-0.912270606, -1.49011612E-08, -8.94069672E-08, 0.40958795)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17195,7 +20196,7 @@ PART
 {
 	part = linearRcs_4293950472
 	partName = Part
-	persistentId = 3176528575
+	persistentId = 2488890835
 	pos = 0.384544611,6.35237885,1.98185444E-05
 	attPos = 0,0,0
 	attPos0 = 4.07199501E-08,0.251595199,0.384547174
@@ -17312,10 +20313,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 25
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 25
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17331,6 +20365,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -17387,7 +20422,23 @@ PART
 		active = True
 		originalPos = (0.384544611, 6.35237885, 1.98185444E-05)
 		originalRotation = (-0.645072699, -0.289622515, -0.645072758, 0.289622545)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17404,8 +20455,8 @@ PART
 {
 	part = linearRcs_4293950398
 	partName = Part
-	persistentId = 2411900386
-	pos = -2.87592411E-06,6.35237885,0.384566903
+	persistentId = 372557065
+	pos = -2.84612179E-06,6.35237885,0.384566903
 	attPos = 0,0,0
 	attPos0 = 0.384547442,0.251595199,0
 	rot = 8.94069672E-08,-0.40958795,-0.912270606,0
@@ -17521,10 +20572,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 25
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 25
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17540,6 +20624,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -17594,9 +20679,25 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (-2.87592411E-06, 6.35237885, 0.384566903)
-		originalRotation = (8.94069672E-08, -0.40958795, -0.912270606, 0)
-		moduleVersion = 5
+		originalPos = (-2.84612179E-06, 6.35237885, 0.384566903)
+		originalRotation = (8.94069672E-08, -0.40958795, -0.912270606, -1.49011612E-08)
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17613,11 +20714,11 @@ PART
 {
 	part = radialRCSTank_4293950324
 	partName = Part
-	persistentId = 7545842
+	persistentId = 3395436452
 	pos = -0.116707817,6.71352005,-0.116685301
 	attPos = 0.328414708,-0.412965298,0.328414142
 	attPos0 = -0.44511953,0.303418756,-0.445119053
-	rot = 0.357692301,0.328393102,0.863545835,-0.136024728
+	rot = 0.357692301,0.328393102,0.863545835,-0.136024743
 	attRot = 0,0,0,1
 	attRot0 = -0.328393042,-0.357692569,0.136024967,-0.863545775
 	mir = 1,1,1
@@ -17681,10 +20782,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 224.0
+		OriginalResourcesCost = 24.0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 224.00000095367432
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17700,6 +20834,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -17740,9 +20875,10 @@ PART
 		isEnabled = True
 		active = True
 		originalPos = (-0.116707817, 6.71352005, -0.116685301)
-		originalRotation = (0.357692301, 0.328393102, 0.863545835, -0.136024728)
-		moduleVersion = 5
+		originalRotation = (0.357692301, 0.328393102, 0.863545835, -0.136024743)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -17769,11 +20905,11 @@ PART
 {
 	part = radialRCSTank_4293950292
 	partName = Part
-	persistentId = 1521420488
+	persistentId = 1058288047
 	pos = 0.11670208,6.71352005,0.116724268
 	attPos = -0.328414679,-0.412965298,-0.328414083
 	attPos0 = 0.44511953,0.303418756,0.445118994
-	rot = -0.863545835,0.136024728,0.357692301,0.328393102
+	rot = -0.863545835,0.136024743,0.357692301,0.328393102
 	attRot = 0,0,0,1
 	attRot0 = 0.136024967,-0.863545775,0.328393042,0.357692569
 	mir = 1,1,1
@@ -17837,10 +20973,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 224.0
+		OriginalResourcesCost = 24.0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 224.00000095367432
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -17856,6 +21025,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -17895,10 +21065,11 @@ PART
 		name = AttachedOnEditor
 		isEnabled = True
 		active = True
-		originalPos = (0.11670208, 6.71352005, 0.116724268)
-		originalRotation = (-0.863545835, 0.136024728, 0.357692301, 0.328393102)
-		moduleVersion = 5
+		originalPos = (0.116702072, 6.71352005, 0.11672426)
+		originalRotation = (-0.863545835, 0.136024743, 0.357692301, 0.328393102)
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -17925,7 +21096,7 @@ PART
 {
 	part = LiquidEngineRV-1_4293950260
 	partName = Part
-	persistentId = 151528232
+	persistentId = 3698206832
 	pos = -1.0937438,7.47193146,1.95801258E-05
 	attPos = 0,0,0
 	attPos0 = 2.03024726E-07,-0.444543839,1.09374154
@@ -17940,7 +21111,7 @@ PART
 	resPri = 0
 	dstg = 6
 	sidx = 1
-	sqor = 7
+	sqor = 6
 	sepI = 2
 	attm = 1
 	sameVesselCollision = False
@@ -18130,10 +21301,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 800
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 800
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18149,6 +21353,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -18205,7 +21410,23 @@ PART
 		active = True
 		originalPos = (-1.0937438, 7.47193146, 1.95801258E-05)
 		originalRotation = (1.36354767E-08, -0.707106769, 1.36354679E-08, 0.707106769)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18222,7 +21443,7 @@ PART
 {
 	part = LiquidEngineRV-1_4293950178
 	partName = Part
-	persistentId = 2096241565
+	persistentId = 3433646510
 	pos = 1.09373808,7.47193146,1.91032887E-05
 	attPos = 0,0,0
 	attPos0 = -2.6262947E-07,-0.444543839,-1.09374166
@@ -18237,7 +21458,7 @@ PART
 	resPri = 0
 	dstg = 6
 	sidx = 1
-	sqor = 7
+	sqor = 6
 	sepI = 2
 	attm = 1
 	sameVesselCollision = False
@@ -18419,10 +21640,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 800
+		OriginalResourcesCost = 0
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 800
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18438,6 +21692,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = stack
 		active = True
 		available = True
 		currentScale = 0.625
@@ -18494,7 +21749,23 @@ PART
 		active = True
 		originalPos = (1.09373808, 7.47193146, 1.91032887E-05)
 		originalRotation = (1.3635459E-08, 0.707106948, -1.36354572E-08, 0.70710665)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18511,7 +21782,7 @@ PART
 {
 	part = RCSBlock.v2_4293950096
 	partName = Part
-	persistentId = 279663677
+	persistentId = 3996097803
 	pos = -2.86102295E-06,19.4818611,0.754129171
 	attPos = 0,0,0
 	attPos0 = 0,-1.86624908,0.75410974
@@ -18645,10 +21916,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -15
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18664,6 +21968,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -18720,7 +22025,23 @@ PART
 		active = True
 		originalPos = (-2.86102295E-06, 19.4818611, 0.754129171)
 		originalRotation = (4.21468442E-08, 4.21468442E-08, -0.707106769, -0.707106829)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18737,7 +22058,7 @@ PART
 {
 	part = RCSBlock.v2_4293949850
 	partName = Part
-	persistentId = 583710835
+	persistentId = 3144187149
 	pos = 0.75410682,19.4818611,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = 0.754109681,-1.86624908,0
@@ -18871,10 +22192,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -15
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18890,6 +22244,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -18946,7 +22301,23 @@ PART
 		active = True
 		originalPos = (0.75410682, 19.4818611, 1.94609165E-05)
 		originalRotation = (-0.49999994, -0.5, -0.5, -0.50000006)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -18963,7 +22334,7 @@ PART
 {
 	part = RCSBlock.v2_4293949604
 	partName = Part
-	persistentId = 2399072330
+	persistentId = 4143057326
 	pos = -2.98023224E-06,19.4818611,-0.754090309
 	attPos = 0,0,0
 	attPos0 = -1.1920929E-07,-1.86624908,-0.75410974
@@ -19097,10 +22468,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -15
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19116,6 +22520,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -19172,7 +22577,23 @@ PART
 		active = True
 		originalPos = (-2.98023224E-06, 19.4818611, -0.754090309)
 		originalRotation = (-0.707106769, -0.707106829, -1.12382255E-08, -1.12382228E-08)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19189,7 +22610,7 @@ PART
 {
 	part = RCSBlock.v2_4293949358
 	partName = Part
-	persistentId = 1384124678
+	persistentId = 2947421410
 	pos = -0.754112482,19.4818611,1.94609165E-05
 	attPos = 0,0,0
 	attPos0 = -0.754109621,-1.86624908,0
@@ -19323,10 +22744,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 30
+		OriginalResourcesCost = 0
+		OriginalModulesCost = -15
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 30
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19342,6 +22796,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -19398,7 +22853,23 @@ PART
 		active = True
 		originalPos = (-0.754112482, 19.4818611, 1.94609165E-05)
 		originalRotation = (-0.5, -0.50000006, 0.49999994, 0.5)
-		moduleVersion = 5
+		moduleVersion = 6
+		stagingEnabled = True
+		userReallyDeactivatedIt = False
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = TweakScalerWaterfallFX
+		isEnabled = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19415,7 +22886,7 @@ PART
 {
 	part = monopropMiniSphere_4293949112
 	partName = Part
-	persistentId = 2304296204
+	persistentId = 2747432305
 	pos = 0.61508745,19.2296448,0.355142027
 	attPos = -0.346410096,-0.317052841,-0.200000048
 	attPos0 = 0.961500406,-1.80141068,0.555122614
@@ -19484,10 +22955,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19503,6 +23007,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -19544,8 +23049,9 @@ PART
 		active = True
 		originalPos = (0.61508745, 19.2296448, 0.355142027)
 		originalRotation = (5.51291137E-08, 0.965925813, 1.47718042E-08, 0.258819073)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -19572,7 +23078,7 @@ PART
 {
 	part = monopropMiniSphere_4293949076
 	partName = Part
-	persistentId = 1906024884
+	persistentId = 3341223285
 	pos = 0.355119646,19.2296448,-0.615070939
 	attPos = -0.200000048,-0.317052841,0.346410155
 	attPos0 = 0.555122554,-1.80141068,-0.961500585
@@ -19641,10 +23147,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19660,6 +23199,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -19701,8 +23241,9 @@ PART
 		active = True
 		originalPos = (0.355119646, 19.2296448, -0.615070939)
 		originalRotation = (4.94274133E-08, 0.866025448, -2.85369293E-08, -0.50000006)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -19729,7 +23270,7 @@ PART
 {
 	part = monopropMiniSphere_4293949040
 	partName = Part
-	persistentId = 329685846
+	persistentId = 3457809689
 	pos = -0.615093231,19.2296448,-0.355103046
 	attPos = 0.346410155,-0.317052841,0.199999988
 	attPos0 = -0.961500525,-1.80141068,-0.555122495
@@ -19798,10 +23339,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19817,6 +23391,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -19858,8 +23433,9 @@ PART
 		active = True
 		originalPos = (-0.615093231, 19.2296448, -0.355103046)
 		originalRotation = (1.47718042E-08, 0.258819073, -5.51291137E-08, -0.965925813)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -19886,7 +23462,7 @@ PART
 {
 	part = monopropMiniSphere_4293949004
 	partName = Part
-	persistentId = 1565792953
+	persistentId = 2141414028
 	pos = -0.485088348,19.2288437,0.485104591
 	attPos = 0.282842636,-0.422714233,-0.282842875
 	attPos0 = -0.767928123,-1.69655037,0.767928004
@@ -19956,10 +23532,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -19975,6 +23584,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20016,8 +23626,9 @@ PART
 		active = True
 		originalPos = (-0.485088348, 19.2288437, 0.485104591)
 		originalRotation = (2.18412204E-08, 0.382683456, 5.27293729E-08, 0.923879623)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -20044,7 +23655,7 @@ PART
 {
 	part = monopropMiniSphere_4293948968
 	partName = Part
-	persistentId = 625485345
+	persistentId = 1008096440
 	pos = 0.485082209,19.2288437,0.485104948
 	attPos = -0.282842815,-0.422714233,-0.282842636
 	attPos0 = 0.767927885,-1.69655037,0.767928123
@@ -20114,10 +23725,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -20133,6 +23777,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20174,8 +23819,9 @@ PART
 		active = True
 		originalPos = (0.485082209, 19.2288437, 0.485104948)
 		originalRotation = (5.27293693E-08, 0.923879564, 2.18412222E-08, 0.382683456)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -20202,7 +23848,7 @@ PART
 {
 	part = monopropMiniSphere_4293948932
 	partName = Part
-	persistentId = 2384875840
+	persistentId = 2333801545
 	pos = 0.485082626,19.2288437,-0.485065669
 	attPos = -0.282842577,-0.422714233,0.282842934
 	attPos0 = 0.767928064,-1.69655037,-0.767928064
@@ -20272,10 +23918,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -20291,6 +23970,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20332,8 +24012,9 @@ PART
 		active = True
 		originalPos = (0.485082626, 19.2288437, -0.485065669)
 		originalRotation = (5.27293693E-08, 0.923879564, -2.18412222E-08, -0.382683456)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -20360,7 +24041,7 @@ PART
 {
 	part = monopropMiniSphere_4293948896
 	partName = Part
-	persistentId = 1166815094
+	persistentId = 3744018751
 	pos = -0.485087991,19.2288437,-0.485065967
 	attPos = 0.282842875,-0.422714233,0.282842577
 	attPos0 = -0.767928004,-1.69655037,-0.767928004
@@ -20430,10 +24111,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -20449,6 +24163,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20490,8 +24205,9 @@ PART
 		active = True
 		originalPos = (-0.485087991, 19.2288437, -0.485065967)
 		originalRotation = (2.18412222E-08, 0.382683456, -5.27293693E-08, -0.923879564)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -20518,7 +24234,7 @@ PART
 {
 	part = monopropMiniSphere_4293948860
 	partName = Part
-	persistentId = 2861379327
+	persistentId = 643623812
 	pos = 0.354264796,19.2253304,0.613628983
 	attPos = -0.199999869,-0.400001526,-0.346410155
 	attPos0 = 0.554267526,-1.72277641,0.960019708
@@ -20586,10 +24302,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -20605,6 +24354,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20646,8 +24396,9 @@ PART
 		active = True
 		originalPos = (0.354264796, 19.2253304, 0.613628983)
 		originalRotation = (1.8091681E-08, 0.866025448, 1.04452367E-08, 0.5)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
@@ -20674,7 +24425,7 @@ PART
 {
 	part = monopropMiniSphere_4293948824
 	partName = Part
-	persistentId = 2887941598
+	persistentId = 3466261438
 	pos = -0.354270577,19.2253304,-0.613590002
 	attPos = 0.199999928,-0.400001526,0.346410096
 	attPos0 = -0.554267645,-1.72277641,-0.960019588
@@ -20742,10 +24493,43 @@ PART
 	}
 	MODULE
 	{
+		name = FundsKeeper
+		isEnabled = True
+		OriginalCost = 39.00
+		OriginalResourcesCost = 9.00
+		OriginalModulesCost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
 		name = Refunding
 		isEnabled = True
 		active = True
-		OriginalCost = 39.000000357627869
+		stagingEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+		UPGRADESAPPLIED
+		{
+		}
+	}
+	MODULE
+	{
+		name = StealBackMyFunds
+		isEnabled = True
+		active = True
 		stagingEnabled = True
 		EVENTS
 		{
@@ -20761,6 +24545,7 @@ PART
 	{
 		name = TweakScale
 		isEnabled = True
+		type = free
 		active = True
 		available = True
 		currentScale = 100
@@ -20802,8 +24587,9 @@ PART
 		active = True
 		originalPos = (-0.354270577, 19.2253304, -0.613590002)
 		originalRotation = (1.04452367E-08, 0.5, -1.8091681E-08, -0.866025448)
-		moduleVersion = 5
+		moduleVersion = 6
 		stagingEnabled = True
+		userReallyDeactivatedIt = False
 		EVENTS
 		{
 		}
