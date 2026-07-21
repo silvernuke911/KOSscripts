@@ -90,7 +90,7 @@ until  timer > 20 {
     }
     set tset to vertpid:update(time:seconds, ship:verticalspeed).
     log timer +","+ship:verticalSpeed+","+targ_vel to filename.
-    wait 0.01.
+    wait 0.
 }
 // set start_time to time:seconds.
 // set hoverpid:setpoint to 1.

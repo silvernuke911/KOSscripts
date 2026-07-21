@@ -128,8 +128,8 @@ function screen_data {
     parameter runmode.
     parameter cycles.
 
-    print cycles at (5,4).
-    print runmode + "           " at (5,5).
+    print(cycles at (5,4)).
+    print(runmode + "           " at (5,5)).
 }
 function main {
     initialization().

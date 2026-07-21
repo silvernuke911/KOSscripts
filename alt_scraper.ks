@@ -29,7 +29,9 @@ function alt_scraper {
     parameter title_header is False.
 
     // Calculate total points
-    set total_points to floor((end_lat - start_lat)/step_size) * floor((end_long - start_long)/step_size).
+    set lat_points to floor((end_lat - start_lat)/step_size).
+    set lon_points to floor((end_long - start_long)/step_size).
+    set total_points to lat_points * lon_points.
     set processed_points to 0.
     set start_time to kuniverse:realtime.
     
@@ -47,11 +49,13 @@ function alt_scraper {
     print "END LONG  : "+end_long+"  " at (25,9).
     print "STEP SIZE : "+step_size+"  " at (5,11).
 
+    
     // Iterate over latitudes
-    from { local lat is start_lat. } until lat >= end_lat  step { set lat to lat + step_size. } do {
-
+    from { local i is 0. } until i >= lat_points  step { set i to i + 1. } do {
+        local lat is start_lat + i * step_size.
         // Iterate over longitudes
-        from { local long is start_long. } until long >= end_long  step { set long to long + step_size. } do {
+        from { local j is 0. } until j >= lon_points  step { set j to j + 1. } do {
+            local long is start_long + j * step_size.
             // Obtain terrain height
             local local_height is latlng(lat, long):terrainheight.
             print "CURRENT LAT : " + round(lat,3) + "   " at (3, 15).

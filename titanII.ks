@@ -39,7 +39,7 @@ local function ascent_guidance {
             return "ignition".
         }
     ).
-     handlers:add (
+    handlers:add (
         "liftoff",
         {
             stage.
